@@ -11,6 +11,7 @@ Player::Player() {
     money = 200000;
     playerID = 0;
     playerName = "";
+    playerLastName = "";
     ownHousesPos = {};
     ownCard = {};
     pos = 0;
@@ -19,10 +20,12 @@ Player::Player() {
     nextRollDicePoint = 0;
 }
 
-Player::Player(int _playerID) {
+Player::Player(int _playerID, string _playerName) {
     money = 200000;
     playerID = _playerID;
-    playerName += to_string('a' + _playerID);
+    playerName = _playerName;
+    stringstream ss(_playerName);
+    ss >> playerLastName;
     ownHousesPos = {};
     ownCard = {};
     pos = 0;
@@ -41,6 +44,7 @@ void Player::subMoney(int _subtraction) {
 
 void Player::addPos(int _deltaPos) {
     pos += _deltaPos;
+    pos %= 64;
 }
 
 void Player::addOwnImmovables(int _pos) {
@@ -56,6 +60,12 @@ void Player::disOwnCards(string _disCards) {
     if (_cardPos != ownCard.end()) {
         ownCard.erase(_cardPos);
     }
+}
+
+void Player::subPos(int _deltaPos) {
+    pos += 64;
+    pos -= _deltaPos;
+    pos %= 64;
 }
 
 void Player::setMoney(int _money) {
@@ -93,6 +103,10 @@ int Player::getPos() {
 
 string Player::getPlayerName() {
     return playerName;
+}
+
+string Player::getPlayerLastName() {
+    return playerLastName;
 }
 
 vector<int> Player::getOwnImmovables() {

@@ -15,6 +15,7 @@ private:
     int money;
     int playerID;
     string playerName;
+    string playerLastName;
     vector<int> ownHousesPos;
     vector<string> ownCard;
     int pos;
@@ -23,13 +24,15 @@ private:
     int nextRollDicePoint;
 public:
     Player(); //initialize
-    Player(int _playerID);
+    Player(int _playerID, string _playerName);
     void addMoney(int _addition);
     void subMoney(int _subtraction);
     void addPos(int _deltaPos);
     void addOwnImmovables(int _pos);
     void addOwnCards(string _addCard);
     void disOwnCards(string _disCards);
+
+    void subPos(int _deltaPos);
 
     void setMoney(int _money);
     void setPos(int _pos);
@@ -41,6 +44,7 @@ public:
     int getMoney();
     int getPos();
     string getPlayerName();
+    string getPlayerLastName();
 
     vector<int> getOwnImmovables();
     vector<string> getOwnCards();
