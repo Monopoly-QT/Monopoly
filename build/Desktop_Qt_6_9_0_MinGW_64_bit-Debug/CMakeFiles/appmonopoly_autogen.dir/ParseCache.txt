@@ -710,7 +710,7 @@ C:/Users/jason/Desktop/Monopoly/UseCardSetting.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
 C:/Users/jason/Desktop/Monopoly/MovePoint.h
  mmc:Q_OBJECT
- mdp:C:/Users/jason/Desktop/Monopoly/land.h
+ mdp:C:/Users/jason/Desktop/Monopoly/Land.h
  mdp:C:/Users/jason/Desktop/Monopoly/MovePoint.h
  mdp:C:/Users/jason/Desktop/Monopoly/Player.h
  mdp:C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/moc_predefs.h
@@ -1443,7 +1443,7 @@ C:/Users/jason/Desktop/Monopoly/Player.h
 C:/Users/jason/Desktop/Monopoly/eventHandler.h
  mmc:Q_OBJECT
  mdp:C:/Users/jason/Desktop/Monopoly/Dice.h
- mdp:C:/Users/jason/Desktop/Monopoly/land.h
+ mdp:C:/Users/jason/Desktop/Monopoly/Land.h
  mdp:C:/Users/jason/Desktop/Monopoly/MovePoint.h
  mdp:C:/Users/jason/Desktop/Monopoly/Player.h
  mdp:C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/moc_predefs.h
