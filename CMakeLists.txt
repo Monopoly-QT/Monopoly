@@ -17,15 +17,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-# 下面要註解掉
-set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt6.9.0\\6.9.0\\mingw_64\\lib\\cmake")
+if (CMAKE_HOST_SYSTEM MATCHES "Darwin")
+    set(CMAKE_PREFIX_PATH "~/Qt6.9.0/6.9.0/macos/lib/cmake")
+elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
+    set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt6.9.0\\6.9.0\\mingw_64\\lib\\cmake")
+endif ()
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-#set(CMAKE_PREFIX_PATH "/Users/kai/Qt6.9.0/6.9.0/macos/lib/cmake")
-#
-#include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
-# 上面要註解掉
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
