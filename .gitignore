@@ -1,0 +1,10 @@
+build/*
+build
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+*.cmake
+cmake-build-debug
+.idea
+.vs
+.vscode
