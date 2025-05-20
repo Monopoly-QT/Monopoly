@@ -11,7 +11,7 @@ class Land: public QObject{
     Q_OBJECT
 
 private:
-    int type;
+    int type;   // 0:normal 1:event 2:store 3:hospital 4: Start
     int pos;
     int owner; //0:null 1:player1 2:player2 3:player3 4:player4
     int level; //only for house 0:empty 1:one house 2:two houses 3:three houses 4:motel
@@ -20,7 +20,7 @@ private:
     int value;
 public:
     Land();
-    Land(int _pos, string _name, int _value);
+    Land(int _type, int _pos, string _name, int _value);
     void setOwner(int _player);
     void setType(int _type);
     void setLevel(int _level);

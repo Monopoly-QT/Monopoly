@@ -1,0 +1,3436 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 15,
+                        "durationMicroseconds": 354,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 15
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 23,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 16
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 20,
+                        "durationMicroseconds": 243,
+                        "errorMessage": "Cannot access value for name event",
+                        "functionName": "color",
+                        "line": 28
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 15,
+                        "durationMicroseconds": 192,
+                        "errorMessage": "Cannot generate efficient code for LoadElement with non-list base type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::coordinateList with type QVariant (stored as QJSValue)",
+                        "functionName": "x",
+                        "line": 29
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 15,
+                        "durationMicroseconds": 155,
+                        "errorMessage": "Cannot generate efficient code for LoadElement with non-list base type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::coordinateList with type QVariant (stored as QJSValue)",
+                        "functionName": "y",
+                        "line": 30
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 21,
+                        "durationMicroseconds": 127,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 32
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 22,
+                        "durationMicroseconds": 177,
+                        "errorMessage": "Cannot access value for name event",
+                        "functionName": "visible",
+                        "line": 33
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "duration",
+                        "line": 38
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 34,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 39
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "",
+                        "functionName": "duration",
+                        "line": 45
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 34,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 46
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 29,
+                        "durationMicroseconds": 66,
+                        "errorMessage": "",
+                        "functionName": "target",
+                        "line": 53
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 127,
+                        "errorMessage": "",
+                        "functionName": "duration",
+                        "line": 56
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 34,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 57
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 29,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "target",
+                        "line": 60
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 129,
+                        "errorMessage": "",
+                        "functionName": "duration",
+                        "line": 63
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 34,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 64
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 27,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 70
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 48,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 76
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 54,
+                        "durationMicroseconds": 67,
+                        "errorMessage": "Cannot generate efficient code for storing an array in a non-sequence type",
+                        "functionName": "coordinateList",
+                        "line": 81
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 82
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 36,
+                        "durationMicroseconds": 195,
+                        "errorMessage": "Cannot access value for name event",
+                        "functionName": "model",
+                        "line": 89
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 39,
+                        "errorMessage": "Cannot access value for name playWindow",
+                        "functionName": "color",
+                        "line": 93
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 42,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "opacity",
+                        "line": 96
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 134,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 91
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 153,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 92
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 47,
+                        "durationMicroseconds": 40,
+                        "errorMessage": "Cannot access value for name playWindow",
+                        "functionName": "color",
+                        "line": 94
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 99
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 47,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "color",
+                        "line": 106
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 120,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 103
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 69,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 104
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 113,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 105
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 50,
+                        "errorMessage": "Cannot access value for name playWindow",
+                        "functionName": "color",
+                        "line": 107
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 109
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 114
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 604,
+                        "errorMessage": "",
+                        "functionName": "pixelSize",
+                        "line": 118
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 59,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 128
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 71,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 127
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 626,
+                        "errorMessage": "",
+                        "functionName": "pixelSize",
+                        "line": 132
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 161,
+                        "errorMessage": "",
+                        "functionName": "centerX",
+                        "line": 145
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 170,
+                        "errorMessage": "",
+                        "functionName": "centerY",
+                        "line": 146
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 58,
+                        "durationMicroseconds": 340,
+                        "errorMessage": "Cannot access value for name map_Grid",
+                        "functionName": "onHeightChanged",
+                        "line": 314
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 233,
+                        "errorMessage": "Cannot access value for name map_Grid",
+                        "functionName": "onWidthChanged",
+                        "line": 319
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 168,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 141
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 142
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 150
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 73,
+                        "durationMicroseconds": 133,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 154
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 72,
+                        "durationMicroseconds": 121,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 155
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 120,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 165
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 53,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 166
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 92,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 167
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 133,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 169
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 75,
+                        "durationMicroseconds": 91,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 164
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 197,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 179
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 180
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 169,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 181
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 183
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 75,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 178
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 201,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 193
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 194
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 156,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 195
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 88,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 197
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 75,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 192
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 378,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 207
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 116,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 208
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 209,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 209
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 168,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 211
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 75,
+                        "durationMicroseconds": 121,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 206
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 73,
+                        "durationMicroseconds": 155,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 218
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 72,
+                        "durationMicroseconds": 208,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 219
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 62,
+                        "durationMicroseconds": 294,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 225
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 232
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 306,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 235
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 286,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 236
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 79,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 234
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 94,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 246
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 390,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 249
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 273,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 250
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 79,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 248
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 62,
+                        "durationMicroseconds": 205,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 261
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 111,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 267
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 307,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 270
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 271,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 271
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 79,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 269
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 66,
+                        "durationMicroseconds": 92,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "visible",
+                        "line": 281
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 284,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 284
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 458,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 285
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 79,
+                        "durationMicroseconds": 97,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 283
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 58,
+                        "durationMicroseconds": 690,
+                        "errorMessage": "Cannot load property width from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QObject.",
+                        "functionName": "onTriggered",
+                        "line": 298
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 23,
+                        "durationMicroseconds": 149,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 335
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 41,
+                        "durationMicroseconds": 87,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 333
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 40,
+                        "durationMicroseconds": 129,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 334
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 338
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 345
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 124,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 343
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 344
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 96,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 346
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 43,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 352
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 203,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 356
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 112,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 357
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 102,
+                        "errorMessage": "",
+                        "functionName": "alignment",
+                        "line": 358
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 130,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 359
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 158,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 371
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 148,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 376
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 377
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 313,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 385
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 386
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 384
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 395
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 169,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 409
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 410
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 52,
+                        "durationMicroseconds": 131,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 419
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 420
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 41,
+                        "durationMicroseconds": 648,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 427
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 40,
+                        "durationMicroseconds": 609,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 428
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 97,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 429
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 435
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 44,
+                        "durationMicroseconds": 139,
+                        "errorMessage": "",
+                        "functionName": "onEntered",
+                        "line": 444
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 43,
+                        "durationMicroseconds": 126,
+                        "errorMessage": "",
+                        "functionName": "onExited",
+                        "line": 447
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 44,
+                        "durationMicroseconds": 298,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "onPressed",
+                        "line": 450
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 142,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 459
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 443
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 52,
+                        "durationMicroseconds": 150,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 468
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 469
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 41,
+                        "durationMicroseconds": 737,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 476
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 40,
+                        "durationMicroseconds": 587,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 477
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 41,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "Cannot load property isActivity from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "source",
+                        "line": 479
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 478
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 484
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 44,
+                        "durationMicroseconds": 150,
+                        "errorMessage": "",
+                        "functionName": "onEntered",
+                        "line": 494
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 43,
+                        "durationMicroseconds": 113,
+                        "errorMessage": "",
+                        "functionName": "onExited",
+                        "line": 497
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 44,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "Cannot load property isActivity from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "onPressed",
+                        "line": 500
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 120,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 504
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 493
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 36,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 515
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 49,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "Cannot access value for name parent",
+                        "functionName": "preferredHeight",
+                        "line": 512
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Cannot access value for name parent",
+                        "functionName": "preferredWidth",
+                        "line": 513
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 116,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 528
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 251,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 526
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 527
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 99,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 529
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 43,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 534
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 57,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "Cannot access value for name parent",
+                        "functionName": "preferredHeight",
+                        "line": 538
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 164,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 543
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 44,
+                        "durationMicroseconds": 121,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 552
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 61,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 550
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 158,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 559
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 177,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 560
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 93,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 567
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 115,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "color",
+                        "line": 577
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 578
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 40,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 585
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 51,
+                        "durationMicroseconds": 25,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 589
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 327,
+                        "errorMessage": "Cannot access value for name event",
+                        "functionName": "onPressed",
+                        "line": 593
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 172,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 597
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 582
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 81,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 605
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 44,
+                        "durationMicroseconds": 108,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 613
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 61,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 611
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 620
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 125,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 621
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 82,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 628
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "color",
+                        "line": 638
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 639
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 62,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 646
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 51,
+                        "durationMicroseconds": 40,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 650
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: cheatCommandLine_Textfield",
+                        "functionName": "onPressed",
+                        "line": 654
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 248,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 658
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 90,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 643
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 147,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 666
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 46,
+                        "durationMicroseconds": 150,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 676
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 232,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 685
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 49,
+                        "durationMicroseconds": 174,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 683
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 158,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 684
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 108,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 686
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 40,
+                        "durationMicroseconds": 246,
+                        "errorMessage": "",
+                        "functionName": "onEntered",
+                        "line": 695
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 168,
+                        "errorMessage": "",
+                        "functionName": "onExited",
+                        "line": 699
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 40,
+                        "durationMicroseconds": 438,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 703
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 41,
+                        "durationMicroseconds": 179,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 709
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 43,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 692
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 46,
+                        "durationMicroseconds": 554,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "onTriggered",
+                        "line": 722
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 46,
+                        "durationMicroseconds": 83,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 737
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 37,
+                        "durationMicroseconds": 80,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 742
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 36,
+                        "durationMicroseconds": 184,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 743
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 37,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "Cannot load property radius from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "radius",
+                        "line": 744
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 36,
+                        "durationMicroseconds": 262,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 745
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 138,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 750
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 761
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 770
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 49,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 771
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 51,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 775
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 225,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 778
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 122,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 779
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 483,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 788
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 199,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 789
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 137,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 786
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 142,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 787
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 385,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 794
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 113,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 795
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 792
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 121,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 793
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 335,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 800
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 801
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 798
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 198,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 799
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 134,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 809
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 810
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 427,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 819
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 117,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 820
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 817
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 127,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 818
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 142,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 829
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 830
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 400,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 839
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 105,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 840
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 837
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 119,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 838
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 344,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 845
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 105,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 846
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 843
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 123,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 844
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 328,
+                        "errorMessage": "Cannot access value for name diceA",
+                        "functionName": "color",
+                        "line": 851
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 852
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 849
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 136,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 850
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 864
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 49,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 865
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 54,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 869
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 195,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 872
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 873
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 398,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 882
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 105,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 883
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 880
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 123,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 881
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 328,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 888
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 104,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 889
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 886
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 117,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 887
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 322,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 894
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 103,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 895
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 892
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 148,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 893
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 129,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 904
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 72,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 905
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 356,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 914
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 109,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 915
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 912
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 193,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 913
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 190,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 924
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 64,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 925
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 429,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 934
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 112,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 935
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 932
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 120,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 933
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 346,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 940
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 104,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 941
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 938
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 939
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 469,
+                        "errorMessage": "Cannot access value for name diceB",
+                        "functionName": "color",
+                        "line": 946
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 121,
+                        "errorMessage": "",
+                        "functionName": "radius",
+                        "line": 947
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 69,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 944
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 68,
+                        "durationMicroseconds": 145,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 945
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 22,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"closePolicy\".",
+                        "functionName": "closePolicy",
+                        "line": 971
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 27,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"centerIn\".",
+                        "functionName": "centerIn",
+                        "line": 972
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 20,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot access value for name playWindow",
+                        "functionName": "color",
+                        "line": 981
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 27,
+                        "durationMicroseconds": 9,
+                        "errorMessage": "Cannot access value for name parent",
+                        "functionName": "fill",
+                        "line": 978
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 27,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"fill\".",
+                        "functionName": "fill",
+                        "line": 985
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find property \"policy\".",
+                        "functionName": "policy",
+                        "line": 986
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 31,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 989
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 28,
+                        "durationMicroseconds": 108,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 999
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 123,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 997
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 101,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1000
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1006
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 26,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1022
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 142,
+                        "errorMessage": "",
+                        "functionName": "transformOrigin",
+                        "line": 1028
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 143,
+                        "errorMessage": "",
+                        "functionName": "rotation",
+                        "line": 1029
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1025
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 99,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1033
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 192,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1040
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 92,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1039
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 145,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1047
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1051
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 60,
+                        "durationMicroseconds": 80,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 1054
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 61,
+                        "durationMicroseconds": 37,
+                        "errorMessage": "cannot convert from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem to double",
+                        "functionName": "preferredHeight",
+                        "line": 1055
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1066
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 140,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1064
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 65,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1077
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 157,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 1082
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 1083
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 312,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1084
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 66,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1089
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 32,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 1099
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 25,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 1104
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 197,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1109
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 122,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 1114
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1096
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1122
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 147,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1131
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1129
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 55,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1142
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 164,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 1147
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 1148
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 335,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1149
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 66,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1154
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 32,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 1164
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 26,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 1169
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 192,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1174
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 133,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 1179
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1161
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 91,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1187
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1196
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 94,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1194
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1207
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 160,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 1212
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 94,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 1213
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 342,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1214
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 66,
+                        "durationMicroseconds": 86,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1219
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 33,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 1229
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 26,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 1234
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 224,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1239
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 131,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 1244
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 56,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1226
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1252
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1261
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 65,
+                        "durationMicroseconds": 128,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1259
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1272
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 178,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 1277
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 1278
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 52,
+                        "durationMicroseconds": 302,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1279
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 66,
+                        "durationMicroseconds": 114,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1284
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 1294
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 29,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 1299
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 200,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1304
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 127,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 1309
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1291
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 123,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1317
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 60,
+                        "durationMicroseconds": 88,
+                        "errorMessage": "",
+                        "functionName": "preferredWidth",
+                        "line": 1325
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 48,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1335
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 96,
+                        "errorMessage": "",
+                        "functionName": "height",
+                        "line": 1341
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 112,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "width",
+                        "line": 1342
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 66,
+                        "durationMicroseconds": 79,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1349
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 52,
+                        "durationMicroseconds": 125,
+                        "errorMessage": "Cannot load property isHovered from (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem.",
+                        "functionName": "color",
+                        "line": 1359
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 63,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1360
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 56,
+                        "durationMicroseconds": 32,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onEntered",
+                        "line": 1367
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 55,
+                        "durationMicroseconds": 25,
+                        "errorMessage": "Type (component in C:/Users/jason/Desktop/Monopoly/Main.qml)::parent with type QQuickItem does not have a property isHovered for writing",
+                        "functionName": "onExited",
+                        "line": 1371
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 56,
+                        "durationMicroseconds": 204,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1375
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 57,
+                        "durationMicroseconds": 129,
+                        "errorMessage": "",
+                        "functionName": "onReleased",
+                        "line": 1379
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 59,
+                        "durationMicroseconds": 64,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1364
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 62,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1387
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 69,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1401
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1410
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 28,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1421
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 123,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1419
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 103,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1422
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1427
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 27,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1443
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 92,
+                        "errorMessage": "",
+                        "functionName": "transformOrigin",
+                        "line": 1449
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 156,
+                        "errorMessage": "",
+                        "functionName": "rotation",
+                        "line": 1450
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1446
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1454
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 223,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1461
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1460
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 152,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1469
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1473
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1479
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1488
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 28,
+                        "durationMicroseconds": 107,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1499
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 119,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1497
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 238,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1500
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1505
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1521
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "transformOrigin",
+                        "line": 1527
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 325,
+                        "errorMessage": "",
+                        "functionName": "rotation",
+                        "line": 1528
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1524
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 83,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1532
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 178,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1539
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1538
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 155,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1547
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 59,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1551
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1557
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1566
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 28,
+                        "durationMicroseconds": 106,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1577
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 118,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1575
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 175,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1578
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 60,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1583
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1599
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "transformOrigin",
+                        "line": 1605
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 150,
+                        "errorMessage": "",
+                        "functionName": "rotation",
+                        "line": 1606
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1602
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1610
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 315,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1617
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1616
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 158,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1625
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1629
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1635
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 119,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1644
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 28,
+                        "durationMicroseconds": 147,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1655
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 45,
+                        "durationMicroseconds": 131,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1653
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 35,
+                        "durationMicroseconds": 111,
+                        "errorMessage": "",
+                        "functionName": "color",
+                        "line": 1656
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 39,
+                        "durationMicroseconds": 88,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1661
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 40,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "color",
+                        "line": 1677
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 54,
+                        "durationMicroseconds": 78,
+                        "errorMessage": "",
+                        "functionName": "transformOrigin",
+                        "line": 1683
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 143,
+                        "errorMessage": "",
+                        "functionName": "rotation",
+                        "line": 1684
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 55,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 1680
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 58,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1688
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 48,
+                        "durationMicroseconds": 172,
+                        "errorMessage": "",
+                        "functionName": "onPressed",
+                        "line": 1695
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 51,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1694
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 53,
+                        "durationMicroseconds": 145,
+                        "errorMessage": "",
+                        "functionName": "preferredHeight",
+                        "line": 1703
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 47,
+                        "durationMicroseconds": 63,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 1707
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 50,
+                        "durationMicroseconds": 77,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1713
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 42,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1722
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 41,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1732
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 71,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1736
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 35,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1739
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 109,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1743
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 34,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1746
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 73,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1750
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 47,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "script",
+                        "line": 1753
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 35,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "script",
+                        "line": 1761
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 30,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1766
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 74,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1770
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 31,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1773
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 70,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1777
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 25,
+                        "durationMicroseconds": 31,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: card_popUp",
+                        "functionName": "target",
+                        "line": 1780
+                    },
+                    {
+                        "codegenSuccessfull": true,
+                        "column": 30,
+                        "durationMicroseconds": 68,
+                        "errorMessage": "",
+                        "functionName": "type",
+                        "line": 1784
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 17,
+                        "durationMicroseconds": 114,
+                        "errorMessage": "Cannot access value for name event",
+                        "functionName": "target",
+                        "line": 1790
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 31,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"movePointStartMove\".",
+                        "functionName": "onMovePointStartMove",
+                        "line": 1791
+                    },
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 32,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"movePointInitialize\".",
+                        "functionName": "onMovePointInitialize",
+                        "line": 1797
+                    }
+                ],
+                "filepath": "C:/Users/jason/Desktop/Monopoly/Main.qml"
+            }
+        ],
+        "moduleId": "monopoly(appmonopoly)"
+    }
+]

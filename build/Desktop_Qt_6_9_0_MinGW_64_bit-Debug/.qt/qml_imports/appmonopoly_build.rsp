@@ -1,0 +1,14 @@
+-rootPath
+C:/Users/jason/Desktop/Monopoly
+-cmake-output
+-output-file
+C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/.qt/qml_imports/appmonopoly_build.cmake
+-importPath
+C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/monopoly
+-importPath
+C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug
+-importPath
+D:/Qt/6.9.0/mingw_64/qml
+-qrcFiles
+C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/.qt/rcc/qmake_monopoly.qrc
+C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/.qt/rcc/appmonopoly_raw_qml_0.qrc

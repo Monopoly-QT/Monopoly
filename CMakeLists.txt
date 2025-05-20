@@ -31,8 +31,8 @@ qt_add_qml_module(appmonopoly
         RESOURCES resourse.qrc
         SOURCES eventHandler.h
         SOURCES eventHandler.cpp
-        SOURCES land.h
-        SOURCES land.cpp
+        SOURCES Land.h
+        SOURCES Land.cpp
         SOURCES map.h
         SOURCES map.cpp
         SOURCES mapHandler.h

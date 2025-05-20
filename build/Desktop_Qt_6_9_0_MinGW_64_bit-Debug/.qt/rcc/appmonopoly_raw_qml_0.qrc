@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/monopoly/">
+    <file alias="Main.qml">C:/Users/jason/Desktop/Monopoly/Main.qml</file>
+    <file alias="resourse.qrc">C:/Users/jason/Desktop/Monopoly/resourse.qrc</file>
+  </qresource>
+</RCC>
+

@@ -1,5 +1,5 @@
 #include "map.h"
-#include "land.h"
+#include "Land.h"
 #include "Player.h"
 #include <vector>
 #include <QQmlComponent>

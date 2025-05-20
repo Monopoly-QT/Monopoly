@@ -1,4 +1,4 @@
-#include "land.h"
+#include "Land.h"
 #include <string>
 #include <QQmlComponent>
 #include <QObject>

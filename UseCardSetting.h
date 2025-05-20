@@ -1,7 +1,7 @@
 #include <QObject>
 #include <QList>
 #include <QString>
-#include <land.h>
+#include <Land.h>
 
 #ifndef USECARDSETTING_H
 #define USECARDSETTING_H

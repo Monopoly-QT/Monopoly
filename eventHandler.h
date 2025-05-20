@@ -1,6 +1,6 @@
 #include "Dice.h"
 #include "map.h"
-#include "land.h"
+#include "Land.h"
 #include "Player.h"
 #include "MovePoint.h"
 #include "mapHandler.h"
