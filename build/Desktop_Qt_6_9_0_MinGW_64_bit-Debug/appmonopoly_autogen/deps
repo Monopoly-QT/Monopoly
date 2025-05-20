@@ -18,6 +18,11 @@ appmonopoly_autogen/timestamp: \
 	C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/moc_predefs.h \
 	C:/Users/jason/Desktop/Monopoly/eventHandler.cpp \
 	C:/Users/jason/Desktop/Monopoly/eventHandler.h \
+	C:/Users/jason/Desktop/Monopoly/json/command.json \
+	C:/Users/jason/Desktop/Monopoly/json/config.json \
+	C:/Users/jason/Desktop/Monopoly/json/country.json \
+	C:/Users/jason/Desktop/Monopoly/json/dialogue.json \
+	C:/Users/jason/Desktop/Monopoly/json/event.json \
 	C:/Users/jason/Desktop/Monopoly/land.h \
 	C:/Users/jason/Desktop/Monopoly/main.cpp \
 	C:/Users/jason/Desktop/Monopoly/map.cpp \

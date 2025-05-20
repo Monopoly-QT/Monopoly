@@ -200,7 +200,7 @@
         "function": "sub 6800"
     },
     "50": {
-        "text": "Travel to Peiping. \nSpend 9,700 dollars.",
+        "text": "Travel to Peking. \nSpend 9,700 dollars.",
         "function": "sub 9700"
     },
     "51": {
@@ -392,7 +392,7 @@
         "function": "add 3800"
     },
     "98": {
-        "text": "Work in Peiping. \nEarn 9,000 dollars.",
+        "text": "Work in Peking. \nEarn 9,000 dollars.",
         "function": "add 9000"
     },
     "99": {
@@ -584,8 +584,8 @@
         "function": "fly Nanking"
     },
     "146": {
-        "text": "Fly to Peiping. ",
-        "function": "fly Peiping"
+        "text": "Fly to Peking. ",
+        "function": "fly Peking"
     },
     "147": {
         "text": "Fly to Shanghai. ",
@@ -776,8 +776,8 @@
         "function": "level 0 Nanking end"
     },
     "194": {
-        "text": "War breaks out. \nAll houses in Peiping were destroyed.",
-        "function": "level 0 Peiping end"
+        "text": "War breaks out. \nAll houses in Peking were destroyed.",
+        "function": "level 0 Peking end"
     },
     "195": {
         "text": "War breaks out. \nAll houses in Shanghai were destroyed.",

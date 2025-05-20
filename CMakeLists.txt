@@ -2,12 +2,20 @@ cmake_minimum_required(VERSION 3.16)
 
 project(monopoly VERSION 0.1 LANGUAGES CXX)
 
+# 顯示 JSON 檔案到專案樹
+file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*.json")
+source_group("JSON Files" FILES ${JSON_FILES})
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*")
+
+foreach(json_file ${JSON_FILES})
+    get_filename_component(filename ${json_file} NAME)
+    configure_file(${json_file} ${CMAKE_CURRENT_BINARY_DIR}/json/${filename} COPYONLY)
+endforeach()
 
 # 下面要註解掉
 set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt6.9.0\\6.9.0\\mingw_64\\lib\\cmake")
@@ -22,6 +30,7 @@ qt_standard_project_setup(REQUIRES 6.8)
 qt_add_executable(appmonopoly
     main.cpp
     resourse.qrc
+    ${JSON_FILES}
 )
 
 qt_add_qml_module(appmonopoly
