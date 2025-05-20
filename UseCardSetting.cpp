@@ -51,4 +51,5 @@ void UseCardSetting::setOwnCardCount(const QList<int> &newOwnCardCount)
         return;
     m_ownCardCount = newOwnCardCount;
     emit ownCardCountChanged();
+    //:D
 }
