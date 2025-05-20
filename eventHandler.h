@@ -43,6 +43,12 @@ public:
     Q_INVOKABLE void moveEntryPoint(int _moveDistance);
     Q_INVOKABLE void commendEntryPoint(QString _instruct);
 
+    // Q_INVOKABLE void rocketCardUseEntryPoint(int _playerIndex,int _duration);
+    // Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
+    // Q_INVOKABLE void removeCardUseEntryPoint(int _removeIndex);
+    // Q_INVOKABLE void roadBlockCardUseEnrtyPoint(int _blockIndex);
+    // Q_INVOKABLE void eventCardUseEntryPoint();
+
 signals:
     void mapListChanged();
     void movePointChanged();
