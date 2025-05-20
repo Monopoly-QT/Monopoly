@@ -1,0 +1,126 @@
+{
+    "classes": [
+        {
+            "className": "MovePoint",
+            "lineNumber": 11,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 4,
+                    "name": "hiddingMovePoint",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "newIsvisable",
+                            "type": "bool"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "setIsvisable",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 0,
+                    "name": "isvisable",
+                    "notify": "isvisableChanged",
+                    "read": "isvisable",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "bool",
+                    "user": false,
+                    "write": "setIsvisable"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 1,
+                    "name": "displayColor",
+                    "notify": "displayColorChanged",
+                    "read": "displayColor",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QColor",
+                    "user": false,
+                    "write": "setDisplayColor"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 2,
+                    "name": "changeX",
+                    "notify": "changeXChanged",
+                    "read": "changeX",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "double",
+                    "user": false,
+                    "write": "setChangeX"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 3,
+                    "name": "changeY",
+                    "notify": "changeYChanged",
+                    "read": "changeY",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "double",
+                    "user": false,
+                    "write": "setChangeY"
+                }
+            ],
+            "qualifiedClassName": "MovePoint",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "isvisableChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "changeXChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "changeYChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "displayColorChanged",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "MovePoint.h",
+    "outputRevision": 69
+}

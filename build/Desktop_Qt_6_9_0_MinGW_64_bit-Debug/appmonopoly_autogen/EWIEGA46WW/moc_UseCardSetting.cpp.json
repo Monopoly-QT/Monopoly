@@ -1,0 +1,106 @@
+{
+    "classes": [
+        {
+            "className": "UseCardSetting",
+            "lineNumber": 9,
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 0,
+                    "name": "displayTargetPlayer",
+                    "notify": "displayTargetPlayerChanged",
+                    "read": "displayTargetPlayer",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<int>",
+                    "user": false,
+                    "write": "setDisplayTargetPlayer"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 1,
+                    "name": "displayTargetLand",
+                    "notify": "displayTargetLandChanged",
+                    "read": "displayTargetLand",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<QString>",
+                    "user": false,
+                    "write": "setDisplayTargetLand"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 2,
+                    "name": "cardUseAvailable",
+                    "notify": "cardUseAvailableChanged",
+                    "read": "cardUseAvailable",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<int>",
+                    "user": false,
+                    "write": "setCardUseAvailable"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 3,
+                    "name": "ownCardCount",
+                    "notify": "ownCardCountChanged",
+                    "read": "ownCardCount",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<int>",
+                    "user": false,
+                    "write": "setOwnCardCount"
+                }
+            ],
+            "qualifiedClassName": "UseCardSetting",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "displayTargetPlayerChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "displayTargetLandChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "cardUseAvailableChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "ownCardCountChanged",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "UseCardSetting.h",
+    "outputRevision": 69
+}

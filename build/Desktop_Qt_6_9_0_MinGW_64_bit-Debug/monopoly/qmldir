@@ -1,0 +1,5 @@
+module monopoly
+typeinfo appmonopoly.qmltypes
+prefer :/qt/qml/monopoly/
+Main 1.0 Main.qml
+

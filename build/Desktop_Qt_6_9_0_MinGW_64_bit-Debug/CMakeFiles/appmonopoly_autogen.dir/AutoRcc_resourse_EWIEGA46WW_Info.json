@@ -1,0 +1,30 @@
+{
+	"BUILD_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly",
+	"CMAKE_SOURCE_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/building.png",
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/cheat.png",
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/card.png",
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/cheat_1.png",
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/money.png",
+		"C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/images/house.png"
+	],
+	"LOCK_FILE" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/appmonopoly_autogen.dir/AutoRcc_resourse_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "resourse" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resourse.cpp",
+	"RCC_EXECUTABLE" : "D:/Qt/6.9.0/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/appmonopoly_autogen.dir/AutoRcc_resourse_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/user/Desktop/OOP_project/MonopolyUI/monopoly/resourse.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

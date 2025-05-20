@@ -1,0 +1,130 @@
+{
+    "classes": [
+        {
+            "className": "eventHandler",
+            "lineNumber": 20,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 4,
+                    "name": "movePointAnimator",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "_posX",
+                            "type": "double"
+                        },
+                        {
+                            "name": "_posY",
+                            "type": "double"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "addMapPosXandPosY",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 6,
+                    "name": "clearMapPosXandPosY",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "_moveDistance",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 7,
+                    "name": "moveEntryPoint",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "_instruct",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 8,
+                    "name": "commendEntryPoint",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 0,
+                    "name": "mapList",
+                    "notify": "mapListChanged",
+                    "read": "mapList",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<QObject*>",
+                    "user": false,
+                    "write": "setMapList"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": true,
+                    "index": 1,
+                    "name": "movePoint",
+                    "notify": "movePointChanged",
+                    "read": "movePoint",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "MovePoint*",
+                    "user": false,
+                    "write": "setMovePoint"
+                }
+            ],
+            "qualifiedClassName": "eventHandler",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "mapListChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "movePointChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "movePointStartMove",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "movePointInitialize",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "eventHandler.h",
+    "outputRevision": 69
+}
