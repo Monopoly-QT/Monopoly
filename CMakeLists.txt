@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.16)
 project(monopoly VERSION 0.1 LANGUAGES CXX)
 
 # 顯示 JSON 檔案到專案樹
-file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*.json")
+file(GLOB JSON_FILES "Resources/json/*.json")
 source_group("JSON Files" FILES ${JSON_FILES})
 
-file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*")
+file(GLOB JSON_FILES "Resources/json/*")
 
 foreach(json_file ${JSON_FILES})
     get_filename_component(filename ${json_file} NAME)
@@ -31,7 +31,7 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appmonopoly
     main.cpp
-    resourse.qrc
+        Resources/resourse.qrc
     ${JSON_FILES}
 )
 
@@ -39,24 +39,30 @@ qt_add_qml_module(appmonopoly
     URI monopoly
     VERSION 1.0
     QML_FILES
-        Main.qml
-        SOURCES Dice.h
-        SOURCES Dice.cpp
-        RESOURCES resourse.qrc
-        SOURCES eventHandler.h
-        SOURCES eventHandler.cpp
-        SOURCES Land.h
-        SOURCES Land.cpp
-        SOURCES map.h
-        SOURCES map.cpp
-        SOURCES mapHandler.h
-        SOURCES Player.h
-        SOURCES Player.cpp
-        SOURCES MovePoint.h
-        SOURCES MovePoint.cpp
-        SOURCES mapHandler.cpp
-        SOURCES UseCardSetting.h
-        SOURCES UseCardSetting.cpp
+        UI/Main.qml
+        UI/InBetween.qml
+        UI/HorseRacing.qml
+        SOURCES Dice/Dice.h
+        SOURCES Dice/Dice.cpp
+        RESOURCES Resources/resourse.qrc
+        SOURCES Handler/EventHandler/eventHandler.h
+        SOURCES Handler/EventHandler/eventHandler.cpp
+        SOURCES Land/Land.h
+        SOURCES Land/Land.cpp
+        SOURCES Map/map.h
+        SOURCES Map/map.cpp
+        SOURCES Handler/MapHandler/mapHandler.h
+        SOURCES Player/Player.h
+        SOURCES Player/Player.cpp
+        SOURCES MovePoint/MovePoint.h
+        SOURCES MovePoint/MovePoint.cpp
+        SOURCES Handler/MapHandler/mapHandler.cpp
+        SOURCES UseCardSetting/UseCardSetting.h
+        SOURCES UseCardSetting/UseCardSetting.cpp
+        SOURCES MiniGames/HorseRacing/HorseRacing.h
+        SOURCES MiniGames/HorseRacing/HorseRacing.cpp
+        SOURCES MiniGames/InBetween/InBetween.h
+        SOURCES MiniGames/InBetween/InBetween.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

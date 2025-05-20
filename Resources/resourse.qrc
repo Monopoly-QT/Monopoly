@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/money.png</file>
+        <file>images/card.png</file>
+        <file>images/cheat.png</file>
+        <file>images/cheat_1.png</file>
+        <file>images/house.png</file>
+        <file>images/building.png</file>
+        <file>images/grass_real.jpg</file>
+        <file>images/Horses/horse1.png</file>
+        <file>images/Horses/horse2.png</file>
+        <file>images/Horses/horse3.png</file>
+        <file>images/Horses/horse4.png</file>
+    </qresource>
+</RCC>
