@@ -24,6 +24,7 @@ class eventHandler:public QObject{
 
 public:
     eventHandler();
+    ~eventHandler();
     Q_INVOKABLE void movePointAnimator();
     void animationThread(int _times,int _playerPos,int _index);
 

@@ -29,6 +29,17 @@ eventHandler::eventHandler(){
     m_movePoint = &operateMovePoint;
 }
 
+eventHandler::~eventHandler(){
+    for(auto i:processMap){
+        delete i;
+    }
+    for(auto i:processPlayer){
+        delete i;
+    }
+    processMap.clear();
+    processPlayer.clear();
+}
+
 void eventHandler::moveEntryPoint(int _moveDistance){
     cout<<_moveDistance<<endl;
 }
