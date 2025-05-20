@@ -11,10 +11,11 @@
 
 using namespace std;
 
-Map::Map(bool _isDisplay,string _order,string _name,vector<int> _playerStay,Land* _land){
+Map::Map(bool _isDisplay,string _order,string _name,string _translation,vector<int> _playerStay,Land* _land){
     m_isDisplay = _isDisplay;
     m_order = QString::fromStdString(_order);
     m_name = QString::fromStdString(_name);
+    m_translation = QString::fromStdString(_translation);
     m_isDisplayBuilding.resize(4);
     m_playerStay.resize(4);
     byPlayoerPosSetVisibility(_playerStay ,stoi(_order));
@@ -76,29 +77,29 @@ void Map::byLevelSetBuildingVisibility(int level){
 void Map::byTypeOrOwnerSetColor(int type ,int owner){
     if(type == 0){
         if(owner == 0){
-            m_displayColor = "#454545";
+            m_displayColor = "#454545";  // 深灰
         }
         else if(owner == 1){
-            m_displayColor = "#ff1700";
+            m_displayColor = "#990000";  // 深紅
         }
         else if(owner == 2){
-            m_displayColor = "#009aff";
+            m_displayColor = "#005999";  // 深藍
         }
         else if(owner == 3){
-            m_displayColor = "#0fff00";
+            m_displayColor = "#007f00";  // 深綠
         }
         else{
-            m_displayColor = "#ffcb00";
+            m_displayColor = "#996600";  // 深黃褐
         }
     }
     else if(type == 1){
-        m_displayColor = "#9c27b0";
+        m_displayColor = "#6a1b9a";  // 深紫
     }
     else if(type == 2){
-        m_displayColor = "#ff9800";
+        m_displayColor = "#e65100";  // 深橘
     }
     else{
-        m_displayColor = "#00bcd4";
+        m_displayColor = "#00838f";  // 深青
     }
     emit displayColorChanged();
 }
@@ -120,6 +121,17 @@ void Map::setIsDisplay(bool newIsDisplay)
         return;
     m_isDisplay = newIsDisplay;
     emit isDisplayChanged();
+}
+
+bool Map::showTranslation() const {
+    return m_showTranslation;
+}
+
+void Map::setShowTranslation(bool newShowTranslation) {
+    if (m_showTranslation == newShowTranslation)
+        return;
+    m_showTranslation = newShowTranslation;
+    emit showTranslationChanged();
 }
 
 QString Map::order() const
@@ -146,6 +158,19 @@ void Map::setName(const QString &newName)
         return;
     m_name = newName;
     emit nameChanged();
+}
+
+QString Map::translation() const
+{
+    return m_translation;
+}
+
+void Map::setTranslation(const QString &newTranslation)
+{
+    if (m_translation == newTranslation)
+        return;
+    m_translation = newTranslation;
+    emit translationChanged();
 }
 
 QColor Map::displayColor() const

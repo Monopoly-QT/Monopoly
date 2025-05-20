@@ -6,10 +6,6 @@ project(monopoly VERSION 0.1 LANGUAGES CXX)
 file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*.json")
 source_group("JSON Files" FILES ${JSON_FILES})
 
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 file(GLOB JSON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/json/*")
 
 foreach(json_file ${JSON_FILES})
@@ -17,8 +13,16 @@ foreach(json_file ${JSON_FILES})
     configure_file(${json_file} ${CMAKE_CURRENT_BINARY_DIR}/json/${filename} COPYONLY)
 endforeach()
 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
 # 下面要註解掉
-set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt6.9.0\\6.9.0\\mingw_64\\lib\\cmake")
+#set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt6.9.0\\6.9.0\\mingw_64\\lib\\cmake")
+#
+#include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+set(CMAKE_PREFIX_PATH "/Users/kai/Qt6.9.0/6.9.0/macos/lib/cmake")
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 # 上面要註解掉
@@ -64,7 +68,7 @@ set_target_properties(appmonopoly PROPERTIES
 #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appmonopoly
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
+#    MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 

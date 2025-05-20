@@ -125,11 +125,23 @@ Window {
                                                 color: "transparent"
                                                 Text {
                                                     anchors.centerIn: parent
-                                                    text: model.name
+                                                    text: model.showTranslation ? model.translation : model.name
                                                     color: "white"
                                                     font.bold: true
                                                     font.family: "roboto"
                                                     font.pixelSize: (parent.height / 1.2 < parent.height / 2) ? parent.height / 1.2 : parent.height / 1.2
+                                                }
+
+                                                MouseArea{
+                                                    anchors.fill: parent
+                                                    hoverEnabled: true
+                                                    onEntered:{
+                                                        model.showTranslation = true;
+                                                    }
+
+                                                    onExited:{
+                                                        model.showTranslation = false;
+                                                    }
                                                 }
                                             }
 

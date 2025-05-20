@@ -1,7 +1,0 @@
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_Dice.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_Land.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_MovePoint.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_Player.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_UseCardSetting.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_eventHandler.cpp.json
-C:/Users/jason/Desktop/Monopoly/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/appmonopoly_autogen/include/../EWIEGA46WW/moc_map.cpp.json

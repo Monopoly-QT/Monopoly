@@ -84,7 +84,7 @@ void mapInitialize(vector<int> &landCoordinate ,QList<QObject*> &m_mapList ,vect
             }
         }
         if(exist){
-            regis = new Map(true ,to_string(order) , land[order]->getName() , playPos, land[order]);
+            regis = new Map(true ,to_string(order) , land[order]->getName() ,land[order]->getTranslation(), playPos, land[order]);
             // regis = new Map(true ,to_string(order) , land[order].getName());
         }
         else{
