@@ -94,16 +94,19 @@ Popup{
                         color: "transparent"
                         ColumnLayout{
                             anchors.fill: parent
-                            anchors.margins: 0
+                            anchors.margins: 5
+                            Text {
+                                text: "Target"
+                                font.family: "roboto"
+                                font.pixelSize: 12
+                                color: "white"
+                                font.bold: true
+                                Layout.alignment: Qt.AlignLeft
+                            }
                             RowLayout{
                                 Layout.preferredWidth: parent.width
-                                Layout.preferredHeight: 10
-                                Text {
-                                    text: "Target"
-                                    font.family: "roboto"
-                                    font.pixelSize: 10
-                                    color: "white"
-                                }
+                                Layout.preferredHeight: 20
+                                spacing: 5
                                 //player1
                                 Rectangle{
                                     Layout.preferredHeight: parent.height
@@ -143,7 +146,7 @@ Popup{
                                         enabled: true
                                         onEntered: {
                                             parent.isHovered = true
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
 
                                         onExited: {
@@ -153,11 +156,11 @@ Popup{
 
                                         onPressed: {
                                             rocketCard.selectIndex = 0
-                                            parent.scale = 1.05
+                                            parent.scale = 1.025
                                         }
 
                                         onReleased: {
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
                                     }
 
@@ -208,7 +211,7 @@ Popup{
                                         enabled: true
                                         onEntered: {
                                             parent.isHovered = true
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
 
                                         onExited: {
@@ -218,11 +221,11 @@ Popup{
 
                                         onPressed: {
                                             rocketCard.selectIndex = 1
-                                            parent.scale = 1.05
+                                            parent.scale = 1.025
                                         }
 
                                         onReleased: {
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
                                     }
 
@@ -273,7 +276,7 @@ Popup{
                                         enabled: true
                                         onEntered: {
                                             parent.isHovered = true
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
 
                                         onExited: {
@@ -283,11 +286,11 @@ Popup{
 
                                         onPressed: {
                                             rocketCard.selectIndex = 2
-                                            parent.scale = 1.05
+                                            parent.scale = 1.025
                                         }
 
                                         onReleased: {
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
                                     }
 
@@ -338,7 +341,7 @@ Popup{
                                         enabled: true
                                         onEntered: {
                                             parent.isHovered = true
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
 
                                         onExited: {
@@ -348,11 +351,11 @@ Popup{
 
                                         onPressed: {
                                             rocketCard.selectIndex = 3
-                                            parent.scale = 1.05
+                                            parent.scale = 1.025
                                         }
 
                                         onReleased: {
-                                            parent.scale = 1.1
+                                            parent.scale = 1.05
                                         }
                                     }
 
@@ -368,7 +371,7 @@ Popup{
 
                             Turntable{
                                 id: turntable
-                                Layout.preferredHeight: parent.height / 3
+                                Layout.preferredHeight: parent.height / 4
                                 Layout.preferredWidth: height
                                 Layout.alignment: Qt.AlignCenter
                                 afterRotate:{

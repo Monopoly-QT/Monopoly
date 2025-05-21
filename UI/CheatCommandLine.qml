@@ -17,12 +17,12 @@ Rectangle{
         anchors.margins: 10
         TextField{
             id: cheatCommandLine_Textfield
-            Layout.preferredHeight: parent.height/3
+            Layout.preferredHeight: parent.height / 2
             Layout.fillWidth: true
             placeholderText: "Insert command"
         }
         RowLayout{
-            Layout.preferredHeight: parent.height/3
+            Layout.preferredHeight: parent.height / 2
             Layout.fillWidth: true
             Rectangle{
                 Layout.fillWidth: true
@@ -56,6 +56,7 @@ Rectangle{
                     text: "execute"
                     font.bold: true
                     font.family: "roboto"
+                    font.pixelSize: executeCheatCMD_Rec.height / 2
                     color: parent.isHovered ? "black" : "white"
                     anchors.centerIn: parent
                 }
@@ -118,6 +119,7 @@ Rectangle{
                     text: "clear"
                     font.bold: true
                     font.family: "roboto"
+                    font.pixelSize: clearCheatCMD_Rec.height / 2
                     color: parent.isHovered ? "black" : "white"
                     anchors.centerIn: parent
                 }

@@ -43,7 +43,7 @@ Item {
                 }
                 Text {
                     text: (index+1)+" Days"
-                    font.pixelSize: 20 * (100 - turntableRoot.count) / 100
+                    font.pixelSize: 12.5 * (100 - turntableRoot.count) / 100
                     // 計算每個區塊的中心角度
                     property real angle: -(360 / turntableRoot.count) * (index + 0.5)
                     // 半徑（可依需求調整）
