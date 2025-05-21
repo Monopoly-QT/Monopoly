@@ -1008,7 +1008,7 @@ Window {
                 Rectangle {
                     id: rocketCard
                     Layout.fillWidth: true
-                    Layout.preferredHeight: isOpen ? 200 : 40
+                    Layout.preferredHeight: isOpen ? 250 + 40 : 40
                     radius: 10
                     color: playWindow.thirdaryColor
                     border.color: playWindow.borderColor
@@ -1021,10 +1021,8 @@ Window {
                         anchors.margins: 5
                         spacing: 3
                         clip: true
-
                         RowLayout {
                             Layout.fillWidth: true
-
                             Rectangle {
                                 Layout.fillWidth: true
                                 color: "transparent"
@@ -1058,15 +1056,15 @@ Window {
                             }
                         }
                         Rectangle{
-                            Layout.preferredHeight: rocketCard.isOpen ? 170 : 0
+                            Layout.preferredHeight: 250
                             Layout.fillWidth: true
                             color: "transparent"
                             ColumnLayout{
                                 anchors.fill: parent
-                                anchors.margins: 10
+                                anchors.margins: 0
                                 RowLayout{
                                     Layout.preferredWidth: parent.width
-                                    Layout.preferredHeight: parent / 3
+                                    Layout.preferredHeight: 10
                                     Text {
                                         text: "Target"
                                         font.family: "roboto"
@@ -1335,9 +1333,15 @@ Window {
                                     //player4 end
                                 }
 
-                                Rectangle{
-                                    Layout.fillHeight: true
-                                    color: "transparent"
+                                Turntable{
+                                    id: turntable
+                                    Layout.preferredHeight: parent.height / 3
+                                    Layout.preferredWidth: height
+                                    Layout.alignment: Qt.AlignCenter
+                                    afterRotate:{
+                                        // 得到的值: rotatedIndex
+                                        console.log(rotatedIndex + "天")
+                                    }
                                 }
 
                                 RowLayout{
@@ -1397,6 +1401,11 @@ Window {
                                             }
                                             onReleased: {
                                                 parent.scale = 1.1
+                                            }
+                                            onClicked:{
+                                                if (turntable.animationEnable) {
+                                                    turntable.rot += Math.random() * 360 + 5400;
+                                                }
                                             }
                                         }
 

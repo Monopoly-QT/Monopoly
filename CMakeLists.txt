@@ -42,6 +42,7 @@ qt_add_qml_module(appmonopoly
         UI/Main.qml
         UI/InBetween.qml
         UI/HorseRacing.qml
+        UI/Turntable.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc
