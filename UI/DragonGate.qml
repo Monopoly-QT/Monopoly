@@ -9,7 +9,7 @@ Window {
     minimumHeight: 700
     minimumWidth: 900
     visible: true
-    title: qsTr("射龍門")
+    title: qsTr("Dragon Gate")
     color: "transparent"
 
     property bool gameStarted: false
@@ -96,7 +96,7 @@ Window {
 
                 Text {
                     id: title
-                    text: "射龍門"
+                    text: "Dragon Gate"
                     font.pixelSize: 46
                     font.bold: true
                     font.family: "Microsoft YaHei"
@@ -153,7 +153,7 @@ Window {
                         }
 
                         Text {
-                            text: "金額"
+                            text: "Balance"
                             color: "#e0e0e0"
                             font.pixelSize: 14
                             font.bold: true
@@ -162,7 +162,7 @@ Window {
                         Text {
                             text: playerClass.money
                             color: secondaryColor
-                            font.pixelSize: 18
+                            font.pixelSize: 16
                             font.bold: true
                             Layout.fillWidth: true
                             horizontalAlignment: Text.AlignRight
@@ -466,7 +466,7 @@ Window {
                 }
 
                 contentItem: Text {
-                    text: "下注金額：$" + betAmount
+                    text: "Bet Amount: $" + betAmount
                     font.pixelSize: 16
                     font.bold: true
                     color: "#FFFFFF"
@@ -562,7 +562,7 @@ Window {
 
                 Button {
                     id: backButton
-                    text: "返回"
+                    text: "Back"
                     width: 120
                     height: 46
                     visible: gameEnded
@@ -621,7 +621,7 @@ Window {
 
                 Button {
                     id: startButton
-                    text: "開始遊戲"
+                    text: "Start Game"
                     enabled: (!gameStarted || gameEnded) && betAmount > 0
                     width: 120
                     height: 46
@@ -700,7 +700,7 @@ Window {
 
                 Button {
                     id: guessFirstButton
-                    text: guessType === 1 ? "內" : "小"
+                    text: guessType === 1 ? "Inside" : "Smaller"
                     width: 120
                     height: 46
 
@@ -768,7 +768,7 @@ Window {
 
                 Button {
                     id: guessSecondButton
-                    text: guessType === 1 ? "外" : "大"
+                    text: guessType === 1 ? "Outside" : "Larger"
                     width: 120
                     height: 46
 
@@ -856,8 +856,8 @@ Window {
                     color: secondaryColor
                     font.pixelSize: 14
                     font.family: "Microsoft YaHei"
-                    text: result === 1 ? "很遺憾，你輸了！" :
-                            result === 2 ? "恭喜你贏了！" : result === 3 ? "撞柱！" : "設定賭注並開始遊戲"
+                    text: result === 1 ? "Sorry, you lost!" :
+                            result === 2 ? "Congratulations, you won!" : result === 3 ? "Hit the post！" : "Set your bet and start the game"
                 }
             }
         }

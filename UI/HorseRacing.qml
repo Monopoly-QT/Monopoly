@@ -87,7 +87,7 @@ Window {
             width: parent.width
             Text {
                 id: title
-                text: "賭馬"
+                text: "Horse Racing"
                 color: "#ffffff"
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: 46
@@ -133,7 +133,7 @@ Window {
                     }
 
                     Text {
-                        text: "金額："
+                        text: "Balance: "
                         color: "#ffffff"
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: 14
@@ -144,7 +144,7 @@ Window {
                 Text {
                     text: playerClass.money
                     color: secondaryColor
-                    font.pixelSize: 18
+                    font.pixelSize: 15
                     font.bold: true
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
@@ -340,7 +340,7 @@ Window {
                 }
 
                 contentItem: Text {
-                    text: "下注金額：$" + betAmount
+                    text: "Bet Amount: $" + betAmount
                     font.pixelSize: 16
                     font.bold: true
                     color: "#FFFFFF"
@@ -457,7 +457,7 @@ Window {
                 }
 
                 contentItem: Text {
-                    text: root.betHorse + " 號馬"
+                    text: "Horse " + root.betHorse
                     font.pixelSize: 16
                     font.bold: true
                     color: "#FFFFFF"
@@ -564,7 +564,7 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             Button {
                 id: backButton
-                text: "返回"
+                text: "Back"
                 width: 120
                 height: 46
                 visible: gameClass.winner != -1
@@ -626,7 +626,7 @@ Window {
             }
             Button {
                 id: startButton
-                text: "開始遊戲"
+                text: "Start Game"
                 width: 120
                 height: 46
                 enabled: !root.gameStarted && root.betAmount > 0
@@ -721,9 +721,9 @@ Window {
                 color: secondaryColor
                 font.pixelSize: 14
                 font.family: "Microsoft YaHei"
-                text: gameClass.winner === -1 ? "設定賭注後開始遊戲" :
-                        gameClass.winner !== (root.betHorse - 1) ? "很遺憾，你輸了！贏家是 " + (gameClass.winner + 1) + " 號馬"
-                        : "恭喜你贏了！"
+                text: gameClass.winner === -1 ? "Set your bet and start the game" :
+                        gameClass.winner !== (root.betHorse - 1) ? "Sorry, you lost! The winner is Horse " + (gameClass.winner + 1)
+                        : "Congratulations, you won!"
             }
         }
 

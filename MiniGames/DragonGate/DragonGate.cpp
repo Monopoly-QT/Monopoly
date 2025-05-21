@@ -2,15 +2,15 @@
 // Created by Kai Huang on 2025/5/3.
 //
 
-#include "InBetween.h"
+#include "DragonGate.h"
 #include <algorithm>
 #include <QDebug>
 
-InBetween::InBetween(){
+DragonGate::DragonGate(){
     srand(time(nullptr));
 }
 
-bool InBetween::startGame(int gamblingMoney) {
+bool DragonGate::startGame(int gamblingMoney) {
     if (!m_player) {
         qWarning() << "Player not set!";
         return false;
@@ -29,7 +29,7 @@ bool InBetween::startGame(int gamblingMoney) {
     return m_firstNumber == m_secondNumber;
 }
 
-int InBetween::makeGuess(bool selection) {
+int DragonGate::makeGuess(bool selection) {
     if (!m_isGameStarted || !m_player) {
         qWarning() << "Game not started or player not set!";
         return -1;
@@ -77,54 +77,54 @@ int InBetween::makeGuess(bool selection) {
     return result;
 }
 
-int InBetween::firstNumber() const {
+int DragonGate::firstNumber() const {
     return m_firstNumber;
 }
 
-void InBetween::setFirstNumber(int newFirstNumber) {
+void DragonGate::setFirstNumber(int newFirstNumber) {
     if (m_firstNumber == newFirstNumber)
         return;
     m_firstNumber = newFirstNumber;
     emit firstNumberChanged();
 }
 
-int InBetween::secondNumber() const {
+int DragonGate::secondNumber() const {
     return m_secondNumber;
 }
 
-void InBetween::setSecondNumber(int newSecondNumber) {
+void DragonGate::setSecondNumber(int newSecondNumber) {
     if (m_secondNumber == newSecondNumber)
         return;
     m_secondNumber = newSecondNumber;
     emit secondNumberChanged();
 }
 
-int InBetween::thirdNumber() const {
+int DragonGate::thirdNumber() const {
     return m_thirdNumber;
 }
 
-void InBetween::setThirdNumber(int newThirdNumber) {
+void DragonGate::setThirdNumber(int newThirdNumber) {
     if (m_thirdNumber == newThirdNumber)
         return;
     m_thirdNumber = newThirdNumber;
     emit thirdNumberChanged();
 }
 
-int InBetween::gamblingMoney() const {
+int DragonGate::gamblingMoney() const {
     return m_gamblingMoney;
 }
 
-void InBetween::setGamblingMoney(int newGamblingMoney) {
+void DragonGate::setGamblingMoney(int newGamblingMoney) {
     if (m_gamblingMoney == newGamblingMoney)
         return;
     m_gamblingMoney = newGamblingMoney;
     emit gamblingMoneyChanged();
 }
 
-bool InBetween::isGameStarted() const {
+bool DragonGate::isGameStarted() const {
     return m_isGameStarted;
 }
 
-int InBetween::gameResult() const {
+int DragonGate::gameResult() const {
     return m_gameResult;
 }

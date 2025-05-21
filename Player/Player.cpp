@@ -35,15 +35,18 @@ Player::Player(int _money, int _playerID, string _playerName, string _playerLast
 
 void Player::addMoney(int _addition) {
     money += _addition;
+    emit moneyChanged();
 }
 
 void Player::subMoney(int _subtraction) {
     money -= _subtraction;
+    emit moneyChanged();
 }
 
 void Player::addPos(int _deltaPos) {
     pos += _deltaPos;
     pos %= 64;
+    emit posChanged();
 }
 
 void Player::addOwnImmovables(int _pos) {
@@ -65,6 +68,7 @@ void Player::subPos(int _deltaPos) {
     pos += 64;
     pos -= _deltaPos;
     pos %= 64;
+    emit posChanged();
 }
 
 void Player::setMoney(int _money) {

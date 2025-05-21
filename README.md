@@ -47,7 +47,7 @@
 │   │   └── HorseRacing.h
 │   └── InBetween
 │       ├── InBetween.cpp
-│       └── InBetween.h
+│       └── DragonGate.h
 ├── MovePoint
 │   ├── MovePoint.cpp
 │   └── MovePoint.h
@@ -78,7 +78,7 @@
 │   └── resourse.qrc
 ├── UI
 │   ├── HorseRacing.qml
-│   ├── InBetween.qml
+│   ├── DragonGate.qml
 │   ├── Main.qml
 │   └── Turntable.qml
 └── UseCardSetting

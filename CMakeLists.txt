@@ -42,7 +42,7 @@ qt_add_qml_module(appmonopoly
     VERSION 1.0
     QML_FILES
         UI/Main.qml
-        UI/InBetween.qml
+        UI/DragonGate.qml
         UI/HorseRacing.qml
         UI/Turntable.qml
         UI/CardPopup.qml
@@ -70,8 +70,8 @@ qt_add_qml_module(appmonopoly
         SOURCES UseCardSetting/UseCardSetting.cpp
         SOURCES MiniGames/HorseRacing/HorseRacing.h
         SOURCES MiniGames/HorseRacing/HorseRacing.cpp
-        SOURCES MiniGames/InBetween/InBetween.h
-        SOURCES MiniGames/InBetween/InBetween.cpp
+        SOURCES MiniGames/DragonGate/DragonGate.h
+        SOURCES MiniGames/DragonGate/DragonGate.cpp
         SOURCES Hospital/Hospital.h
         SOURCES Hospital/Hospital.cpp
 )

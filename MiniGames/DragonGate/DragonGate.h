@@ -10,7 +10,7 @@
 
 #include "../../Player/Player.h"
 
-class InBetween : public QObject {
+class DragonGate : public QObject {
     Q_OBJECT
     Q_PROPERTY(int firstNumber READ firstNumber WRITE setFirstNumber NOTIFY firstNumberChanged FINAL)
     Q_PROPERTY(int secondNumber READ secondNumber WRITE setSecondNumber NOTIFY secondNumberChanged FINAL)
@@ -26,10 +26,10 @@ private:
     int m_gamblingMoney = 0;
     bool m_isGameStarted = false;
     int m_gameResult = -1; // -1: 未開始, 0: 猜錯, 1: 猜對, 2: 撞柱
-    Player *m_player;
+    Player *m_player{};
 
 public:
-    explicit InBetween();
+    explicit DragonGate();
 
     // 初始化
     void init(Player *player) {

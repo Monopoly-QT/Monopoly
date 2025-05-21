@@ -81,7 +81,11 @@ void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
     }else {
         player->subMoney(gamblingMoney);
     }
-    setWinnerPrecess(winner);
+    cout<<player->getMoney()<<endl;
+    // 回到主執行緒更新資料
+    QMetaObject::invokeMethod(this, [this,winner]() {
+        setWinnerPrecess(winner);
+    }, Qt::QueuedConnection);
 }
 
 /**
@@ -93,4 +97,5 @@ void HorseRacing::mainGame( int gamblingMoney, int betHorse) {
     });
     t1.detach();
 }
+
 
