@@ -1,1 +1,46 @@
-﻿
+﻿{
+    "0": {
+        "money": 200000,
+        "playerID": 0,
+        "playerName": "Chang Tso-Lin",
+        "playerLastName": "Chang",
+        "ownCard": "0 1",
+        "pos": 0,
+        "state": 0,
+        "stayInHospitalTurn": 0,
+        "nextRollDicePoint": 0
+    },
+    "1": {
+        "money": 200000,
+        "playerID": 0,
+        "playerName": "Wu Pei-Fu",
+        "playerLastName": "Wu",
+        "ownCard": "0 1",
+        "pos": 0,
+        "state": 0,
+        "stayInHospitalTurn": 0,
+        "nextRollDicePoint": 0
+    },
+    "2": {
+        "money": 200000,
+        "playerID": 0,
+        "playerName": "Tuan Chi-Jui",
+        "playerLastName": "Tuan",
+        "ownCard": "0 1",
+        "pos": 0,
+        "state": 0,
+        "stayInHospitalTurn": 0,
+        "nextRollDicePoint": 0
+    },
+    "3": {
+        "money": 200000,
+        "playerID": 0,
+        "playerName": "Chiang Kai-Shek",
+        "playerLastName": "Chiang",
+        "ownCard": "0 1",
+        "pos": 0,
+        "state": 0,
+        "stayInHospitalTurn": 0,
+        "nextRollDicePoint": 0
+    }
+}
