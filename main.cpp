@@ -24,14 +24,14 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("diceB", &diceB);
     engine.rootContext()->setContextProperty("event", &event);
 
-    auto a = Player();
+    // auto a = Player();
     // HorseRacing horse_racing;
     // horse_racing.init(&a);
-    DragonGate inBetween;
-    inBetween.init(&a);
-    engine.rootContext()->setContextProperty("gameClass", &inBetween);
-    engine.rootContext()->setContextProperty("playerClass", &a);
-    engine.loadFromModule("Monopoly", "DragonGate");
+    // DragonGate inBetween;
+    // inBetween.init(&a);
+    // engine.rootContext()->setContextProperty("gameClass", &inBetween);
+    // engine.rootContext()->setContextProperty("playerClass", &a);
+    // engine.loadFromModule("Monopoly", "DragonGate");
 
     return app.exec();
 }
