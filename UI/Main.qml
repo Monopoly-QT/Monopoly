@@ -1,0 +1,421 @@
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Dialogs
+import QtQuick.Layouts
+import QtQuick.Effects
+
+import "../Resources"
+
+Window {
+    width: 1280
+    height: 720
+    visible: true
+    // visibility: Window.FullScreen
+
+    Rectangle{
+        id:playWindow
+        color:playWindow.backGroundColor
+        anchors.fill: parent
+        property color backGroundColor: "#3c3c3c"
+        property color secondaryColor: "#454545"
+        property color thirdaryColor: "#505050"
+        property color borderColor: "#ff9300"
+        property color hoverColor: "#808080"
+        property color pressColor: "#747474"
+        property int dicePoint: 0
+        Rectangle{
+            id: movePoint
+            height: 10
+            width: 10
+            color: event.movePoint.displayColor
+            x:map_Grid.coordinateList[0].posX
+            y:map_Grid.coordinateList[0].posY
+            z: 2
+            radius: width/2
+            visible: event.movePoint.isvisable
+            property int moveDuaration: 0
+
+            Behavior on x{
+                NumberAnimation {
+                    duration: movePoint.moveDuaration
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
+            Behavior on y{
+                NumberAnimation {
+                    duration: movePoint.moveDuaration
+                    easing.type: Easing.InOutQuad
+                }
+            }
+
+            SequentialAnimation{
+                id: movePoint_scaleAnimation
+                NumberAnimation {
+                    target: movePoint
+                    property: "scale"
+                    to: 2.0
+                    duration: movePoint.moveDuaration / 2
+                    easing.type: Easing.InOutQuad
+                }
+                NumberAnimation {
+                    target: movePoint
+                    property: "scale"
+                    to: 1.0
+                    duration: movePoint.moveDuaration / 2
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
+
+        RowLayout{
+            anchors.fill: parent
+            Rectangle{
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                color:"transparent"
+                Rectangle{
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    color:"transparent"
+                    GridLayout{
+                        id: map_Grid
+                        property var coordinateList: []
+                        anchors.fill: parent
+                        columns: 11
+                        columnSpacing: 0
+                        rowSpacing: 0
+                        property int order: 1
+                        Repeater{
+                            id: mapGenerate
+                            model: event.mapList
+                            Rectangle{
+                                Layout.preferredHeight: parent.height / 11
+                                Layout.preferredWidth: parent.width / 11
+                                color: playWindow.secondaryColor
+                                border.color: playWindow.borderColor
+                                border.width: 1
+                                opacity: model.isDisplay ? 1 : 0
+
+                                ColumnLayout{
+                                    anchors.fill: parent
+                                    spacing: 0
+                                    //order and name
+                                    Rectangle{
+                                        Layout.preferredHeight: parent.height / 3
+                                        Layout.preferredWidth: parent.width
+                                        Layout.alignment: Qt.AlignTop
+                                        color: model.displayColor
+                                        border.color: playWindow.borderColor
+                                        RowLayout{
+                                            anchors.fill: parent
+                                            anchors.margins: 5
+                                            spacing: 0
+                                            //land order
+                                            Text {
+                                                text: model.order+"."
+                                                color: "white"
+                                                font.bold: true
+                                                font.family: "roboto"
+                                                font.pixelSize: (parent.height/ 1.2 < parent.height / 1.2) ? parent.height/ 1.2 : parent.height / 1.2
+                                            }
+
+                                            //land name
+                                            Rectangle{
+                                                Layout.fillHeight: true
+                                                Layout.fillWidth: true
+                                                color: "transparent"
+                                                Text {
+                                                    anchors.centerIn: parent
+                                                    text: model.showTranslation ? model.translation : model.name
+                                                    color: "white"
+                                                    font.bold: true
+                                                    font.family: "roboto"
+                                                    font.pixelSize: (parent.height / 1.2 < parent.height / 2) ? parent.height / 1.2 : parent.height / 1.2
+                                                }
+
+                                                MouseArea{
+                                                    anchors.fill: parent
+                                                    hoverEnabled: true
+                                                    onEntered:{
+                                                        model.showTranslation = true;
+                                                    }
+
+                                                    onExited:{
+                                                        model.showTranslation = false;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+
+                                    Rectangle{
+
+                                        Layout.preferredHeight: parent.height / 3 * 2
+                                        Layout.preferredWidth: parent.width
+                                        color: "transparent"
+
+                                        property real centerX: x + width / 2
+                                        property real centerY: y + height / 2
+                                        property var pt
+
+                                        RowLayout{
+                                            anchors.fill: parent
+                                            anchors.margins: 5
+                                            //player stay
+                                            ColumnLayout{
+                                                Layout.preferredHeight: parent.height
+                                                Layout.preferredWidth: parent.width / 3
+                                                spacing: 0
+
+                                                //player1
+                                                Rectangle{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    color: "transparent"
+                                                    Rectangle{
+                                                        anchors.centerIn: parent
+                                                        height: parent.height / 2
+                                                        width: height
+                                                        radius: width / 2
+                                                        color: "#ff1700"
+                                                        visible: model.playerStay[0] === 1 ? true : false
+                                                    }
+                                                }
+                                                //player2
+                                                Rectangle{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    color: "transparent"
+                                                    Rectangle{
+                                                        anchors.centerIn: parent
+                                                        height: parent.height / 2
+                                                        width: height
+                                                        radius: width / 2
+                                                        color: "#009aff"
+                                                        visible: model.playerStay[1] === 1 ? true : false
+                                                    }
+                                                }
+                                                //player3
+                                                Rectangle{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    color: "transparent"
+                                                    Rectangle{
+                                                        anchors.centerIn: parent
+                                                        height: parent.height / 2
+                                                        width: height
+                                                        radius: width / 2
+                                                        color: "#0fff00"
+                                                        visible: model.playerStay[2] === 1 ? true : false
+                                                    }
+                                                }
+                                                //player4
+                                                Rectangle{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    color: "transparent"
+                                                    Rectangle{
+                                                        anchors.centerIn: parent
+                                                        height: parent.height / 2
+                                                        width: height
+                                                        radius: width / 2
+                                                        color: "#ffcb00"
+                                                        visible: model.playerStay[3] === 1 ? true : false
+                                                    }
+                                                }
+                                            }
+                                            //player stay end
+
+                                            ColumnLayout{
+                                                Layout.preferredHeight: parent.height
+                                                Layout.preferredWidth: parent.width * 2 / 3
+                                                spacing: 0
+
+                                                RowLayout{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    visible: (model.isDisplayBuilding[0] === 1 || model.isDisplayBuilding[1] === 1) ? true :false
+                                                    spacing: 1
+                                                    //house1
+                                                    Rectangle{
+                                                        Layout.fillHeight: true
+                                                        Layout.fillWidth: true
+                                                        color: "transparent"
+                                                        visible: model.isDisplayBuilding[0] === 1 ? true : false
+                                                        Image {
+                                                            anchors.centerIn: parent
+                                                            height: (parent.height > parent.width)? parent.width : parent.height
+                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            source: "qrc:/images/house.png"
+                                                        }
+                                                    }
+                                                    //house1 end
+                                                    //house2
+                                                    Rectangle{
+                                                        Layout.fillHeight: true
+                                                        Layout.fillWidth: true
+                                                        color: "transparent"
+                                                        visible: model.isDisplayBuilding[1] === 1 ? true : false
+                                                        Image {
+                                                            anchors.centerIn: parent
+                                                            height: (parent.height > parent.width)? parent.width : parent.height
+                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            source: "qrc:/images/house.png"
+                                                        }
+                                                    }
+                                                    //house2 end
+                                                }
+
+                                                RowLayout{
+                                                    Layout.fillHeight: true
+                                                    Layout.fillWidth: true
+                                                    spacing: 1
+                                                    visible: (model.isDisplayBuilding[2] === 1 || model.isDisplayBuilding[3] === 1) ? true :false
+                                                    //house3
+                                                    Rectangle{
+                                                        Layout.fillHeight: true
+                                                        Layout.fillWidth: true
+                                                        color: "transparent"
+                                                        visible: model.isDisplayBuilding[2] === 1 ? true : false
+                                                        Image {
+                                                            anchors.centerIn: parent
+                                                            height: (parent.height > parent.width)? parent.width : parent.height
+                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            source: "qrc:/images/house.png"
+                                                        }
+                                                    }
+                                                    //house3 end
+                                                    //building
+                                                    Rectangle{
+                                                        Layout.fillHeight: true
+                                                        Layout.fillWidth: true
+                                                        color: "transparent"
+                                                        visible: model.isDisplayBuilding[3] === 1 ? true : false
+                                                        Image {
+                                                            anchors.centerIn: parent
+                                                            height: (parent.height > parent.width)? parent.width : parent.height
+                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            source: "qrc:/images/building.png"
+                                                        }
+                                                    }
+                                                    //building end
+                                                }
+                                            }
+                                        }
+                                        Timer {
+                                            id: buffer
+                                            interval: 50
+                                            running: true
+                                            repeat: true
+                                            onTriggered: {
+                                                if (parent.width > 0 && parent.height > 0) {
+                                                    if(model.isDisplay === true){
+                                                        parent.pt = mapToItem(null, parent.centerX, parent.centerY);
+                                                        console.log("Correct global position:",parent.pt.x, parent.pt.y);
+                                                        // map_Grid.coordinateList.push({posX:parent.pt.x,posY:parent.pt.y})
+                                                        event.addMapPosXandPosY(parent.pt.x, parent.pt.y)
+                                                    }
+                                                    else{
+                                                        event.addMapPosXandPosY(0, 0)
+                                                    }
+
+                                                    stop();
+                                                }
+                                            }
+                                        }
+                                        onHeightChanged: {
+                                            map_Grid.coordinateList = []
+                                            event.clearMapPosXandPosY()
+                                            buffer.start()
+                                        }
+                                        onWidthChanged:{
+                                            map_Grid.coordinateList = []
+                                            event.clearMapPosXandPosY()
+                                            buffer.start()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Rectangle{
+                Layout.preferredHeight: parent.height
+                Layout.preferredWidth: parent.width/5
+                color:playWindow.secondaryColor
+                ColumnLayout{
+                    id:stateColumn
+                    anchors.fill: parent
+                    anchors.margins: 10
+
+                    StateContainer{
+                        id: stateContainer
+                    }
+
+                    RowLayout{
+                        Layout.preferredHeight: parent.height / 20
+                        Layout.preferredWidth: parent.width
+
+                        Rectangle{
+                            Layout.fillWidth: true
+                        }
+
+                        //card
+                        CardOpenBtn{
+                            id: useCard_Rec
+                        }
+
+                        //cheat command
+                        CheatCommandOpenBtn{
+                            id: cheatImage_Rec
+                        }
+                    }
+
+                    Button{
+                        Layout.preferredHeight: parent.height/30
+                        Layout.preferredWidth: parent.width
+                        property int index: 0
+                        onClicked: {
+                            event.movePointAnimator()
+                        }
+                    }
+
+                    Rectangle{
+                        Layout.fillHeight: true
+                    }
+
+                    CheatCommandLine{
+                        id: cheatCommandLine_Rec
+                    }
+
+                    Dice{
+                        id: diceContainer
+                    }
+                }
+            }
+        }
+    }
+
+    CardPopup{
+        id:card_popUp
+    }
+
+    Connections{
+        target: event
+        onMovePointStartMove: {
+            movePoint.moveDuaration = 150
+            movePoint.x = event.movePoint.changeX - (movePoint.width / 2)
+            movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
+            movePoint_scaleAnimation.start()
+        }
+        onMovePointInitialize: {
+            movePoint.moveDuaration = 0
+            movePoint.x = event.movePoint.changeX - (movePoint.width / 2)
+            movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
+        }
+    }
+}
