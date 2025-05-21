@@ -12,7 +12,7 @@
     },
     "1": {
         "money": 200000,
-        "playerID": 0,
+        "playerID": 1,
         "playerName": "Wu Pei-Fu",
         "playerLastName": "Wu",
         "ownCard": "0 1",
@@ -23,7 +23,7 @@
     },
     "2": {
         "money": 200000,
-        "playerID": 0,
+        "playerID": 2,
         "playerName": "Tuan Chi-Jui",
         "playerLastName": "Tuan",
         "ownCard": "0 1",
@@ -34,7 +34,7 @@
     },
     "3": {
         "money": 200000,
-        "playerID": 0,
+        "playerID": 3,
         "playerName": "Chiang Kai-Shek",
         "playerLastName": "Chiang",
         "ownCard": "0 1",

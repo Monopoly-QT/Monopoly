@@ -6,6 +6,8 @@
 #include <QGuiApplication>
 #include <QString>
 #include <fstream>
+#include <sstream>
+#include <string>
 
 #include "Handler/MapHandler/mapHandler.h"
 
@@ -28,11 +30,30 @@ eventHandler::eventHandler(){
         regis->setLevel(0);
         processMap.push_back(regis);
     }
+
+    nlohmann::json playerData;
+    ifstream player;
+    player.open("json/config.json");
+
+    if (player.fail()) {
+        cout << "Falied to open config.json\n";
+    }
+
+    player >> playerData;
+    player.close();
+
     for(int i = 0 ; i < 4 ; i++){
-        Player* regis = new Player();
-        regis->setPos(0);
+        vector<int> ownCardFromConfig;
+        string strOwnCardFromConfig = playerData[to_string(i)]["ownCard"].get<string>();
+        stringstream ss(strOwnCardFromConfig);
+        while(ss >> strOwnCardFromConfig){
+            ownCardFromConfig.push_back(stoi(strOwnCardFromConfig));
+        }
+        Player* regis = new Player(playerData[to_string(i)]["money"].get<int>(),playerData[to_string(i)]["playerID"].get<int>(),playerData[to_string(i)]["playerName"].get<string>(),playerData[to_string(i)]["playerLastName"].get<string>(),ownCardFromConfig,playerData[to_string(i)]["pos"].get<int>(),playerData[to_string(i)]["state"].get<int>(),playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),playerData[to_string(i)]["nextRollDicePoint"].get<int>());
+        // regis->setPos(0);
         processPlayer.push_back(regis);
     }
+
     processMap[0]->setOwner(1);
     processMap[1]->setOwner(2);
     processMap[2]->setOwner(3);

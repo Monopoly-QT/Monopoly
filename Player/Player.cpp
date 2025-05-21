@@ -21,18 +21,16 @@ Player::Player() {
     nextRollDicePoint = 0;
 }
 
-Player::Player(int _playerID, string _playerName) {
-    money = 200000;
+Player::Player(int _money, int _playerID, string _playerName, string _playerLastName, vector<int> _ownCard, int _pos, int _state, int _stayInHospitalTurn,int _nextRollDicePoint) {
+    money = _money;
     playerID = _playerID;
     playerName = _playerName;
-    stringstream ss(_playerName);
-    ss >> playerLastName;
-    ownHousesPos = {};
-    ownCard = {};
-    pos = 0;
-    state = 0; //0:not in hospital 1:in hospital
-    stayInHospitalTurn = 0;
-    nextRollDicePoint = 0;
+    playerLastName = _playerLastName;
+    ownCard = _ownCard;
+    pos = _pos;
+    state = _state; //0:not in hospital 1:in hospital
+    stayInHospitalTurn = _stayInHospitalTurn;
+    nextRollDicePoint = _nextRollDicePoint;
 }
 
 void Player::addMoney(int _addition) {
@@ -52,11 +50,11 @@ void Player::addOwnImmovables(int _pos) {
     ownHousesPos.push_back(_pos);
 }
 
-void Player::addOwnCards(string _addCard) {
+void Player::addOwnCards(int _addCard) {
     ownCard.push_back(_addCard);
 }
 
-void Player::disOwnCards(string _disCards) {
+void Player::disOwnCards(int _disCards) {
     auto _cardPos = find(ownCard.begin(), ownCard.end(), _disCards);
     if (_cardPos != ownCard.end()) {
         ownCard.erase(_cardPos);
@@ -131,7 +129,7 @@ vector<int> Player::getOwnImmovables() {
     return ownHousesPos;
 }
 
-vector<string> Player::getOwnCards() {
+vector<int> Player::getOwnCards() {
     return ownCard;
 }
 

@@ -26,7 +26,7 @@ private:
     string playerName;
     string playerLastName;
     vector<int> ownHousesPos;
-    vector<string> ownCard;
+    vector<int> ownCard;
     int pos;
     int state; //0:not in hospital 1:in hospital
     int stayInHospitalTurn;
@@ -44,13 +44,13 @@ signals:
 
 public:
     Player(); //initialize
-    Player(int _playerID, string _playerName);
+    Player(int _money, int _playerID, string _playerName, string _playerLastName, vector<int> _ownCard, int _pos, int _state, int _stayInHospitalTurn,int _nextRollDicePoint);
     void addMoney(int _addition);
     void subMoney(int _subtraction);
     void addPos(int _deltaPos);
     void addOwnImmovables(int _pos);
-    void addOwnCards(string _addCard);
-    void disOwnCards(string _disCards);
+    void addOwnCards(int _addCard);
+    void disOwnCards(int _disCards);
 
     void subPos(int _deltaPos);
 
@@ -67,7 +67,7 @@ public:
     string getPlayerLastName();
 
     vector<int> getOwnImmovables();
-    vector<string> getOwnCards();
+    vector<int> getOwnCards();
     int getState();
     int GetstayInHospitalTurn();
 
