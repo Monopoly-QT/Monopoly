@@ -378,6 +378,7 @@ Popup{
                                     // 得到的值: rotatedIndex
                                     console.log(rotatedIndex + "天")
                                     console.log(rocketCard.selectIndex)
+                                    event.rocketCardUseEntryPoint(rocketCard.selectIndex,rotatedIndex);
                                 }
                             }
 
@@ -423,7 +424,7 @@ Popup{
                                     MouseArea{
                                         anchors.fill: parent
                                         hoverEnabled: true
-                                        enabled: true
+                                        enabled: rocketCard.selectIndex !== -1
                                         onEntered: {
                                             parent.scale = 1.1
                                             parent.isHovered = true

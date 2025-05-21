@@ -11,6 +11,7 @@
 #include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
+#include "ItemCard/DiceControl/DiceControlCard.h"
 
 eventHandler::eventHandler(){
     turn = 1;
@@ -85,6 +86,14 @@ void eventHandler::commendEntryPoint(QString _instruct){
     string strInstruct =  _instruct.toStdString();
 
 }
+
+void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
+    if (_duration <= 0) return;
+    Player *player = processPlayer[_playerIndex];
+    Hospital::enterHospital(player, _duration);
+    cout << player->getPlayerName() << " is sent to the hospital for " << _duration << " rounds." << endl;
+}
+
 
 void eventHandler::addMapPosXandPosY(double _posX, double _posY){
     mapPosXandPosY.push_back({_posX,_posY});
