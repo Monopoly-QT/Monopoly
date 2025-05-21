@@ -17,13 +17,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-# if (CMAKE_HOST_SYSTEM MATCHES "Darwin")
-#     set(CMAKE_PREFIX_PATH "~/Qt6.9.0/6.9.0/macos/lib/cmake")
-# elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
-#     set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
-# endif ()
+ if (CMAKE_HOST_SYSTEM MATCHES "Darwin")
+     set(CMAKE_PREFIX_PATH "~/Qt6.9.0/6.9.0/macos/lib/cmake")
+ elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
+     set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
+ endif ()
 
-set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
+#set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
@@ -72,6 +72,8 @@ qt_add_qml_module(appmonopoly
         SOURCES MiniGames/HorseRacing/HorseRacing.cpp
         SOURCES MiniGames/InBetween/InBetween.h
         SOURCES MiniGames/InBetween/InBetween.cpp
+        SOURCES Hospital/Hospital.h
+        SOURCES Hospital/Hospital.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
 
