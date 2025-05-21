@@ -16,7 +16,7 @@ using namespace std;
 
 void mapInitialize(vector<int> &landCoordinate ,QList<QObject*> &m_mapList ,vector<Land*> land,vector<Player*> player);
 
-void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<Land> land,vector<Player> player);
+void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<Land*> land,vector<Player*> player);
 
 
 #endif // MAPHANDLER_H

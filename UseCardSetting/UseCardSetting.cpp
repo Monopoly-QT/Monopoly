@@ -1,4 +1,73 @@
 #include "UseCardSetting.h"
+#include <map>
+#include <iostream>
+
+UseCardSetting::UseCardSetting(){
+    for(int i = 0 ; i < 5 ; i++){
+        m_ownCardCount.append(0);
+        m_cardUseAvailable.append(0);
+    }
+    for(int i = 0 ; i < 4 ; i++){
+        m_displayTargetPlayer.append(0);
+    }
+}
+
+void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Player*> _player){
+    m_displayTargetLand.clear();
+    m_displayAllLand.clear();
+    vector<int> ownCard = _player[_turn]->getOwnCards();
+    map<int,int> cardCount;
+
+    for(int i=0 ; i < 5 ; i++){
+        cardCount[i] = 0;
+    }
+
+    for(int i = 0 ; i < 4 ; i++){
+        if(_turn != i && _player[i]->getMoney() > 0){
+            m_displayTargetPlayer[i] = 1;
+        }
+        else{
+            m_displayTargetPlayer[i] = 0;
+        }
+    }
+    for(int i = 0 ; i < 64 ; i++){
+        if(_land[i]->getOwner() != _turn && _land[i]->getType() == 0){
+            m_displayTargetLand.append(QString::fromStdString(_land[i]->getName()));
+        }
+        if(_land[i]->getState() != 1){
+            m_displayAllLand.append(QString::fromStdString(to_string(i)+". "+_land[i]->getName()));
+        }
+    }
+
+    for(auto i :ownCard){
+        cardCount[i]++;
+    }
+
+    for(int i=0 ; i < 5 ; i++){
+        m_ownCardCount[i] = cardCount[i];
+        if(cardCount[i] > 0)
+            m_cardUseAvailable[i] = 1;
+        else
+            m_cardUseAvailable[i] = 0;
+    }
+
+    emit displayTargetLandChanged();
+    emit displayTargetPlayerChanged();
+    emit cardUseAvailableChanged();
+    emit ownCardCountChanged();
+    emit displayAllLandChanged();
+    cout<<"ownCardCount"<<endl;
+    for(int i=0;i<5;i++){
+        cout<<m_ownCardCount[i]<<" ";
+    }
+    cout<<endl;
+
+    cout<<"cardUseAvailable"<<endl;
+    for(int i=0;i<5;i++){
+        cout<<m_cardUseAvailable[i]<<" ";
+    }
+    cout<<endl;
+}
 
 
 QList<int> UseCardSetting::displayTargetPlayer() const
@@ -51,5 +120,17 @@ void UseCardSetting::setOwnCardCount(const QList<int> &newOwnCardCount)
         return;
     m_ownCardCount = newOwnCardCount;
     emit ownCardCountChanged();
-    //:D
+}
+
+QList<QString> UseCardSetting::displayAllLand() const
+{
+    return m_displayAllLand;
+}
+
+void UseCardSetting::setDisplayAllLand(const QList<QString> &newDisplayAllLand)
+{
+    if (m_displayAllLand == newDisplayAllLand)
+        return;
+    m_displayAllLand = newDisplayAllLand;
+    emit displayAllLandChanged();
 }

@@ -2,6 +2,7 @@
 #include <QList>
 #include <QString>
 #include <../Land/Land.h>
+#include <../Player/Player.h>
 
 #ifndef USECARDSETTING_H
 #define USECARDSETTING_H
@@ -12,6 +13,7 @@ class UseCardSetting: public QObject{
     Q_PROPERTY(QList<QString> displayTargetLand READ displayTargetLand WRITE setDisplayTargetLand NOTIFY displayTargetLandChanged FINAL);
     Q_PROPERTY(QList<int> cardUseAvailable READ cardUseAvailable WRITE setCardUseAvailable NOTIFY cardUseAvailableChanged FINAL);
     Q_PROPERTY(QList<int> ownCardCount READ ownCardCount WRITE setOwnCardCount NOTIFY ownCardCountChanged FINAL);
+    Q_PROPERTY(QList<QString> displayAllLand READ displayAllLand WRITE setDisplayAllLand NOTIFY displayAllLandChanged FINAL);
 private:
     QList<int> m_displayTargetPlayer;
     QList<QString> m_displayTargetLand;
@@ -20,10 +22,11 @@ private:
 
     QList<int> m_ownCardCount;
 
-public:
-    // UseCardSetting();
+    QList<QString> m_displayAllLand;
 
-    // void initialUseCardPopUp(int _turn,vector<Land> _land);
+public:
+    UseCardSetting();
+    void initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Player*> _player);
 
     QList<int> displayTargetPlayer() const;
     void setDisplayTargetPlayer(const QList<int> &newDisplayTargetPlayer);
@@ -37,11 +40,15 @@ public:
     QList<int> ownCardCount() const;
     void setOwnCardCount(const QList<int> &newOwnCardCount);
 
+    QList<QString> displayAllLand() const;
+    void setDisplayAllLand(const QList<QString> &newDisplayAllLand);
+
 signals:
     void displayTargetPlayerChanged();
     void displayTargetLandChanged();
     void cardUseAvailableChanged();
     void ownCardCountChanged();
+    void displayAllLandChanged();
 };
 
 #endif // USECARDSETTING_H

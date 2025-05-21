@@ -94,17 +94,17 @@ void mapInitialize(vector<int> &landCoordinate ,QList<QObject*> &m_mapList ,vect
     }
 }
 
-void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<Land> land,vector<Player> player){
+void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<Land*> land,vector<Player*> player){
     int order = 0;
     vector<int> playerPos;
     for(int i = 0 ; i < 4 ; i++){
-        playerPos.push_back(player[i].getPos());
+        playerPos.push_back(player[i]->getPos());
     }
 
     for(int i = 0 ; i < 64 ; i++){
         Map *regis = qobject_cast<Map*>(m_mapList[landCoordinate[i]]);
         regis->byPlayoerPosSetVisibility(playerPos,i);
-        regis->byLevelSetBuildingVisibility(land[i].getLevel());
-        regis->byTypeOrOwnerSetColor(land[i].getType(),land[i].getOwner());
+        regis->byLevelSetBuildingVisibility(land[i]->getLevel());
+        regis->byTypeOrOwnerSetColor(land[i]->getType(),land[i]->getOwner());
     }
 }

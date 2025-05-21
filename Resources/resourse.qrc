@@ -11,5 +11,9 @@
         <file>images/Horses/horse2.png</file>
         <file>images/Horses/horse3.png</file>
         <file>images/Horses/horse4.png</file>
+        <file>images/Wu.png</file>
+        <file>images/Tuan.png</file>
+        <file>images/Chang.png</file>
+        <file>images/Chiang.png</file>
     </qresource>
 </RCC>

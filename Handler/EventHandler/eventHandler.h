@@ -4,6 +4,8 @@
 #include "../../Player/Player.h"
 #include "../../MovePoint/MovePoint.h"
 #include "../../Handler/MapHandler/mapHandler.h"
+#include "../../UseCardSetting/UseCardSetting.h"
+#include "../../StateDisplay/StateDisplay.h"
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -21,6 +23,8 @@ class eventHandler:public QObject{
     Q_OBJECT
     Q_PROPERTY(QList<QObject*> mapList READ mapList WRITE setMapList NOTIFY mapListChanged FINAL);
     Q_PROPERTY(MovePoint* movePoint READ movePoint WRITE setMovePoint NOTIFY movePointChanged FINAL);
+    Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
+    Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
 
 public:
     eventHandler();
@@ -44,16 +48,25 @@ public:
     Q_INVOKABLE void commendEntryPoint(QString _instruct);
 
     Q_INVOKABLE void rocketCardUseEntryPoint(int _playerIndex,int _duration);
-    // Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
-    // Q_INVOKABLE void removeCardUseEntryPoint(int _removeIndex);
-    // Q_INVOKABLE void roadBlockCardUseEnrtyPoint(int _blockIndex);
-    // Q_INVOKABLE void eventCardUseEntryPoint();
+    Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
+    Q_INVOKABLE void removeCardUseEntryPoint(QString _removeQStr);
+    Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
+    Q_INVOKABLE void eventCardUseEntryPoint();
+
+
+    StateDisplay *displayState() const;
+    void setDisplayState(StateDisplay *newDisplayState);
+
+    UseCardSetting *useCard() const;
+    void setUseCard(UseCardSetting *newUseCard);
 
 signals:
     void mapListChanged();
     void movePointChanged();
     void movePointStartMove();
     void movePointInitialize();
+    void displayStateChanged();
+    void useCardChanged();
 
 private:
     int turn;
@@ -68,6 +81,9 @@ private:
     MovePoint operateMovePoint;
 
     vector<pair<double,double>> mapPosXandPosY;
+
+    StateDisplay *m_displayState;
+    UseCardSetting *m_useCard;
 };
 
 #endif // EVENTHANDLER_H

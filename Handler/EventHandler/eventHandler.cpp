@@ -14,7 +14,7 @@
 #include "ItemCard/DiceControl/DiceControlCard.h"
 
 eventHandler::eventHandler(){
-    turn = 1;
+    turn = 0;
 
     nlohmann::json countryData;
     ifstream country;
@@ -52,19 +52,23 @@ eventHandler::eventHandler(){
             ownCardFromConfig.push_back(stoi(strOwnCardFromConfig));
         }
         Player* regis = new Player(playerData[to_string(i)]["money"].get<int>(),playerData[to_string(i)]["playerID"].get<int>(),playerData[to_string(i)]["playerName"].get<string>(),playerData[to_string(i)]["playerLastName"].get<string>(),ownCardFromConfig,playerData[to_string(i)]["pos"].get<int>(),playerData[to_string(i)]["state"].get<int>(),playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),playerData[to_string(i)]["nextRollDicePoint"].get<int>());
-        // regis->setPos(0);
         processPlayer.push_back(regis);
     }
 
-    processMap[0]->setOwner(1);
-    processMap[1]->setOwner(2);
-    processMap[2]->setOwner(3);
-    processMap[3]->setOwner(4);
-    processMap[4]->setType(1);
-    processMap[5]->setType(2);
-    processMap[6]->setType(3);
     mapInitialize(landCoordinate,m_mapList,processMap,processPlayer);
     m_movePoint = &operateMovePoint;
+    m_displayState = new StateDisplay();
+    m_useCard = new UseCardSetting();
+
+    processMap[13]->setOwner(1);
+    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+
+    for(int i=0;i<5;i++){
+        processPlayer[0]->addOwnCards(i);
+    }
+
+    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 eventHandler::~eventHandler(){
@@ -93,6 +97,35 @@ void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
     Hospital::enterHospital(player, _duration);
     cout << player->getPlayerName() << " is sent to the hospital for " << _duration << " rounds." << endl;
 }
+
+void eventHandler::diceCardUseEntryPoint(int _moveDistance){
+
+}
+
+void eventHandler::removeCardUseEntryPoint(QString _removeQStr){
+    string regisStr = _removeQStr.toStdString();
+    int location = 0;
+    for(int i = 0 ; i < 64 ; i++){
+        if(processMap[i]->getName() == regisStr){
+            location = i;
+            break;
+        }
+    }
+
+}
+
+void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr){
+    string regisStr = _blockQStr.toStdString();
+    regisStr = regisStr.substr(0,regisStr.find("."));
+    int location = stoi(regisStr);
+    cout<<location<<endl;
+}
+
+void eventHandler::eventCardUseEntryPoint(){
+
+}
+
+
 
 
 void eventHandler::addMapPosXandPosY(double _posX, double _posY){
@@ -169,3 +202,29 @@ void eventHandler::setMovePoint(MovePoint *newMovePoint)
     emit movePointChanged();
 }
 
+
+StateDisplay *eventHandler::displayState() const
+{
+    return m_displayState;
+}
+
+void eventHandler::setDisplayState(StateDisplay *newDisplayState)
+{
+    if (m_displayState == newDisplayState)
+        return;
+    m_displayState = newDisplayState;
+    emit displayStateChanged();
+}
+
+UseCardSetting *eventHandler::useCard() const
+{
+    return m_useCard;
+}
+
+void eventHandler::setUseCard(UseCardSetting *newUseCard)
+{
+    if (m_useCard == newUseCard)
+        return;
+    m_useCard = newUseCard;
+    emit useCardChanged();
+}

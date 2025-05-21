@@ -59,6 +59,14 @@ Popup{
                         Rectangle {
                             Layout.fillWidth: true
                             color: "transparent"
+                            Text {
+                                text: "Rocket" + " x " + event.useCard.ownCardCount[2]
+                                font.pixelSize: 15
+                                font.family: "roboto"
+                                font.bold: true
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
                         }
 
                         Rectangle {
@@ -81,6 +89,7 @@ Popup{
                             }
 
                             MouseArea {
+                                enabled: event.useCard.cardUseAvailable[2] === 1 ? true : false
                                 anchors.fill: parent
                                 onPressed: {
                                     rocketCard.isOpen = !rocketCard.isOpen
@@ -114,14 +123,15 @@ Popup{
                                     color: (rocketCard.selectIndex == 0) ? "#83ff05" : card_popUp.popUp_BtnColor
                                     border.color: "#5d7586"
                                     radius: 5
+                                    visible: event.useCard.displayTargetPlayer[0] === 1 ? true : false
                                     property bool isHovered: false
 
                                     Text {
-                                        text: "player1"
+                                        text: "Chang Tso-Lin"
                                         font.family: "roboto"
                                         font.pixelSize: 10
                                         font.bold: true
-                                        color: "black"
+                                        color: (parent.isHovered || rocketCard.selectIndex == 0) ? "black" : "white"
                                         anchors.centerIn:parent
                                         z: 1
                                     }
@@ -179,14 +189,15 @@ Popup{
                                     color: (rocketCard.selectIndex == 1) ? "#83ff05" : card_popUp.popUp_BtnColor
                                     border.color: "#5d7586"
                                     radius: 5
+                                    visible: event.useCard.displayTargetPlayer[1] === 1 ? true : false
                                     property bool isHovered: false
 
                                     Text {
-                                        text: "player2"
+                                        text: "Wu Pei-Fu"
                                         font.family: "roboto"
                                         font.pixelSize: 10
                                         font.bold: true
-                                        color: "black"
+                                        color: (parent.isHovered || rocketCard.selectIndex == 1) ? "black" : "white"
                                         anchors.centerIn:parent
                                         z: 1
                                     }
@@ -244,14 +255,15 @@ Popup{
                                     color: (rocketCard.selectIndex == 2) ? "#83ff05" : card_popUp.popUp_BtnColor
                                     border.color: "#5d7586"
                                     radius: 5
+                                    visible: event.useCard.displayTargetPlayer[2] === 1 ? true : false
                                     property bool isHovered: false
 
                                     Text {
-                                        text: "player3"
+                                        text: "Tuan Chi-Jui"
                                         font.family: "roboto"
                                         font.pixelSize: 10
                                         font.bold: true
-                                        color: "black"
+                                        color: (parent.isHovered || rocketCard.selectIndex == 2) ? "black" : "white"
                                         anchors.centerIn:parent
                                         z: 1
                                     }
@@ -309,14 +321,15 @@ Popup{
                                     color: (rocketCard.selectIndex == 3) ? "#83ff05" : card_popUp.popUp_BtnColor
                                     border.color: "#5d7586"
                                     radius: 5
+                                    visible: event.useCard.displayTargetPlayer[3] === 1 ? true : false
                                     property bool isHovered: false
 
                                     Text {
-                                        text: "player4"
+                                        text: "Chiang Kai-Shek"
                                         font.family: "roboto"
                                         font.pixelSize: 10
                                         font.bold: true
-                                        color: "black"
+                                        color: (parent.isHovered || rocketCard.selectIndex == 3) ? "black" : "white"
                                         anchors.centerIn:parent
                                         z: 1
                                     }
@@ -501,6 +514,14 @@ Popup{
                         Rectangle {
                             Layout.fillWidth: true
                             color: "transparent"
+                            Text {
+                                text: "Rigged Dice" + " x " +event.useCard.ownCardCount[0]
+                                font.pixelSize: 15
+                                font.family: "roboto"
+                                font.bold: true
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
                         }
 
                         Rectangle {
@@ -524,6 +545,7 @@ Popup{
 
                             MouseArea {
                                 anchors.fill: parent
+                                enabled: event.useCard.cardUseAvailable[0] === 1 ? true : false
                                 onPressed: {
                                     diceCard.isOpen = !diceCard.isOpen
                                 }
@@ -703,7 +725,7 @@ Popup{
                                         }
                                         onPressed: {
                                             parent.scale = 1.05
-
+                                            event.diceCardUseEntryPoint(spinDistance_Rec.moveDistance)
                                         }
                                         onReleased: {
                                             parent.scale = 1.1
@@ -764,6 +786,14 @@ Popup{
                         Rectangle {
                             Layout.fillWidth: true
                             color: "transparent"
+                            Text {
+                                text: "Remove" + " x " + event.useCard.ownCardCount[3]
+                                font.pixelSize: 15
+                                font.family: "roboto"
+                                font.bold: true
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
                         }
 
                         Rectangle {
@@ -787,6 +817,7 @@ Popup{
 
                             MouseArea {
                                 anchors.fill: parent
+                                enabled: event.useCard.cardUseAvailable[3] === 1 ? true : false
                                 onPressed: {
                                     removeCard.isOpen = !removeCard.isOpen
                                 }
@@ -813,7 +844,7 @@ Popup{
                                 ComboBox {
                                     id: removeCoordinate
                                     Layout.fillWidth: true
-                                    model: ["1", "2", "3", "4", "5", "6"]
+                                    model: event.useCard.displayTargetLand
                                     onCurrentIndexChanged: {
                                         console.log("Selected:", currentText)
                                     }
@@ -875,7 +906,7 @@ Popup{
                                         }
                                         onPressed: {
                                             parent.scale = 1.05
-                                            console.log(removeCoordinate.currentText)
+                                            event.removeCardUseEntryPoint(removeCoordinate.currentText)
                                         }
                                         onReleased: {
                                             parent.scale = 1.1
@@ -936,6 +967,14 @@ Popup{
                         Rectangle {
                             Layout.fillWidth: true
                             color: "transparent"
+                            Text {
+                                text: "RoadBlock" + " x " + event.useCard.ownCardCount[1]
+                                font.pixelSize: 15
+                                font.family: "roboto"
+                                font.bold: true
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
                         }
 
                         Rectangle {
@@ -959,6 +998,7 @@ Popup{
 
                             MouseArea {
                                 anchors.fill: parent
+                                enabled: event.useCard.cardUseAvailable[1] === 1 ? true : false
                                 onPressed: {
                                     roadBlockCard.isOpen = !roadBlockCard.isOpen
                                 }
@@ -985,7 +1025,7 @@ Popup{
                                 ComboBox {
                                     id: blockCoordinate
                                     Layout.fillWidth: true
-                                    model: ["1", "2", "3", "4", "5", "6"]
+                                    model: event.useCard.displayAllLand
                                     onCurrentIndexChanged: {
                                         console.log("Selected:", currentText)
                                     }
@@ -1047,7 +1087,7 @@ Popup{
                                         }
                                         onPressed: {
                                             parent.scale = 1.05
-                                            console.log(blockCoordinate.currentText)
+                                            event.roadBlockCardUseEnrtyPoint(blockCoordinate.currentText);
                                         }
                                         onReleased: {
                                             parent.scale = 1.1
@@ -1111,7 +1151,7 @@ Popup{
 
                 Text {
                     z:2
-                    text: "Event Card"
+                    text: "Event Card" + " x " + event.useCard.ownCardCount[4]
                     font.bold: true
                     font.family: "roboto"
                     color: parent.isHovered ? "black" : "white"
@@ -1121,7 +1161,7 @@ Popup{
                 MouseArea{
                     anchors.fill: parent
                     hoverEnabled: true
-                    enabled: true
+                    enabled: event.useCard.cardUseAvailable[4] === 1 ? true : false
                     onEntered: {
                         parent.scale = 1.05
                         parent.isHovered = true
@@ -1132,7 +1172,7 @@ Popup{
                     }
                     onPressed: {
                         parent.scale = 1.025
-                        console.log(123)
+                        event.eventCardUseEntryPoint()
                     }
                     onReleased: {
                         parent.scale = 1.05

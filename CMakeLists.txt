@@ -74,6 +74,8 @@ qt_add_qml_module(appmonopoly
         SOURCES MiniGames/DragonGate/DragonGate.cpp
         SOURCES Hospital/Hospital.h
         SOURCES Hospital/Hospital.cpp
+        SOURCES StateDisplay/StateDisplay.h
+        SOURCES StateDisplay/StateDisplay.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
