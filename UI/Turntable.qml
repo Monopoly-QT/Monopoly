@@ -42,7 +42,7 @@ Item {
                     }
                 }
                 Text {
-                    text: (index+1)+" 天"
+                    text: (index+1)+" Days"
                     font.pixelSize: 20 * (100 - turntableRoot.count) / 100
                     // 計算每個區塊的中心角度
                     property real angle: -(360 / turntableRoot.count) * (index + 0.5)
@@ -57,7 +57,7 @@ Item {
         Behavior on rotation {
             enabled: turntableRoot.animationEnable
             NumberAnimation {
-                duration: 8000
+                duration: 3000
                 easing.type: Easing.InOutExpo
                 onRunningChanged: {
                     if (!running) {
