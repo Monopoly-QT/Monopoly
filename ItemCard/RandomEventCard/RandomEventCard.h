@@ -95,7 +95,7 @@ public:
 				processPlayer[turn]->.setPos(landNameToPos[area]);
 			}
 			else if (function == "run") {
-				runMinigame();
+				// runMinigame();
 			}
 		}
 

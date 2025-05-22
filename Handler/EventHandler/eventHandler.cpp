@@ -28,17 +28,19 @@ bool checkNum(string needChecked) {
     return true;
 }
 
-void runMinigame();
+// void runMinigame();
 
-void initialize();
+// void initialize();
 
-void start();
+// void start();
 
-void finish();
+// void moved();
 
-void printAllPlayerInfo();
+// void finish();
 
-void refresh();
+// void printAllPlayerInfo();
+
+// void refresh();
 
 eventHandler::eventHandler(){
     turn = 0;
@@ -233,22 +235,22 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt = commandData["minigame"]["prompt"].get<string>();
                 cout << prompt << '\n';
                 ss >> inputCommand;
-                runMinigame();
+                // runMinigame();
             }
             else if (inputCommand == "/gamestate") {
                 prompt = commandData["gamestate"]["prompt"].get<string>();
                 ss >> inputCommand;
                 if (inputCommand == "INIT") {
-                    initialize();
+                    // initialize();
                 }
                 else if (inputCommand == "START") {
-                    start();
+                    // start();
                 }
                 else if (inputCommand == "MOVED") {
-                    moved();
+                    // moved();
                 }
                 else if (inputCommand == "FINISH") {
-                    finish();
+                    // finish();
                 }
                 regex r(R"(\{state\})");
                 prompt = regex_replace(prompt, r, inputCommand);
@@ -256,11 +258,11 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
             else if (inputCommand == "/info") {
                 cout << commandData["info"]["prompt"].get<string>();
-                printAllPlayerInfo();
+                // printAllPlayerInfo();
             }
             else if (inputCommand == "/refresh") {
                 cout << commandData["refresh"]["prompt"].get<string>();
-                refresh();
+                // refresh();
             }
             else if (inputCommand == "/list" || inputCommand == "/help") {
                 bool a = false;
