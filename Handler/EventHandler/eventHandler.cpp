@@ -50,7 +50,7 @@ eventHandler::eventHandler(){
     country.open("json/country.json");
 
     if (country.fail()) {
-        cout << "Falied to open country.json\n";
+        cerr << "Falied to open country.json\n";
     }
 
     country >> countryData;
@@ -68,7 +68,7 @@ eventHandler::eventHandler(){
     player.open("json/config.json");
 
     if (player.fail()) {
-        cout << "Falied to open config.json\n";
+        cerr << "Falied to open config.json\n";
     }
 
     player >> playerData;
@@ -129,7 +129,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
     command.open("json/command.json");
 
     if (command.fail()) {
-        cout << "Falied to open command.json\n";
+        cerr << "Falied to open command.json\n";
     }
 
     command >> commandData;
@@ -160,15 +160,15 @@ void eventHandler::commendEntryPoint(QString _instruct){
                         processPlayer[turn]->setPos(newPos);
                         regex r(R"(\{location\})");
                         prompt = regex_replace(prompt, r, to_string(newPos));
-                        cout << prompt << '\n';
+                        cerr << prompt << '\n';
                     }
                     else {
-                        cout << "Valid input!\n";
+                        cerr << "Valid input!\n";
                         break;
                     }
                 }
                 else {
-                    cout << "Valid input!\n";
+                    cerr << "Valid input!\n";
                     break;
                 }
             }
@@ -187,7 +187,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 }
 
                 if (!valid) {
-                    cout << "Valid input!\n";
+                    cerr << "Valid input!\n";
                     break;
                 }
 
@@ -200,13 +200,13 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt = regex_replace(prompt, r2, to_string(deltaMoney));
 
                 if (processPlayer[turn]->getMoney() < deltaMoney) {
-                    cout << "Valid input!\n";
+                    cerr << "Valid input!\n";
                     break;
                 }
 
                 processPlayer[turn]->subMoney(deltaMoney);
                 processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
-                cout << prompt << '\n';
+                cerr << prompt << '\n';
             }
             else if (inputCommand == "/get") {
                 prompt = commandData["get"]["prompt"].get<string>();
@@ -217,10 +217,10 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
                     regex r2(R"(\{money\})");
                     prompt = regex_replace(prompt, r2, to_string(deltaMoney));
-                    cout << prompt << '\n';
+                    cerr << prompt << '\n';
                 }
                 else {
-                    cout << "Valid input!\n";
+                    cerr << "Valid input!\n";
                     break;
                 }
             }
@@ -230,11 +230,11 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 processPlayer[turn]->addOwnCards(inputCommand);
                 regex r(R"(\{card_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
-                cout << prompt << '\n';
+                cerr << prompt << '\n';
             }
             else if (inputCommand == "/minigame") {
                 prompt = commandData["minigame"]["prompt"].get<string>();
-                cout << prompt << '\n';
+                cerr << prompt << '\n';
                 ss >> inputCommand;
                 // runMinigame();
             }
@@ -255,14 +255,14 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 }
                 regex r(R"(\{state\})");
                 prompt = regex_replace(prompt, r, inputCommand);
-                cout << prompt << '\n';
+                cerr << prompt << '\n';
             }
             else if (inputCommand == "/info") {
-                cout << commandData["info"]["prompt"].get<string>();
+                cerr << commandData["info"]["prompt"].get<string>();
                 // printAllPlayerInfo();
             }
             else if (inputCommand == "/refresh") {
-                cout << commandData["refresh"]["prompt"].get<string>();
+                cerr << commandData["refresh"]["prompt"].get<string>();
                 // refresh();
             }
             else if (inputCommand == "/list" || inputCommand == "/help") {
@@ -274,21 +274,21 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 }
                 for (auto x : commandData) {
                     if (x["name"].get<string>() != "") {
-                        cout << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
+                        cerr << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
 
                         if (a) {
-                            cout << "\tUsage:\t" << x["usage"].get<string>() << '\n';
-                            cout << "\tExamples:\n";
+                            cerr << "\tUsage:\t" << x["usage"].get<string>() << '\n';
+                            cerr << "\tExamples:\n";
                             for (auto ex : x["examples"]) {
-                                cout << "\t\t" << ex.get<string>() << '\n';
+                                cerr << "\t\t" << ex.get<string>() << '\n';
                             }
                         }
-                        cout << '\n';
+                        cerr << '\n';
                     }
                 }
             }
             else {
-                cout << commandData["invalid_command"]["prompt"].get<string>() << '\n';
+                cerr << commandData["invalid_command"]["prompt"].get<string>() << '\n';
             }
         }
     }
