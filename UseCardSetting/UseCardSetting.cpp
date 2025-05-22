@@ -31,7 +31,7 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
         }
     }
     for(int i = 0 ; i < 64 ; i++){
-        if(_land[i]->getOwner() != _turn && _land[i]->getType() == 0){
+        if(_land[i]->getOwner() != _turn && _land[i]->getType() == 0 && _land[i]->getLevel() != 0){
             m_displayTargetLand.append(QString::fromStdString(_land[i]->getName()));
         }
         if(_land[i]->getState() != 1){
