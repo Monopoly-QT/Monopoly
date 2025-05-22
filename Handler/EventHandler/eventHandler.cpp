@@ -28,17 +28,17 @@ bool checkNum(string needChecked) {
     return true;
 }
 
-// void runMinigame();
+void runMinigame();
 
-// void initialize();
+void initialize();
 
-// void start();
+void start();
 
-// void finish();
+void finish();
 
-// void printAllPlayerInfo();
+void printAllPlayerInfo();
 
-// void refresh();
+void refresh();
 
 eventHandler::eventHandler(){
     turn = 0;
@@ -221,47 +221,47 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     break;
                 }
             }
-            // else if (inputCommand == "/card") {
-            //     prompt = commandData["card"]["prompt"].get<string>();
-            //     ss >> inputCommand;
-            //     processPlayer[turn]->addOwnCards(inputCommand);
-            //     regex r(R"(\{card_name\})");
-            //     prompt = regex_replace(prompt, r, inputCommand);
-            //     cout << prompt << '\n';
-            // }
-            // else if (inputCommand == "/minigame") {
-            //     prompt = commandData["minigame"]["prompt"].get<string>();
-            //     cout << prompt << '\n';
-            //     ss >> inputCommand;
-            //     runMinigame();
-            // }
-            // else if (inputCommand == "/gamestate") {
-            //     prompt = commandData["gamestate"]["prompt"].get<string>();
-            //     ss >> inputCommand;
-            //     if (inputCommand == "INIT") {
-            //         initialize();
-            //     }
-            //     else if (inputCommand == "START") {
-            //         start();
-            //     }
-            //     else if (inputCommand == "MOVED") {
-            //         moved();
-            //     }
-            //     else if (inputCommand == "FINISH") {
-            //         finish();
-            //     }
-            //     regex r(R"(\{state\})");
-            //     prompt = regex_replace(prompt, r, inputCommand);
-            //     cout << prompt << '\n';
-            // }
-            // else if (inputCommand == "/info") {
-            //     cout << commandData["info"]["prompt"].get<string>();
-            //     printAllPlayerInfo();
-            // }
-            // else if (inputCommand == "/refresh") {
-            //     cout << commandData["refresh"]["prompt"].get<string>();
-            //     refresh();
-            // }
+            else if (inputCommand == "/card") {
+                prompt = commandData["card"]["prompt"].get<string>();
+                ss >> inputCommand;
+                processPlayer[turn]->addOwnCards(inputCommand);
+                regex r(R"(\{card_name\})");
+                prompt = regex_replace(prompt, r, inputCommand);
+                cout << prompt << '\n';
+            }
+            else if (inputCommand == "/minigame") {
+                prompt = commandData["minigame"]["prompt"].get<string>();
+                cout << prompt << '\n';
+                ss >> inputCommand;
+                runMinigame();
+            }
+            else if (inputCommand == "/gamestate") {
+                prompt = commandData["gamestate"]["prompt"].get<string>();
+                ss >> inputCommand;
+                if (inputCommand == "INIT") {
+                    initialize();
+                }
+                else if (inputCommand == "START") {
+                    start();
+                }
+                else if (inputCommand == "MOVED") {
+                    moved();
+                }
+                else if (inputCommand == "FINISH") {
+                    finish();
+                }
+                regex r(R"(\{state\})");
+                prompt = regex_replace(prompt, r, inputCommand);
+                cout << prompt << '\n';
+            }
+            else if (inputCommand == "/info") {
+                cout << commandData["info"]["prompt"].get<string>();
+                printAllPlayerInfo();
+            }
+            else if (inputCommand == "/refresh") {
+                cout << commandData["refresh"]["prompt"].get<string>();
+                refresh();
+            }
             else if (inputCommand == "/list" || inputCommand == "/help") {
                 bool a = false;
                 if (ss >> inputCommand) {
@@ -334,9 +334,6 @@ void eventHandler::eventCardUseEntryPoint(){
     processPlayer[turn]->disOwnCards(4);
     m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
-
-
-
 
 void eventHandler::addMapPosXandPosY(double _posX, double _posY){
     mapPosXandPosY.push_back({_posX,_posY});
