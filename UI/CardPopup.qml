@@ -387,7 +387,7 @@ Popup{
                                 Layout.preferredHeight: parent.height / 4
                                 Layout.preferredWidth: height
                                 Layout.alignment: Qt.AlignCenter
-                                afterRotate:{
+                                afterRotate:function(){
                                     // 得到的值: rotatedIndex
                                     event.rocketCardUseEntryPoint(rocketCard.selectIndex,rotatedIndex);
                                     rocketCard.isOpen = false
