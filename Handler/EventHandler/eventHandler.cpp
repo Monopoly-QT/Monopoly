@@ -12,7 +12,11 @@
 #include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
+#include "ItemCard/DestroyImmovableCard/DestroyImmovableCard.h"
 #include "ItemCard/DiceControl/DiceControlCard.h"
+#include "ItemCard/RandomEventCard/RandomEventCard.h"
+#include "ItemCard/RoadblockCard/RoadblockCard.h"
+#include "ItemCard/RocketCard/RocketCard.h"
 
 bool checkNum(string needChecked) {
     for (int i = 0; i < needChecked.size(); i++) {
@@ -290,14 +294,13 @@ void eventHandler::commendEntryPoint(QString _instruct){
 void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
     if (_duration <= 0) return;
     Player *player = processPlayer[_playerIndex];
-    Hospital::enterHospital(player, _duration);
-    cout << player->getPlayerName() << " is sent to the hospital for " << _duration << " rounds." << endl;
+    RocketCard::use(*player,_duration);
     processPlayer[turn]->disOwnCards(2);
     m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::diceCardUseEntryPoint(int _moveDistance){
-    //TODO add function
+    moveEntryPoint(_moveDistance);
     processPlayer[turn]->disOwnCards(0);
     m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
@@ -321,13 +324,13 @@ void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr){
     string regisStr = _blockQStr.toStdString();
     regisStr = regisStr.substr(0,regisStr.find("."));
     int location = stoi(regisStr);
-    processMap[location]->setState(1);
+    Roadblock::use(*processMap[location]);
     processPlayer[turn]->disOwnCards(1);
     m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::eventCardUseEntryPoint(){
-    //TODO add function
+    RandomEventCard::use(*processPlayer[turn]);
     processPlayer[turn]->disOwnCards(4);
     m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }

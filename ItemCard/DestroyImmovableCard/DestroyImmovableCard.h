@@ -24,7 +24,7 @@ public:
      */
     static bool use(Player &immovableOwner, int housePos) {
         vector<int> ownersImmovable = immovableOwner.getOwnImmovables();
-        if (ranges::find(ownersImmovable, housePos) == ownersImmovable.end()) {
+        if (find(ownersImmovable.begin(), ownersImmovable.end(), housePos) == ownersImmovable.end()) {
             return false;
         }
         immovableOwner.removeOwnImmovables(housePos);

@@ -23,7 +23,7 @@ public:
      * @return 成功與否
      */
     static bool use(Player &patient, int rounds) {
-        if (rounds < 1 || rounds > 3) {
+        if (rounds < 1) {
             return false;
         }
         Hospital::enterHospital(&patient, rounds);

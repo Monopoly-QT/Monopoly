@@ -327,7 +327,7 @@ Popup{
                                     Text {
                                         text: "Chiang Kai-Shek"
                                         font.family: "roboto"
-                                        font.pixelSize: 10
+                                        font.pixelSize: 8
                                         font.bold: true
                                         color: (parent.isHovered || rocketCard.selectIndex == 3) ? "black" : "white"
                                         anchors.centerIn:parent
