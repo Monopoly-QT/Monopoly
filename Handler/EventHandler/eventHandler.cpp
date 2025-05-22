@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 #include <regex>
+#include <QQmlApplicationEngine>
 #include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
@@ -40,7 +41,10 @@ bool checkNum(string needChecked) {
 
 // void printAllPlayerInfo();
 
-// void refresh();
+// void refresh(){
+//     // 假設你在 eventHandler 中有 MainWindow 的 QObject 指標
+//     QMetaObject::invokeMethod(mainQmlRootObject, "showRefresh", Qt::QueuedConnection);
+// }
 
 eventHandler::eventHandler(){
     turn = 0;
@@ -59,7 +63,7 @@ eventHandler::eventHandler(){
     for(int i = 0 ; i < 64 ; i++){
         Land* regis=new Land(countryData[to_string(i)]["type"].get<int>(), i, countryData[to_string(i)]["name"].get<string>(), countryData[to_string(i)]["value"].get<int>(), countryData[to_string(i)]["translation"].get<string>());
         regis->setLevel(0);
-        landNameToPos[regis->getName()] = i;
+        // landNameToPos[regis->getName()] = i;
         processMap.push_back(regis);
     }
 
@@ -224,14 +228,14 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     break;
                 }
             }
-            else if (inputCommand == "/card") {
-                prompt = commandData["card"]["prompt"].get<string>();
-                ss >> inputCommand;
-                processPlayer[turn]->addOwnCards(inputCommand);
-                regex r(R"(\{card_name\})");
-                prompt = regex_replace(prompt, r, inputCommand);
-                cerr << prompt << '\n';
-            }
+            // else if (inputCommand == "/card") {
+            //     prompt = commandData["card"]["prompt"].get<string>();
+            //     ss >> inputCommand;
+            //     processPlayer[turn]->addOwnCards(inputCommand);
+            //     regex r(R"(\{card_name\})");
+            //     prompt = regex_replace(prompt, r, inputCommand);
+            //     cerr << prompt << '\n';
+            // }
             else if (inputCommand == "/minigame") {
                 prompt = commandData["minigame"]["prompt"].get<string>();
                 cerr << prompt << '\n';

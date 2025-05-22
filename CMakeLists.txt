@@ -51,6 +51,7 @@ qt_add_qml_module(appmonopoly
         UI/CheatCommandOpenBtn.qml
         UI/CardOpenBtn.qml
         UI/StateContainer.qml
+        UI/RefreshPopup.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc
