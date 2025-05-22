@@ -81,6 +81,7 @@ signals:
 private:
     int turn;
     bool buttonState = true;
+    bool firstClick = true;
 
     map<string, int> playerNameToID;
 

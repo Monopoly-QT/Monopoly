@@ -120,7 +120,10 @@ eventHandler::~eventHandler(){
 }
 
 void eventHandler::moveEntryPoint(int _moveDistance){
-    ++turn > 3 ? turn = 0 : 0;
+    if(!firstClick) ++turn > 3 ? turn = 0 : 0;
+    else firstClick = false;
+
+    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
     buttonState = true;
     emit EnableChanged();
     movePointAnimator(_moveDistance);
@@ -398,13 +401,13 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
     // 不同type
     if(processMap[processPlayer[turn]->getPos()]->getType() == 1){
         buttonState = false;
-        emit EnableChanged();
+        QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
     //=================往後加=================
     }
 
     // 原點處理
-    if(origin && _playerPos == 0) {processPlayer[turn]->addMoney(8000);emit moneyChanged();}
-    else if(origin) {processPlayer[turn]->addMoney(4000);emit moneyChanged();}
+    if(origin && _playerPos == 0) {processPlayer[turn]->addMoney(8000);m_displayState -> initialStateDisplay(turn,processPlayer[turn]);}
+    else if(origin) {processPlayer[turn]->addMoney(4000);m_displayState -> initialStateDisplay(turn,processPlayer[turn]);}
 
     // 解除路障
     if(processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
@@ -488,7 +491,7 @@ void eventHandler::toll(){
         processPlayer[turn]->subMoney(fee);
         processPlayer[landOwner - 1]->addMoney(fee);
     }
-    emit moneyChanged();
+    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
 }
 
 void eventHandler::buyLand(){
@@ -501,7 +504,7 @@ void eventHandler::buyLand(){
             processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
             buttonState = false;
             emit EnableChanged();
-            emit moneyChanged();
+            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
             mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
 
         }
@@ -517,7 +520,7 @@ void eventHandler::levelup(){
             processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
             buttonState = false;
             emit EnableChanged();
-            emit moneyChanged();
+            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
             mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
         }
     }
@@ -533,7 +536,7 @@ void eventHandler::sellLand(){
             processPlayer[turn]->addMoney((value/2) + (processMap[nowPos]->getLevel() * value / 2));
             buttonState = false;
             emit EnableChanged();
-            emit moneyChanged();
+            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
             mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
         }
     }
