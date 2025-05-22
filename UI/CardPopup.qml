@@ -29,6 +29,7 @@ Popup {
     }
 
     ScrollView {
+        id: card_popUp_ScrollView
         anchors.fill: parent
         ScrollBar.vertical.policy: ScrollBar.AlwaysOff
 
@@ -492,9 +493,7 @@ Popup {
                     }
                 }
 
-                Behavior on Layout
-                .
-                preferredHeight {
+                Behavior on Layout.preferredHeight{
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.InOutQuad

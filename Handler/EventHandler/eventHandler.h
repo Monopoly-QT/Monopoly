@@ -25,7 +25,7 @@ class eventHandler:public QObject{
     Q_PROPERTY(MovePoint* movePoint READ movePoint WRITE setMovePoint NOTIFY movePointChanged FINAL);
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
-	Q_PROPERTY(int money READ showMoney NOTIFY moneyChanged);
+	Q_PROPERTY(int lastPlayerMoney READ showLastPlayerMoney NOTIFY lastPlayerMoneyChanged);
     Q_PROPERTY(bool enableButton READ returnEnableButton NOTIFY EnableChanged);
 public:
     eventHandler();
@@ -49,7 +49,7 @@ public:
     Q_INVOKABLE void moveEntryPoint(int _moveDistance);
     Q_INVOKABLE void commendEntryPoint(QString _instruct);
 
-    int showMoney() const;
+    int showLastPlayerMoney() const;
     bool returnEnableButton() const;
     void toll();
     Q_INVOKABLE void buyLand();
@@ -76,7 +76,7 @@ signals:
     void movePointInitialize();
     void displayStateChanged();
     void useCardChanged();
-    void moneyChanged();
+    void lastPlayerMoneyChanged();
     void EnableChanged();
     void openShopPopup();
 

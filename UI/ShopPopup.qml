@@ -147,62 +147,59 @@ Popup {
                                 Layout.fillHeight: true
                             }
 
-                            Button {
+                            Rectangle {
                                 id: buyButton
-                                property bool purchased: false
-                                Layout.fillWidth: true
-                                enabled: !purchased
-                                background: Rectangle {
-                                    implicitHeight: 40
-                                    radius: 6
-                                    color: buyButton.enabled ? "#1E88E5" : "#555555"
-                                }
-                                contentItem: Text {
-                                    text: {
-                                        switch (index) {
-                                            case 0:
-                                                return "price - $1000";
-                                            case 1:
-                                                return "price - $500";
-                                            case 2:
-                                                return "price - $10000";
-                                            case 3:
-                                                return "price - $5000";
-                                            case 4:
-                                                return "price - $800";
-                                            default:
-                                                return "";
-                                        }
+                                implicitHeight: 40
+                                anchors.bottom: parent.bottom
+                                anchors.margins: 3
+                                radius: 6
+                                color: buyButton.enabled ? "#1E88E5" : "#555555"
+                                property int price: {
+                                    switch (index) {
+                                        case 0:
+                                            return 1000;
+                                        case 1:
+                                            return 500;
+                                        case 2:
+                                            return 10000;
+                                        case 3:
+                                            return 5000;
+                                        case 4:
+                                            return 800;
                                     }
+                                    return 0;
+                                }
+                                Layout.fillWidth: true
+                                enabled: event.lastPlayerMoney >= price
+                                Text {
+                                    text:"price - "+ buyButton.price
                                     anchors.centerIn: parent
                                     color: "white"
                                     font.pixelSize: 14
                                     font.bold: true
                                 }
-                                onClicked: {
-                                    let price = 0;
-                                    switch (index) {
-                                        case 0:
-                                            price = 1000;
-                                            break;
-                                        case 1:
-                                            price = 500;
-                                            break;
-                                        case 2:
-                                            price = 10000;
-                                            break;
-                                        case 3:
-                                            price = 5000;
-                                            break;
-                                        case 4:
-                                            price = 800;
-                                            break;
+
+                                MouseArea{
+                                    anchors.fill: parent
+                                    hoverEnabled: parent.enabled
+                                    onClicked: {
+                                        if (event.buyItemEntryPoint(buyButton.price, index)) {
+                                            console.log("購買成功")
+                                        } else {
+                                            console.log("購買失敗")
+                                        }
                                     }
-                                    if (event.buyItemEntryPoint(price, index)) {
-                                        console.log("購買成功")
-                                        purchased = true
-                                    } else {
-                                        console.log("購買失敗")
+                                    onEntered: {
+                                        buyButton.scale = 1.05
+                                    }
+                                    onExited: {
+                                        buyButton.scale = 1.0
+                                    }
+                                    onPressed: {
+                                        buyButton.scale = 0.95
+                                    }
+                                    onReleased: {
+                                        buyButton.scale = 1
                                     }
                                 }
                             }
@@ -228,7 +225,7 @@ Popup {
                     Text {
                         id: moneyText
                         anchors.fill: parent
-                        text: "$" + event.displayState.ownMoney
+                        text: "$" + event.lastPlayerMoney
                         font.pixelSize: 18
                         font.bold: true
                         color: "#EEEEEE"

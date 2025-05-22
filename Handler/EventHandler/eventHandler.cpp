@@ -358,6 +358,7 @@ bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
     cout << endl;
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    emit lastPlayerMoneyChanged();
     return res;
 }
 
@@ -429,6 +430,7 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
         //=================往後加=================
     } else if (processMap[processPlayer[turn]->getPos()]->getType() == 2) {
         // 商店
+        emit lastPlayerMoneyChanged();
         emit openShopPopup();
     }
     ++turn > 3 ? turn = 0 : 0;
@@ -486,9 +488,8 @@ void eventHandler::setUseCard(UseCardSetting *newUseCard) {
     emit useCardChanged();
 }
 
-int eventHandler::showMoney() const {
-    if (turn >= 0)return processPlayer[turn]->getMoney();
-    else return -1;
+int eventHandler::showLastPlayerMoney() const {
+    return processPlayer[turn-1 < 0 ? 3 : turn-1]->getMoney();
 }
 
 bool eventHandler::returnEnableButton() const {
