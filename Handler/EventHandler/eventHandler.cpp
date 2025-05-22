@@ -8,10 +8,33 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <regex>
 #include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
 #include "ItemCard/DiceControl/DiceControlCard.h"
+
+bool checkNum(string needChecked) {
+    for (int i = 0; i < needChecked.size(); i++) {
+        if (!isdigit(needChecked[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// void runMinigame();
+
+// void initialize();
+
+// void start();
+
+// void finish();
+
+// void printAllPlayerInfo();
+
+// void refresh();
 
 eventHandler::eventHandler(){
     turn = 0;
@@ -53,6 +76,8 @@ eventHandler::eventHandler(){
         }
         Player* regis = new Player(playerData[to_string(i)]["money"].get<int>(),playerData[to_string(i)]["playerID"].get<int>(),playerData[to_string(i)]["playerName"].get<string>(),playerData[to_string(i)]["playerLastName"].get<string>(),ownCardFromConfig,playerData[to_string(i)]["pos"].get<int>(),playerData[to_string(i)]["state"].get<int>(),playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),playerData[to_string(i)]["nextRollDicePoint"].get<int>());
         processPlayer.push_back(regis);
+
+        playerNameToID[regis->getPlayerLastName()] = regis->getID();
     }
 
     mapInitialize(landCoordinate,m_mapList,processMap,processPlayer);
@@ -88,7 +113,174 @@ void eventHandler::moveEntryPoint(int _moveDistance){
 
 void eventHandler::commendEntryPoint(QString _instruct){
     string strInstruct =  _instruct.toStdString();
+    nlohmann::json commandData;
+    ifstream command;
+    command.open("json/command.json");
 
+    if (command.fail()) {
+        cout << "Falied to open command.json\n";
+    }
+
+    command >> commandData;
+    command.close();
+
+    string inputCommand = strInstruct;
+    string prompt;
+
+    cin >> ws;
+    while (getline(cin, inputCommand)) {
+        stringstream ss(inputCommand);
+        while (ss >> inputCommand) {
+            if (inputCommand == "/move") {
+                prompt = commandData["move"]["prompt"].get<string>();
+                regex r1(R"(\{playerName\})");
+                prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerLastName());
+                ss >> inputCommand;
+                if (checkNum(inputCommand)) {
+                    processPlayer[turn]->addPos(stoi(inputCommand));
+                    regex r(R"(\{location\})");
+                    prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
+                    cerr << prompt << '\n';
+                }
+                else if (inputCommand == "to") {
+                    ss >> inputCommand;
+                    if (checkNum(inputCommand) && stoi(inputCommand) <= 64) {
+                        int newPos = stoi(inputCommand) % 64;
+                        processPlayer[turn]->setPos(newPos);
+                        regex r(R"(\{location\})");
+                        prompt = regex_replace(prompt, r, to_string(newPos));
+                        cout << prompt << '\n';
+                    }
+                    else {
+                        cout << "Valid input!\n";
+                        break;
+                    }
+                }
+                else {
+                    cout << "Valid input!\n";
+                    break;
+                }
+            }
+            else if (inputCommand == "/give") {
+                prompt = commandData["give"]["prompt"].get<string>();
+
+                string payee;
+                ss >> payee;
+
+                bool valid = 0;
+                for (int i = 0; i < 4; i++) {
+                    if (payee == processPlayer[i]->getPlayerLastName()) {
+                        valid = 1;
+                        break;
+                    }
+                }
+
+                if (!valid) {
+                    cout << "Valid input!\n";
+                    break;
+                }
+
+                regex r1(R"(\{playerName\})");
+                prompt = regex_replace(prompt, r1, payee);
+
+                ss >> inputCommand;
+                int deltaMoney = stoi(inputCommand);
+                regex r2(R"(\{money\})");
+                prompt = regex_replace(prompt, r2, to_string(deltaMoney));
+
+                if (processPlayer[turn]->getMoney() < deltaMoney) {
+                    cout << "Valid input!\n";
+                    break;
+                }
+
+                processPlayer[turn]->subMoney(deltaMoney);
+                processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
+                cout << prompt << '\n';
+            }
+            else if (inputCommand == "/get") {
+                prompt = commandData["get"]["prompt"].get<string>();
+                ss >> inputCommand;
+                if (checkNum(inputCommand)) {
+                    int deltaMoney = stoi(inputCommand);
+                    regex r1(R"(\{playerName\})");
+                    prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
+                    regex r2(R"(\{money\})");
+                    prompt = regex_replace(prompt, r2, to_string(deltaMoney));
+                    cout << prompt << '\n';
+                }
+                else {
+                    cout << "Valid input!\n";
+                    break;
+                }
+            }
+            // else if (inputCommand == "/card") {
+            //     prompt = commandData["card"]["prompt"].get<string>();
+            //     ss >> inputCommand;
+            //     processPlayer[turn]->addOwnCards(inputCommand);
+            //     regex r(R"(\{card_name\})");
+            //     prompt = regex_replace(prompt, r, inputCommand);
+            //     cout << prompt << '\n';
+            // }
+            // else if (inputCommand == "/minigame") {
+            //     prompt = commandData["minigame"]["prompt"].get<string>();
+            //     cout << prompt << '\n';
+            //     ss >> inputCommand;
+            //     runMinigame();
+            // }
+            // else if (inputCommand == "/gamestate") {
+            //     prompt = commandData["gamestate"]["prompt"].get<string>();
+            //     ss >> inputCommand;
+            //     if (inputCommand == "INIT") {
+            //         initialize();
+            //     }
+            //     else if (inputCommand == "START") {
+            //         start();
+            //     }
+            //     else if (inputCommand == "MOVED") {
+            //         moved();
+            //     }
+            //     else if (inputCommand == "FINISH") {
+            //         finish();
+            //     }
+            //     regex r(R"(\{state\})");
+            //     prompt = regex_replace(prompt, r, inputCommand);
+            //     cout << prompt << '\n';
+            // }
+            // else if (inputCommand == "/info") {
+            //     cout << commandData["info"]["prompt"].get<string>();
+            //     printAllPlayerInfo();
+            // }
+            // else if (inputCommand == "/refresh") {
+            //     cout << commandData["refresh"]["prompt"].get<string>();
+            //     refresh();
+            // }
+            else if (inputCommand == "/list" || inputCommand == "/help") {
+                bool a = false;
+                if (ss >> inputCommand) {
+                    if (inputCommand == "-a") {
+                        a = true;
+                    }
+                }
+                for (auto x : commandData) {
+                    if (x["name"].get<string>() != "") {
+                        cout << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
+
+                        if (a) {
+                            cout << "\tUsage:\t" << x["usage"].get<string>() << '\n';
+                            cout << "\tExamples:\n";
+                            for (auto ex : x["examples"]) {
+                                cout << "\t\t" << ex.get<string>() << '\n';
+                            }
+                        }
+                        cout << '\n';
+                    }
+                }
+            }
+            else {
+                cout << commandData["invalid_command"]["prompt"].get<string>() << '\n';
+            }
+        }
+    }
 }
 
 void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {

@@ -71,6 +71,8 @@ signals:
 private:
     int turn;
 
+    map<string, int> playerNameToID;
+
     QList<QObject *> m_mapList;
     vector<int> landCoordinate;
 
