@@ -389,9 +389,20 @@ Popup{
                                 Layout.alignment: Qt.AlignCenter
                                 afterRotate:{
                                     // 得到的值: rotatedIndex
-                                    console.log(rotatedIndex + "天")
-                                    console.log(rocketCard.selectIndex)
                                     event.rocketCardUseEntryPoint(rocketCard.selectIndex,rotatedIndex);
+                                    rocketCard.isOpen = false
+                                    rocketCard.selectIndex = -1
+                                }
+                            }
+
+                            Timer{
+                                id: rocketCardDely_timer
+                                interval: 3500
+                                running: fasle
+                                repeat: false
+                                onTriggered: {
+                                    rocketCard.isOpen = false
+                                    rocketCard.selectIndex = -1
                                 }
                             }
 
@@ -448,15 +459,13 @@ Popup{
                                         }
                                         onPressed: {
                                             parent.scale = 1.05
-
-                                        }
-                                        onReleased: {
-                                            parent.scale = 1.1
-                                        }
-                                        onClicked:{
                                             if (turntable.animationEnable) {
                                                 turntable.rot += Math.random() * 360 + 5400;
                                             }
+                                            // rocketCardDely_timer.start()
+                                        }
+                                        onReleased: {
+                                            parent.scale = 1.1
                                         }
                                     }
 
@@ -726,6 +735,8 @@ Popup{
                                         onPressed: {
                                             parent.scale = 1.05
                                             event.diceCardUseEntryPoint(spinDistance_Rec.moveDistance)
+                                            diceCard.isOpen = false
+                                            spinDistance_Rec.moveDistance = 0
                                         }
                                         onReleased: {
                                             parent.scale = 1.1
@@ -907,6 +918,7 @@ Popup{
                                         onPressed: {
                                             parent.scale = 1.05
                                             event.removeCardUseEntryPoint(removeCoordinate.currentText)
+                                            removeCard.isOpen = false
                                         }
                                         onReleased: {
                                             parent.scale = 1.1
@@ -1088,6 +1100,7 @@ Popup{
                                         onPressed: {
                                             parent.scale = 1.05
                                             event.roadBlockCardUseEnrtyPoint(blockCoordinate.currentText);
+                                            roadBlockCard.isOpen = false
                                         }
                                         onReleased: {
                                             parent.scale = 1.1

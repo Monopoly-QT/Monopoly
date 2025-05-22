@@ -61,6 +61,7 @@ eventHandler::eventHandler(){
     m_useCard = new UseCardSetting();
 
     processMap[13]->setOwner(1);
+    processMap[13]->setLevel(4);
     mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
 
     for(int i=0;i<5;i++){
@@ -84,6 +85,7 @@ eventHandler::~eventHandler(){
 
 void eventHandler::moveEntryPoint(int _moveDistance){
     cout<<_moveDistance<<endl;
+
 }
 
 void eventHandler::commendEntryPoint(QString _instruct){
@@ -96,10 +98,14 @@ void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
     Player *player = processPlayer[_playerIndex];
     Hospital::enterHospital(player, _duration);
     cout << player->getPlayerName() << " is sent to the hospital for " << _duration << " rounds." << endl;
+    processPlayer[turn]->disOwnCards(2);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::diceCardUseEntryPoint(int _moveDistance){
-
+    //TODO add function
+    processPlayer[turn]->disOwnCards(0);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::removeCardUseEntryPoint(QString _removeQStr){
@@ -111,18 +117,25 @@ void eventHandler::removeCardUseEntryPoint(QString _removeQStr){
             break;
         }
     }
-
+    processMap[location]->setLevel(0);
+    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+    processPlayer[turn]->disOwnCards(3);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr){
     string regisStr = _blockQStr.toStdString();
     regisStr = regisStr.substr(0,regisStr.find("."));
     int location = stoi(regisStr);
-    cout<<location<<endl;
+    processMap[location]->setState(1);
+    processPlayer[turn]->disOwnCards(1);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 void eventHandler::eventCardUseEntryPoint(){
-
+    //TODO add function
+    processPlayer[turn]->disOwnCards(4);
+    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
 }
 
 
