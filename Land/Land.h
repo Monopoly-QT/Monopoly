@@ -35,6 +35,8 @@ public:
     int getLevel();
     int getState();
     int getValue();
+
+    static map<string, int> landNameToPos;
 };
 
 #endif // LAND_H

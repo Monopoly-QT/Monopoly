@@ -59,6 +59,7 @@ eventHandler::eventHandler(){
     for(int i = 0 ; i < 64 ; i++){
         Land* regis=new Land(countryData[to_string(i)]["type"].get<int>(), i, countryData[to_string(i)]["name"].get<string>(), countryData[to_string(i)]["value"].get<int>(), countryData[to_string(i)]["translation"].get<string>());
         regis->setLevel(0);
+        landNameToPos[regis->getName()] = i;
         processMap.push_back(regis);
     }
 
