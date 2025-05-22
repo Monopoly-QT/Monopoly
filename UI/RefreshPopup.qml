@@ -79,7 +79,7 @@ Popup {
             anchors.verticalCenterOffset: -80
             text: "Refreshing..."
             font.family: "Time News Roman"
-            font.pixelSize: 30
+            font.pixelSize: 50
             color: "white"
         }
     }
@@ -90,7 +90,7 @@ Popup {
         font.family: "Time News Roman"
         anchors.centerIn: parent
         visible: false
-        font.pixelSize: 30
+        font.pixelSize: 80
         color: "lightgreen"
     }
 
