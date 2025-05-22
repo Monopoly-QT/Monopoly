@@ -15,5 +15,11 @@
         <file>images/Tuan.png</file>
         <file>images/Chang.png</file>
         <file>images/Chiang.png</file>
+        <file>images/shop/index0.png</file>
+        <file>images/shop/index1.png</file>
+        <file>images/shop/index2.png</file>
+        <file>images/shop/index3.png</file>
+        <file>images/shop/index4.png</file>
+        <file>images/shop/background.png</file>
     </qresource>
 </RCC>

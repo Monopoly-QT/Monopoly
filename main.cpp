@@ -17,12 +17,12 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("monopoly", "Main");
     Dice diceA,diceB;
     eventHandler event;
     engine.rootContext()->setContextProperty("diceA", &diceA);
     engine.rootContext()->setContextProperty("diceB", &diceB);
     engine.rootContext()->setContextProperty("event", &event);
+    engine.loadFromModule("monopoly", "Main");
 
     // auto a = Player();
     // HorseRacing horse_racing;

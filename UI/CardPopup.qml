@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-Popup{
+Popup {
     id: card_popUp
     width: 0
     height: 0
@@ -13,15 +13,15 @@ Popup{
     property bool isVisable: false
     property color popUp_BtnColor: "#6f6b6b"
 
-    function openAnimation(){
+    function openAnimation() {
         card_popUp_OpenAniamtion.start()
     }
 
-    function closeAnimation(){
+    function closeAnimation() {
         card_popUp_CloseAniamtion.start()
     }
 
-    background: Rectangle{
+    background: Rectangle {
         anchors.fill: parent
         radius: 10
         border.color: "#5d7586"
@@ -97,11 +97,11 @@ Popup{
                             }
                         }
                     }
-                    Rectangle{
+                    Rectangle {
                         Layout.preferredHeight: 250
                         Layout.fillWidth: true
                         color: "transparent"
-                        ColumnLayout{
+                        ColumnLayout {
                             anchors.fill: parent
                             anchors.margins: 5
                             Text {
@@ -112,12 +112,12 @@ Popup{
                                 font.bold: true
                                 Layout.alignment: Qt.AlignLeft
                             }
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredWidth: parent.width
                                 Layout.preferredHeight: 20
                                 spacing: 5
                                 //player1
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: parent.height
                                     Layout.fillWidth: true
                                     color: (rocketCard.selectIndex == 0) ? "#83ff05" : card_popUp.popUp_BtnColor
@@ -132,16 +132,16 @@ Popup{
                                         font.pixelSize: 10
                                         font.bold: true
                                         color: (parent.isHovered || rocketCard.selectIndex == 0) ? "black" : "white"
-                                        anchors.centerIn:parent
+                                        anchors.centerIn: parent
                                         z: 1
                                     }
 
-                                    Rectangle{
+                                    Rectangle {
                                         width: parent.isHovered ? parent.width : 0
                                         height: parent.height
-                                        color:(rocketCard.selectIndex == 0)? "transparent" : "#83ff05"
+                                        color: (rocketCard.selectIndex == 0) ? "transparent" : "#83ff05"
                                         radius: 5
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -149,7 +149,7 @@ Popup{
                                         }
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         z: 2
                                         anchors.fill: parent
                                         hoverEnabled: true
@@ -183,7 +183,7 @@ Popup{
                                 }
                                 //player1 end
                                 //player2
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: parent.height
                                     Layout.fillWidth: true
                                     color: (rocketCard.selectIndex == 1) ? "#83ff05" : card_popUp.popUp_BtnColor
@@ -198,16 +198,16 @@ Popup{
                                         font.pixelSize: 10
                                         font.bold: true
                                         color: (parent.isHovered || rocketCard.selectIndex == 1) ? "black" : "white"
-                                        anchors.centerIn:parent
+                                        anchors.centerIn: parent
                                         z: 1
                                     }
 
-                                    Rectangle{
+                                    Rectangle {
                                         width: parent.isHovered ? parent.width : 0
                                         height: parent.height
-                                        color:(rocketCard.selectIndex == 1)? "transparent" : "#83ff05"
+                                        color: (rocketCard.selectIndex == 1) ? "transparent" : "#83ff05"
                                         radius: 5
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -215,7 +215,7 @@ Popup{
                                         }
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         z: 2
                                         anchors.fill: parent
                                         hoverEnabled: true
@@ -249,7 +249,7 @@ Popup{
                                 }
                                 //player2 end
                                 //player3
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: parent.height
                                     Layout.fillWidth: true
                                     color: (rocketCard.selectIndex == 2) ? "#83ff05" : card_popUp.popUp_BtnColor
@@ -264,16 +264,16 @@ Popup{
                                         font.pixelSize: 10
                                         font.bold: true
                                         color: (parent.isHovered || rocketCard.selectIndex == 2) ? "black" : "white"
-                                        anchors.centerIn:parent
+                                        anchors.centerIn: parent
                                         z: 1
                                     }
 
-                                    Rectangle{
+                                    Rectangle {
                                         width: parent.isHovered ? parent.width : 0
                                         height: parent.height
-                                        color:(rocketCard.selectIndex == 2)? "transparent" : "#83ff05"
+                                        color: (rocketCard.selectIndex == 2) ? "transparent" : "#83ff05"
                                         radius: 5
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -281,7 +281,7 @@ Popup{
                                         }
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         z: 2
                                         anchors.fill: parent
                                         hoverEnabled: true
@@ -315,7 +315,7 @@ Popup{
                                 }
                                 //player3 end
                                 //player4
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: parent.height
                                     Layout.fillWidth: true
                                     color: (rocketCard.selectIndex == 3) ? "#83ff05" : card_popUp.popUp_BtnColor
@@ -330,16 +330,16 @@ Popup{
                                         font.pixelSize: 8
                                         font.bold: true
                                         color: (parent.isHovered || rocketCard.selectIndex == 3) ? "black" : "white"
-                                        anchors.centerIn:parent
+                                        anchors.centerIn: parent
                                         z: 1
                                     }
 
-                                    Rectangle{
+                                    Rectangle {
                                         width: parent.isHovered ? parent.width : 0
                                         height: parent.height
-                                        color: (rocketCard.selectIndex == 3)? "transparent" : "#83ff05"
+                                        color: (rocketCard.selectIndex == 3) ? "transparent" : "#83ff05"
                                         radius: 5
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -347,7 +347,7 @@ Popup{
                                         }
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         z: 2
                                         anchors.fill: parent
                                         hoverEnabled: true
@@ -382,20 +382,20 @@ Popup{
                                 //player4 end
                             }
 
-                            Turntable{
+                            Turntable {
                                 id: turntable
                                 Layout.preferredHeight: parent.height / 4
                                 Layout.preferredWidth: height
                                 Layout.alignment: Qt.AlignCenter
-                                afterRotate:function(){
+                                afterRotate: function () {
                                     // 得到的值: rotatedIndex
-                                    event.rocketCardUseEntryPoint(rocketCard.selectIndex,rotatedIndex);
+                                    event.rocketCardUseEntryPoint(rocketCard.selectIndex, rotatedIndex);
                                     rocketCard.isOpen = false
                                     rocketCard.selectIndex = -1
                                 }
                             }
 
-                            Timer{
+                            Timer {
                                 id: rocketCardDely_timer
                                 interval: 3500
                                 running: fasle
@@ -406,15 +406,15 @@ Popup{
                                 }
                             }
 
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredWidth: parent.width
                                 Layout.preferredHeight: 30
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.fillWidth: true
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: 20
                                     Layout.preferredWidth: 50
                                     color: card_popUp.popUp_BtnColor
@@ -422,13 +422,13 @@ Popup{
                                     radius: 5
                                     property bool isHovered: false
 
-                                    Rectangle{
+                                    Rectangle {
                                         height: parent.height
                                         width: parent.isHovered ? parent.width : 0
                                         color: "#83ff05"
                                         radius: 5
                                         z: 1
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -437,7 +437,7 @@ Popup{
                                     }
 
                                     Text {
-                                        z:2
+                                        z: 2
                                         text: "Use"
                                         font.bold: true
                                         font.family: "roboto"
@@ -445,7 +445,7 @@ Popup{
                                         anchors.centerIn: parent
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         enabled: rocketCard.selectIndex !== -1
@@ -477,7 +477,7 @@ Popup{
                                     }
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredWidth: 5
                                 }
                             }
@@ -492,7 +492,9 @@ Popup{
                     }
                 }
 
-                Behavior on Layout.preferredHeight {
+                Behavior on Layout
+                .
+                preferredHeight {
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.InOutQuad
@@ -524,7 +526,7 @@ Popup{
                             Layout.fillWidth: true
                             color: "transparent"
                             Text {
-                                text: "Rigged Dice" + " x " +event.useCard.ownCardCount[0]
+                                text: "Rigged Dice" + " x " + event.useCard.ownCardCount[0]
                                 font.pixelSize: 15
                                 font.family: "roboto"
                                 font.bold: true
@@ -569,7 +571,7 @@ Popup{
                         ColumnLayout {
                             anchors.fill: parent
                             anchors.margins: 10
-                            RowLayout{
+                            RowLayout {
                                 Layout.fillWidth: true
                                 Layout.preferredHeight: parent.height / 4
                                 Text {
@@ -578,16 +580,16 @@ Popup{
                                     font.pixelSize: 15
                                     color: "white"
                                 }
-                                Rectangle{
+                                Rectangle {
                                     Layout.fillWidth: true
                                     Layout.preferredHeight: parent.height
                                     color: playWindow.thirdaryColor
                                     border.color: playWindow.borderColor
                                     radius: 5
-                                    Row{
+                                    Row {
                                         anchors.fill: parent
                                         anchors.margins: 5
-                                        Rectangle{
+                                        Rectangle {
                                             id: spinDistance_Rec
                                             width: parent.width * 4 / 5
                                             height: parent.height
@@ -601,8 +603,8 @@ Popup{
                                                 anchors.centerIn: parent
                                             }
                                         }
-                                        Column{
-                                            Rectangle{
+                                        Column {
+                                            Rectangle {
                                                 width: parent.parent.width / 5
                                                 height: parent.parent.height / 2
                                                 color: "transparent"
@@ -613,7 +615,7 @@ Popup{
                                                     color: "white"
                                                     anchors.centerIn: parent
                                                 }
-                                                MouseArea{
+                                                MouseArea {
                                                     anchors.fill: parent
                                                     enabled: spinDistance_Rec.moveDistance < 12 ? true : false
                                                     hoverEnabled: true
@@ -638,7 +640,7 @@ Popup{
                                                     }
                                                 }
                                             }
-                                            Rectangle{
+                                            Rectangle {
                                                 width: parent.parent.width / 5
                                                 height: parent.parent.height / 2
                                                 color: "transparent"
@@ -649,7 +651,7 @@ Popup{
                                                     color: "white"
                                                     anchors.centerIn: parent
                                                 }
-                                                MouseArea{
+                                                MouseArea {
                                                     anchors.fill: parent
                                                     enabled: spinDistance_Rec.moveDistance > 1 ? true : false
                                                     hoverEnabled: true
@@ -678,18 +680,18 @@ Popup{
                                     }
                                 }
                             }
-                            Rectangle{
+                            Rectangle {
                                 Layout.fillHeight: true
                             }
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredWidth: parent.width
                                 Layout.preferredHeight: 30
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.fillWidth: true
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: 20
                                     Layout.preferredWidth: 50
                                     color: card_popUp.popUp_BtnColor
@@ -697,13 +699,13 @@ Popup{
                                     radius: 5
                                     property bool isHovered: false
 
-                                    Rectangle{
+                                    Rectangle {
                                         height: parent.height
                                         width: parent.isHovered ? parent.width : 0
                                         color: "#83ff05"
                                         radius: 5
                                         z: 1
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -712,7 +714,7 @@ Popup{
                                     }
 
                                     Text {
-                                        z:2
+                                        z: 2
                                         text: "Use"
                                         font.bold: true
                                         font.family: "roboto"
@@ -720,7 +722,7 @@ Popup{
                                         anchors.centerIn: parent
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         enabled: true
@@ -751,13 +753,15 @@ Popup{
                                     }
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredWidth: 5
                                 }
                             }
                         }
 
-                        Behavior on Layout.preferredHeight {
+                        Behavior on Layout
+                        .
+                        preferredHeight {
                             NumberAnimation {
                                 duration: 200
                                 easing.type: Easing.InOutQuad
@@ -766,7 +770,9 @@ Popup{
                     }
                 }
 
-                Behavior on Layout.preferredHeight {
+                Behavior on Layout
+                .
+                preferredHeight {
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.InOutQuad
@@ -843,7 +849,7 @@ Popup{
                         ColumnLayout {
                             anchors.fill: parent
                             anchors.margins: 10
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredHeight: parent.height / 5
                                 Layout.fillWidth: true
                                 Text {
@@ -861,18 +867,18 @@ Popup{
                                     }
                                 }
                             }
-                            Rectangle{
+                            Rectangle {
                                 Layout.fillHeight: true
                             }
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredWidth: parent.width
                                 Layout.preferredHeight: 30
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.fillWidth: true
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: 20
                                     Layout.preferredWidth: 50
                                     color: card_popUp.popUp_BtnColor
@@ -880,13 +886,13 @@ Popup{
                                     radius: 5
                                     property bool isHovered: false
 
-                                    Rectangle{
+                                    Rectangle {
                                         height: parent.height
                                         width: parent.isHovered ? parent.width : 0
                                         color: "#83ff05"
                                         radius: 5
                                         z: 1
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -895,7 +901,7 @@ Popup{
                                     }
 
                                     Text {
-                                        z:2
+                                        z: 2
                                         text: "Use"
                                         font.bold: true
                                         font.family: "roboto"
@@ -903,7 +909,7 @@ Popup{
                                         anchors.centerIn: parent
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         enabled: true
@@ -933,13 +939,15 @@ Popup{
                                     }
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredWidth: 5
                                 }
                             }
                         }
 
-                        Behavior on Layout.preferredHeight {
+                        Behavior on Layout
+                        .
+                        preferredHeight {
                             NumberAnimation {
                                 duration: 200
                                 easing.type: Easing.InOutQuad
@@ -948,7 +956,9 @@ Popup{
                     }
                 }
 
-                Behavior on Layout.preferredHeight {
+                Behavior on Layout
+                .
+                preferredHeight {
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.InOutQuad
@@ -1025,7 +1035,7 @@ Popup{
                         ColumnLayout {
                             anchors.fill: parent
                             anchors.margins: 10
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredHeight: parent.height / 5
                                 Layout.fillWidth: true
                                 Text {
@@ -1043,18 +1053,18 @@ Popup{
                                     }
                                 }
                             }
-                            Rectangle{
+                            Rectangle {
                                 Layout.fillHeight: true
                             }
-                            RowLayout{
+                            RowLayout {
                                 Layout.preferredWidth: parent.width
                                 Layout.preferredHeight: 30
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.fillWidth: true
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredHeight: 20
                                     Layout.preferredWidth: 50
                                     color: card_popUp.popUp_BtnColor
@@ -1062,13 +1072,13 @@ Popup{
                                     radius: 5
                                     property bool isHovered: false
 
-                                    Rectangle{
+                                    Rectangle {
                                         height: parent.height
                                         width: parent.isHovered ? parent.width : 0
                                         color: "#83ff05"
                                         radius: 5
                                         z: 1
-                                        Behavior on width{
+                                        Behavior on width {
                                             NumberAnimation {
                                                 duration: 100
                                                 easing.type: Easing.InOutQuad
@@ -1077,7 +1087,7 @@ Popup{
                                     }
 
                                     Text {
-                                        z:2
+                                        z: 2
                                         text: "Use"
                                         font.bold: true
                                         font.family: "roboto"
@@ -1085,7 +1095,7 @@ Popup{
                                         anchors.centerIn: parent
                                     }
 
-                                    MouseArea{
+                                    MouseArea {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         enabled: true
@@ -1115,13 +1125,15 @@ Popup{
                                     }
                                 }
 
-                                Rectangle{
+                                Rectangle {
                                     Layout.preferredWidth: 5
                                 }
                             }
                         }
 
-                        Behavior on Layout.preferredHeight {
+                        Behavior on Layout
+                        .
+                        preferredHeight {
                             NumberAnimation {
                                 duration: 200
                                 easing.type: Easing.InOutQuad
@@ -1130,7 +1142,9 @@ Popup{
                     }
                 }
 
-                Behavior on Layout.preferredHeight {
+                Behavior on Layout
+                .
+                preferredHeight {
                     NumberAnimation {
                         duration: 200
                         easing.type: Easing.InOutQuad
@@ -1148,13 +1162,13 @@ Popup{
                 radius: 5
                 property bool isHovered: false
 
-                Rectangle{
+                Rectangle {
                     height: parent.height
                     width: parent.isHovered ? parent.width : 0
                     color: "#83ff05"
                     radius: 5
                     z: 1
-                    Behavior on width{
+                    Behavior on width {
                         NumberAnimation {
                             duration: 100
                             easing.type: Easing.InOutQuad
@@ -1163,7 +1177,7 @@ Popup{
                 }
 
                 Text {
-                    z:2
+                    z: 2
                     text: "Event Card" + " x " + event.useCard.ownCardCount[4]
                     font.bold: true
                     font.family: "roboto"
@@ -1171,7 +1185,7 @@ Popup{
                     anchors.centerIn: parent
                 }
 
-                MouseArea{
+                MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     enabled: event.useCard.cardUseAvailable[4] === 1 ? true : false
@@ -1199,41 +1213,101 @@ Popup{
                     }
                 }
             }
+
+            Rectangle {
+                id: closeBtn
+                Layout.preferredHeight: 40
+                Layout.fillWidth: true
+                color: card_popUp.popUp_BtnColor
+                border.color: playWindow.borderColor
+                radius: 5
+                property bool isHovered: false
+
+                Rectangle {
+                    height: parent.height
+                    width: parent.isHovered ? parent.width : 0
+                    color: "#83ff05"
+                    radius: 5
+                    z: 1
+                    Behavior on width {
+                        NumberAnimation {
+                            duration: 100
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+                }
+
+                Text {
+                    z: 2
+                    text: "Close"
+                    font.bold: true
+                    font.family: "roboto"
+                    color: parent.isHovered ? "black" : "white"
+                    anchors.centerIn: parent
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        parent.scale = 1.05
+                        parent.isHovered = true
+                    }
+                    onExited: {
+                        parent.scale = 1.0
+                        parent.isHovered = false
+                    }
+                    onPressed: {
+                        parent.scale = 1.025
+                        card_popUp.closeAnimation();
+                    }
+                    onReleased: {
+                        parent.scale = 1.05
+                    }
+                }
+
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 200
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
         }
     }
 
-    SequentialAnimation{
+    SequentialAnimation {
         id: card_popUp_CloseAniamtion
         NumberAnimation {
             target: card_popUp
             property: "height"
-            to : 3
+            to: 3
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: card_popUp
             property: "width"
-            to : 0
+            to: 0
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: card_popUp
             property: "height"
-            to : 0
+            to: 0
             duration: 1
             easing.type: Easing.InOutQuad
         }
-        ScriptAction{
+        ScriptAction {
             script: {
                 card_popUp.close()
             }
         }
     }
-    SequentialAnimation{
+    SequentialAnimation {
         id: card_popUp_OpenAniamtion
-        ScriptAction{
+        ScriptAction {
             script: {
                 card_popUp.open()
             }
@@ -1241,21 +1315,21 @@ Popup{
         NumberAnimation {
             target: card_popUp
             property: "height"
-            to : 3
+            to: 3
             duration: 1
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: card_popUp
             property: "width"
-            to : 300
+            to: 300
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: card_popUp
             property: "height"
-            to : 500
+            to: 500
             duration: 200
             easing.type: Easing.InOutQuad
         }

@@ -18,6 +18,7 @@
 #include "ItemCard/RandomEventCard/RandomEventCard.h"
 #include "ItemCard/RoadblockCard/RoadblockCard.h"
 #include "ItemCard/RocketCard/RocketCard.h"
+#include "Shop/shop.h"
 
 bool checkNum(string needChecked) {
     for (int i = 0; i < needChecked.size(); i++) {
@@ -46,7 +47,7 @@ bool checkNum(string needChecked) {
 //     QMetaObject::invokeMethod(mainQmlRootObject, "showRefresh", Qt::QueuedConnection);
 // }
 
-eventHandler::eventHandler(){
+eventHandler::eventHandler() {
     turn = 0;
 
     nlohmann::json countryData;
@@ -60,8 +61,11 @@ eventHandler::eventHandler(){
     country >> countryData;
     country.close();
 
-    for(int i = 0 ; i < 64 ; i++){
-        Land* regis=new Land(countryData[to_string(i)]["type"].get<int>(), i, countryData[to_string(i)]["name"].get<string>(), countryData[to_string(i)]["value"].get<int>(), countryData[to_string(i)]["translation"].get<string>());
+    for (int i = 0; i < 64; i++) {
+        Land *regis = new Land(countryData[to_string(i)]["type"].get<int>(), i,
+                               countryData[to_string(i)]["name"].get<string>(),
+                               countryData[to_string(i)]["value"].get<int>(),
+                               countryData[to_string(i)]["translation"].get<string>());
         regis->setLevel(0);
         // landNameToPos[regis->getName()] = i;
         processMap.push_back(regis);
@@ -78,59 +82,67 @@ eventHandler::eventHandler(){
     player >> playerData;
     player.close();
 
-    for(int i = 0 ; i < 4 ; i++){
+    for (int i = 0; i < 4; i++) {
         vector<int> ownCardFromConfig;
         string strOwnCardFromConfig = playerData[to_string(i)]["ownCard"].get<string>();
         stringstream ss(strOwnCardFromConfig);
-        while(ss >> strOwnCardFromConfig){
+        while (ss >> strOwnCardFromConfig) {
             ownCardFromConfig.push_back(stoi(strOwnCardFromConfig));
         }
-        Player* regis = new Player(playerData[to_string(i)]["money"].get<int>(),playerData[to_string(i)]["playerID"].get<int>(),playerData[to_string(i)]["playerName"].get<string>(),playerData[to_string(i)]["playerLastName"].get<string>(),ownCardFromConfig,playerData[to_string(i)]["pos"].get<int>(),playerData[to_string(i)]["state"].get<int>(),playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),playerData[to_string(i)]["nextRollDicePoint"].get<int>());
+        cout << "ownCardFromConfig: ";
+        for (auto x: ownCardFromConfig) {
+            cout << x << " ";
+        }
+        Player *regis = new Player(playerData[to_string(i)]["money"].get<int>(),
+                                   playerData[to_string(i)]["playerID"].get<int>(),
+                                   playerData[to_string(i)]["playerName"].get<string>(),
+                                   playerData[to_string(i)]["playerLastName"].get<string>(), ownCardFromConfig,
+                                   playerData[to_string(i)]["pos"].get<int>(),
+                                   playerData[to_string(i)]["state"].get<int>(),
+                                   playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),
+                                   playerData[to_string(i)]["nextRollDicePoint"].get<int>());
         processPlayer.push_back(regis);
 
         playerNameToID[regis->getPlayerLastName()] = regis->getID();
     }
 
-    mapInitialize(landCoordinate,m_mapList,processMap,processPlayer);
+    mapInitialize(landCoordinate, m_mapList, processMap, processPlayer);
     m_movePoint = &operateMovePoint;
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
     processMap[13]->setOwner(1);
     processMap[13]->setLevel(4);
-    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
-    for(int i=0;i<5;i++){
-        processPlayer[0]->addOwnCards(i);
-    }
+    // for (int i = 0; i < 5; i++) {
+    //     processPlayer[0]->addOwnCards(i);
+    // }
 
-    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-eventHandler::~eventHandler(){
-    for(auto i:processMap){
+eventHandler::~eventHandler() {
+    for (auto i: processMap) {
         delete i;
     }
-    for(auto i:processPlayer){
+    for (auto i: processPlayer) {
         delete i;
     }
     processMap.clear();
     processPlayer.clear();
 }
 
-void eventHandler::moveEntryPoint(int _moveDistance){
-    if(!firstClick) ++turn > 3 ? turn = 0 : 0;
-    else firstClick = false;
-
-    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
+void eventHandler::moveEntryPoint(int _moveDistance) {
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     buttonState = true;
     emit EnableChanged();
     movePointAnimator(_moveDistance);
 }
 
-void eventHandler::commendEntryPoint(QString _instruct){
-    string strInstruct =  _instruct.toStdString();
+void eventHandler::commendEntryPoint(QString _instruct) {
+    string strInstruct = _instruct.toStdString();
     nlohmann::json commandData;
     ifstream command;
     command.open("json/command.json");
@@ -159,8 +171,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     regex r(R"(\{location\})");
                     prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
                     cerr << prompt << '\n';
-                }
-                else if (inputCommand == "to") {
+                } else if (inputCommand == "to") {
                     ss >> inputCommand;
                     if (checkNum(inputCommand) && stoi(inputCommand) <= 64) {
                         int newPos = stoi(inputCommand) % 64;
@@ -168,18 +179,15 @@ void eventHandler::commendEntryPoint(QString _instruct){
                         regex r(R"(\{location\})");
                         prompt = regex_replace(prompt, r, to_string(newPos));
                         cerr << prompt << '\n';
-                    }
-                    else {
+                    } else {
                         cerr << "Valid input!\n";
                         break;
                     }
-                }
-                else {
+                } else {
                     cerr << "Valid input!\n";
                     break;
                 }
-            }
-            else if (inputCommand == "/give") {
+            } else if (inputCommand == "/give") {
                 prompt = commandData["give"]["prompt"].get<string>();
 
                 string payee;
@@ -214,8 +222,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 processPlayer[turn]->subMoney(deltaMoney);
                 processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
                 cerr << prompt << '\n';
-            }
-            else if (inputCommand == "/get") {
+            } else if (inputCommand == "/get") {
                 prompt = commandData["get"]["prompt"].get<string>();
                 ss >> inputCommand;
                 if (checkNum(inputCommand)) {
@@ -225,8 +232,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     regex r2(R"(\{money\})");
                     prompt = regex_replace(prompt, r2, to_string(deltaMoney));
                     cerr << prompt << '\n';
-                }
-                else {
+                } else {
                     cerr << "Valid input!\n";
                     break;
                 }
@@ -244,57 +250,49 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 cerr << prompt << '\n';
                 ss >> inputCommand;
                 // runMinigame();
-            }
-            else if (inputCommand == "/gamestate") {
+            } else if (inputCommand == "/gamestate") {
                 prompt = commandData["gamestate"]["prompt"].get<string>();
                 ss >> inputCommand;
                 if (inputCommand == "INIT") {
                     // initialize();
-                }
-                else if (inputCommand == "START") {
+                } else if (inputCommand == "START") {
                     // start();
-                }
-                else if (inputCommand == "MOVED") {
+                } else if (inputCommand == "MOVED") {
                     // moved();
-                }
-                else if (inputCommand == "FINISH") {
+                } else if (inputCommand == "FINISH") {
                     // finish();
                 }
                 regex r(R"(\{state\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 cerr << prompt << '\n';
-            }
-            else if (inputCommand == "/info") {
+            } else if (inputCommand == "/info") {
                 cerr << commandData["info"]["prompt"].get<string>();
                 // printAllPlayerInfo();
-            }
-            else if (inputCommand == "/refresh") {
+            } else if (inputCommand == "/refresh") {
                 cerr << commandData["refresh"]["prompt"].get<string>();
                 // refresh();
-            }
-            else if (inputCommand == "/list" || inputCommand == "/help") {
+            } else if (inputCommand == "/list" || inputCommand == "/help") {
                 bool a = false;
                 if (ss >> inputCommand) {
                     if (inputCommand == "-a") {
                         a = true;
                     }
                 }
-                for (auto x : commandData) {
+                for (auto x: commandData) {
                     if (x["name"].get<string>() != "") {
                         cerr << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
 
                         if (a) {
                             cerr << "\tUsage:\t" << x["usage"].get<string>() << '\n';
                             cerr << "\tExamples:\n";
-                            for (auto ex : x["examples"]) {
+                            for (auto ex: x["examples"]) {
                                 cerr << "\t\t" << ex.get<string>() << '\n';
                             }
                         }
                         cerr << '\n';
                     }
                 }
-            }
-            else {
+            } else {
                 cerr << commandData["invalid_command"]["prompt"].get<string>() << '\n';
             }
         }
@@ -303,128 +301,150 @@ void eventHandler::commendEntryPoint(QString _instruct){
 
 void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
     if (_duration <= 0) return;
-    Player *player = processPlayer[_playerIndex];
-    RocketCard::use(*player,_duration);
     processPlayer[turn]->disOwnCards(2);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    Player *player = processPlayer[_playerIndex];
+    RocketCard::use(*player, _duration);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::diceCardUseEntryPoint(int _moveDistance){
-    moveEntryPoint(_moveDistance);
+void eventHandler::diceCardUseEntryPoint(int _moveDistance) {
     processPlayer[turn]->disOwnCards(0);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    moveEntryPoint(_moveDistance);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::removeCardUseEntryPoint(QString _removeQStr){
+void eventHandler::removeCardUseEntryPoint(QString _removeQStr) {
     string regisStr = _removeQStr.toStdString();
     int location = 0;
-    for(int i = 0 ; i < 64 ; i++){
-        if(processMap[i]->getName() == regisStr){
+    for (int i = 0; i < 64; i++) {
+        if (processMap[i]->getName() == regisStr) {
             location = i;
             break;
         }
     }
     processMap[location]->setLevel(0);
-    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     processPlayer[turn]->disOwnCards(3);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr){
+void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr) {
     string regisStr = _blockQStr.toStdString();
-    regisStr = regisStr.substr(0,regisStr.find("."));
+    regisStr = regisStr.substr(0, regisStr.find("."));
     int location = stoi(regisStr);
     Roadblock::use(*processMap[location]);
     processPlayer[turn]->disOwnCards(1);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::eventCardUseEntryPoint(){
+void eventHandler::eventCardUseEntryPoint() {
     RandomEventCard::use(*processPlayer[turn]);
     processPlayer[turn]->disOwnCards(4);
-    m_useCard -> initialUseCardPopUp(turn,processMap,processPlayer);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::addMapPosXandPosY(double _posX, double _posY){
-    mapPosXandPosY.push_back({_posX,_posY});
+bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
+    int tisTurn = turn - 1;
+    if (tisTurn < 0) tisTurn = 3;
+    bool res = Shop::buyItem(processPlayer[tisTurn], price, itemIndex);
+    for (auto i: processPlayer[tisTurn]->getOwnCards()) {
+        cout << i << " ";
+    }
+    cout << endl;
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    return res;
 }
 
-void eventHandler::clearMapPosXandPosY(){
+void eventHandler::addMapPosXandPosY(double _posX, double _posY) {
+    mapPosXandPosY.push_back({_posX, _posY});
+}
+
+void eventHandler::clearMapPosXandPosY() {
     mapPosXandPosY.clear();
 }
 
 
-void eventHandler::movePointAnimator(int _step){
+void eventHandler::movePointAnimator(int _step) {
     int playerPos = processPlayer[turn]->getPos();
     int index = landCoordinate[playerPos];
-    if(processPlayer[turn]->getPos() == 0){
+    if (processPlayer[turn]->getPos() == 0) {
         operateMovePoint.setChangeX(mapPosXandPosY[0].first);
         operateMovePoint.setChangeY(mapPosXandPosY[0].second);
     }
     double posX = mapPosXandPosY[index].first;
     double posY = mapPosXandPosY[index].second;
-    operateMovePoint.initializeMovePoint(posX,posY,turn);
+    operateMovePoint.initializeMovePoint(posX, posY, turn);
     emit movePointInitialize();
-    std::thread t(&eventHandler::animationThread,this,_step,playerPos,index);
+    std::thread t(&eventHandler::animationThread, this, _step, playerPos, index);
     t.detach();
 }
 
-void eventHandler::animationThread(int _times,int _playerPos,int _index){
-    QMetaObject::invokeMethod(&operateMovePoint,"setIsvisable",Qt::QueuedConnection,Q_ARG(bool,true));
+void eventHandler::animationThread(int _times, int _playerPos, int _index) {
+    QMetaObject::invokeMethod(&operateMovePoint, "setIsvisable", Qt::QueuedConnection,Q_ARG(bool, true));
 
     bool origin = false;
 
-    for(int i=0;i<_times;i++){
-
-        if(processMap[_playerPos]->getState() == 1 ||processPlayer[turn]->getState() == 1) break;
+    for (int i = 0; i < _times; i++) {
+        if (processMap[_playerPos]->getState() == 1 || processPlayer[turn]->getState() == 1) break;
 
         this_thread::sleep_for(chrono::milliseconds(350));
 
-        if(processPlayer[turn]->getPos() == 63){
+        if (processPlayer[turn]->getPos() == 63) {
             origin = true;
             processPlayer[turn]->setPos(0);
             _playerPos = processPlayer[turn]->getPos();
             _index = landCoordinate[_playerPos];
-        }
-        else{
+        } else {
             _playerPos++;
             processPlayer[turn]->setPos(_playerPos);
             _index = landCoordinate[_playerPos];
         }
-        operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first,mapPosXandPosY[_index].second);
+        operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first, mapPosXandPosY[_index].second);
+        // 原點處理
+        if (origin && _playerPos == 0) {
+            processPlayer[turn]->addMoney(8000);
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+        } else if (origin) {
+            processPlayer[turn]->addMoney(4000);
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+        }
+
+        // 解除路障
+        if (processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
     }
-
     // 確認是地區收費
-    if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
+    if (processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
 
     // 不同type
-    if(processMap[processPlayer[turn]->getPos()]->getType() == 1){
+    if (processMap[processPlayer[turn]->getPos()]->getType() == 1) {
         buttonState = false;
         QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
-    //=================往後加=================
+        //=================往後加=================
+    } else if (processMap[processPlayer[turn]->getPos()]->getType() == 2) {
+        // 商店
+        emit openShopPopup();
     }
-
-    // 原點處理
-    if(origin && _playerPos == 0) {processPlayer[turn]->addMoney(8000);m_displayState -> initialStateDisplay(turn,processPlayer[turn]);}
-    else if(origin) {processPlayer[turn]->addMoney(4000);m_displayState -> initialStateDisplay(turn,processPlayer[turn]);}
-
-    // 解除路障
-    if(processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
-
+    ++turn > 3 ? turn = 0 : 0;
     this_thread::sleep_for(chrono::milliseconds(250));
-    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     QMetaObject::invokeMethod(&operateMovePoint, "hiddingMovePoint", Qt::QueuedConnection);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 
-QList<QObject *> eventHandler::mapList() const
-{
+QList<QObject *> eventHandler::mapList() const {
     return m_mapList;
 }
 
-void eventHandler::setMapList(const QList<QObject *> &newMapList)
-{
+void eventHandler::setMapList(const QList<QObject *> &newMapList) {
     if (m_mapList == newMapList)
         return;
     m_mapList = newMapList;
@@ -432,14 +452,11 @@ void eventHandler::setMapList(const QList<QObject *> &newMapList)
 }
 
 
-
-MovePoint *eventHandler::movePoint() const
-{
+MovePoint *eventHandler::movePoint() const {
     return m_movePoint;
 }
 
-void eventHandler::setMovePoint(MovePoint *newMovePoint)
-{
+void eventHandler::setMovePoint(MovePoint *newMovePoint) {
     if (m_movePoint == newMovePoint)
         return;
     m_movePoint = newMovePoint;
@@ -447,98 +464,98 @@ void eventHandler::setMovePoint(MovePoint *newMovePoint)
 }
 
 
-StateDisplay *eventHandler::displayState() const
-{
+StateDisplay *eventHandler::displayState() const {
     return m_displayState;
 }
 
-void eventHandler::setDisplayState(StateDisplay *newDisplayState)
-{
+void eventHandler::setDisplayState(StateDisplay *newDisplayState) {
     if (m_displayState == newDisplayState)
         return;
     m_displayState = newDisplayState;
     emit displayStateChanged();
 }
 
-UseCardSetting *eventHandler::useCard() const
-{
+UseCardSetting *eventHandler::useCard() const {
     return m_useCard;
 }
 
-void eventHandler::setUseCard(UseCardSetting *newUseCard)
-{
+void eventHandler::setUseCard(UseCardSetting *newUseCard) {
     if (m_useCard == newUseCard)
         return;
     m_useCard = newUseCard;
     emit useCardChanged();
 }
-int eventHandler::showMoney() const{
-    if(turn >= 0)return processPlayer[turn]->getMoney();
+
+int eventHandler::showMoney() const {
+    if (turn >= 0)return processPlayer[turn]->getMoney();
     else return -1;
 }
 
-bool eventHandler::returnEnableButton() const{
+bool eventHandler::returnEnableButton() const {
     return buttonState;
 }
 
-void eventHandler::toll(){
+void eventHandler::toll() {
     int nowPos = processPlayer[turn]->getPos();
     int landOwner = processMap[nowPos]->getOwner();
-    if (landOwner != 0 && landOwner != turn+1 && processMap[nowPos]->getType() == 0) {
+    if (landOwner != 0 && landOwner != turn + 1 && processMap[nowPos]->getType() == 0) {
         int landValue = processMap[nowPos]->getValue();
         int nowLevel = processMap[nowPos]->getLevel();
         int fee = (nowLevel) * (landValue / 10);
         processPlayer[turn]->subMoney(fee);
         processPlayer[landOwner - 1]->addMoney(fee);
     }
-    m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
-void eventHandler::buyLand(){
-    if(turn >= 0){
+void eventHandler::buyLand() {
+    if (turn >= 0) {
         int nowPos = processPlayer[turn]->getPos();
-        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == 0){
+        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == 0) {
             processPlayer[turn]->addHouse(nowPos);
-            processMap[nowPos]->setOwner(turn+1);
+            processMap[nowPos]->setOwner(turn + 1);
             processMap[nowPos]->setLevel(1);
             processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
             buttonState = false;
             emit EnableChanged();
-            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
-            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
-
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
         }
     }
 }
 
-void eventHandler::levelup(){
-    if(turn >= 0){
+void eventHandler::levelup() {
+    if (turn >= 0) {
         int nowPos = processPlayer[turn]->getPos();
-        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn+1 && processMap[nowPos]->getLevel() < 4){
+        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1 && processMap[nowPos]->
+            getLevel() < 4) {
             int nowLevel = processMap[nowPos]->getLevel();
-            processMap[nowPos]->setLevel(nowLevel+1);
+            processMap[nowPos]->setLevel(nowLevel + 1);
             processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
             buttonState = false;
             emit EnableChanged();
-            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
-            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
         }
     }
 }
 
-void eventHandler::sellLand(){
-    if(turn >= 0){
+void eventHandler::sellLand() {
+    if (turn >= 0) {
         int nowPos = processPlayer[turn]->getPos();
-        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn+1){
+        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1) {
             int value = processMap[nowPos]->getValue();
             processMap[nowPos]->setOwner(0);
             processMap[nowPos]->setLevel(0);
-            processPlayer[turn]->addMoney((value/2) + (processMap[nowPos]->getLevel() * value / 2));
+            processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
             buttonState = false;
             emit EnableChanged();
-            m_displayState -> initialStateDisplay(turn,processPlayer[turn]);
-            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
         }
     }
 }
-

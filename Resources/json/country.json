@@ -6,10 +6,18 @@
     "translation": "起點"
   },
   "1": {
-    "type": 0,
-    "name": "Antung",
-    "value": 7800,
-    "translation": "安東"
+    "type": 2,
+    "name": "Store",
+    "value": 0,
+    "translation": "商店"
+  },
+  "//": {
+    "1": {
+      "type": 0,
+      "name": "Antung",
+      "value": 7800,
+      "translation": "安東"
+    }
   },
   "2": {
     "type": 0,

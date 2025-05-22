@@ -60,6 +60,7 @@ public:
     Q_INVOKABLE void removeCardUseEntryPoint(QString _removeQStr);
     Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
     Q_INVOKABLE void eventCardUseEntryPoint();
+    Q_INVOKABLE bool buyItemEntryPoint(int price , int itemIndex);
 
 
     StateDisplay *displayState() const;
@@ -77,6 +78,7 @@ signals:
     void useCardChanged();
     void moneyChanged();
     void EnableChanged();
+    void openShopPopup();
 
 private:
     int turn;

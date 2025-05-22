@@ -3,7 +3,9 @@ import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtQuick.Effects
+import Qt5Compat.GraphicalEffects
 
+import "."
 import "../Resources"
 
 Window {
@@ -12,9 +14,9 @@ Window {
     visible: true
     // visibility: Window.FullScreen
 
-    Rectangle{
-        id:playWindow
-        color:playWindow.backGroundColor
+    Rectangle {
+        id: playWindow
+        color: playWindow.backGroundColor
         anchors.fill: parent
         property color backGroundColor: "#3c3c3c"
         property color secondaryColor: "#454545"
@@ -23,33 +25,33 @@ Window {
         property color hoverColor: "#808080"
         property color pressColor: "#747474"
         property int dicePoint: 0
-        Rectangle{
+        Rectangle {
             id: movePoint
             height: 10
             width: 10
             color: event.movePoint.displayColor
-            x:map_Grid.coordinateList[0].posX
-            y:map_Grid.coordinateList[0].posY
+            x: map_Grid.coordinateList[0].posX
+            y: map_Grid.coordinateList[0].posY
             z: 2
-            radius: width/2
+            radius: width / 2
             visible: event.movePoint.isvisable
             property int moveDuaration: 0
 
-            Behavior on x{
+            Behavior on x {
                 NumberAnimation {
                     duration: movePoint.moveDuaration
                     easing.type: Easing.InOutQuad
                 }
             }
 
-            Behavior on y{
+            Behavior on y {
                 NumberAnimation {
                     duration: movePoint.moveDuaration
                     easing.type: Easing.InOutQuad
                 }
             }
 
-            SequentialAnimation{
+            SequentialAnimation {
                 id: movePoint_scaleAnimation
                 NumberAnimation {
                     target: movePoint
@@ -68,17 +70,17 @@ Window {
             }
         }
 
-        RowLayout{
+        RowLayout {
             anchors.fill: parent
-            Rectangle{
+            Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color:"transparent"
-                Rectangle{
+                color: "transparent"
+                Rectangle {
                     anchors.fill: parent
                     anchors.margins: 10
-                    color:"transparent"
-                    GridLayout{
+                    color: "transparent"
+                    GridLayout {
                         id: map_Grid
                         property var coordinateList: []
                         anchors.fill: parent
@@ -86,10 +88,10 @@ Window {
                         columnSpacing: 0
                         rowSpacing: 0
                         property int order: 1
-                        Repeater{
+                        Repeater {
                             id: mapGenerate
                             model: event.mapList
-                            Rectangle{
+                            Rectangle {
                                 Layout.preferredHeight: parent.height / 11
                                 Layout.preferredWidth: parent.width / 11
                                 color: playWindow.secondaryColor
@@ -97,31 +99,31 @@ Window {
                                 border.width: 1
                                 opacity: model.isDisplay ? 1 : 0
 
-                                ColumnLayout{
+                                ColumnLayout {
                                     anchors.fill: parent
                                     spacing: 0
                                     //order and name
-                                    Rectangle{
+                                    Rectangle {
                                         Layout.preferredHeight: parent.height / 3
                                         Layout.preferredWidth: parent.width
                                         Layout.alignment: Qt.AlignTop
                                         color: model.displayColor
                                         border.color: playWindow.borderColor
-                                        RowLayout{
+                                        RowLayout {
                                             anchors.fill: parent
                                             anchors.margins: 5
                                             spacing: 0
                                             //land order
                                             Text {
-                                                text: model.order+"."
+                                                text: model.order + "."
                                                 color: "white"
                                                 font.bold: true
                                                 font.family: "roboto"
-                                                font.pixelSize: (parent.height/ 1.2 < parent.height / 1.2) ? parent.height/ 1.2 : parent.height / 1.2
+                                                font.pixelSize: (parent.height / 1.2 < parent.height / 1.2) ? parent.height / 1.2 : parent.height / 1.2
                                             }
 
                                             //land name
-                                            Rectangle{
+                                            Rectangle {
                                                 Layout.fillHeight: true
                                                 Layout.fillWidth: true
                                                 color: "transparent"
@@ -134,14 +136,14 @@ Window {
                                                     font.pixelSize: (parent.height / 1.2 < parent.height / 2) ? parent.height / 1.2 : parent.height / 1.2
                                                 }
 
-                                                MouseArea{
+                                                MouseArea {
                                                     anchors.fill: parent
                                                     hoverEnabled: true
-                                                    onEntered:{
+                                                    onEntered: {
                                                         model.showTranslation = true;
                                                     }
 
-                                                    onExited:{
+                                                    onExited: {
                                                         model.showTranslation = false;
                                                     }
                                                 }
@@ -150,7 +152,7 @@ Window {
                                         }
                                     }
 
-                                    Rectangle{
+                                    Rectangle {
 
                                         Layout.preferredHeight: parent.height / 3 * 2
                                         Layout.preferredWidth: parent.width
@@ -160,21 +162,21 @@ Window {
                                         property real centerY: y + height / 2
                                         property var pt
 
-                                        RowLayout{
+                                        RowLayout {
                                             anchors.fill: parent
                                             anchors.margins: 5
                                             //player stay
-                                            ColumnLayout{
+                                            ColumnLayout {
                                                 Layout.preferredHeight: parent.height
                                                 Layout.preferredWidth: parent.width / 3
                                                 spacing: 0
 
                                                 //player1
-                                                Rectangle{
+                                                Rectangle {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
                                                     color: "transparent"
-                                                    Rectangle{
+                                                    Rectangle {
                                                         anchors.centerIn: parent
                                                         height: parent.height / 2
                                                         width: height
@@ -184,11 +186,11 @@ Window {
                                                     }
                                                 }
                                                 //player2
-                                                Rectangle{
+                                                Rectangle {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
                                                     color: "transparent"
-                                                    Rectangle{
+                                                    Rectangle {
                                                         anchors.centerIn: parent
                                                         height: parent.height / 2
                                                         width: height
@@ -198,11 +200,11 @@ Window {
                                                     }
                                                 }
                                                 //player3
-                                                Rectangle{
+                                                Rectangle {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
                                                     color: "transparent"
-                                                    Rectangle{
+                                                    Rectangle {
                                                         anchors.centerIn: parent
                                                         height: parent.height / 2
                                                         width: height
@@ -212,11 +214,11 @@ Window {
                                                     }
                                                 }
                                                 //player4
-                                                Rectangle{
+                                                Rectangle {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
                                                     color: "transparent"
-                                                    Rectangle{
+                                                    Rectangle {
                                                         anchors.centerIn: parent
                                                         height: parent.height / 2
                                                         width: height
@@ -228,75 +230,75 @@ Window {
                                             }
                                             //player stay end
 
-                                            ColumnLayout{
+                                            ColumnLayout {
                                                 Layout.preferredHeight: parent.height
                                                 Layout.preferredWidth: parent.width * 2 / 3
                                                 spacing: 0
 
-                                                RowLayout{
+                                                RowLayout {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
-                                                    visible: (model.isDisplayBuilding[0] === 1 || model.isDisplayBuilding[1] === 1) ? true :false
+                                                    visible: (model.isDisplayBuilding[0] === 1 || model.isDisplayBuilding[1] === 1) ? true : false
                                                     spacing: 1
                                                     //house1
-                                                    Rectangle{
+                                                    Rectangle {
                                                         Layout.fillHeight: true
                                                         Layout.fillWidth: true
                                                         color: "transparent"
                                                         visible: model.isDisplayBuilding[0] === 1 ? true : false
                                                         Image {
                                                             anchors.centerIn: parent
-                                                            height: (parent.height > parent.width)? parent.width : parent.height
-                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            height: (parent.height > parent.width) ? parent.width : parent.height
+                                                            width: (parent.height > parent.width) ? parent.width : parent.height
                                                             source: "qrc:/images/house.png"
                                                         }
                                                     }
                                                     //house1 end
                                                     //house2
-                                                    Rectangle{
+                                                    Rectangle {
                                                         Layout.fillHeight: true
                                                         Layout.fillWidth: true
                                                         color: "transparent"
                                                         visible: model.isDisplayBuilding[1] === 1 ? true : false
                                                         Image {
                                                             anchors.centerIn: parent
-                                                            height: (parent.height > parent.width)? parent.width : parent.height
-                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            height: (parent.height > parent.width) ? parent.width : parent.height
+                                                            width: (parent.height > parent.width) ? parent.width : parent.height
                                                             source: "qrc:/images/house.png"
                                                         }
                                                     }
                                                     //house2 end
                                                 }
 
-                                                RowLayout{
+                                                RowLayout {
                                                     Layout.fillHeight: true
                                                     Layout.fillWidth: true
                                                     spacing: 1
-                                                    visible: (model.isDisplayBuilding[2] === 1 || model.isDisplayBuilding[3] === 1) ? true :false
+                                                    visible: (model.isDisplayBuilding[2] === 1 || model.isDisplayBuilding[3] === 1) ? true : false
                                                     //house3
-                                                    Rectangle{
+                                                    Rectangle {
                                                         Layout.fillHeight: true
                                                         Layout.fillWidth: true
                                                         color: "transparent"
                                                         visible: model.isDisplayBuilding[2] === 1 ? true : false
                                                         Image {
                                                             anchors.centerIn: parent
-                                                            height: (parent.height > parent.width)? parent.width : parent.height
-                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            height: (parent.height > parent.width) ? parent.width : parent.height
+                                                            width: (parent.height > parent.width) ? parent.width : parent.height
                                                             source: "qrc:/images/house.png"
                                                         }
                                                     }
                                                     //house3 end
                                                     //building
-                                                    Rectangle{
+                                                    Rectangle {
                                                         Layout.fillHeight: true
                                                         Layout.fillWidth: true
                                                         color: "transparent"
                                                         visible: model.isDisplayBuilding[3] === 1 ? true : false
                                                         Image {
                                                             anchors.centerIn: parent
-                                                            height: (parent.height > parent.width)? parent.width : parent.height
-                                                            width: (parent.height > parent.width)? parent.width : parent.height
+                                                            height: (parent.height > parent.width) ? parent.width : parent.height
+                                                            width: (parent.height > parent.width) ? parent.width : parent.height
                                                             source: "qrc:/images/building.png"
                                                         }
                                                     }
@@ -311,13 +313,12 @@ Window {
                                             repeat: true
                                             onTriggered: {
                                                 if (parent.width > 0 && parent.height > 0) {
-                                                    if(model.isDisplay === true){
+                                                    if (model.isDisplay === true) {
                                                         parent.pt = mapToItem(null, parent.centerX, parent.centerY);
-                                                        console.log("Correct global position:",parent.pt.x, parent.pt.y);
+                                                        console.log("Correct global position:", parent.pt.x, parent.pt.y);
                                                         // map_Grid.coordinateList.push({posX:parent.pt.x,posY:parent.pt.y})
                                                         event.addMapPosXandPosY(parent.pt.x, parent.pt.y)
-                                                    }
-                                                    else{
+                                                    } else {
                                                         event.addMapPosXandPosY(0, 0)
                                                     }
 
@@ -330,7 +331,7 @@ Window {
                                             event.clearMapPosXandPosY()
                                             buffer.start()
                                         }
-                                        onWidthChanged:{
+                                        onWidthChanged: {
                                             map_Grid.coordinateList = []
                                             event.clearMapPosXandPosY()
                                             buffer.start()
@@ -343,51 +344,51 @@ Window {
                 }
             }
 
-            Rectangle{
+            Rectangle {
                 Layout.preferredHeight: parent.height
-                Layout.preferredWidth: parent.width/5
-                color:playWindow.secondaryColor
-                ColumnLayout{
-                    id:stateColumn
+                Layout.preferredWidth: parent.width / 5
+                color: playWindow.secondaryColor
+                ColumnLayout {
+                    id: stateColumn
                     anchors.fill: parent
                     anchors.margins: 10
 
-                    StateContainer{
+                    StateContainer {
                         id: stateContainer
                     }
 
-                    RowLayout{
+                    RowLayout {
                         Layout.preferredHeight: parent.height / 20
                         Layout.preferredWidth: parent.width
 
-                        Rectangle{
+                        Rectangle {
                             Layout.fillWidth: true
                         }
 
                         //card
-                        CardOpenBtn{
+                        CardOpenBtn {
                             id: useCard_Rec
                         }
 
                         //cheat command
-                        CheatCommandOpenBtn{
+                        CheatCommandOpenBtn {
                             id: cheatImage_Rec
                         }
                     }
-/*
-                    Button{
-                        Layout.preferredHeight: parent.height/30
-                        Layout.preferredWidth: parent.width
-                        property int index: 0
-                        onClicked: {
-                            event.movePointAnimator()
-                        }
-                    }
-*/
-                    Button{
-                        anchors.horizontalCenter:parent.horizontalCenter
-                        Layout.preferredHeight: parent.height/30
-                        Layout.preferredWidth: parent.width/2.5
+                    /*
+                                        Button{
+                                            Layout.preferredHeight: parent.height/30
+                                            Layout.preferredWidth: parent.width
+                                            property int index: 0
+                                            onClicked: {
+                                                event.movePointAnimator()
+                                            }
+                                        }
+                    */
+                    Button {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.preferredHeight: parent.height / 30
+                        Layout.preferredWidth: parent.width / 2.5
                         text: "buy"
                         enabled: event.enableButton
                         property int index: 0
@@ -396,10 +397,10 @@ Window {
                         }
                     }
 
-                    Button{
-                        anchors.horizontalCenter:parent.horizontalCenter
-                        Layout.preferredHeight: parent.height/30
-                        Layout.preferredWidth: parent.width/2.5
+                    Button {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.preferredHeight: parent.height / 30
+                        Layout.preferredWidth: parent.width / 2.5
                         text: "Level up"
                         enabled: event.enableButton
                         property int index: 0
@@ -408,27 +409,27 @@ Window {
                         }
                     }
 
-                    Button{
-                        anchors.horizontalCenter:parent.horizontalCenter
-                        Layout.preferredHeight: parent.height/30
-                        Layout.preferredWidth: parent.width/2.5
+                    Button {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.preferredHeight: parent.height / 30
+                        Layout.preferredWidth: parent.width / 2.5
                         text: "sell"
                         enabled: event.enableButton
                         property int index: 0
                         onClicked: {
-                            event.sellLand()
+                            event.sellLand();
                         }
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillHeight: true
                     }
 
-                    CheatCommandLine{
+                    CheatCommandLine {
                         id: cheatCommandLine_Rec
                     }
 
-                    Dice{
+                    Dice {
                         id: diceContainer
                     }
                 }
@@ -436,11 +437,30 @@ Window {
         }
     }
 
-    CardPopup{
-        id:card_popUp
+    CardPopup {
+        id: card_popUp
     }
 
-    Connections{
+    ShopPopup {
+        id: shop_popUp
+    }
+
+    FastBlur {
+        id: theBlur;
+        visible: card_popUp.visible || shop_popUp.visible
+        anchors.fill: parent
+        source: playWindow
+        radius: 30
+    }
+
+    Rectangle{
+        visible: card_popUp.visible || shop_popUp.visible
+        anchors.fill: parent
+        color: "black"
+        opacity: 0.5
+    }
+
+    Connections {
         target: event
         onMovePointStartMove: {
             movePoint.moveDuaration = 150
