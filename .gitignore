@@ -11,3 +11,5 @@ cmake-build-debug
 CMakeLists.txt.user
 CMakeLists.txt.user.*
 CMakeLists.txt.*
+.DS_Store
+*/.DS_Store
