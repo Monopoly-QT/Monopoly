@@ -64,6 +64,10 @@ void Player::disOwnCards(int _disCards) {
     }
 }
 
+void Player::addHouse(int _pos){
+    ownHousesPos.push_back(_pos);
+}
+
 void Player::subPos(int _deltaPos) {
     pos += 64;
     pos -= _deltaPos;

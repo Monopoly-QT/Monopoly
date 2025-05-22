@@ -25,11 +25,13 @@ class eventHandler:public QObject{
     Q_PROPERTY(MovePoint* movePoint READ movePoint WRITE setMovePoint NOTIFY movePointChanged FINAL);
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
-
+	Q_PROPERTY(int money READ showMoney NOTIFY moneyChanged);
+    Q_PROPERTY(bool enableButton READ returnEnableButton NOTIFY EnableChanged);
 public:
     eventHandler();
     ~eventHandler();
-    Q_INVOKABLE void movePointAnimator();
+
+    Q_INVOKABLE void movePointAnimator(int _step);
     void animationThread(int _times,int _playerPos,int _index);
 
     QList<QObject *> mapList() const;
@@ -47,6 +49,12 @@ public:
     Q_INVOKABLE void moveEntryPoint(int _moveDistance);
     Q_INVOKABLE void commendEntryPoint(QString _instruct);
 
+    int showMoney() const;
+    bool returnEnableButton() const;
+    void toll();
+    Q_INVOKABLE void buyLand();
+    Q_INVOKABLE void levelup();
+    Q_INVOKABLE void sellLand();
     Q_INVOKABLE void rocketCardUseEntryPoint(int _playerIndex,int _duration);
     Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
     Q_INVOKABLE void removeCardUseEntryPoint(QString _removeQStr);
@@ -67,9 +75,12 @@ signals:
     void movePointInitialize();
     void displayStateChanged();
     void useCardChanged();
+    void moneyChanged();
+    void EnableChanged();
 
 private:
     int turn;
+    bool buttonState = true;
 
     map<string, int> playerNameToID;
 

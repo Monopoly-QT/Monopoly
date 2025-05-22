@@ -109,8 +109,10 @@ eventHandler::~eventHandler(){
 }
 
 void eventHandler::moveEntryPoint(int _moveDistance){
-    cout<<_moveDistance<<endl;
-
+    ++turn > 3 ? turn = 0 : 0;
+    buttonState = true;
+    emit EnableChanged();
+    movePointAnimator(_moveDistance);
 }
 
 void eventHandler::commendEntryPoint(QString _instruct){
@@ -342,39 +344,66 @@ void eventHandler::clearMapPosXandPosY(){
 }
 
 
-void eventHandler::movePointAnimator(){
-    int playerPos = processPlayer[0]->getPos();
+void eventHandler::movePointAnimator(int _step){
+    int playerPos = processPlayer[turn]->getPos();
     int index = landCoordinate[playerPos];
-    if(processPlayer[0]->getPos() == 0){
+    if(processPlayer[turn]->getPos() == 0){
         operateMovePoint.setChangeX(mapPosXandPosY[0].first);
         operateMovePoint.setChangeY(mapPosXandPosY[0].second);
     }
     double posX = mapPosXandPosY[index].first;
     double posY = mapPosXandPosY[index].second;
-    operateMovePoint.initializeMovePoint(posX,posY,0);
+    operateMovePoint.initializeMovePoint(posX,posY,turn);
     emit movePointInitialize();
-    std::thread t(&eventHandler::animationThread,this,64,playerPos,index);
+    std::thread t(&eventHandler::animationThread,this,_step,playerPos,index);
     t.detach();
 }
 
 void eventHandler::animationThread(int _times,int _playerPos,int _index){
     QMetaObject::invokeMethod(&operateMovePoint,"setIsvisable",Qt::QueuedConnection,Q_ARG(bool,true));
+
+    bool origin = false;
+
     for(int i=0;i<_times;i++){
+
+        if(processMap[_playerPos]->getState() == 1 ||processPlayer[turn]->getState() == 1) break;
+
         this_thread::sleep_for(chrono::milliseconds(350));
-        if(processPlayer[0]->getPos() == 63){
-            processPlayer[0]->setPos(0);
-            _playerPos = processPlayer[0]->getPos();
+
+        if(processPlayer[turn]->getPos() == 63){
+            origin = true;
+            processPlayer[turn]->setPos(0);
+            _playerPos = processPlayer[turn]->getPos();
             _index = landCoordinate[_playerPos];
         }
         else{
             _playerPos++;
-            processPlayer[0]->setPos(_playerPos);
+            processPlayer[turn]->setPos(_playerPos);
             _index = landCoordinate[_playerPos];
         }
         operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first,mapPosXandPosY[_index].second);
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
     }
+
+    // 確認是地區收費
+    if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
+
+    // 不同type
+    if(processMap[processPlayer[turn]->getPos()]->getType() == 1){
+        buttonState = false;
+        emit EnableChanged();
+    //=================往後加=================
+    }
+
+    // 原點處理
+    if(origin && _playerPos == 0) {processPlayer[turn]->addMoney(8000);emit moneyChanged();}
+    else if(origin) {processPlayer[turn]->addMoney(4000);emit moneyChanged();}
+
+    // 解除路障
+    if(processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
+
     this_thread::sleep_for(chrono::milliseconds(250));
+    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
     QMetaObject::invokeMethod(&operateMovePoint, "hiddingMovePoint", Qt::QueuedConnection);
 }
 
@@ -433,3 +462,73 @@ void eventHandler::setUseCard(UseCardSetting *newUseCard)
     m_useCard = newUseCard;
     emit useCardChanged();
 }
+int eventHandler::showMoney() const{
+    if(turn >= 0)return processPlayer[turn]->getMoney();
+    else return -1;
+}
+
+bool eventHandler::returnEnableButton() const{
+    return buttonState;
+}
+
+void eventHandler::toll(){
+    int nowPos = processPlayer[turn]->getPos();
+    int landOwner = processMap[nowPos]->getOwner();
+    if (landOwner != 0 && landOwner != turn+1 && processMap[nowPos]->getType() == 0) {
+        int landValue = processMap[nowPos]->getValue();
+        int nowLevel = processMap[nowPos]->getLevel();
+        int fee = (nowLevel) * (landValue / 10);
+        processPlayer[turn]->subMoney(fee);
+        processPlayer[landOwner - 1]->addMoney(fee);
+    }
+    emit moneyChanged();
+}
+
+void eventHandler::buyLand(){
+    if(turn >= 0){
+        int nowPos = processPlayer[turn]->getPos();
+        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == 0){
+            processPlayer[turn]->addHouse(nowPos);
+            processMap[nowPos]->setOwner(turn+1);
+            processMap[nowPos]->setLevel(1);
+            processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
+            buttonState = false;
+            emit EnableChanged();
+            emit moneyChanged();
+            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+
+        }
+    }
+}
+
+void eventHandler::levelup(){
+    if(turn >= 0){
+        int nowPos = processPlayer[turn]->getPos();
+        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn+1 && processMap[nowPos]->getLevel() < 4){
+            int nowLevel = processMap[nowPos]->getLevel();
+            processMap[nowPos]->setLevel(nowLevel+1);
+            processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
+            buttonState = false;
+            emit EnableChanged();
+            emit moneyChanged();
+            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+        }
+    }
+}
+
+void eventHandler::sellLand(){
+    if(turn >= 0){
+        int nowPos = processPlayer[turn]->getPos();
+        if(processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn+1){
+            int value = processMap[nowPos]->getValue();
+            processMap[nowPos]->setOwner(0);
+            processMap[nowPos]->setLevel(0);
+            processPlayer[turn]->addMoney((value/2) + (processMap[nowPos]->getLevel() * value / 2));
+            buttonState = false;
+            emit EnableChanged();
+            emit moneyChanged();
+            mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+        }
+    }
+}
+
