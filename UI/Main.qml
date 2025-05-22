@@ -460,7 +460,6 @@ Window {
         id: refreshPopup
     }
 
-     // 你可以用 signal 或 C++ 呼叫這個函式
     function showRefresh() {
         refreshPopup.start()
     }

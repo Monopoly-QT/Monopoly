@@ -6,21 +6,20 @@ Popup {
     id: refreshPopup
     modal: true
     focus: true
-    width: 1280
-    height: 720
+    width: parent.width
+    height: parent.height
     background: Rectangle { color: "black" }
 
     property bool isRunning: false
 
-        function start() {
-            // Reset state
-            loadingGroup.visible = true
-            successText.visible = false
-            stage1Timer.restart()
-            isRunning = true
-            open()
-        }
-
+       function start() {
+           // Reset state
+           loadingGroup.visible = true
+           successText.visible = false
+           stage1Timer.restart()
+           isRunning = true
+           open()
+       }
 
     // 動畫區塊（圓圈＋Refreshing字樣）
     Item {
@@ -80,7 +79,7 @@ Popup {
             anchors.verticalCenterOffset: -80
             text: "Refreshing..."
             font.family: "Time News Roman"
-            font.pixelSize: 50
+            font.pixelSize: 30
             color: "white"
         }
     }
@@ -91,7 +90,7 @@ Popup {
         font.family: "Time News Roman"
         anchors.centerIn: parent
         visible: false
-        font.pixelSize: 80
+        font.pixelSize: 30
         color: "lightgreen"
     }
 
