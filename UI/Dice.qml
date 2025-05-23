@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
+
 
 Rectangle{
     id: diceContainer
@@ -11,10 +13,13 @@ Rectangle{
     radius: 10
     property bool isHovered: false
     property bool isPressed: false
+
+
+
     MouseArea{
         id: diceBtn
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: playWindow.diceEnable
 
         onEntered: {
             parent.scale = 1.015
@@ -27,8 +32,10 @@ Rectangle{
         onPressed: {
             parent.scale = 1.0
             diceContainer.isPressed = true
-            if(diceTimer.running === false)
+            if(diceTimer.running === false){
                 diceTimer.start()
+                playWindow.diceEnable = false;
+            }
         }
         onReleased: {
             parent.scale = 1.015
@@ -281,4 +288,13 @@ Rectangle{
             Layout.fillWidth: true
         }
     }
+    Rectangle{
+        anchors.fill: parent
+        color: "#3a3a3a"
+        opacity: 0.5
+        z: parent.children.length
+        visible: !parent.enabled
+        radius:parent.radius
+    }
+
 }

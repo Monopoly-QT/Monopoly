@@ -40,6 +40,7 @@ void Player::addMoney(int _addition) {
 
 void Player::subMoney(int _subtraction) {
     money -= _subtraction;
+    cerr<<_subtraction<<" "<<money<<endl;
     emit moneyChanged();
 }
 

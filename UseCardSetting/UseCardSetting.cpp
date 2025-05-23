@@ -16,6 +16,10 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
     m_displayTargetLand.clear();
     m_displayAllLand.clear();
     vector<int> ownCard = _player[_turn]->getOwnCards();
+    cout<<"ownCard"<<endl;
+    for (auto i : ownCard) {
+        cout<<i<<" ";
+    }
     map<int,int> cardCount;
 
     for(int i=0 ; i < 5 ; i++){

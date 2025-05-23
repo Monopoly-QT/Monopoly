@@ -52,6 +52,7 @@ qt_add_qml_module(appmonopoly
         UI/CardOpenBtn.qml
         UI/StateContainer.qml
         UI/RefreshPopup.qml
+        UI/ShopPopup.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc
@@ -75,6 +76,8 @@ qt_add_qml_module(appmonopoly
         SOURCES MiniGames/DragonGate/DragonGate.cpp
         SOURCES Hospital/Hospital.h
         SOURCES Hospital/Hospital.cpp
+        SOURCES Shop/Shop.h
+        SOURCES Shop/Shop.cpp
         SOURCES StateDisplay/StateDisplay.h
         SOURCES StateDisplay/StateDisplay.cpp
 )
