@@ -448,7 +448,7 @@ void eventHandler::afterMove(){
     //     buttonState = false;
     //     emit EnableChanged();
     // }
-    nextTurn();
+    // nextTurn();
 }
 
 void eventHandler::nextTurn(){
@@ -457,10 +457,6 @@ void eventHandler::nextTurn(){
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
-
-
-
-
 
 void eventHandler::toll() {
     int nowPos = processPlayer[turn]->getPos();
@@ -493,8 +489,7 @@ void eventHandler::buyLand() {
 void eventHandler::levelup() {
     if (turn >= 0) {
         int nowPos = processPlayer[turn]->getPos();
-        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1 && processMap[nowPos]->
-                                                                                                    getLevel() < 4) {
+        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1 && processMap[nowPos]->getLevel() < 4) {
             int nowLevel = processMap[nowPos]->getLevel();
             processMap[nowPos]->setLevel(nowLevel + 1);
             processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
@@ -525,7 +520,6 @@ void eventHandler::sellLand() {
 }
 
 void eventHandler::popUpdisplaySetting(string _message,int _type){
-    cout<<"in popUpdisplaySetting"<<endl;
     if(_type == 0){
         setDisplayMessage(QString::fromStdString(_message));
         emit openMessage();

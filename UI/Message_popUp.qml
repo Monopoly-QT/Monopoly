@@ -30,13 +30,18 @@ Popup{
         anchors.fill: parent
         clip: true
         Rectangle{
-            Layout.preferredHeight: parent.height / 2
+            Layout.preferredHeight: parent.height / 1.25
             Layout.preferredWidth: parent.width
             color: "transparent"
             clip: true
-            Standard_Text{
-                label: message_popUp.label
-                anchors.centerIn: parent
+            ScrollView{
+                width: parent.width
+                height: parent.height
+                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                Standard_Text{
+                    label: message_popUp.label
+                    anchors.centerIn: parent
+                }
             }
         }
         Rectangle{

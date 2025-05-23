@@ -376,54 +376,6 @@ Window {
                             id: cheatImage_Rec
                         }
                     }
-                    /*
-                                        Button{
-                                            Layout.preferredHeight: parent.height/30
-                                            Layout.preferredWidth: parent.width
-                                            property int index: 0
-                                            onClicked: {
-                                                event.movePointAnimator()
-                                            }
-                                        }
-                    */
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Layout.preferredHeight: parent.height / 30
-                        Layout.preferredWidth: parent.width / 2.5
-                        text: "buy"
-                        enabled: event.enableButton
-                        property int index: 0
-                        onClicked: {
-                            event.buyLand()
-                            playWindow.diceEnable = true;
-                        }
-                    }
-
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Layout.preferredHeight: parent.height / 30
-                        Layout.preferredWidth: parent.width / 2.5
-                        text: "Level up"
-                        enabled: event.enableButton
-                        property int index: 0
-                        onClicked: {
-                            event.levelup()
-                            playWindow.diceEnable = true;
-                        }
-                    }
-
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Layout.preferredHeight: parent.height / 30
-                        Layout.preferredWidth: parent.width / 2.5
-                        text: "sell"
-                        enabled: event.enableButton
-                        property int index: 0
-                        onClicked: {
-                            event.sellLand();
-                            playWindow.diceEnable = true;
-                        }
-                    }
 
                     Rectangle {
                         Layout.fillHeight: true
