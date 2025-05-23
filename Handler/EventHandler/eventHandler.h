@@ -59,7 +59,7 @@ public:
     Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
     Q_INVOKABLE void eventCardUseEntryPoint();
     Q_INVOKABLE bool buyItemEntryPoint(int price , int itemIndex);
-    Q_INVOKABLE void skipEntryPoint();
+    Q_INVOKABLE bool skipEntryPoint();
 
 
     StateDisplay *displayState() const;
