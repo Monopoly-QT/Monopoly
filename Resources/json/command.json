@@ -24,7 +24,7 @@
     "get": {
         "name": "/get",
         "description": "Get money from the system.",
-        "usage": "/get [playerName] [money] or /get [money]",
+        "usage": "/get [money]",
         "examples": [
             "/get 100"
         ],

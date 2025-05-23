@@ -50,7 +50,7 @@ eventHandler::eventHandler(){
     country.open("json/country.json");
 
     if (country.fail()) {
-        cerr << "Falied to open country.json\n";
+        cout << "Falied to open country.json\n";
     }
 
     country >> countryData;
@@ -68,7 +68,7 @@ eventHandler::eventHandler(){
     player.open("json/config.json");
 
     if (player.fail()) {
-        cerr << "Falied to open config.json\n";
+        cout << "Falied to open config.json\n";
     }
 
     player >> playerData;
@@ -130,7 +130,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
     command.open("json/command.json");
 
     if (command.fail()) {
-        cerr << "Falied to open command.json\n";
+        cout << "Falied to open command.json\n";
     }
 
     command >> commandData;
@@ -144,13 +144,15 @@ void eventHandler::commendEntryPoint(QString _instruct){
         if (inputCommand == "/move") {
             prompt = commandData["move"]["prompt"].get<string>();
             regex r1(R"(\{playerName\})");
-            prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerLastName());
+            prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
             ss >> inputCommand;
             if (checkNum(inputCommand)) {
                 processPlayer[turn]->addPos(stoi(inputCommand));
                 regex r(R"(\{location\})");
                 prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
-                cerr << prompt << '\n';
+                mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+                cout << prompt << '\n';
+                popUpdisplaySetting(prompt, 0);
             }
             else if (inputCommand == "to") {
                 ss >> inputCommand;
@@ -159,15 +161,19 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     processPlayer[turn]->setPos(newPos);
                     regex r(R"(\{location\})");
                     prompt = regex_replace(prompt, r, to_string(newPos));
-                    cerr << prompt << '\n';
+                    mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+                    cout << prompt << '\n';
+                    popUpdisplaySetting(prompt, 0);
                 }
                 else {
-                    cerr << "Valid input!\n";
+                    cout << "Valid input!\n";
+                    popUpdisplaySetting("Valid input!\n", 0);
                     break;
                 }
             }
             else {
-                cerr << "Valid input!\n";
+                cout << "Valid input!\n";
+                popUpdisplaySetting("Valid input!\n", 0);
                 break;
             }
         }
@@ -186,7 +192,8 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
 
             if (!valid) {
-                cerr << "Valid input!\n";
+                cout << "Valid input!\n";
+                popUpdisplaySetting("Valid input!\n", 0);
                 break;
             }
 
@@ -199,13 +206,17 @@ void eventHandler::commendEntryPoint(QString _instruct){
             prompt = regex_replace(prompt, r2, to_string(deltaMoney));
 
             if (processPlayer[turn]->getMoney() < deltaMoney) {
-                cerr << "Valid input!\n";
+                cout << "Error: " << processPlayer[turn]->getPlayerName() << "don't have enough money.\n";
+                popUpdisplaySetting("Error: "+processPlayer[turn]->getPlayerName()+"don't have enough money.\n", 0);
                 break;
             }
 
             processPlayer[turn]->subMoney(deltaMoney);
             processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
-            cerr << prompt << '\n';
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            cout << prompt << '\n';
+            popUpdisplaySetting(prompt, 0);
+
         }
         else if (inputCommand == "/get") {
             prompt = commandData["get"]["prompt"].get<string>();
@@ -216,10 +227,14 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
                 regex r2(R"(\{money\})");
                 prompt = regex_replace(prompt, r2, to_string(deltaMoney));
-                cerr << prompt << '\n';
+                processPlayer[turn]->addMoney(deltaMoney);
+                m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+                cout << prompt << '\n';
+                popUpdisplaySetting(prompt, 0);
             }
             else {
-                cerr << "Valid input!\n";
+                cout << "Valid input!\n";
+                popUpdisplaySetting("Valid input!\n", 0);
                 break;
             }
         }
@@ -229,11 +244,12 @@ void eventHandler::commendEntryPoint(QString _instruct){
         //     processPlayer[turn]->addOwnCards(inputCommand);
         //     regex r(R"(\{card_name\})");
         //     prompt = regex_replace(prompt, r, inputCommand);
-        //     cerr << prompt << '\n';
+        //     cout << prompt << '\n';
         // }
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
-            cerr << prompt << '\n';
+            cout << prompt << '\n';
+            popUpdisplaySetting(prompt, 0);
             ss >> inputCommand;
             // runMinigame();
         }
@@ -254,40 +270,52 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
             regex r(R"(\{state\})");
             prompt = regex_replace(prompt, r, inputCommand);
-            cerr << prompt << '\n';
+            cout << prompt << '\n';
+            popUpdisplaySetting(prompt, 0);
         }
         else if (inputCommand == "/info") {
-            cerr << commandData["info"]["prompt"].get<string>();
+            cout << commandData["info"]["prompt"].get<string>();
             // printAllPlayerInfo();
         }
         else if (inputCommand == "/refresh") {
-            cerr << commandData["refresh"]["prompt"].get<string>();
+            cout << commandData["refresh"]["prompt"].get<string>();
             emit startRefresh();
         }
         else if (inputCommand == "/list" || inputCommand == "/help") {
+            string prompt;
             bool a = false;
+
             if (ss >> inputCommand) {
                 if (inputCommand == "-a") {
                     a = true;
                 }
             }
+
             for (auto x : commandData) {
                 if (x["name"].get<string>() != "") {
-                    cerr << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
+                    cout << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
+                    prompt += (x["name"].get<string>() + " - " + x["description"].get<string>() + '\n');
 
                     if (a) {
-                        cerr << "\tUsage:\t" << x["usage"].get<string>() << '\n';
-                        cerr << "\tExamples:\n";
+                        cout << "\tUsage:\t" << x["usage"].get<string>() << '\n';
+                        prompt += ("\tUsage:\t" + x["usage"].get<string>() + '\n');
+                        cout << "\tExamples:\n";
+                        prompt += ("\tExamples:\n");
                         for (auto ex : x["examples"]) {
-                            cerr << "\t\t" << ex.get<string>() << '\n';
+                            cout << "\t\t" << ex.get<string>() << '\n';
+                            prompt += ("\t\t" + ex.get<string>() + '\n');
                         }
                     }
-                    cerr << '\n';
+                    cout << '\n';
+                    prompt += '\n';
                 }
             }
+
+            popUpdisplaySetting(prompt, 0);
         }
         else {
-            cerr << commandData["invalid_command"]["prompt"].get<string>() << '\n';
+            cout << commandData["invalid_command"]["prompt"].get<string>() << '\n';
+            popUpdisplaySetting(commandData["invalid_command"]["prompt"].get<string>() + '\n', 0);
         }
     }
 }
