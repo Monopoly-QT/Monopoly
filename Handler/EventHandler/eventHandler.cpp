@@ -157,144 +157,141 @@ void eventHandler::commendEntryPoint(QString _instruct) {
     string inputCommand = strInstruct;
     string prompt;
 
-    cin >> ws;
-    while (getline(cin, inputCommand)) {
-        stringstream ss(inputCommand);
-        while (ss >> inputCommand) {
-            if (inputCommand == "/move") {
-                prompt = commandData["move"]["prompt"].get<string>();
-                regex r1(R"(\{playerName\})");
-                prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerLastName());
+    stringstream ss(inputCommand);
+    while (ss >> inputCommand) {
+        if (inputCommand == "/move") {
+            prompt = commandData["move"]["prompt"].get<string>();
+            regex r1(R"(\{playerName\})");
+            prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerLastName());
+            ss >> inputCommand;
+            if (checkNum(inputCommand)) {
+                processPlayer[turn]->addPos(stoi(inputCommand));
+                regex r(R"(\{location\})");
+                prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
+                cerr << prompt << '\n';
+            } else if (inputCommand == "to") {
                 ss >> inputCommand;
-                if (checkNum(inputCommand)) {
-                    processPlayer[turn]->addPos(stoi(inputCommand));
+                if (checkNum(inputCommand) && stoi(inputCommand) <= 64) {
+                    int newPos = stoi(inputCommand) % 64;
+                    processPlayer[turn]->setPos(newPos);
                     regex r(R"(\{location\})");
-                    prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
-                    cerr << prompt << '\n';
-                } else if (inputCommand == "to") {
-                    ss >> inputCommand;
-                    if (checkNum(inputCommand) && stoi(inputCommand) <= 64) {
-                        int newPos = stoi(inputCommand) % 64;
-                        processPlayer[turn]->setPos(newPos);
-                        regex r(R"(\{location\})");
-                        prompt = regex_replace(prompt, r, to_string(newPos));
-                        cerr << prompt << '\n';
-                    } else {
-                        cerr << "Valid input!\n";
-                        break;
-                    }
-                } else {
-                    cerr << "Valid input!\n";
-                    break;
-                }
-            } else if (inputCommand == "/give") {
-                prompt = commandData["give"]["prompt"].get<string>();
-
-                string payee;
-                ss >> payee;
-
-                bool valid = 0;
-                for (int i = 0; i < 4; i++) {
-                    if (payee == processPlayer[i]->getPlayerLastName()) {
-                        valid = 1;
-                        break;
-                    }
-                }
-
-                if (!valid) {
-                    cerr << "Valid input!\n";
-                    break;
-                }
-
-                regex r1(R"(\{playerName\})");
-                prompt = regex_replace(prompt, r1, payee);
-
-                ss >> inputCommand;
-                int deltaMoney = stoi(inputCommand);
-                regex r2(R"(\{money\})");
-                prompt = regex_replace(prompt, r2, to_string(deltaMoney));
-
-                if (processPlayer[turn]->getMoney() < deltaMoney) {
-                    cerr << "Valid input!\n";
-                    break;
-                }
-
-                processPlayer[turn]->subMoney(deltaMoney);
-                processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
-                cerr << prompt << '\n';
-            } else if (inputCommand == "/get") {
-                prompt = commandData["get"]["prompt"].get<string>();
-                ss >> inputCommand;
-                if (checkNum(inputCommand)) {
-                    int deltaMoney = stoi(inputCommand);
-                    regex r1(R"(\{playerName\})");
-                    prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
-                    regex r2(R"(\{money\})");
-                    prompt = regex_replace(prompt, r2, to_string(deltaMoney));
+                    prompt = regex_replace(prompt, r, to_string(newPos));
                     cerr << prompt << '\n';
                 } else {
                     cerr << "Valid input!\n";
                     break;
-                }
-            }
-            // else if (inputCommand == "/card") {
-            //     prompt = commandData["card"]["prompt"].get<string>();
-            //     ss >> inputCommand;
-            //     processPlayer[turn]->addOwnCards(inputCommand);
-            //     regex r(R"(\{card_name\})");
-            //     prompt = regex_replace(prompt, r, inputCommand);
-            //     cerr << prompt << '\n';
-            // }
-            else if (inputCommand == "/minigame") {
-                prompt = commandData["minigame"]["prompt"].get<string>();
-                cerr << prompt << '\n';
-                ss >> inputCommand;
-                // runMinigame();
-            } else if (inputCommand == "/gamestate") {
-                prompt = commandData["gamestate"]["prompt"].get<string>();
-                ss >> inputCommand;
-                if (inputCommand == "INIT") {
-                    // initialize();
-                } else if (inputCommand == "START") {
-                    // start();
-                } else if (inputCommand == "MOVED") {
-                    // moved();
-                } else if (inputCommand == "FINISH") {
-                    // finish();
-                }
-                regex r(R"(\{state\})");
-                prompt = regex_replace(prompt, r, inputCommand);
-                cerr << prompt << '\n';
-            } else if (inputCommand == "/info") {
-                cerr << commandData["info"]["prompt"].get<string>();
-                // printAllPlayerInfo();
-            } else if (inputCommand == "/refresh") {
-                cerr << commandData["refresh"]["prompt"].get<string>();
-                // refresh();
-            } else if (inputCommand == "/list" || inputCommand == "/help") {
-                bool a = false;
-                if (ss >> inputCommand) {
-                    if (inputCommand == "-a") {
-                        a = true;
-                    }
-                }
-                for (auto x: commandData) {
-                    if (x["name"].get<string>() != "") {
-                        cerr << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
-
-                        if (a) {
-                            cerr << "\tUsage:\t" << x["usage"].get<string>() << '\n';
-                            cerr << "\tExamples:\n";
-                            for (auto ex: x["examples"]) {
-                                cerr << "\t\t" << ex.get<string>() << '\n';
-                            }
-                        }
-                        cerr << '\n';
-                    }
                 }
             } else {
-                cerr << commandData["invalid_command"]["prompt"].get<string>() << '\n';
+                cerr << "Valid input!\n";
+                break;
             }
+        } else if (inputCommand == "/give") {
+            prompt = commandData["give"]["prompt"].get<string>();
+
+            string payee;
+            ss >> payee;
+
+            bool valid = 0;
+            for (int i = 0; i < 4; i++) {
+                if (payee == processPlayer[i]->getPlayerLastName()) {
+                    valid = 1;
+                    break;
+                }
+            }
+
+            if (!valid) {
+                cerr << "Valid input!\n";
+                break;
+            }
+
+            regex r1(R"(\{playerName\})");
+            prompt = regex_replace(prompt, r1, payee);
+
+            ss >> inputCommand;
+            int deltaMoney = stoi(inputCommand);
+            regex r2(R"(\{money\})");
+            prompt = regex_replace(prompt, r2, to_string(deltaMoney));
+
+            if (processPlayer[turn]->getMoney() < deltaMoney) {
+                cerr << "Valid input!\n";
+                break;
+            }
+
+            processPlayer[turn]->subMoney(deltaMoney);
+            processPlayer[playerNameToID[payee]]->addMoney(deltaMoney);
+            cerr << prompt << '\n';
+        } else if (inputCommand == "/get") {
+            prompt = commandData["get"]["prompt"].get<string>();
+            ss >> inputCommand;
+            if (checkNum(inputCommand)) {
+                int deltaMoney = stoi(inputCommand);
+                regex r1(R"(\{playerName\})");
+                prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
+                regex r2(R"(\{money\})");
+                prompt = regex_replace(prompt, r2, to_string(deltaMoney));
+                cerr << prompt << '\n';
+            } else {
+                cerr << "Valid input!\n";
+                break;
+            }
+        }
+        // else if (inputCommand == "/card") {
+        //     prompt = commandData["card"]["prompt"].get<string>();
+        //     ss >> inputCommand;
+        //     processPlayer[turn]->addOwnCards(inputCommand);
+        //     regex r(R"(\{card_name\})");
+        //     prompt = regex_replace(prompt, r, inputCommand);
+        //     cerr << prompt << '\n';
+        // }
+        else if (inputCommand == "/minigame") {
+            prompt = commandData["minigame"]["prompt"].get<string>();
+            cerr << prompt << '\n';
+            ss >> inputCommand;
+            // runMinigame();
+        } else if (inputCommand == "/gamestate") {
+            prompt = commandData["gamestate"]["prompt"].get<string>();
+            ss >> inputCommand;
+            if (inputCommand == "INIT") {
+                // initialize();
+            } else if (inputCommand == "START") {
+                // start();
+            } else if (inputCommand == "MOVED") {
+                // moved();
+            } else if (inputCommand == "FINISH") {
+                // finish();
+            }
+            regex r(R"(\{state\})");
+            prompt = regex_replace(prompt, r, inputCommand);
+            cerr << prompt << '\n';
+        } else if (inputCommand == "/info") {
+            cerr << commandData["info"]["prompt"].get<string>();
+            // printAllPlayerInfo();
+        } else if (inputCommand == "/refresh") {
+            cerr << commandData["refresh"]["prompt"].get<string>();
+            // refresh();
+        } else if (inputCommand == "/list" || inputCommand == "/help") {
+            bool a = false;
+            if (ss >> inputCommand) {
+                if (inputCommand == "-a") {
+                    a = true;
+                }
+            }
+            for (auto x: commandData) {
+                if (x["name"].get<string>() != "") {
+                    cerr << x["name"].get<string>() << " - " << x["description"].get<string>() << '\n';
+
+                    if (a) {
+                        cerr << "\tUsage:\t" << x["usage"].get<string>() << '\n';
+                        cerr << "\tExamples:\n";
+                        for (auto ex: x["examples"]) {
+                            cerr << "\t\t" << ex.get<string>() << '\n';
+                        }
+                    }
+                    cerr << '\n';
+                }
+            }
+        } else {
+            cerr << commandData["invalid_command"]["prompt"].get<string>() << '\n';
         }
     }
 }
