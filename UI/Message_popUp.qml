@@ -63,6 +63,7 @@ Popup{
                     text: "close"
                     onPressed: {
                         message_popUp_CloseAniamtion.start()
+                        event.nextTurn();
                     }
                 }
             }
