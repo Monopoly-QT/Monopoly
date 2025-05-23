@@ -22,7 +22,7 @@ Popup {
     }
 
     Connections{
-        target: DragEvent
+        target: event
         onStartRefresh:{
             // Reset state
             loadingGroup.visible = true

@@ -524,7 +524,7 @@ Window {
     }
 
     function showRefresh() {
-        refreshPopup.start()
+        refreshPopup.startRefresh()
     }
 
 }
