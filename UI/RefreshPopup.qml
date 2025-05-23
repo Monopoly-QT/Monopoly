@@ -12,14 +12,26 @@ Popup {
 
     property bool isRunning: false
 
-       function start() {
-           // Reset state
-           loadingGroup.visible = true
-           successText.visible = false
-           stage1Timer.restart()
-           isRunning = true
-           open()
-       }
+    function startRefresh() {
+        // Reset state
+        loadingGroup.visible = true
+        successText.visible = false
+        stage1Timer.restart()
+        isRunning = true
+        open()
+    }
+
+    Connections{
+        target: DragEvent
+        onStartRefresh:{
+            // Reset state
+            loadingGroup.visible = true
+            successText.visible = false
+            stage1Timer.restart()
+            isRunning = true
+            open()
+        }
+    }
 
     // 動畫區塊（圓圈＋Refreshing字樣）
     Item {

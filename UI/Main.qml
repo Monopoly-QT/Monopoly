@@ -464,9 +464,9 @@ Window {
         refreshPopup.start()
     }
 
-    Button {
-        text: "測試 /refresh"
-        anchors.centerIn: parent
-        onClicked: showRefresh()
-    }
+    // Button {
+    //     text: "測試 /refresh"
+    //     anchors.centerIn: parent
+    //     onClicked: showRefresh()
+    // }
 }

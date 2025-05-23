@@ -77,6 +77,7 @@ signals:
     void useCardChanged();
     void moneyChanged();
     void EnableChanged();
+    void startRefresh();
 
 private:
     int turn;

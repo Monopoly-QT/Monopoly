@@ -41,11 +41,6 @@ bool checkNum(string needChecked) {
 
 // void printAllPlayerInfo();
 
-// void refresh(){
-//     // 假設你在 eventHandler 中有 MainWindow 的 QObject 指標
-//     QMetaObject::invokeMethod(mainQmlRootObject, "showRefresh", Qt::QueuedConnection);
-// }
-
 eventHandler::eventHandler(){
     turn = 0;
 
@@ -128,6 +123,7 @@ void eventHandler::moveEntryPoint(int _moveDistance){
 
 void eventHandler::commendEntryPoint(QString _instruct){
     string strInstruct =  _instruct.toStdString();
+
     nlohmann::json commandData;
     ifstream command;
     command.open("json/command.json");
@@ -267,7 +263,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
             else if (inputCommand == "/refresh") {
                 cerr << commandData["refresh"]["prompt"].get<string>();
-                // refresh();
+                emit startRefresh();
             }
             else if (inputCommand == "/list" || inputCommand == "/help") {
                 bool a = false;
