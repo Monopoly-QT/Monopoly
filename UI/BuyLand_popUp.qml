@@ -4,128 +4,131 @@ import QtQuick.Layouts
 import QtQuick.Dialogs
 import "baseWidget"
 
-Popup{
-    id:root
+Popup {
+    id: root
     width: 0
     height: 0
-    closePolicy:Popup.NoAutoClose
+    closePolicy: Popup.NoAutoClose
     focus: true
     anchors.centerIn: parent
     property string text: "empty"
 
-    function openAnimation(){
+    function openAnimation() {
         root_OpenAniamtion.start()
     }
-    function closeAnimation(){
+
+    function closeAnimation() {
         root_CloseAniamtion.start()
     }
 
 
-    background: Rectangle{
+    background: Rectangle {
         anchors.fill: parent
         radius: 10
         border.color: "#5d7586"
         color: playWindow.secondaryColor
     }
 
-    ColumnLayout{
+    ColumnLayout {
         anchors.fill: parent
-        Rectangle{
+        Rectangle {
             Layout.preferredHeight: parent.height / 4
             Layout.preferredWidth: parent.width
             color: "transparent"
             clip: true
-            Standard_Text{
+            Standard_Text {
                 label: root.text
             }
         }
 
-        Rectangle{
+        Rectangle {
             Layout.preferredHeight: parent.height / 4
             Layout.preferredWidth: parent.width
             color: "transparent"
             clip: true
-            Standard_Text{
+            Standard_Text {
                 label: "Do you want to but it?"
             }
         }
 
-        Rectangle{
+        Rectangle {
             Layout.fillHeight: true
             color: "transparent"
         }
 
-        RowLayout{
+        RowLayout {
             Layout.preferredHeight: parent.height / 4
             Layout.preferredWidth: parent.width
             clip: true
-            Rectangle{
+            Rectangle {
                 Layout.fillWidth: true
             }
-            Rectangle{
+            Rectangle {
                 Layout.preferredHeight: parent.height / 2
                 Layout.preferredWidth: parent.width / 4
                 color: "transparent"
-                CostumBtn_Rec{
+                CostumBtn_Rec {
                     hoverColor: "#83ff05"
                     text: "buy"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
                         console.log("buy")
+                        event.nextTurn();
                     }
                 }
             }
-            Rectangle{
+            Rectangle {
                 Layout.preferredHeight: parent.height / 2
                 Layout.preferredWidth: parent.width / 4
                 color: "transparent"
-                CostumBtn_Rec{
+                CostumBtn_Rec {
                     hoverColor: "#ff6805"
                     text: "close"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
                         root_CloseAniamtion.start()
+                        event.nextTurn();
                     }
                 }
             }
-            Rectangle{
+            Rectangle {
                 Layout.preferredWidth: 5
             }
         }
     }
 
-    SequentialAnimation{
+    SequentialAnimation {
         id: root_CloseAniamtion
         NumberAnimation {
             target: root
             property: "height"
-            to : 3
+            to: 3
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "width"
-            to : 0
+            to: 0
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "height"
-            to : 0
+            to: 0
             duration: 1
             easing.type: Easing.InOutQuad
         }
-        ScriptAction{
+        ScriptAction {
             script: {
                 root.close()
             }
         }
     }
-    SequentialAnimation{
+    SequentialAnimation {
         id: root_OpenAniamtion
-        ScriptAction{
+        ScriptAction {
             script: {
                 root.open()
             }
@@ -133,21 +136,21 @@ Popup{
         NumberAnimation {
             target: root
             property: "height"
-            to : 3
+            to: 3
             duration: 1
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "width"
-            to : 300
+            to: 300
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "height"
-            to : 200
+            to: 200
             duration: 200
             easing.type: Easing.InOutQuad
         }

@@ -89,6 +89,7 @@ Popup{
                     enabled: root.isSellable
                     onPressed: {
                         console.log("sell")
+                        event.nextTurn();
                     }
                 }
             }
@@ -102,6 +103,7 @@ Popup{
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
                         root_CloseAniamtion.start()
+                        event.nextTurn();
                     }
                 }
             }

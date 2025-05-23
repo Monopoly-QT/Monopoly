@@ -448,7 +448,7 @@ void eventHandler::afterMove(){
     //     buttonState = false;
     //     emit EnableChanged();
     // }
-    nextTurn();
+    // nextTurn();
 }
 
 void eventHandler::nextTurn(){
@@ -457,10 +457,6 @@ void eventHandler::nextTurn(){
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
-
-
-
-
 
 void eventHandler::toll() {
     int nowPos = processPlayer[turn]->getPos();
