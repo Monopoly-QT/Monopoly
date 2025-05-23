@@ -54,3 +54,25 @@ void StateDisplay::setOwnMoney(int newOwnMoney)
     m_ownMoney = newOwnMoney;
     emit ownMoneyChanged();
 }
+
+int StateDisplay::landValue1() const
+{
+    return _landValue1;
+}
+
+void StateDisplay::getlandValue1(int landValue)
+{
+    _landValue1 = landValue;
+    emit landValueShow();
+}
+
+int StateDisplay::landValue2() const
+{
+    return _landValue2;
+}
+
+void StateDisplay::getlandValue2(int landValue)
+{
+    _landValue2 = landValue;
+    emit landValueShow();
+}

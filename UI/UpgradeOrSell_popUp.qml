@@ -43,12 +43,12 @@ Popup{
         }
 
         Rectangle{
-            Layout.preferredHeight: parent.height / 4
+            Layout.preferredHeight: parent.height / 3.8
             Layout.preferredWidth: parent.width
             color: "transparent"
             clip: true
             Standard_Text{
-                label: "Do you want to upgrade or sell it?"
+                label: "Do you want to upgrade or sell it?\n upgrade need spend "+ event.displayState.landValue1 + "\n sell will get" + event.displayState.landValue2
             }
         }
 

@@ -363,7 +363,7 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
     if (turn >= 0) {
         if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn + 1) {
             int value = processMap[location]->getValue();
-            processMap[location]->setOwner(0);
+            processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -475,10 +475,13 @@ void eventHandler::afterMove(){
         toll();
     //升級地塊或賣房
     else if(processMap[location]->getType() == 0 && landOwner == turn){
+        m_displayState->getlandValue1(processMap[location]->getValue() / 2);
+        m_displayState->getlandValue2((processMap[location]->getValue() / 2) + (processMap[location]->getLevel() * processMap[location]->getValue() / 2));
         popUpdisplaySetting("",2);
     }
     //買房
     else if(processMap[location]->getType() == 0 && processMap[location]->getOwner() == -1){
+        m_displayState->getlandValue1(processMap[location]->getValue());
         popUpdisplaySetting("",1);
     }
     // 事件地塊
