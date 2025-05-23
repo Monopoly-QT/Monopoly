@@ -103,6 +103,6 @@
     },
     "invalid_command": {
         "name": "",
-        "prompt": "Invalid command. Type /list to see available commands."
+        "prompt": "Invalid command. \nType \"/list\" or \"/help\" to see brief infomation of available commands.\nType \"/list -a\" or \"/help -a\" to see details of available commands."
     }
 }
