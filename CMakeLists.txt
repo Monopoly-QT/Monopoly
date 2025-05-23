@@ -63,6 +63,7 @@ qt_add_qml_module(appmonopoly
         RESOURCES Resources/resourse.qrc
         SOURCES Handler/EventHandler/eventHandler.h
         SOURCES Handler/EventHandler/eventHandler.cpp
+        SOURCES Handler/EventHandler/eventHandlerGetterSetter.cpp
         SOURCES Land/Land.h
         SOURCES Land/Land.cpp
         SOURCES Map/map.h

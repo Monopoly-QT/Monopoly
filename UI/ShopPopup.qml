@@ -284,7 +284,7 @@ Popup {
                         onPressed: {
                             parent.scale = 1.0
                             shop_popUp.closeAnimation();
-                            event.skipEntryPoint()
+                            event.nextTurn();
                         }
                         onReleased: {
                             parent.scale = 1.05
