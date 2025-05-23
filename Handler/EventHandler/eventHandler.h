@@ -25,7 +25,6 @@ class eventHandler:public QObject{
     Q_PROPERTY(MovePoint* movePoint READ movePoint WRITE setMovePoint NOTIFY movePointChanged FINAL);
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
-    Q_PROPERTY(bool enableButton READ returnEnableButton NOTIFY EnableChanged);
     Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
 
 public:
@@ -43,7 +42,6 @@ public:
 
     int nextLandIndex() const;
     void setNextLandIndex(int newNextLandIndex);
-    bool returnEnableButton() const;
     void toll();
     void popUpdisplaySetting(string _message,int _type); //set upgraade,buy,message popUp  Type: 0:message 1:buy 2:upgrade
 
@@ -83,7 +81,6 @@ signals:
     void movePointInitialize();
     void displayStateChanged();
     void useCardChanged();
-    void EnableChanged();
     void startRefresh();
     void openShopPopup();
     void displayMessageChanged();
@@ -94,7 +91,6 @@ signals:
 
 private:
     int turn;
-    bool buttonState = false;
     bool firstClick = true;
 
     map<string, int> playerNameToID;

@@ -73,6 +73,8 @@ Popup {
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
                         console.log("buy")
+                        event.buyLand()
+                        root_CloseAniamtion.start()
                     }
                 }
             }

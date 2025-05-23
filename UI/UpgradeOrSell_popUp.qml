@@ -70,11 +70,12 @@ Popup{
                 color: "transparent"
                 CostumBtn_Rec{
                     hoverColor: "#83ff05"
-                    text: "ugrade"
-                    textColor: (hovered) ? "blcak" : "white"
-                    enabled: root.isUpgradeable
+                    text: "upgrade"
+                    textColor: (hovered) ? "black" : "white"
                     onPressed: {
                         console.log("upgrade")
+                        event.levelup()
+                        root_CloseAniamtion.start()
                     }
                 }
             }
@@ -85,10 +86,11 @@ Popup{
                 CostumBtn_Rec{
                     hoverColor: "#83ff05"
                     text: "sell"
-                    textColor: (hovered) ? "blcak" : "white"
-                    enabled: root.isSellable
+                    textColor: (hovered) ? "black" : "white"
                     onPressed: {
                         console.log("sell")
+                        event.sellLand()
+                        root_CloseAniamtion.start()
                     }
                 }
             }
@@ -99,7 +101,7 @@ Popup{
                 CostumBtn_Rec{
                     hoverColor: "#ff6805"
                     text: "close"
-                    textColor: (hovered) ? "blcak" : "white"
+                    textColor: (hovered) ? "black" : "white"
                     onPressed: {
                         root_CloseAniamtion.start()
                         event.nextTurn();

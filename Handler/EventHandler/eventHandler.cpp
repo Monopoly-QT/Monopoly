@@ -91,8 +91,9 @@ eventHandler::eventHandler(){
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    processMap[13]->setOwner(1);
-    processMap[13]->setLevel(4);
+    processPlayer[2]->setPos(18);
+    processMap[2]->setOwner(1);
+    processMap[2]->setLevel(1);
     mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
 
     // for(int i=0;i<5;i++){
@@ -116,8 +117,6 @@ eventHandler::~eventHandler(){
 
 void eventHandler::moveEntryPoint(int _moveDistance) {
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    buttonState = true;
-    emit EnableChanged();
     movePointAnimator(_moveDistance);
 }
 
@@ -432,6 +431,7 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 
     bool origin = false;
 
+    _times = 2;
     for(int i=0;i<_times;i++){
 
         if(processMap[_playerPos]->getState() == 1 || processPlayer[turn]->getState() == 1) break;
@@ -467,13 +467,14 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 
 void eventHandler::afterMove(){
     int location = processPlayer[turn]->getPos();
+    int landOwner = processMap[location]->getOwner()-1;
     cout<<turn<<endl;
 
     // 確認種類是一般的已被擁有地塊且自己非擁有者
-    if(processMap[location]->getType() == 0 && processMap[location]->getOwner() != turn && processMap[location]->getOwner() != -1)
+    if(processMap[location]->getType() == 0 && landOwner != turn && processMap[location]->getOwner() != -1)
         toll();
     //升級地塊或賣房
-    else if(processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn){
+    else if(processMap[location]->getType() == 0 && landOwner == turn){
         popUpdisplaySetting("",2);
     }
     //買房
@@ -482,9 +483,7 @@ void eventHandler::afterMove(){
     }
     // 事件地塊
     else if (processMap[location]->getType() == 1) {
-        // buttonState = false;
-        // QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
-        //=================往後加=================
+        nextTurn();
     }
     // 商店
     else if (processMap[location]->getType() == 2) {
@@ -493,12 +492,6 @@ void eventHandler::afterMove(){
     // 解除路障
     if (processMap[location]->getState() == 1)
         processMap[location]->setState(0);
-
-    // if (processMap[location]->getType() != 0) {
-    //     buttonState = false;
-    //     emit EnableChanged();
-    // }
-    // nextTurn();
 }
 
 void eventHandler::nextTurn(){
@@ -524,65 +517,56 @@ void eventHandler::suicidal() {
     nextTurn();
 }
 
+/*  land owner is turn+1 */
+
 void eventHandler::toll() {
     int nowPos = processPlayer[turn]->getPos();
-    int landOwner = processMap[nowPos]->getOwner();
+    int landOwner = processMap[nowPos]->getOwner()-1;
     int landValue = processMap[nowPos]->getValue();
     int nowLevel = processMap[nowPos]->getLevel();
     int fee = (nowLevel) * (landValue / 10);
     processPlayer[turn]->subMoney(fee);
     processPlayer[landOwner]->addMoney(fee);
     popUpdisplaySetting("-"+to_string(fee),0);
+    nextTurn();
 }
 
 void eventHandler::buyLand() {
-    if (turn >= 0) {
-        int nowPos = processPlayer[turn]->getPos();
-        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == 0) {
-            processPlayer[turn]->addHouse(nowPos);
-            processMap[nowPos]->setOwner(turn + 1);
-            processMap[nowPos]->setLevel(1);
-            processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
-            buttonState = false;
-            emit EnableChanged();
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
-            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-        }
-    }
+    qDebug()<<"run";
+    int nowPos = processPlayer[turn]->getPos();
+    processPlayer[turn]->addHouse(nowPos);
+    processMap[nowPos]->setOwner(turn+1);
+    processMap[nowPos]->setLevel(1);
+    processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    nextTurn();
 }
 
 void eventHandler::levelup() {
-    if (turn >= 0) {
-        int nowPos = processPlayer[turn]->getPos();
-        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1 && processMap[nowPos]->getLevel() < 4) {
-            int nowLevel = processMap[nowPos]->getLevel();
-            processMap[nowPos]->setLevel(nowLevel + 1);
-            processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
-            buttonState = false;
-            emit EnableChanged();
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
-            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-        }
+    int nowPos = processPlayer[turn]->getPos();
+    if (processMap[nowPos]->getLevel() < 4) {
+        int nowLevel = processMap[nowPos]->getLevel();
+        processMap[nowPos]->setLevel(nowLevel + 1);
+        processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
+        m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+        m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+        mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        nextTurn();
     }
 }
 
 void eventHandler::sellLand() {
-    if (turn >= 0) {
         int nowPos = processPlayer[turn]->getPos();
-        if (processMap[nowPos]->getType() == 0 && processMap[nowPos]->getOwner() == turn + 1) {
-            int value = processMap[nowPos]->getValue();
-            processMap[nowPos]->setOwner(0);
-            processMap[nowPos]->setLevel(0);
-            processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
-            buttonState = false;
-            emit EnableChanged();
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
-            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-        }
-    }
+        int value = processMap[nowPos]->getValue();
+        processMap[nowPos]->setOwner(-1);
+        processMap[nowPos]->setLevel(0);
+        processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
+        m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+        m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+        mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        nextTurn();
 }
 
 void eventHandler::popUpdisplaySetting(string _message,int _type){

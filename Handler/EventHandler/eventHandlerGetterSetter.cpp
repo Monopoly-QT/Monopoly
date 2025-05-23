@@ -51,7 +51,3 @@ void eventHandler::setUseCard(UseCardSetting *newUseCard)
     m_useCard = newUseCard;
     emit useCardChanged();
 }
-
-bool eventHandler::returnEnableButton() const{
-    return buttonState;
-}
