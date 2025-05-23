@@ -352,7 +352,7 @@ bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
     return res;
 }
 
-bool eventHandler::skipEntryPoint() {
+void eventHandler::skipEntryPoint() {
     ++turn > 3 ? turn = 0 : 0;
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
@@ -419,10 +419,10 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
         if (processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
 
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
-    }
 
-    // 確認是地區收費
-    if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
+        // 確認是地區收費
+        if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
+    }
 
     // 不同type
     if (processMap[processPlayer[turn]->getPos()]->getType() == 1) {
