@@ -370,6 +370,7 @@ void eventHandler::movePointAnimator(int _step){
     }
     double posX = mapPosXandPosY[index].first;
     double posY = mapPosXandPosY[index].second;
+    hideSpecificPLayer(landCoordinate,m_mapList,processPlayer[turn],turn);
     operateMovePoint.initializeMovePoint(posX,posY,turn);
     emit movePointInitialize();
     std::thread t(&eventHandler::animationThread,this,_step,playerPos,index);
@@ -406,7 +407,7 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
             processPlayer[turn]->addMoney(4000);
         }
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
-        this_thread::sleep_for(chrono::milliseconds(350));
+        this_thread::sleep_for(chrono::milliseconds(400));
     }
 
     this_thread::sleep_for(chrono::milliseconds(250));
@@ -447,7 +448,10 @@ void eventHandler::afterMove(){
     //     buttonState = false;
     //     emit EnableChanged();
     // }
+    nextTurn();
+}
 
+void eventHandler::nextTurn(){
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     turn = (turn + 1) % 4;
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);

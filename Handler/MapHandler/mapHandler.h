@@ -18,5 +18,7 @@ void mapInitialize(vector<int> &landCoordinate ,QList<QObject*> &m_mapList ,vect
 
 void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<Land*> land,vector<Player*> player);
 
+void hideSpecificPLayer(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,Player* player,int turn);
+
 
 #endif // MAPHANDLER_H

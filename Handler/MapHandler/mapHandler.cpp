@@ -108,3 +108,11 @@ void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<La
         regis->byTypeOrOwnerSetColor(land[i]->getType(),land[i]->getOwner());
     }
 }
+
+void hideSpecificPLayer(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,Player* player,int turn){
+    int location = player->getPos();
+    Map *regis = qobject_cast<Map*>(m_mapList[landCoordinate[location]]);
+    QList<int> QListRegis = regis->playerStay();
+    QListRegis[turn] = 0;
+    regis->setPlayerStay(QListRegis);
+}
