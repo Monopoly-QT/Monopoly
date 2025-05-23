@@ -448,9 +448,7 @@ Window {
             movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
         }
         onOpenMessage: {
-            if(message.visible)
-                message.closeAnimation()
-            else
+            if(!message.visible)
                 message.openAnimation()
         }
         onOpenBuyPopup: {
