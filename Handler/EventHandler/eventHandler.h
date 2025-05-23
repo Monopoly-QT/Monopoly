@@ -27,6 +27,7 @@ class eventHandler:public QObject{
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
     Q_PROPERTY(bool enableButton READ returnEnableButton NOTIFY EnableChanged);
     Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
+
 public:
     eventHandler();
     ~eventHandler();
@@ -57,10 +58,13 @@ public:
     Q_INVOKABLE void rocketCardUseEntryPoint(int _playerIndex,int _duration);
     Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
     Q_INVOKABLE void removeCardUseEntryPoint(QString _removeQStr);
+    Q_INVOKABLE void sellLandFromStrUseEntryPoint(QString _removeQStr);
+
     Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
     Q_INVOKABLE void eventCardUseEntryPoint();
     Q_INVOKABLE bool buyItemEntryPoint(int price , int itemIndex);
     Q_INVOKABLE void nextTurn();
+    Q_INVOKABLE void suicidal();
 
 
     StateDisplay *displayState() const;
@@ -86,6 +90,7 @@ signals:
     void openUpgradePopup(bool upgradeable,bool sellable);
     void openBuyPopup();
     void openMessage();
+    void openBankruptcy();
 
 private:
     int turn;

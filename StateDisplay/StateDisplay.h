@@ -10,6 +10,7 @@ class StateDisplay: public QObject{
     Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged FINAL);
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL);
     Q_PROPERTY(int ownMoney READ ownMoney WRITE setOwnMoney NOTIFY ownMoneyChanged FINAL);
+
 private:
 
     QString m_imageSource;

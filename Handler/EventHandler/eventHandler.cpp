@@ -351,6 +351,29 @@ void eventHandler::removeCardUseEntryPoint(QString _removeQStr) {
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
+void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
+    string regisStr = _removeQStr.toStdString();
+    int location = 0;
+    for (int i = 0; i < 64; i++) {
+        if (processMap[i]->getName() == regisStr) {
+            location = i;
+            break;
+        }
+    }
+
+    if (turn >= 0) {
+        if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn + 1) {
+            int value = processMap[location]->getValue();
+            processMap[location]->setOwner(0);
+            processMap[location]->setLevel(0);
+            processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        }
+    }
+}
+
 void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr) {
     string regisStr = _blockQStr.toStdString();
     regisStr = regisStr.substr(0, regisStr.find("."));
@@ -481,8 +504,24 @@ void eventHandler::afterMove(){
 void eventHandler::nextTurn(){
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     turn = (turn + 1) % 4;
+    int tmp = turn;
+    while (!processPlayer[turn]->getIsLive()) {
+        turn = (turn + 1) % 4;
+        if (tmp == turn) {
+            // TODO : 這裡要處理所有人都破產的情況
+            break;
+        }
+    }
+    if (processPlayer[turn]->getMoney() <= 0) {
+        emit openBankruptcy();
+    }
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+}
+
+void eventHandler::suicidal() {
+    processPlayer[turn]->setIsLive(false);
+    nextTurn();
 }
 
 void eventHandler::toll() {

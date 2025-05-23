@@ -31,6 +31,7 @@ private:
     int state; //0:not in hospital 1:in hospital
     int stayInHospitalTurn;
     int nextRollDicePoint;
+    bool isLive;
 
 signals:
     void moneyChanged();
@@ -54,6 +55,8 @@ public:
     void addHouse(int _pos);
 
     void subPos(int _deltaPos);
+    bool getIsLive() const;
+    void setIsLive(bool _isLive);
 
     void setMoney(int _money);
     void setPos(int _pos);

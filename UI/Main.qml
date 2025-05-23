@@ -419,6 +419,11 @@ Window {
         text: event.displayMessage
     }
 
+    Bankruptcy_popUp{
+        id:bankruptcy
+        text: event.displayMessage
+    }
+
     FastBlur {
         id: theBlur;
         visible: card_popUp.visible || shop_popUp.visible
@@ -465,6 +470,12 @@ Window {
                 upgradeOrSell.closeAnimation()
             else
                 upgradeOrSell.openAnimation()
+        }
+        onOpenBankruptcy: {
+            if(bankruptcy.visible)
+                bankruptcy.closeAnimation()
+            else
+                bankruptcy.openAnimation()
         }
     }
 

@@ -914,7 +914,7 @@ Popup {
                                         MouseArea {
                                             anchors.fill: parent
                                             hoverEnabled: true
-                                            enabled: true
+                                            enabled: event.useCard.displayTargetLand.length !== 0
                                             onEntered: {
                                                 parent.scale = 1.1
                                                 parent.isHovered = true

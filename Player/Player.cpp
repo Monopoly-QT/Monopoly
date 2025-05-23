@@ -19,6 +19,7 @@ Player::Player() {
     state = 0; //0:not in hospital 1:in hospital
     stayInHospitalTurn = 0;
     nextRollDicePoint = 0;
+    isLive = true;
 }
 
 Player::Player(int _money, int _playerID, string _playerName, string _playerLastName, vector<int> _ownCard, int _pos, int _state, int _stayInHospitalTurn,int _nextRollDicePoint) {
@@ -31,6 +32,7 @@ Player::Player(int _money, int _playerID, string _playerName, string _playerLast
     state = _state; //0:not in hospital 1:in hospital
     stayInHospitalTurn = _stayInHospitalTurn;
     nextRollDicePoint = _nextRollDicePoint;
+    isLive = true;
 }
 
 void Player::addMoney(int _addition) {
@@ -74,6 +76,14 @@ void Player::subPos(int _deltaPos) {
     pos -= _deltaPos;
     pos %= 64;
     emit posChanged();
+}
+
+bool Player::getIsLive() const {
+    return isLive;
+}
+
+void Player::setIsLive(bool _isLive) {
+    isLive = _isLive;
 }
 
 void Player::setMoney(int _money) {
