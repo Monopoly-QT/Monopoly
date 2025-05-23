@@ -170,7 +170,7 @@ Popup {
                                     return 0;
                                 }
                                 Layout.fillWidth: true
-                                enabled: event.lastPlayerMoney >= price
+                                enabled: event.displayState.ownMoney >= price
                                 Text {
                                     text:"price - "+ buyButton.price
                                     anchors.centerIn: parent
@@ -225,7 +225,7 @@ Popup {
                     Text {
                         id: moneyText
                         anchors.fill: parent
-                        text: "$" + event.lastPlayerMoney
+                        text: "$" + event.displayState.ownMoney
                         font.pixelSize: 18
                         font.bold: true
                         color: "#EEEEEE"
@@ -284,6 +284,7 @@ Popup {
                         onPressed: {
                             parent.scale = 1.0
                             shop_popUp.closeAnimation();
+                            event.skipEntryPoint()
                         }
                         onReleased: {
                             parent.scale = 1.05

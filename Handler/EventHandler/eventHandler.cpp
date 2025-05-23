@@ -349,17 +349,20 @@ void eventHandler::eventCardUseEntryPoint() {
 }
 
 bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
-    int tisTurn = turn - 1;
-    if (tisTurn < 0) tisTurn = 3;
-    bool res = Shop::buyItem(processPlayer[tisTurn], price, itemIndex);
-    for (auto i: processPlayer[tisTurn]->getOwnCards()) {
+    bool res = Shop::buyItem(processPlayer[turn], price, itemIndex);
+    for (auto i: processPlayer[turn]->getOwnCards()) {
         cout << i << " ";
     }
     cout << endl;
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    emit lastPlayerMoneyChanged();
     return res;
+}
+
+bool eventHandler::skipEntryPoint() {
+    ++turn > 3 ? turn = 0 : 0;
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 void eventHandler::addMapPosXandPosY(double _posX, double _posY) {
@@ -430,10 +433,16 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
         //=================往後加=================
     } else if (processMap[processPlayer[turn]->getPos()]->getType() == 2) {
         // 商店
-        emit lastPlayerMoneyChanged();
         emit openShopPopup();
     }
-    ++turn > 3 ? turn = 0 : 0;
+
+    if (processMap[processPlayer[turn]->getPos()]->getType() != 0) {
+        buttonState = false;
+        emit skipTurn();
+        emit EnableChanged();
+    }
+
+
     this_thread::sleep_for(chrono::milliseconds(250));
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     QMetaObject::invokeMethod(&operateMovePoint, "hiddingMovePoint", Qt::QueuedConnection);
@@ -486,10 +495,6 @@ void eventHandler::setUseCard(UseCardSetting *newUseCard) {
         return;
     m_useCard = newUseCard;
     emit useCardChanged();
-}
-
-int eventHandler::showLastPlayerMoney() const {
-    return processPlayer[turn-1 < 0 ? 3 : turn-1]->getMoney();
 }
 
 bool eventHandler::returnEnableButton() const {

@@ -26,7 +26,7 @@ Rectangle{
     }
 
     MouseArea{
-        enabled: true
+        enabled: playWindow.diceEnable
         hoverEnabled: true
         anchors.fill: parent
         onEntered: {

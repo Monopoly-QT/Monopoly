@@ -25,6 +25,7 @@ Window {
         property color hoverColor: "#808080"
         property color pressColor: "#747474"
         property int dicePoint: 0
+        property bool diceEnable: true
         Rectangle {
             id: movePoint
             height: 10
@@ -394,6 +395,8 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.buyLand()
+                            event.skipEntryPoint()
+                            playWindow.diceEnable = true;
                         }
                     }
 
@@ -406,6 +409,8 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.levelup()
+                            event.skipEntryPoint()
+                            playWindow.diceEnable = true;
                         }
                     }
 
@@ -418,6 +423,21 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.sellLand();
+                            event.skipEntryPoint()
+                            playWindow.diceEnable = true;
+                        }
+                    }
+
+                    Button {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.preferredHeight: parent.height / 30
+                        Layout.preferredWidth: parent.width / 2.5
+                        text: "Skip"
+                        enabled: event.enableButton
+                        property int index: 0
+                        onClicked: {
+                            event.skipEntryPoint()
+                            playWindow.diceEnable = true;
                         }
                     }
 
@@ -429,9 +449,21 @@ Window {
                         id: cheatCommandLine_Rec
                     }
 
+                    Connections {
+                        target: event
+                        onSkipTurn: {
+                            event.skipEntryPoint()
+                            playWindow.diceEnable = true;
+                            playWindow.diceEnable = true;
+                        }
+                    }
+
                     Dice {
                         id: diceContainer
+                        enabled: playWindow.diceEnable
                     }
+
+
                 }
             }
         }
