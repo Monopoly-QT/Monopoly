@@ -352,7 +352,7 @@ bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
     return res;
 }
 
-bool eventHandler::skipEntryPoint() {
+void eventHandler::skipEntryPoint() {
     ++turn > 3 ? turn = 0 : 0;
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
