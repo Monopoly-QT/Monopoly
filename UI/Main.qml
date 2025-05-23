@@ -395,7 +395,6 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.buyLand()
-                            event.skipEntryPoint()
                             playWindow.diceEnable = true;
                         }
                     }
@@ -409,7 +408,6 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.levelup()
-                            event.skipEntryPoint()
                             playWindow.diceEnable = true;
                         }
                     }
@@ -423,20 +421,6 @@ Window {
                         property int index: 0
                         onClicked: {
                             event.sellLand();
-                            event.skipEntryPoint()
-                            playWindow.diceEnable = true;
-                        }
-                    }
-
-                    Button {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Layout.preferredHeight: parent.height / 30
-                        Layout.preferredWidth: parent.width / 2.5
-                        text: "Skip"
-                        enabled: event.enableButton
-                        property int index: 0
-                        onClicked: {
-                            event.skipEntryPoint()
                             playWindow.diceEnable = true;
                         }
                     }
@@ -447,15 +431,6 @@ Window {
 
                     CheatCommandLine {
                         id: cheatCommandLine_Rec
-                    }
-
-                    Connections {
-                        target: event
-                        onSkipTurn: {
-                            event.skipEntryPoint()
-                            playWindow.diceEnable = true;
-                            playWindow.diceEnable = true;
-                        }
                     }
 
                     Dice {
@@ -475,6 +450,21 @@ Window {
 
     ShopPopup {
         id: shop_popUp
+    }
+
+    Message_popUp{
+        id:message
+        label: "test"
+    }
+
+    BuyLand_popUp{
+        id:buyLand
+        text: "test"
+    }
+
+    UpgradeOrSell_popUp{
+        id:upgradeOrSell
+        text: "sell"
     }
 
     FastBlur {
@@ -504,6 +494,26 @@ Window {
             movePoint.moveDuaration = 0
             movePoint.x = event.movePoint.changeX - (movePoint.width / 2)
             movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
+        }
+        onOpenMessage: {
+            if(message.visible)
+                message.closeAnimation()
+            else
+                message.openAnimation()
+        }
+        onOpenBuyPopup: {
+            if(buyLand.visible)
+                buyLand.closeAnimation()
+            else
+                buyLand.openAnimation()
+        }
+        onOpenUpgradePopup: (upgradeable,sellable) => {
+            upgradeOrSell.isUpgradeable = upgradeable
+            upgradeOrSell.isSellable = sellable
+            if(upgradeOrSell.visible)
+                upgradeOrSell.closeAnimation()
+            else
+                upgradeOrSell.openAnimation()
         }
     }
 

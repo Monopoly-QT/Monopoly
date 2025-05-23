@@ -53,6 +53,11 @@ qt_add_qml_module(appmonopoly
         UI/StateContainer.qml
         UI/RefreshPopup.qml
         UI/ShopPopup.qml
+        UI/baseWidget/CostumBtn_Rec.qml
+        UI/baseWidget/Standard_Text.qml
+        UI/BuyLand_popUp.qml
+        UI/UpgradeOrSell_popUp.qml
+        UI/Message_popUp.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc

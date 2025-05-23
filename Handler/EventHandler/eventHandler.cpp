@@ -352,12 +352,6 @@ bool eventHandler::buyItemEntryPoint(int price, int itemIndex) {
     return res;
 }
 
-void eventHandler::skipEntryPoint() {
-    ++turn > 3 ? turn = 0 : 0;
-    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
-}
-
 void eventHandler::addMapPosXandPosY(double _posX, double _posY){
     mapPosXandPosY.push_back({_posX,_posY});
 }
@@ -389,9 +383,7 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 
     for(int i=0;i<_times;i++){
 
-        if(processMap[_playerPos]->getState() == 1 ||processPlayer[turn]->getState() == 1) break;
-
-        this_thread::sleep_for(chrono::milliseconds(350));
+        if(processMap[_playerPos]->getState() == 1 || processPlayer[turn]->getState() == 1) break;
 
         if(processPlayer[turn]->getPos() == 63){
             origin = true;
@@ -409,42 +401,49 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
         // 原點處理
         if (origin && _playerPos == 0) {
             processPlayer[turn]->addMoney(8000);
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-        } else if (origin) {
-            processPlayer[turn]->addMoney(4000);
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
         }
-
-        // 解除路障
-        if (processMap[_playerPos]->getState() == 1) processMap[_playerPos]->setState(0);
-
+        else if (origin) {
+            processPlayer[turn]->addMoney(4000);
+        }
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
+        this_thread::sleep_for(chrono::milliseconds(350));
     }
 
+    this_thread::sleep_for(chrono::milliseconds(250));
+    QMetaObject::invokeMethod(&operateMovePoint, "hiddingMovePoint", Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this,"afterMove", Qt::QueuedConnection);
+}
+
+void eventHandler::afterMove(){
     // 確認是地區收費
     if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
 
     // 不同type
     if (processMap[processPlayer[turn]->getPos()]->getType() == 1) {
-        buttonState = false;
-        QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
+        // buttonState = false;
+        // QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
         //=================往後加=================
     } else if (processMap[processPlayer[turn]->getPos()]->getType() == 2) {
         // 商店
         emit openShopPopup();
     }
+    // 解除路障
+    if (processMap[processPlayer[turn]->getPos()]->getState() == 1)
+        processMap[processPlayer[turn]->getPos()]->setState(0);
 
     if (processMap[processPlayer[turn]->getPos()]->getType() != 0) {
         buttonState = false;
-        emit skipTurn();
         emit EnableChanged();
     }
 
-    this_thread::sleep_for(chrono::milliseconds(250));
-    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-    QMetaObject::invokeMethod(&operateMovePoint, "hiddingMovePoint", Qt::QueuedConnection);
-    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    if(processMap[processPlayer[turn]->getPos()]->getType() == 0 &&processMap[processPlayer[turn]->getPos()]->getOwner() == -1){
+        popUpdisplaySetting("",1);
+    }
+
+    // mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    // turn = (turn + 1) % 4;
+    // m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    // m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 
@@ -508,6 +507,7 @@ bool eventHandler::returnEnableButton() const{
 }
 
 void eventHandler::toll() {
+    // popUpdisplaySetting("-100",0);
     int nowPos = processPlayer[turn]->getPos();
     int landOwner = processMap[nowPos]->getOwner();
     if (landOwner != 0 && landOwner != turn + 1 && processMap[nowPos]->getType() == 0) {
@@ -570,4 +570,39 @@ void eventHandler::sellLand() {
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
         }
     }
+}
+
+void eventHandler::popUpdisplaySetting(string _message,int _type){
+    if(_type == 0){
+        setDisplayMessage(QString::fromStdString(_message));
+        emit openMessage();
+    }
+    else if(_type == 1){
+        string message = "You arrive "+ processMap[processPlayer[turn]->getPos()]->getName() +".";
+        setDisplayMessage(QString::fromStdString(_message));
+        emit openBuyPopup();
+    }
+    else if(_type == 2){
+        string message = processMap[processPlayer[turn]->getPos()]->getName() +" is your own place.";
+        bool isUpgradeable = true ,isSellable = true;
+        setDisplayMessage(QString::fromStdString(_message));
+        if(processMap[processPlayer[turn]->getPos()]->getLevel() < 4)
+            isUpgradeable = false;
+        if(processMap[processPlayer[turn]->getPos()]->getLevel() > 0)
+            isSellable = false;
+        emit openUpgradePopup(isUpgradeable,isSellable);
+    }
+}
+
+QString eventHandler::displayMessage() const
+{
+    return m_displayMessage;
+}
+
+void eventHandler::setDisplayMessage(const QString &newDisplayMessage)
+{
+    if (m_displayMessage == newDisplayMessage)
+        return;
+    m_displayMessage = newDisplayMessage;
+    emit displayMessageChanged();
 }

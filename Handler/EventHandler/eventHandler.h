@@ -26,6 +26,7 @@ class eventHandler:public QObject{
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
     Q_PROPERTY(bool enableButton READ returnEnableButton NOTIFY EnableChanged);
+    Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
 public:
     eventHandler();
     ~eventHandler();
@@ -41,15 +42,15 @@ public:
 
     int nextLandIndex() const;
     void setNextLandIndex(int newNextLandIndex);
-
-    Q_INVOKABLE void addMapPosXandPosY(double _posX, double _posY);
-    Q_INVOKABLE void clearMapPosXandPosY();
-
-    Q_INVOKABLE void moveEntryPoint(int _moveDistance);
-    Q_INVOKABLE void commendEntryPoint(QString _instruct);
-
     bool returnEnableButton() const;
     void toll();
+    void popUpdisplaySetting(string _message,int _type); //set upgraade,buy,message popUp  Type: 0:message 1:buy 2:upgrade
+
+    Q_INVOKABLE void afterMove();
+    Q_INVOKABLE void addMapPosXandPosY(double _posX, double _posY);
+    Q_INVOKABLE void clearMapPosXandPosY();
+    Q_INVOKABLE void moveEntryPoint(int _moveDistance);
+    Q_INVOKABLE void commendEntryPoint(QString _instruct);
     Q_INVOKABLE void buyLand();
     Q_INVOKABLE void levelup();
     Q_INVOKABLE void sellLand();
@@ -59,7 +60,6 @@ public:
     Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
     Q_INVOKABLE void eventCardUseEntryPoint();
     Q_INVOKABLE bool buyItemEntryPoint(int price , int itemIndex);
-    Q_INVOKABLE void skipEntryPoint();
 
 
     StateDisplay *displayState() const;
@@ -67,6 +67,9 @@ public:
 
     UseCardSetting *useCard() const;
     void setUseCard(UseCardSetting *newUseCard);
+
+    QString displayMessage() const;
+    void setDisplayMessage(const QString &newDisplayMessage);
 
 signals:
     void mapListChanged();
@@ -78,7 +81,10 @@ signals:
     void EnableChanged();
     void startRefresh();
     void openShopPopup();
-    void skipTurn();
+    void displayMessageChanged();
+    void openUpgradePopup(bool upgradeable,bool sellable);
+    void openBuyPopup();
+    void openMessage();
 
 private:
     int turn;
@@ -100,6 +106,7 @@ private:
 
     StateDisplay *m_displayState;
     UseCardSetting *m_useCard;
+    QString m_displayMessage;
 };
 
 #endif // EVENTHANDLER_H

@@ -34,7 +34,6 @@ Rectangle{
             diceContainer.isPressed = true
             if(diceTimer.running === false){
                 diceTimer.start()
-                playWindow.diceEnable = false;
             }
         }
         onReleased: {
