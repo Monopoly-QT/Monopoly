@@ -42,5 +42,8 @@
         "state": 0,
         "stayInHospitalTurn": 0,
         "nextRollDicePoint": 0
+    },
+    "End": {
+        "money": 100000
     }
 }
