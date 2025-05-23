@@ -19,6 +19,7 @@
 #include "ItemCard/RoadblockCard/RoadblockCard.h"
 #include "ItemCard/RocketCard/RocketCard.h"
 #include "Shop/shop.h"
+// #include "MiniGames/DragonGate/DragonGate.h"
 
 bool checkNum(string needChecked) {
     for (int i = 0; i < needChecked.size(); i++) {
@@ -29,8 +30,6 @@ bool checkNum(string needChecked) {
 
     return true;
 }
-
-// void runMinigame();
 
 // void initialize();
 
@@ -251,7 +250,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
             ss >> inputCommand;
-            // runMinigame();
+            // DragonGate::init(processPlayer[turn]);
         }
         else if (inputCommand == "/gamestate") {
             prompt = commandData["gamestate"]["prompt"].get<string>();
