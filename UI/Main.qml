@@ -454,17 +454,17 @@ Window {
 
     Message_popUp{
         id:message
-        label: "test"
+        label: event.displayMessage
     }
 
     BuyLand_popUp{
         id:buyLand
-        text: "test"
+        text: event.displayMessage
     }
 
     UpgradeOrSell_popUp{
         id:upgradeOrSell
-        text: "sell"
+        text: event.displayMessage
     }
 
     FastBlur {
@@ -502,6 +502,7 @@ Window {
                 message.openAnimation()
         }
         onOpenBuyPopup: {
+            console.log("123")
             if(buyLand.visible)
                 buyLand.closeAnimation()
             else
@@ -526,9 +527,4 @@ Window {
         refreshPopup.start()
     }
 
-    // Button {
-    //     text: "測試 /refresh"
-    //     anchors.centerIn: parent
-    //     onClicked: showRefresh()
-    // }
 }

@@ -415,35 +415,43 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 }
 
 void eventHandler::afterMove(){
-    // 確認是地區收費
-    if(processMap[processPlayer[turn]->getPos()]->getType() == 0)toll();
+    int location = processPlayer[turn]->getPos();
+    cout<<turn<<endl;
 
-    // 不同type
-    if (processMap[processPlayer[turn]->getPos()]->getType() == 1) {
+    // 確認種類是一般的已被擁有地塊且自己非擁有者
+    if(processMap[location]->getType() == 0 && processMap[location]->getOwner() != turn && processMap[location]->getOwner() != -1)
+        toll();
+    //升級地塊或賣房
+    else if(processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn){
+        popUpdisplaySetting("",2);
+    }
+    //買房
+    else if(processMap[location]->getType() == 0 && processMap[location]->getOwner() == -1){
+        popUpdisplaySetting("",1);
+    }
+    // 事件地塊
+    else if (processMap[location]->getType() == 1) {
         // buttonState = false;
         // QMetaObject::invokeMethod(this, "EnableChanged", Qt::QueuedConnection);
         //=================往後加=================
-    } else if (processMap[processPlayer[turn]->getPos()]->getType() == 2) {
-        // 商店
+    }
+    // 商店
+    else if (processMap[location]->getType() == 2) {
         emit openShopPopup();
     }
     // 解除路障
-    if (processMap[processPlayer[turn]->getPos()]->getState() == 1)
-        processMap[processPlayer[turn]->getPos()]->setState(0);
+    if (processMap[location]->getState() == 1)
+        processMap[location]->setState(0);
 
-    if (processMap[processPlayer[turn]->getPos()]->getType() != 0) {
-        buttonState = false;
-        emit EnableChanged();
-    }
+    // if (processMap[location]->getType() != 0) {
+    //     buttonState = false;
+    //     emit EnableChanged();
+    // }
 
-    if(processMap[processPlayer[turn]->getPos()]->getType() == 0 &&processMap[processPlayer[turn]->getPos()]->getOwner() == -1){
-        popUpdisplaySetting("",1);
-    }
-
-    // mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-    // turn = (turn + 1) % 4;
-    // m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    // m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    turn = (turn + 1) % 4;
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 
@@ -507,18 +515,14 @@ bool eventHandler::returnEnableButton() const{
 }
 
 void eventHandler::toll() {
-    // popUpdisplaySetting("-100",0);
     int nowPos = processPlayer[turn]->getPos();
     int landOwner = processMap[nowPos]->getOwner();
-    if (landOwner != 0 && landOwner != turn + 1 && processMap[nowPos]->getType() == 0) {
-        int landValue = processMap[nowPos]->getValue();
-        int nowLevel = processMap[nowPos]->getLevel();
-        int fee = (nowLevel) * (landValue / 10);
-        processPlayer[turn]->subMoney(fee);
-        processPlayer[landOwner - 1]->addMoney(fee);
-    }
-    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    int landValue = processMap[nowPos]->getValue();
+    int nowLevel = processMap[nowPos]->getLevel();
+    int fee = (nowLevel) * (landValue / 10);
+    processPlayer[turn]->subMoney(fee);
+    processPlayer[landOwner]->addMoney(fee);
+    popUpdisplaySetting("-"+to_string(fee),0);
 }
 
 void eventHandler::buyLand() {
@@ -573,19 +577,20 @@ void eventHandler::sellLand() {
 }
 
 void eventHandler::popUpdisplaySetting(string _message,int _type){
+    cout<<"in popUpdisplaySetting"<<endl;
     if(_type == 0){
         setDisplayMessage(QString::fromStdString(_message));
         emit openMessage();
     }
     else if(_type == 1){
         string message = "You arrive "+ processMap[processPlayer[turn]->getPos()]->getName() +".";
-        setDisplayMessage(QString::fromStdString(_message));
+        setDisplayMessage(QString::fromStdString(message));
         emit openBuyPopup();
     }
     else if(_type == 2){
         string message = processMap[processPlayer[turn]->getPos()]->getName() +" is your own place.";
         bool isUpgradeable = true ,isSellable = true;
-        setDisplayMessage(QString::fromStdString(_message));
+        setDisplayMessage(QString::fromStdString(message));
         if(processMap[processPlayer[turn]->getPos()]->getLevel() < 4)
             isUpgradeable = false;
         if(processMap[processPlayer[turn]->getPos()]->getLevel() > 0)
