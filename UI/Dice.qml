@@ -4,22 +4,22 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 
-Rectangle{
+Rectangle {
     id: diceContainer
-    Layout.preferredHeight: parent.height/10
+    Layout.preferredHeight: parent.height / 10
     Layout.preferredWidth: parent.width
-    color:playWindow.thirdaryColor
+    color: playWindow.thirdaryColor
     border.color: playWindow.borderColor
     radius: 10
+    enabled: event.diceEnabled
     property bool isHovered: false
     property bool isPressed: false
 
 
-
-    MouseArea{
+    MouseArea {
         id: diceBtn
         anchors.fill: parent
-        hoverEnabled: playWindow.diceEnable
+        hoverEnabled: diceContainer.enabled
 
         onEntered: {
             parent.scale = 1.015
@@ -32,8 +32,9 @@ Rectangle{
         onPressed: {
             parent.scale = 1.0
             diceContainer.isPressed = true
-            if(diceTimer.running === false){
+            if (diceTimer.running === false) {
                 diceTimer.start()
+                event.diceEnabled = false;
             }
         }
         onReleased: {
@@ -42,39 +43,39 @@ Rectangle{
         }
     }
     Timer {
-            id: diceTimer
-            interval: 50
-            repeat: true
-            running: false
+        id: diceTimer
+        interval: 50
+        repeat: true
+        running: false
 
-            property int time: 1000
+        property int time: 1000
 
-            onTriggered: {
-                time = time-50
-                diceA.rollDice(114514)
-                diceB.rollDice(0)
-                if (time <= 0) {
-                    diceTimer.stop();
-                    time = 1000;
-                    playWindow.dicePoint = diceA.dicePoint + diceB.dicePoint + 2
-                    event.moveEntryPoint(playWindow.dicePoint)
-                }
+        onTriggered: {
+            time = time - 50
+            diceA.rollDice(114514)
+            diceB.rollDice(0)
+            if (time <= 0) {
+                diceTimer.stop();
+                time = 1000;
+                playWindow.dicePoint = diceA.dicePoint + diceB.dicePoint + 2
+                event.moveEntryPoint(playWindow.dicePoint)
             }
         }
-    Behavior on scale{
+    }
+    Behavior on scale {
         NumberAnimation {
             duration: 100
             easing.type: Easing.InOutQuad
         }
     }
 
-    Rectangle{
+    Rectangle {
         height: parent.height
         width: diceContainer.isHovered ? parent.width : 0
         radius: parent.radius
         color: diceContainer.isPressed ? playWindow.pressColor : playWindow.hoverColor
         z: 1
-        Behavior on width{
+        Behavior on width {
             NumberAnimation {
                 duration: 100
                 easing.type: Easing.InOutQuad
@@ -87,213 +88,213 @@ Rectangle{
         }
     }
 
-    RowLayout{
-        anchors.fill:parent
+    RowLayout {
+        anchors.fill: parent
         anchors.margins: 10
-        z:2
-        Rectangle{
+        z: 2
+        Rectangle {
             Layout.fillWidth: true
         }
         //diceA
-        Rectangle{
-            id:rec_diceA
+        Rectangle {
+            id: rec_diceA
             Layout.preferredHeight: parent.height
             Layout.preferredWidth: height
-            color:"white"
+            color: "white"
             radius: 5
-            ColumnLayout{
+            ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 5
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointA
+                    Rectangle {//dicePointA
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceAShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceAShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointB
+                    Rectangle {//dicePointB
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceBShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceBShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointC
+                    Rectangle {//dicePointC
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceCShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceCShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
                 }
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointD
+                    Rectangle {//dicePointD
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceDShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceDShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
                 }
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointE
+                    Rectangle {//dicePointE
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceEShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceEShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointF
+                    Rectangle {//dicePointF
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceFShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceFShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointG
+                    Rectangle {//dicePointG
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceA.DiceGShow? diceA.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceA.DiceGShow ? diceA.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
                 }
             }
         }
         //diceB
-        Rectangle{
-            id:rec_diceB
+        Rectangle {
+            id: rec_diceB
             Layout.preferredHeight: parent.height
             Layout.preferredWidth: height
-            color:"white"
+            color: "white"
             radius: 5
-            ColumnLayout{
+            ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 5
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointA
+                    Rectangle {//dicePointA
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceAShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceAShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointB
+                    Rectangle {//dicePointB
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceBShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceBShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointC
+                    Rectangle {//dicePointC
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceCShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceCShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
                 }
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointD
+                    Rectangle {//dicePointD
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceDShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceDShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
                 }
-                RowLayout{
-                    Layout.preferredHeight: parent.height/3
+                RowLayout {
+                    Layout.preferredHeight: parent.height / 3
                     Layout.preferredWidth: parent.width
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
 
-                    Rectangle{//dicePointE
+                    Rectangle {//dicePointE
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceEShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceEShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointF
+                    Rectangle {//dicePointF
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceFShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceFShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
-                    Rectangle{//dicePointG
+                    Rectangle {//dicePointG
                         Layout.preferredHeight: width
-                        Layout.preferredWidth: parent.width/5
-                        color: diceB.DiceGShow? diceB.pointColor : "white"
-                        radius: width/2
+                        Layout.preferredWidth: parent.width / 5
+                        color: diceB.DiceGShow ? diceB.pointColor : "white"
+                        radius: width / 2
                     }
 
-                    Rectangle{
+                    Rectangle {
                         Layout.fillWidth: true
                     }
                 }
             }
         }
-        Rectangle{
+        Rectangle {
             Layout.fillWidth: true
         }
     }
-    Rectangle{
+    Rectangle {
         anchors.fill: parent
         color: "#3a3a3a"
         opacity: 0.5
         z: parent.children.length
-        visible: !parent.enabled
-        radius:parent.radius
+        visible: !diceContainer.enabled
+        radius: parent.radius
     }
 
 }

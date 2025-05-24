@@ -606,6 +606,7 @@ void eventHandler::nextTurn(){
         setDisplayMessage("Bankrupt!");
         emit openBankruptcy();
     }
+    setDiceEnabled(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
@@ -705,4 +706,15 @@ void eventHandler::setDisplayMessage(const QString &newDisplayMessage)
         return;
     m_displayMessage = newDisplayMessage;
     emit displayMessageChanged();
+}
+
+bool eventHandler::diceEnabled() const {
+    return m_diceEnabled;
+}
+
+void eventHandler::setDiceEnabled(bool newDiceEnabled) {
+    if (m_diceEnabled == newDiceEnabled)
+        return;
+    m_diceEnabled = newDiceEnabled;
+    emit diceEnabledChanged();
 }

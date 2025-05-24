@@ -25,7 +25,6 @@ Window {
         property color hoverColor: "#808080"
         property color pressColor: "#747474"
         property int dicePoint: 0
-        property bool diceEnable: true
         Rectangle {
             id: movePoint
             height: 10
@@ -387,7 +386,6 @@ Window {
 
                     Dice {
                         id: diceContainer
-                        enabled: playWindow.diceEnable
                     }
 
 
