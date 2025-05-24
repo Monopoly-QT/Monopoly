@@ -11,8 +11,8 @@ class StateDisplay: public QObject{
     Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged FINAL);
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL);
     Q_PROPERTY(int ownMoney READ ownMoney WRITE setOwnMoney NOTIFY ownMoneyChanged FINAL);
-    Q_PROPERTY(int landValue1 READ landValue1 WRITE getlandValue NOTIFY landValueShow FINAL);
-    Q_PROPERTY(int landValue2 READ landValue2 WRITE getlandValue NOTIFY landValueShow FINAL);
+    Q_PROPERTY(int landValue1 READ landValue1 WRITE getlandValue1 NOTIFY landValueShow FINAL);
+    Q_PROPERTY(int landValue2 READ landValue2 WRITE getlandValue2 NOTIFY landValueShow FINAL);
 
 
 private:

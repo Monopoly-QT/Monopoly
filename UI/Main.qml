@@ -457,7 +457,6 @@ Window {
                 message.openAnimation()
         }
         onOpenBuyPopup: {
-            console.log("123")
             if(buyLand.visible)
                 buyLand.closeAnimation()
             else
