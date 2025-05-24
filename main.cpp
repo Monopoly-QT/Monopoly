@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     Dice diceA,diceB;
-    eventHandler event;
+    eventHandler event(&engine);
     engine.rootContext()->setContextProperty("diceA", &diceA);
     engine.rootContext()->setContextProperty("diceB", &diceB);
     engine.rootContext()->setContextProperty("event", &event);

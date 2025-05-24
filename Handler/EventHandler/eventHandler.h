@@ -13,6 +13,7 @@
 #include <QObject>
 #include <QList>
 #include <QString>
+#include <QQmlApplicationEngine>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ class eventHandler:public QObject{
     Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
 
 public:
-    eventHandler();
+    eventHandler(QQmlApplicationEngine *engine);
     ~eventHandler();
 
     Q_INVOKABLE void movePointAnimator(int _step);
@@ -109,6 +110,8 @@ private:
     StateDisplay *m_displayState;
     UseCardSetting *m_useCard;
     QString m_displayMessage;
+
+    QQmlApplicationEngine *engine;
 };
 
 #endif // EVENTHANDLER_H

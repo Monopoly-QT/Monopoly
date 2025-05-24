@@ -10,6 +10,7 @@
 #include <string>
 #include <regex>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "../Hospital/Hospital.h"
 
 #include "Handler/MapHandler/mapHandler.h"
@@ -19,7 +20,7 @@
 #include "ItemCard/RoadblockCard/RoadblockCard.h"
 #include "ItemCard/RocketCard/RocketCard.h"
 #include "Shop/shop.h"
-// #include "MiniGames/DragonGate/DragonGate.h"
+#include "MiniGames/DragonGate/DragonGate.h"
 
 bool checkNum(string needChecked) {
     for (int i = 0; i < needChecked.size(); i++) {
@@ -41,8 +42,9 @@ bool checkNum(string needChecked) {
 
 // void printAllPlayerInfo();
 
-eventHandler::eventHandler(){
+eventHandler::eventHandler(QQmlApplicationEngine *engine){
     turn = 0;
+    this->engine = engine;
 
     nlohmann::json countryData;
     ifstream country;
@@ -247,9 +249,29 @@ void eventHandler::commendEntryPoint(QString _instruct){
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
             cout << prompt << '\n';
-            popUpdisplaySetting(prompt, 0);
+
             ss >> inputCommand;
-            // DragonGate::init(processPlayer[turn]);
+            if(inputCommand == "DragonGate"){
+                regex r(R"(\{minigame_name\})");
+                prompt = regex_replace(prompt, r, inputCommand);
+                popUpdisplaySetting(prompt, 0);
+            // Enter DragonGate
+                DragonGate DG;
+                engine->rootContext()->setContextProperty("gameClass", &DG);
+                engine->loadFromModule("Monopoly", "DragonGate");
+                DG.init(processPlayer[turn]);
+            }
+            else if(inputCommand == "HorseRacing"){
+                regex r(R"(\{minigame_name\})");
+                prompt = regex_replace(prompt, r, inputCommand);
+                popUpdisplaySetting(prompt, 0);
+            // Enter HorseRacing
+            }
+            else{
+                cout << "Valid input!\n";
+                popUpdisplaySetting("Valid input!\n", 0);
+                return;
+            }
         }
         else if (inputCommand == "/gamestate") {
             prompt = commandData["gamestate"]["prompt"].get<string>();
