@@ -1,0 +1,38 @@
+﻿{
+    "IDToName":
+    {
+        "0": {
+            "name": "DiceControl"
+        },
+        "1": {
+            "name": "Roadblock"
+        },
+        "2": {
+            "name": "Rocket"
+        },
+        "3": {
+            "name": "DestroyImmovable"
+        },
+        "4": {
+            "name": "RandomEvent"
+        }
+    },
+    "NameToID":
+    {
+        "DiceControl": {
+            "ID": 0
+        },
+        "Roadblock": {
+            "ID": 1
+        },
+        "Rocket": {
+            "ID": 2
+        },
+        "DestroyImmovable": {
+            "ID": 3
+        },
+        "RandomEvent": {
+            "ID": 4
+        }
+    }
+}

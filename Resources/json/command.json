@@ -35,11 +35,11 @@
         "description": "Retrieve a specific card by name.",
         "usage": "/card [card_name]",
         "examples": [
-            "/card Lucky",
+            "/card DiceControl",
+            "/card Roadblock",
             "/card Rocket",
-            "/card RoadBlock",
-            "/card RandomEvent",
-            "/card DeHouse"
+            "/card DestroyImmovable",
+            "/card RandomEvent"
         ],
         "prompt": "You received the card: {card_name}."
     },
@@ -49,7 +49,7 @@
         "usage": "/minigame [minigame_name]",
         "examples": [
             "/minigame HorseRacing",
-            "/minigame InBetween"
+            "/minigame DragonGate"
         ],
         "prompt": "Entering the minigame {minigame_name}."
     },

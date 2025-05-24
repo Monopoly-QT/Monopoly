@@ -149,6 +149,12 @@ void eventHandler::commendEntryPoint(QString _instruct){
             prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
             ss >> inputCommand;
             if (checkNum(inputCommand)) {
+                if(stoi(inputCommand) < 0){
+                    cout << "Error: Pos should be larger than 0\n";
+                    popUpdisplaySetting("Error: Pos should be larger than 0\n", 0);
+                    return;
+                }
+
                 processPlayer[turn]->addPos(stoi(inputCommand));
                 regex r(R"(\{location\})");
                 prompt = regex_replace(prompt, r, to_string(processPlayer[turn]->getPos()));
@@ -158,7 +164,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
             else if (inputCommand == "to") {
                 ss >> inputCommand;
-                if (checkNum(inputCommand) && stoi(inputCommand) <= 64) {
+                if (checkNum(inputCommand) && stoi(inputCommand) >= 0 && stoi(inputCommand) <= 63) {
                     int newPos = stoi(inputCommand) % 64;
                     processPlayer[turn]->setPos(newPos);
                     regex r(R"(\{location\})");
@@ -168,15 +174,15 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     popUpdisplaySetting(prompt, 0);
                 }
                 else {
-                    cout << "Valid input!\n";
-                    popUpdisplaySetting("Valid input!\n", 0);
-                    break;
+                    cout << "Error: Pos should be between 0 to 63\n";
+                    popUpdisplaySetting("Error: Pos should be between 0 to 63\n", 0);
+                    return;
                 }
             }
             else {
-                cout << "Valid input!\n";
-                popUpdisplaySetting("Valid input!\n", 0);
-                break;
+                cout << "Error: Command should be \"/move [pos]\" or \"/move to [pos]";
+                popUpdisplaySetting("Error: Command should be \"/move [pos]\" or \"/move to [pos]", 0);
+                return;
             }
         }
         else if (inputCommand == "/give") {
@@ -189,14 +195,13 @@ void eventHandler::commendEntryPoint(QString _instruct){
             for (int i = 0; i < 4; i++) {
                 if (payee == processPlayer[i]->getPlayerLastName()) {
                     valid = 1;
-                    break;
                 }
             }
 
             if (!valid) {
-                cout << "Valid input!\n";
-                popUpdisplaySetting("Valid input!\n", 0);
-                break;
+                cout << "Error: Not found a player's lastname is "+payee;
+                popUpdisplaySetting("Error: Not found a player's lastname is "+payee, 0);
+                return;
             }
 
             regex r1(R"(\{playerName\})");
@@ -210,7 +215,12 @@ void eventHandler::commendEntryPoint(QString _instruct){
             if (processPlayer[turn]->getMoney() < deltaMoney) {
                 cout << "Error: " << processPlayer[turn]->getPlayerName() << "don't have enough money.\n";
                 popUpdisplaySetting("Error: "+processPlayer[turn]->getPlayerName()+"don't have enough money.\n", 0);
-                break;
+                return;
+            }
+
+            if(deltaMoney < 0){
+                cout << "Error: The money should be larger than 0";
+                popUpdisplaySetting("Error: The money should be larger than 0", 0);
             }
 
             processPlayer[turn]->subMoney(deltaMoney);
@@ -223,7 +233,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
         else if (inputCommand == "/get") {
             prompt = commandData["get"]["prompt"].get<string>();
             ss >> inputCommand;
-            if (checkNum(inputCommand)) {
+            if (checkNum(inputCommand) && stoi(inputCommand) > 0) {
                 int deltaMoney = stoi(inputCommand);
                 regex r1(R"(\{playerName\})");
                 prompt = regex_replace(prompt, r1, processPlayer[turn]->getPlayerName());
@@ -235,19 +245,45 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 popUpdisplaySetting(prompt, 0);
             }
             else {
-                cout << "Valid input!\n";
-                popUpdisplaySetting("Valid input!\n", 0);
-                break;
+                cout << "Error: The money should be larger than 0";
+                popUpdisplaySetting("Error: The money should be larger than 0", 0);
+                return;
             }
         }
-        // else if (inputCommand == "/card") {
-        //     prompt = commandData["card"]["prompt"].get<string>();
-        //     ss >> inputCommand;
-        //     processPlayer[turn]->addOwnCards(inputCommand);
-        //     regex r(R"(\{card_name\})");
-        //     prompt = regex_replace(prompt, r, inputCommand);
-        //     cout << prompt << '\n';
-        // }
+        else if (inputCommand == "/card") {
+            nlohmann::json cardData;
+            ifstream card;
+            card.open("json/card.json");
+
+            if (card.fail()) {
+                cout << "Falied to open card.json\n";
+            }
+
+            card >> cardData;
+            card.close();
+
+            prompt = commandData["card"]["prompt"].get<string>();
+            ss >> inputCommand;
+
+            bool found = false;
+
+            for(int i = 0; i < 5; i++){
+                if(cardData["IDToName"][to_string(i)]["name"]==inputCommand){
+                    found = true;
+                }
+            }
+
+            if(!found){
+                popUpdisplaySetting("Error: No card called "+inputCommand+'.', 0);
+                return;
+            }
+
+            processPlayer[turn]->addOwnCards(cardData["NameToID"][inputCommand]["ID"].get<int>());
+            regex r(R"(\{card_name\})");
+            prompt = regex_replace(prompt, r, inputCommand);
+            cout << prompt << '\n';
+            popUpdisplaySetting(prompt, 0);
+        }
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
             cout << prompt << '\n';
@@ -274,8 +310,8 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 HR.init(processPlayer[turn]);
             }
             else{
-                cout << "Valid input!\n";
-                popUpdisplaySetting("Valid input!\n", 0);
+                cout << "Error: No minigame called "+inputCommand;
+                popUpdisplaySetting("Error: No minigame called "+inputCommand, 0);
                 return;
             }
         }

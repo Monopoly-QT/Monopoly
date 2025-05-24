@@ -37,7 +37,7 @@ endforeach()
 
 # 讓你的 target 依賴這些 JSON 檔案
 add_custom_target(copy_json ALL DEPENDS ${JSON_OUTPUTS})
-add_dependencies(appmonopoly copy_json)  # 替換成你的主程式 target 名稱
+add_dependencies(appmonopoly copy_json)
 
 qt_add_qml_module(appmonopoly
     URI monopoly
