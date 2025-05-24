@@ -51,7 +51,7 @@
             "/minigame HorseRacing",
             "/minigame InBetween"
         ],
-        "prompt": "Entering the minigame."
+        "prompt": "Entering the minigame [minigame_name]."
     },
     "gamestate": {
         "name": "/gamestate",
