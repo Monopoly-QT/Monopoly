@@ -363,7 +363,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                         prompt += ("\tUsage:\t" + x["usage"].get<string>() + '\n');
                         cout << "\tExamples:\n";
                         prompt += ("\tExamples:\n");
-                        for (auto ex : x["examples"]) {
+                        for (auto& ex : x["examples"]) {
                             cout << "\t\t" << ex.get<string>() << '\n';
                             prompt += ("\t\t" + ex.get<string>() + '\n');
                         }
