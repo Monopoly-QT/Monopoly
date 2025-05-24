@@ -12,13 +12,16 @@ bool Hospital::isInHospital(Player* player) {
 }
 
 void Hospital::enterHospital(Player* player, int day) {
-    player->addMoney(-MEDICAL_EXPENSES * day);
-    dayInHospital[player] = day;
+    player->setState(1);
+    player->setPos(32);
+    player->subMoney(MEDICAL_EXPENSES * day);
+    dayInHospital[player] = (day-1);
 }
 
 void Hospital::leaveHospital(Player* player) {
     player->addMoney(MEDICAL_EXPENSES * dayInHospital[player]);
     dayInHospital[player] = 0;
+    player->setState(0);
 }
 
 int Hospital::getDayInHospital(Player* player) {
@@ -30,5 +33,6 @@ void Hospital::update() {
         if (day > 0) {
             day--;
         }
+        else player->setState(0);
     }
 }

@@ -111,7 +111,12 @@ eventHandler::~eventHandler(){
 
 void eventHandler::moveEntryPoint(int _moveDistance) {
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    movePointAnimator(_moveDistance);
+    if(processPlayer[turn]->getState() == 0)movePointAnimator(_moveDistance);
+    else {
+        Hospital::update();
+        if(_moveDistance >= 8) Hospital::leaveHospital(processPlayer[turn]);
+        nextTurn();
+    }
 }
 
 void eventHandler::commendEntryPoint(QString _instruct){
@@ -151,6 +156,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
                 cout << prompt << '\n';
                 popUpdisplaySetting(prompt, 0);
+                afterMove();
             }
             else if (inputCommand == "to") {
                 ss >> inputCommand;
@@ -162,6 +168,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
                     cout << prompt << '\n';
                     popUpdisplaySetting(prompt, 0);
+                    afterMove();
                 }
                 else {
                     cout << "Error: Pos should be between 0 to 63\n";
@@ -273,6 +280,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             prompt = regex_replace(prompt, r, inputCommand);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         }
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
@@ -419,6 +427,7 @@ void eventHandler::rocketCardUseEntryPoint(int _playerIndex, int _duration) {
     RocketCard::use(*player, _duration);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 }
 
 void eventHandler::diceCardUseEntryPoint(int _moveDistance) {
@@ -586,6 +595,10 @@ void eventHandler::afterMove(){
     else if (processMap[location]->getType() == 2) {
         emit openShopPopup();
     }
+
+    else if (processMap[location]->getType() == 3) {
+        nextTurn();
+    }
     // 解除路障
     if (processMap[location]->getState() == 1)
         processMap[location]->setState(0);
@@ -637,7 +650,9 @@ void eventHandler::toll() {
 
 void eventHandler::buyLand() {
     qDebug()<<"run";
+
     int nowPos = processPlayer[turn]->getPos();
+    if(processPlayer[turn]->getMoney() >= processMap[nowPos]->getValue()){
     processPlayer[turn]->addHouse(nowPos);
     processMap[nowPos]->setOwner(turn+1);
     processMap[nowPos]->setLevel(1);
@@ -645,20 +660,21 @@ void eventHandler::buyLand() {
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    }
     nextTurn();
 }
 
 void eventHandler::levelup() {
     int nowPos = processPlayer[turn]->getPos();
-    if (processMap[nowPos]->getLevel() < 4) {
+    if (processPlayer[turn]->getMoney() >= (processMap[nowPos]->getValue() /2) && processMap[nowPos]->getLevel() < 4) {
         int nowLevel = processMap[nowPos]->getLevel();
         processMap[nowPos]->setLevel(nowLevel + 1);
         processPlayer[turn]->subMoney(processMap[nowPos]->getValue() / 2);
         m_displayState->initialStateDisplay(turn, processPlayer[turn]);
         m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-        nextTurn();
     }
+    nextTurn();
 }
 
 void eventHandler::sellLand() {
