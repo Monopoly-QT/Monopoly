@@ -5,7 +5,7 @@ import QtQuick.Effects
 import "../../"
 
 Window {
-    id: root
+    id: horseRacingRoot
     minimumHeight: 700
     minimumWidth: 900
     visible: true
@@ -17,6 +17,13 @@ Window {
     property int betAmount: 100
     property bool gameStarted: false
     property int betHorse: 0
+
+    Connections {
+        target: gameClass
+        onUpdateState: {
+            event.updateState();
+        }
+    }
 
     Rectangle {
         id: background
@@ -332,7 +339,7 @@ Window {
                 stepSize: 100
                 width: parent.parent.width * 0.3
                 height: 40
-                value: root.betAmount
+                value: horseRacingRoot.betAmount
                 enabled: !gameStarted
 
                 onValueChanged: {
@@ -449,15 +456,15 @@ Window {
                 stepSize: 1
                 width: parent.parent.width * 0.3
                 height: 40
-                value: root.betHorse
+                value: horseRacingRoot.betHorse
                 enabled: !gameStarted
 
                 onValueChanged: {
-                    root.betHorse = value
+                    horseRacingRoot.betHorse = value
                 }
 
                 contentItem: Text {
-                    text: "Horse " + root.betHorse
+                    text: "Horse " + horseRacingRoot.betHorse
                     font.pixelSize: 16
                     font.bold: true
                     color: "#FFFFFF"
@@ -621,7 +628,8 @@ Window {
                 }
 
                 onClicked: {
-                    root.close()
+                    event.updateState()
+                    horseRacingRoot.close()
                 }
             }
             Button {
@@ -629,7 +637,7 @@ Window {
                 text: "Start Game"
                 width: 120
                 height: 46
-                enabled: !root.gameStarted && root.betAmount > 0
+                enabled: !horseRacingRoot.gameStarted && horseRacingRoot.betAmount > 0
                 visible: gameClass.winner == -1
 
                 contentItem: Text {
@@ -690,7 +698,7 @@ Window {
 
                 onClicked: {
                     gameClass.mainGame(betAmount, betHorse - 1);
-                    root.gameStarted = true
+                    horseRacingRoot.gameStarted = true
                 }
             }
         }
@@ -722,7 +730,7 @@ Window {
                 font.pixelSize: 14
                 font.family: "Microsoft YaHei"
                 text: gameClass.winner === -1 ? "Set your bet and start the game" :
-                        gameClass.winner !== (root.betHorse - 1) ? "Sorry, you lost! The winner is Horse " + (gameClass.winner + 1)
+                        gameClass.winner !== (horseRacingRoot.betHorse - 1) ? "Sorry, you lost! The winner is Horse " + (gameClass.winner + 1)
                         : "Congratulations, you won!"
             }
         }

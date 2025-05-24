@@ -15,6 +15,9 @@
 #include <QString>
 #include <QQmlApplicationEngine>
 
+#include "MiniGames/DragonGate/DragonGate.h"
+#include "MiniGames/HorseRacing/HorseRacing.h"
+
 using namespace std;
 
 #ifndef EVENTHANDLER_H
@@ -64,6 +67,7 @@ public:
     Q_INVOKABLE bool buyItemEntryPoint(int price , int itemIndex);
     Q_INVOKABLE void nextTurn();
     Q_INVOKABLE void suicidal();
+    Q_INVOKABLE void updateState();
 
 
     StateDisplay *displayState() const;
@@ -116,6 +120,9 @@ private:
     QString m_displayMessage;
 
     QQmlApplicationEngine *engine;
+
+    HorseRacing horseRacingGameObject;
+    DragonGate dragonGateGameObject;
 };
 
 #endif // EVENTHANDLER_H

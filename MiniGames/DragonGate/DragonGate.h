@@ -87,5 +87,7 @@ signals:
     void gameResultChanged();
 
     void gameEnded(int result);
+
+    void updateState();
 };
 #endif //INBETWEEN_H

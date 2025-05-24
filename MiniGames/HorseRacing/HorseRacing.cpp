@@ -85,6 +85,7 @@ void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
     // 回到主執行緒更新資料
     QMetaObject::invokeMethod(this, [this,winner]() {
         setWinnerPrecess(winner);
+        emit updateState();
     }, Qt::QueuedConnection);
 }
 

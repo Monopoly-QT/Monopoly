@@ -5,7 +5,7 @@ import QtQuick.Layouts
 import QtQuick.Effects
 
 Window {
-    id: root
+    id: dragonGateRoot
     minimumHeight: 700
     minimumWidth: 900
     visible: true
@@ -27,6 +27,13 @@ Window {
     property color successColor: "#00E676"        // 綠色作為成功色
     property color surfaceColor: "#121212"        // 深灰色作為背景
     property color cardColor: "#1E1E1E"           // 卡片背景色
+
+    Connections {
+        target: gameClass
+        onUpdateState: {
+            event.updateState();
+        }
+    }
 
     Item {
         width: parent.width
@@ -615,7 +622,8 @@ Window {
                     }
 
                     onClicked: {
-                        root.close()
+                        event.updateState()
+                        dragonGateRoot.close()
                     }
                 }
 

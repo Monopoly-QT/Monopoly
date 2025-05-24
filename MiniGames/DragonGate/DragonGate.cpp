@@ -73,6 +73,7 @@ int DragonGate::makeGuess(bool selection) {
     emit gameEnded(result);
     m_isGameStarted = false;
     emit gameStartedChanged();
+    emit updateState();
     
     return result;
 }

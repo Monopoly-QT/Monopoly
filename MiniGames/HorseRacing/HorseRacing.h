@@ -38,12 +38,12 @@ public:
 signals:
     void horsesPrecessChanged();
     void winnerPrecessChanged();
+    void updateState();
 
 private:
     QVector<int> m_horsesPrecess;
 };
 
-#endif //HORSERACING_H
 
 inline QVector<int> HorseRacing::horsesPrecess() const {
     return m_horsesPrecess;
@@ -66,3 +66,4 @@ inline void HorseRacing::setWinnerPrecess(const int &newWinnerPrecess) {
     _winner = newWinnerPrecess;
     emit winnerPrecessChanged();
 }
+#endif //HORSERACING_H

@@ -284,20 +284,20 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
             // Enter DragonGate
-                DragonGate DG;
-                engine->rootContext()->setContextProperty("gameClass", &DG);
+                dragonGateGameObject.init(processPlayer[turn]);
+                engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
+                engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
                 engine->loadFromModule("Monopoly", "DragonGate");
-                DG.init(processPlayer[turn]);
             }
             else if(inputCommand == "HorseRacing"){
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
             // Enter HorseRacing
-                HorseRacing HR;
-                engine->rootContext()->setContextProperty("gameClass", &HR);
+                horseRacingGameObject.init(processPlayer[turn]);
+                engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
+                engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
                 engine->loadFromModule("Monopoly", "HorseRacing");
-                HR.init(processPlayer[turn]);
             }
             else{
                 cout << "Error: No minigame called "+inputCommand;
@@ -525,7 +525,7 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 
     bool origin = false;
 
-    _times = 2;
+    // _times = 2;
     for(int i=0;i<_times;i++){
 
         if(processMap[_playerPos]->getState() == 1 || processPlayer[turn]->getState() == 1) break;
@@ -603,6 +603,7 @@ void eventHandler::nextTurn(){
         }
     }
     if (processPlayer[turn]->getMoney() <= 0) {
+        setDisplayMessage("Bankrupt!");
         emit openBankruptcy();
     }
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -612,6 +613,11 @@ void eventHandler::nextTurn(){
 void eventHandler::suicidal() {
     processPlayer[turn]->setIsLive(false);
     nextTurn();
+}
+
+void eventHandler::updateState() {
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 /*  land owner is turn+1 */
