@@ -30,6 +30,7 @@ class eventHandler:public QObject{
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
     Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
+    Q_PROPERTY(bool diceEnabled READ diceEnabled WRITE setDiceEnabled NOTIFY diceEnabledChanged FINAL);
 
 public:
     eventHandler(QQmlApplicationEngine *engine);
@@ -79,6 +80,9 @@ public:
     QString displayMessage() const;
     void setDisplayMessage(const QString &newDisplayMessage);
 
+    bool diceEnabled() const;
+    void setDiceEnabled(bool newDiceEnabled);
+
 signals:
     void mapListChanged();
     void movePointChanged();
@@ -97,6 +101,7 @@ signals:
     void gameStateStart();
     void gameStateMoved();
     void gameStateFinish();
+    void diceEnabledChanged();
 
 private:
     int turn;
@@ -123,6 +128,8 @@ private:
 
     HorseRacing horseRacingGameObject;
     DragonGate dragonGateGameObject;
+
+    bool m_diceEnabled = true;
 };
 
 #endif // EVENTHANDLER_H
