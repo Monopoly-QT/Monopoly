@@ -34,16 +34,6 @@ bool checkNum(string needChecked) {
     return true;
 }
 
-// void initialize();
-
-// void start();
-
-// void moved();
-
-// void finish();
-
-// void printAllPlayerInfo();
-
 eventHandler::eventHandler(QQmlApplicationEngine *engine){
     turn = 0;
     this->engine = engine;
@@ -319,25 +309,65 @@ void eventHandler::commendEntryPoint(QString _instruct){
             prompt = commandData["gamestate"]["prompt"].get<string>();
             ss >> inputCommand;
             if (inputCommand == "INIT") {
-                // initialize();
+                emit gameStateInit();
             }
             else if (inputCommand == "START") {
-                // start();
+                emit gameStateStart();
             }
             else if (inputCommand == "MOVED") {
-                // moved();
+                emit gameStateMoved();
             }
             else if (inputCommand == "FINISH") {
-                // finish();
+                emit gameStateFinish();
             }
+            else{
+                popUpdisplaySetting("Error: No game state called "+inputCommand, 0);
+            }
+
             regex r(R"(\{state\})");
             prompt = regex_replace(prompt, r, inputCommand);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
         }
         else if (inputCommand == "/info") {
+            string prompt = "Players' Infomations: \n\n";
             cout << commandData["info"]["prompt"].get<string>();
-            // printAllPlayerInfo();
+            for(int i = 0; i < 4; i++){
+                prompt += "Player's ID: " + to_string(processPlayer[i]->getID()) + "\n";
+                prompt += "Name: " + processPlayer[i]->getPlayerName() + "\n";
+                prompt += "Last Name: " + processPlayer[i]->getPlayerLastName() + "\n";
+                prompt += "Bankrupt: " + string(processPlayer[i]->getIsLive() ? "No\n" : "Yes\n");
+                prompt += "Position: " + to_string(processPlayer[i]->getPos()) + ". " + processMap[processPlayer[i]->getPos()]->getName() + "\n";
+                prompt += "Land(s): \n";
+                vector<int> temp = processPlayer[i]->getOwnImmovables();
+                for(int i = 0; i < temp.size(); i++){
+                    prompt += "\t"+to_string(temp[i]) + ". " + processMap[temp[i]]->getName() + (i == temp.size()-1 ? "\n" : ",\n");
+                }
+                prompt += "Card(s): \n";
+
+                nlohmann::json cardData;
+                ifstream card;
+                card.open("json/card.json");
+
+                if (card.fail()) {
+                    cout << "Falied to open card.json\n";
+                }
+
+                card >> cardData;
+                card.close();
+
+                temp = processPlayer[i]->getOwnCards();
+                for(int i = 0; i < temp.size(); i++){
+                    prompt += "\t"+cardData["IDToName"][to_string(i)]["name"].get<string>() + string(i == temp.size()-1 ? "\n" : ",\n");
+                }
+
+                prompt += "State: " + string(processPlayer[i]->getState() ? "In" : "Not in") + " the hospital\n";
+                prompt += "Hospitalization time: " + to_string(processPlayer[i]->GetstayInHospitalTurn()) +" day(s) remaining\n";
+                prompt += "\n";
+            }
+
+            popUpdisplaySetting(prompt, 0);
+
         }
         else if (inputCommand == "/refresh") {
             cout << commandData["refresh"]["prompt"].get<string>();
