@@ -21,6 +21,8 @@
 #include "ItemCard/RocketCard/RocketCard.h"
 #include "Shop/shop.h"
 #include "MiniGames/DragonGate/DragonGate.h"
+#include "MiniGames/HorseRacing/HorseRacing.h"
+
 
 bool checkNum(string needChecked) {
     for (int i = 0; i < needChecked.size(); i++) {
@@ -266,6 +268,10 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
             // Enter HorseRacing
+                HorseRacing HR;
+                engine->rootContext()->setContextProperty("gameClass", &HR);
+                engine->loadFromModule("Monopoly", "HorseRacing");
+                HR.init(processPlayer[turn]);
             }
             else{
                 cout << "Valid input!\n";
