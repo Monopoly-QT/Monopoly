@@ -2,17 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 
 project(monopoly VERSION 0.1 LANGUAGES CXX)
 
-# 顯示 JSON 檔案到專案樹
-file(GLOB JSON_FILES "Resources/json/*.json")
-source_group("JSON Files" FILES ${JSON_FILES})
-
-file(GLOB JSON_FILES "Resources/json/*")
-
-foreach(json_file ${JSON_FILES})
-    get_filename_component(filename ${json_file} NAME)
-    configure_file(${json_file} ${CMAKE_CURRENT_BINARY_DIR}/json/${filename} COPYONLY)
-endforeach()
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -36,6 +25,19 @@ qt_add_executable(appmonopoly
         Resources/resourse.qrc
     ${JSON_FILES}
 )
+
+file(GLOB JSON_FILES "Resources/json/*.json")
+foreach(json_file ${JSON_FILES})
+    get_filename_component(filename ${json_file} NAME)
+    configure_file(${json_file} ${CMAKE_CURRENT_BINARY_DIR}/json/${filename} COPYONLY)
+
+    # 加入 build dependency
+    list(APPEND JSON_OUTPUTS ${CMAKE_CURRENT_BINARY_DIR}/json/${filename})
+endforeach()
+
+# 讓你的 target 依賴這些 JSON 檔案
+add_custom_target(copy_json ALL DEPENDS ${JSON_OUTPUTS})
+add_dependencies(appmonopoly copy_json)  # 替換成你的主程式 target 名稱
 
 qt_add_qml_module(appmonopoly
     URI monopoly
