@@ -12,6 +12,7 @@
 #include <QObject>
 #include <thread>
 #include <chrono>
+#include <random>
 #include <thread>
 
 using namespace std;
@@ -33,7 +34,8 @@ void HorseRacing::gameLogic(int gamblingMoney, int betHorse) {
 
     m_horsesPrecess.clear();
     m_horsesPrecess.resize(4, 0); // Initialize array with 4 zeros
-    srand(time(nullptr));
+    random_device rd;
+    srand(rd());
     int winner = -1;
     while (true) {
         int min = 100;
