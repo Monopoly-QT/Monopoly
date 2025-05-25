@@ -31,8 +31,19 @@ Popup {
 
     ColumnLayout {
         anchors.fill: parent
+
         Rectangle {
-            Layout.preferredHeight: parent.height / 4
+            Layout.preferredHeight: parent.height / 10
+            Layout.preferredWidth: parent.width
+            color: "transparent"
+            clip: true
+            Standard_Text {
+                label: "Game Ended!"
+            }
+        }
+
+        Rectangle {
+            Layout.preferredHeight: parent.height / 2
             Layout.preferredWidth: parent.width
             color: "transparent"
             clip: true
@@ -42,22 +53,12 @@ Popup {
         }
 
         Rectangle {
-            Layout.preferredHeight: parent.height / 4
-            Layout.preferredWidth: parent.width
-            color: "transparent"
-            clip: true
-            Standard_Text {
-                label: "Do you wanna start a new game?"
-            }
-        }
-
-        Rectangle {
             Layout.fillHeight: true
             color: "transparent"
         }
 
         RowLayout {
-            Layout.preferredHeight: parent.height / 4
+            Layout.preferredHeight: parent.height / 5
             Layout.preferredWidth: parent.width
             clip: true
             Rectangle {
@@ -72,6 +73,7 @@ Popup {
                     text: "New game"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
+                        event.restart(false);
                         root_CloseAniamtion.start()
                     }
                 }
@@ -142,14 +144,14 @@ Popup {
         NumberAnimation {
             target: root
             property: "width"
-            to: 300
+            to: 400
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "height"
-            to: 200
+            to: 300
             duration: 200
             easing.type: Easing.InOutQuad
         }

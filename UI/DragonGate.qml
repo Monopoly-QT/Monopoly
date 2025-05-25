@@ -569,7 +569,7 @@ Page {
                     text: "Back"
                     width: 120
                     height: 46
-                    visible: gameEnded
+                    visible: gameEnded || playerClass.money <= 0
 
                     contentItem: Text {
                         text: backButton.text
@@ -629,7 +629,7 @@ Page {
                 Button {
                     id: startButton
                     text: "Start Game"
-                    enabled: (!gameStarted || gameEnded) && betAmount > 0
+                    enabled: (!gameStarted || gameEnded) && betAmount > 0 && playerClass.money > 0
                     width: 120
                     height: 46
                     visible: !gameStarted

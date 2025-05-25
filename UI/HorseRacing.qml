@@ -567,12 +567,13 @@ Page {
         // 按鈕
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 20
             Button {
                 id: backButton
                 text: "Back"
                 width: 120
                 height: 46
-                visible: gameClass.winner != -1
+                visible: gameClass.winner != -1 || playerClass.money <= 0
 
                 contentItem: Text {
                     text: backButton.text
@@ -635,7 +636,7 @@ Page {
                 text: "Start Game"
                 width: 120
                 height: 46
-                enabled: !horseRacingRoot.gameStarted && horseRacingRoot.betAmount > 0
+                enabled: !horseRacingRoot.gameStarted && horseRacingRoot.betAmount > 0 && playerClass.money > 0
                 visible: gameClass.winner == -1
 
                 contentItem: Text {

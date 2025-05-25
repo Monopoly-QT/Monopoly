@@ -48,7 +48,7 @@ public:
     int nextLandIndex() const;
     void setNextLandIndex(int newNextLandIndex);
     void toll();
-    void popUpdisplaySetting(string _message,int _type); //set upgraade,buy,message popUp  Type: 0:message 1:buy 2:upgrade 3:end
+    void popUpdisplaySetting(string _message,int _type); //set upgraade,buy,message popUp  Type: 0:message 1:buy 2:upgrade
 
     Q_INVOKABLE void afterMove();
     Q_INVOKABLE void addMapPosXandPosY(double _posX, double _posY);
@@ -69,6 +69,10 @@ public:
     Q_INVOKABLE void nextTurn();
     Q_INVOKABLE void suicidal();
     Q_INVOKABLE void updateState();
+    Q_INVOKABLE bool checkIsGameEnded();
+    Q_INVOKABLE void restart(bool first);
+
+    bool checkIsBankrupt();
 
 
     StateDisplay *displayState() const;
@@ -98,7 +102,6 @@ signals:
     void openUpgradePopup(bool upgradeable,bool sellable);
     void openBuyPopup();
     void openMessage();
-    void openEndPopup();
     void openBankruptcy();
     void gameStateInit();
     void gameStateStart();
@@ -107,6 +110,7 @@ signals:
     void diceEnabledChanged();
     void openDragonGate();
     void openHorseRacing();
+    void openEndPopup();
 
 private:
     int turn;

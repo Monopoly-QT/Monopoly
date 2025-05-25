@@ -40,8 +40,110 @@ bool checkNum(string needChecked) {
 }
 
 eventHandler::eventHandler(QQmlApplicationEngine *engine) {
-    turn = 0;
     this->engine = engine;
+
+    // 東西都移到restart()裡面了
+    restart(true);
+    // turn = 0;
+    //
+    // nlohmann::json countryData;
+    // ifstream country;
+    // country.open("json/country.json");
+    //
+    // if (country.fail()) {
+    //     cout << "Falied to open country.json\n";
+    // }
+    //
+    // country >> countryData;
+    // country.close();
+    //
+    // for (int i = 0; i < 64; i++) {
+    //     Land *regis = new Land(countryData[to_string(i)]["type"].get<int>(), i,
+    //                            countryData[to_string(i)]["name"].get<string>(),
+    //                            countryData[to_string(i)]["value"].get<int>(),
+    //                            countryData[to_string(i)]["translation"].get<string>());
+    //     regis->setLevel(0);
+    //     Land::landNameToPos[regis->getName()] = i;
+    //     processMap.push_back(regis);
+    // }
+    //
+    // nlohmann::json playerData;
+    // ifstream player;
+    // player.open("json/config.json");
+    //
+    // if (player.fail()) {
+    //     cout << "Falied to open config.json\n";
+    // }
+    //
+    // player >> playerData;
+    // player.close();
+    //
+    // m_endMoney = playerData["End"]["money"].get<int>();
+    //
+    // for (int i = 0; i < 4; i++) {
+    //     vector<int> ownCardFromConfig;
+    //     string strOwnCardFromConfig = playerData[to_string(i)]["ownCard"].get<string>();
+    //     stringstream ss(strOwnCardFromConfig);
+    //     while (ss >> strOwnCardFromConfig) {
+    //         ownCardFromConfig.push_back(stoi(strOwnCardFromConfig));
+    //     }
+    //     Player *regis = new Player(playerData[to_string(i)]["money"].get<int>(),
+    //                                playerData[to_string(i)]["playerID"].get<int>(),
+    //                                playerData[to_string(i)]["playerName"].get<string>(),
+    //                                playerData[to_string(i)]["playerLastName"].get<string>(), ownCardFromConfig,
+    //                                playerData[to_string(i)]["pos"].get<int>(),
+    //                                playerData[to_string(i)]["state"].get<int>(),
+    //                                playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),
+    //                                playerData[to_string(i)]["nextRollDicePoint"].get<int>());
+    //     processPlayer.push_back(regis);
+    //
+    //     playerNameToID[regis->getPlayerLastName()] = regis->getID();
+    // }
+    //
+    // mapInitialize(landCoordinate, m_mapList, processMap, processPlayer);
+    // m_movePoint = &operateMovePoint;
+    // m_displayState = new StateDisplay();
+    // m_useCard = new UseCardSetting();
+    //
+    // processPlayer[2]->setPos(18);
+    // processMap[2]->setOwner(1);
+    // processMap[2]->setLevel(1);
+    // mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    //
+    // // for(int i=0;i<5;i++){
+    // //     processPlayer[0]->addOwnCards(i);
+    // // }
+    //
+    // m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    // m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+}
+
+eventHandler::~eventHandler() {
+    for (auto i: processMap) {
+        delete i;
+    }
+    for (auto i: processPlayer) {
+        delete i;
+    }
+    processMap.clear();
+    processPlayer.clear();
+}
+
+void eventHandler::restart(bool first) {
+    if (!first) {
+        firstClick = true;
+        m_diceEnabled = true;
+        for (auto i: processMap) {
+            delete i;
+        }
+        for (auto i: processPlayer) {
+            delete i;
+        }
+        processMap.clear();
+        processPlayer.clear();
+    }
+
+    turn = 0;
 
     nlohmann::json countryData;
     ifstream country;
@@ -95,6 +197,8 @@ eventHandler::eventHandler(QQmlApplicationEngine *engine) {
         processPlayer.push_back(regis);
 
         playerNameToID[regis->getPlayerLastName()] = regis->getID();
+
+
     }
 
     mapInitialize(landCoordinate, m_mapList, processMap, processPlayer);
@@ -113,17 +217,19 @@ eventHandler::eventHandler(QQmlApplicationEngine *engine) {
 
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
-}
 
-eventHandler::~eventHandler() {
-    for (auto i: processMap) {
-        delete i;
-    }
-    for (auto i: processPlayer) {
-        delete i;
-    }
-    processMap.clear();
-    processPlayer.clear();
+    emit mapListChanged();
+    emit movePointChanged();
+    emit movePointStartMove();
+    emit movePointInitialize();
+    emit displayStateChanged();
+    emit useCardChanged();
+    emit displayMessageChanged();
+    emit gameStateInit();
+    emit gameStateStart();
+    emit gameStateMoved();
+    emit gameStateFinish();
+    emit diceEnabledChanged();
 }
 
 void eventHandler::moveEntryPoint(int _moveDistance) {
@@ -307,6 +413,9 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
+                if (processPlayer[turn]->getMoney() <= 0) {
+                    openBankruptcy();
+                }
 
                 // Enter DragonGate
                 dragonGateGameObject.init(processPlayer[turn]);
@@ -317,6 +426,9 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
+                if (processPlayer[turn]->getMoney() <= 0) {
+                    openBankruptcy();
+                }
 
                 // Enter HorseRacing
                 horseRacingGameObject.init(processPlayer[turn]);
@@ -723,28 +835,40 @@ void eventHandler::afterMove() {
 
 void eventHandler::nextTurn() {
     turn = (turn + 1) % 4;
-
-    int liveCount = 0;
-    for (int i = 0; i < 4; i++) {
-        if (processPlayer[i]->getIsLive()) {
-            liveCount++;
+    int tmp = turn;
+    while (!processPlayer[turn]->getIsLive()) {
+        turn = (turn + 1) % 4;
+        if (tmp == turn) {
+            break; // 所有玩家都死了
         }
     }
-
-    if (liveCount <= 1) {
-        gameEnd();
+    if (checkIsGameEnded()) {
+        return;
     }
 
-    if (processPlayer[turn]->getMoney() <= 0) {
-        setDisplayMessage("Bankrupt!");
-        emit openBankruptcy();
-    }
     setDiceEnabled(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 void eventHandler::gameEnd() {
+    string display = "";
+    for (int i = 0; i < 4; i++) {
+        display += processPlayer[i]->getPlayerName() + ": " +
+                (processPlayer[i]->getIsLive() ? "Alive" : "Dead") + "($ " + to_string(processPlayer[i]->getMoney()) +
+                ")\n";
+    }
+    for (int i = 0; i < 4; i++) {
+        if (processPlayer[i]->getMoney() >= m_endMoney) {
+            display += processPlayer[i]->getPlayerName() + " WINS!\n";
+        }
+    }
+    display+= "\nDo you wanna start a new game?";
+    popUpdisplaySetting(display, 3);
+    setDiceEnabled(true);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    return;
 }
 
 
@@ -754,8 +878,40 @@ void eventHandler::suicidal() {
 }
 
 void eventHandler::updateState() {
+    checkIsGameEnded();
+    checkIsBankrupt();
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+}
+
+bool eventHandler::checkIsGameEnded() {
+    int liveCount = 0;
+    for (int i = 0; i < 4; i++) {
+        if (processPlayer[i]->getIsLive()) {
+            liveCount++;
+        }
+        if (processPlayer[i]->getMoney() >= m_endMoney) {
+            gameEnd();
+            return true;
+        }
+    }
+
+    if (liveCount <= 1) {
+        gameEnd();
+        return true;
+    }
+    return false;
+}
+
+
+
+bool eventHandler::checkIsBankrupt(){
+    if (processPlayer[turn]->getMoney() <= 0) {
+        setDisplayMessage("Bankrupt!");
+        emit openBankruptcy();
+        return true;
+    }
+    return false;
 }
 
 /*  land owner is turn+1 */

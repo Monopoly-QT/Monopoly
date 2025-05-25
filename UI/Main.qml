@@ -534,10 +534,10 @@ Window {
                 text: event.displayMessage
             }
 
-            // EndPopUp{
-            //     id:endgame
-            //     text: event.displayMessage
-            // }
+            EndPopUp{
+                id:endgame
+                text: event.displayMessage
+            }
 
             FastBlur {
                 id: theBlur;
@@ -565,6 +565,11 @@ Window {
         }
     }
 
+    Component.onCompleted: {
+        event.checkIsGameEnded();
+    }
+
+
     // CardPopup {
     //     id: card_popUp
     // }
@@ -590,6 +595,11 @@ Window {
 
     // Bankruptcy_popUp{
     //     id:bankruptcy
+    //     text: event.displayMessage
+    // }
+    //
+    // EndPopUp{
+    //     id:endgame
     //     text: event.displayMessage
     // }
 

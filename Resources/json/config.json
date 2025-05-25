@@ -1,6 +1,6 @@
 ﻿{
     "0": {
-        "money": 500,
+        "money": 100,
         "playerID": 0,
         "playerName": "Chang Tso-Lin",
         "playerLastName": "Chang",
@@ -11,7 +11,7 @@
         "nextRollDicePoint": 0
     },
     "1": {
-        "money": 50000,
+        "money": 99999,
         "playerID": 1,
         "playerName": "Wu Pei-Fu",
         "playerLastName": "Wu",
