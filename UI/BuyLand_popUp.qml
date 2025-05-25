@@ -31,6 +31,7 @@ Popup {
 
     ColumnLayout {
         anchors.fill: parent
+        clip: true
         Rectangle {
             Layout.preferredHeight: parent.height / 4
             Layout.preferredWidth: parent.width

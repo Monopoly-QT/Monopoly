@@ -427,21 +427,6 @@ Window {
                             }
                         }
 
-                        // Button{
-                        //     Layout.preferredHeight: 30
-                        //     Layout.preferredWidth: 100
-                        //     onClicked: {
-                        //         stack.push("HorseRacing.qml")
-                        //     }
-                        // }
-                        // Button{
-                        //     Layout.preferredHeight: 30
-                        //     Layout.preferredWidth: 100
-                        //     onClicked: {
-                        //         stack.push("DragonGate.qml")
-                        //     }
-                        // }
-
                         Rectangle {
                             Layout.fillHeight: true
                         }
@@ -516,27 +501,31 @@ Window {
 
             Message_popUp{
                 id:message
-                label: event.displayMessage
+                label: event.displayMessage_messagePopup
+                z:4
             }
 
             BuyLand_popUp{
                 id:buyLand
-                text: event.displayMessage
+                text: event.displayMessage_buyPopup
+                z:3
             }
 
             UpgradeOrSell_popUp{
                 id:upgradeOrSell
-                text: event.displayMessage
+                text: event.displayMessage_upgradePopup
+                z:2
             }
 
             Bankruptcy_popUp{
                 id:bankruptcy
-                text: event.displayMessage
+                text: event.displayMessage_bankruptcypopUp
+                z:1
             }
 
             // EndPopUp{
             //     id:endgame
-            //     text: event.displayMessage
+            //     text: event.displayMessage_endPopup
             // }
 
             FastBlur {
@@ -564,86 +553,4 @@ Window {
             }
         }
     }
-
-    // CardPopup {
-    //     id: card_popUp
-    // }
-
-    // ShopPopup {
-    //     id: shop_popUp
-    // }
-
-    // Message_popUp{
-    //     id:message
-    //     label: event.displayMessage
-    // }
-
-    // BuyLand_popUp{
-    //     id:buyLand
-    //     text: event.displayMessage
-    // }
-
-    // UpgradeOrSell_popUp{
-    //     id:upgradeOrSell
-    //     text: event.displayMessage
-    // }
-
-    // Bankruptcy_popUp{
-    //     id:bankruptcy
-    //     text: event.displayMessage
-    // }
-
-    // FastBlur {
-    //     id: theBlur;
-    //     visible: card_popUp.visible || shop_popUp.visible
-    //     anchors.fill: parent
-    //     source: playWindow
-    //     radius: 30
-    // }
-
-    // Rectangle{
-    //     visible: card_popUp.visible || shop_popUp.visible
-    //     anchors.fill: parent
-    //     color: "black"
-    //     opacity: 0.5
-    // }
-
-    // Connections {
-    //     target: event
-    //     onMovePointStartMove: {
-    //         movePoint.moveDuaration = 150
-    //         movePoint.x = event.movePoint.changeX - (movePoint.width / 2)
-    //         movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
-    //         movePoint_scaleAnimation.start()
-    //     }
-    //     onMovePointInitialize: {
-    //         movePoint.moveDuaration = 0
-    //         movePoint.x = event.movePoint.changeX - (movePoint.width / 2)
-    //         movePoint.y = event.movePoint.changeY - (movePoint.height / 2)
-    //     }
-    //     onOpenMessage: {
-    //         if(!message.visible)
-    //             message.openAnimation()
-    //     }
-    //     onOpenBuyPopup: {
-    //         if(buyLand.visible)
-    //             buyLand.closeAnimation()
-    //         else
-    //             buyLand.openAnimation()
-    //     }
-    //     onOpenUpgradePopup: (upgradeable,sellable) => {
-    //         upgradeOrSell.isUpgradeable = upgradeable
-    //         upgradeOrSell.isSellable = sellable
-    //         if(upgradeOrSell.visible)
-    //             upgradeOrSell.closeAnimation()
-    //         else
-    //             upgradeOrSell.openAnimation()
-    //     }
-    //     onOpenBankruptcy: {
-    //         if(bankruptcy.visible)
-    //             bankruptcy.closeAnimation()
-    //         else
-    //             bankruptcy.openAnimation()
-    //     }
-    // }
 }

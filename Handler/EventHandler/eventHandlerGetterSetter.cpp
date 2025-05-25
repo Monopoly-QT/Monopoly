@@ -51,3 +51,79 @@ void eventHandler::setUseCard(UseCardSetting *newUseCard)
     m_useCard = newUseCard;
     emit useCardChanged();
 }
+
+bool eventHandler::diceEnabled() const {
+    return m_diceEnabled;
+}
+
+void eventHandler::setDiceEnabled(bool newDiceEnabled) {
+    if (m_diceEnabled == newDiceEnabled)
+        return;
+    m_diceEnabled = newDiceEnabled;
+    emit diceEnabledChanged();
+}
+
+QString eventHandler::displayMessage_buyPopup() const
+{
+    return m_displayMessage_buyPopup;
+}
+
+void eventHandler::setDisplayMessage_buyPopup(const QString &newDisplayMessage_buyPopup)
+{
+    if (m_displayMessage_buyPopup == newDisplayMessage_buyPopup)
+        return;
+    m_displayMessage_buyPopup = newDisplayMessage_buyPopup;
+    emit displayMessage_buyPopupChanged();
+}
+
+QString eventHandler::displayMessage_messagePopup() const
+{
+    return m_displayMessage_messagePopup;
+}
+
+void eventHandler::setDisplayMessage_messagePopup(const QString &newDisplayMessage_messagePopup)
+{
+    if (m_displayMessage_messagePopup == newDisplayMessage_messagePopup)
+        return;
+    m_displayMessage_messagePopup = newDisplayMessage_messagePopup;
+    emit displayMessage_messagePopupChanged();
+}
+
+QString eventHandler::displayMessage_upgradePopup() const
+{
+    return m_displayMessage_upgradePopup;
+}
+
+void eventHandler::setDisplayMessage_upgradePopup(const QString &newDisplayMessage_upgradePopup)
+{
+    if (m_displayMessage_upgradePopup == newDisplayMessage_upgradePopup)
+        return;
+    m_displayMessage_upgradePopup = newDisplayMessage_upgradePopup;
+    emit displayMessage_upgradePopupChanged();
+}
+
+QString eventHandler::displayMessage_endPopup() const
+{
+    return m_displayMessage_endPopup;
+}
+
+void eventHandler::setDisplayMessage_endPopup(const QString &newDisplayMessage_endPopup)
+{
+    if (m_displayMessage_endPopup == newDisplayMessage_endPopup)
+        return;
+    m_displayMessage_endPopup = newDisplayMessage_endPopup;
+    emit displayMessage_endPopupChanged();
+}
+
+QString eventHandler::displayMessage_bankruptcypopUp() const
+{
+    return m_displayMessage_bankruptcypopUp;
+}
+
+void eventHandler::setDisplayMessage_bankruptcypopUp(const QString &newDisplayMessage_bankruptcypopUp)
+{
+    if (m_displayMessage_bankruptcypopUp == newDisplayMessage_bankruptcypopUp)
+        return;
+    m_displayMessage_bankruptcypopUp = newDisplayMessage_bankruptcypopUp;
+    emit displayMessage_bankruptcypopUpChanged();
+}
