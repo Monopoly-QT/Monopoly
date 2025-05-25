@@ -29,7 +29,7 @@ void HorseRacing::init(Player *player) {
     emit winnerPrecessChanged();
 }
 
-void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
+void HorseRacing::gameLogic(int gamblingMoney, int betHorse) {
     int finalLine = 100;
 
     m_horsesPrecess.clear();
@@ -37,7 +37,6 @@ void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
 
     int winner = -1;
     while (true) {
-
         int min = 100;
         for (int i = 0; i < 4; i++) {
             m_horsesPrecess[i] += rand() % 5 + 8;
@@ -76,14 +75,14 @@ void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
-    if (winner == betHorse) {
-        player->addMoney(gamblingMoney);
-    }else {
-        player->subMoney(gamblingMoney);
-    }
-    cout<<player->getMoney()<<endl;
+
     // 回到主執行緒更新資料
-    QMetaObject::invokeMethod(this, [this,winner]() {
+    QMetaObject::invokeMethod(this, [this,winner,gamblingMoney,betHorse]() {
+        if (winner == betHorse) {
+            player->addMoney(gamblingMoney);
+        } else {
+            player->subMoney(gamblingMoney);
+        }
         setWinnerPrecess(winner);
         emit updateState();
     }, Qt::QueuedConnection);
@@ -92,11 +91,9 @@ void HorseRacing::gameLogic( int gamblingMoney, int betHorse) {
 /**
  * 賭馬
  */
-void HorseRacing::mainGame( int gamblingMoney, int betHorse) {
+void HorseRacing::mainGame(int gamblingMoney, int betHorse) {
     std::thread t1([this, gamblingMoney, betHorse]() {
         this->gameLogic(gamblingMoney, betHorse);
     });
     t1.detach();
 }
-
-
