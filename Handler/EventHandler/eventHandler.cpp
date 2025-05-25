@@ -161,7 +161,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
                 cout << prompt << '\n';
                 popUpdisplaySetting(prompt, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 afterMove();
             }
             else if (inputCommand == "to") {
@@ -174,20 +174,20 @@ void eventHandler::commendEntryPoint(QString _instruct){
                     mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
                     cout << prompt << '\n';
                     popUpdisplaySetting(prompt, 0);
-                    this_thread::sleep_for(chrono::milliseconds(500));
+
                     afterMove();
                 }
                 else {
                     cout << "Error: Pos should be between 0 to 63\n";
                     popUpdisplaySetting("Error: Pos should be between 0 to 63\n", 0);
-                    this_thread::sleep_for(chrono::milliseconds(500));
+
                     return;
                 }
             }
             else {
                 cout << "Error: Command should be \"/move [pos]\" or \"/move to [pos]";
                 popUpdisplaySetting("Error: Command should be \"/move [pos]\" or \"/move to [pos]", 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
         }
@@ -207,7 +207,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             if (!valid) {
                 cout << "Error: Not found a player's lastname is "+payee;
                 popUpdisplaySetting("Error: Not found a player's lastname is "+payee, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
 
@@ -222,14 +222,14 @@ void eventHandler::commendEntryPoint(QString _instruct){
             if (processPlayer[turn]->getMoney() < deltaMoney) {
                 cout << "Error: " << processPlayer[turn]->getPlayerName() << "don't have enough money.\n";
                 popUpdisplaySetting("Error: "+processPlayer[turn]->getPlayerName()+"don't have enough money.\n", 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
 
             if(deltaMoney < 0){
                 cout << "Error: The money should be larger than 0";
                 popUpdisplaySetting("Error: The money should be larger than 0", 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
             }
 
             processPlayer[turn]->subMoney(deltaMoney);
@@ -237,7 +237,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
 
         }
         else if (inputCommand == "/get") {
@@ -253,12 +253,12 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 m_displayState->initialStateDisplay(turn, processPlayer[turn]);
                 cout << prompt << '\n';
                 popUpdisplaySetting(prompt, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
             }
             else {
                 cout << "Error: The money should be larger than 0";
                 popUpdisplaySetting("Error: The money should be larger than 0", 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
         }
@@ -287,7 +287,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
 
             if(!found){
                 popUpdisplaySetting("Error: No card called "+inputCommand+'.', 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
 
@@ -297,7 +297,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             prompt = regex_replace(prompt, r, inputCommand);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
         }
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
@@ -308,7 +308,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
             // Enter DragonGate
                 dragonGateGameObject.init(processPlayer[turn]);
                 engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
@@ -319,7 +319,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
             // Enter HorseRacing
                 horseRacingGameObject.init(processPlayer[turn]);
                 engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
@@ -329,7 +329,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             else{
                 cout << "Error: No minigame called "+inputCommand;
                 popUpdisplaySetting("Error: No minigame called "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 return;
             }
         }
@@ -338,34 +338,34 @@ void eventHandler::commendEntryPoint(QString _instruct){
             ss >> inputCommand;
             if (inputCommand == "INIT") {
                 popUpdisplaySetting("Change to gamestate "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 emit gameStateInit();
             }
             else if (inputCommand == "START") {
                 popUpdisplaySetting("Change to gamestate "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 emit gameStateStart();
             }
             else if (inputCommand == "MOVED") {
                 popUpdisplaySetting("Change to gamestate "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 emit gameStateMoved();
             }
             else if (inputCommand == "FINISH") {
                 popUpdisplaySetting("Change to gamestate "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
                 emit gameStateFinish();
             }
             else{
                 popUpdisplaySetting("Error: No game state called "+inputCommand, 0);
-                this_thread::sleep_for(chrono::milliseconds(500));
+
             }
 
             regex r(R"(\{state\})");
             prompt = regex_replace(prompt, r, inputCommand);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
         }
         else if (inputCommand == "/info") {
             string prompt = "Players' Infomations: \n\n";
@@ -406,7 +406,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
 
             popUpdisplaySetting(prompt, 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
 
         }
         else if (inputCommand == "/refresh") {
@@ -444,12 +444,12 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
 
             popUpdisplaySetting(prompt, 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
         }
         else {
             cout << commandData["invalid_command"]["prompt"].get<string>() << '\n';
             popUpdisplaySetting(commandData["invalid_command"]["prompt"].get<string>() + '\n', 0);
-            this_thread::sleep_for(chrono::milliseconds(500));
+
         }
     }
 }
@@ -663,7 +663,7 @@ void eventHandler::afterMove(){
 
         cout << "Event " << eventNum << '\n';
         cout << eventData[to_string(eventNum)]["text"].get<string>() << '\n';
-        this_thread::sleep_for(chrono::milliseconds(500));
+
         string function = eventData[to_string(eventNum)]["function"].get<string>();
         cout << function;
 
