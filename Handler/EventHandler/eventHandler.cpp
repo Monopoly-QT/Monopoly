@@ -9,9 +9,12 @@
 #include <sstream>
 #include <string>
 #include <regex>
+#include <cstdlib>
+#include <ctime>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "../Hospital/Hospital.h"
+#include "Land/Land.h"
 
 #include "Handler/MapHandler/mapHandler.h"
 #include "ItemCard/DestroyImmovableCard/DestroyImmovableCard.h"
@@ -52,7 +55,7 @@ eventHandler::eventHandler(QQmlApplicationEngine *engine){
     for(int i = 0 ; i < 64 ; i++){
         Land* regis=new Land(countryData[to_string(i)]["type"].get<int>(), i, countryData[to_string(i)]["name"].get<string>(), countryData[to_string(i)]["value"].get<int>(), countryData[to_string(i)]["translation"].get<string>());
         regis->setLevel(0);
-        // landNameToPos[regis->getName()] = i;
+        Land::landNameToPos[regis->getName()] = i;
         processMap.push_back(regis);
     }
 
@@ -147,7 +150,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
             ss >> inputCommand;
             if (checkNum(inputCommand)) {
                 if(stoi(inputCommand) < 0){
-                    cout << "Error: Pos should be larger than 0\n";
+                    cout << "\n\nError: Pos should be larger than 0\n";
                     popUpdisplaySetting("Error: Pos should be larger than 0\n", 0);
                     return;
                 }
@@ -278,11 +281,11 @@ void eventHandler::commendEntryPoint(QString _instruct){
             }
 
             processPlayer[turn]->addOwnCards(cardData["NameToID"][inputCommand]["ID"].get<int>());
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
             regex r(R"(\{card_name\})");
             prompt = regex_replace(prompt, r, inputCommand);
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
-            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         }
         else if (inputCommand == "/minigame") {
             prompt = commandData["minigame"]["prompt"].get<string>();
@@ -346,6 +349,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 prompt += "Player's ID: " + to_string(processPlayer[i]->getID()) + "\n";
                 prompt += "Name: " + processPlayer[i]->getPlayerName() + "\n";
                 prompt += "Last Name: " + processPlayer[i]->getPlayerLastName() + "\n";
+                prompt += "Money: " + to_string(processPlayer[i]->getMoney()) + "\n";
                 prompt += "Bankrupt: " + string(processPlayer[i]->getIsLive() ? "No\n" : "Yes\n");
                 prompt += "Position: " + to_string(processPlayer[i]->getPos()) + ". " + processMap[processPlayer[i]->getPos()]->getName() + "\n";
                 prompt += "Land(s): \n";
@@ -600,13 +604,115 @@ void eventHandler::afterMove(){
     }
     // 事件地塊
     else if (processMap[location]->getType() == 1) {
+
+        nlohmann::json countryData;
+        ifstream country;
+        country.open("json/country.json");
+
+        if (country.fail()) {
+            cout << "Falied to open country.json\n";
+        }
+
+        country >> countryData;
+        country.close();
+
+        nlohmann::json eventData;
+        ifstream event;
+        event.open("json/event.json");
+
+        if (event.fail()) {
+            cout << "Falied to open event.json\n";
+        }
+
+        event >> eventData;
+        event.close();
+
+
+        srand(time(NULL));
+
+        int randNum = rand() % 250;
+        int eventNum = (randNum < 199 ? randNum : 199);
+
+        cout << "Event " << eventNum << '\n';
+        cout << eventData[to_string(eventNum)]["text"].get<string>() << '\n';
+        popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
+        this_thread::sleep_for(chrono::milliseconds(500));
+        string function = eventData[to_string(eventNum)]["function"].get<string>();
+        cout << function;
+
+        stringstream ssfun(function);
+        while (ssfun >> function) {
+            if (function == "sub") {
+                int delta;
+                ssfun >> delta;
+                processPlayer[turn]->subMoney(delta);
+            }
+            else if (function == "add") {
+                int delta;
+                ssfun >> delta;
+                processPlayer[turn]->addMoney(delta);
+            }
+            else if (function == "level") {
+                int newLevel;
+                ssfun >> newLevel;
+                string area;
+
+                int i = 0;
+                for (auto x : countryData) {
+                    Land::landNameToPos[x["name"].get<string>()] = i;
+                    i++;
+                }
+
+                while (ssfun >> area) {
+                    if (area != "end") {
+                        processMap[Land::landNameToPos[area]]->setLevel(0);
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            else if (function == "hospital") {
+                int day;
+                ssfun >> day;
+                processPlayer[turn]->setStayInHospitalTurn(day);
+                processPlayer[turn]->setPos(min(abs(32 - processPlayer[turn]->getPos()), abs(63 - processPlayer[turn]->getPos())));
+            }
+            else if (function == "fly") {
+                string area;
+                ssfun >> area;
+
+                processPlayer[turn]->setPos(Land::landNameToPos[area]);
+                mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
+            }
+            else if (function == "run") {
+                srand(time(NULL));
+                int minigameNum = rand() % 2;
+
+                if(minigameNum){
+                    // Enter DragonGate
+                    dragonGateGameObject.init(processPlayer[turn]);
+                    engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
+                    engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
+                    emit openDragonGate();
+                }
+                else {
+                    // Enter HorseRacing
+                    horseRacingGameObject.init(processPlayer[turn]);
+                    engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
+                    engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
+                    emit openHorseRacing();
+                }
+            }
+        }
+
         nextTurn();
     }
     // 商店
     else if (processMap[location]->getType() == 2) {
         emit openShopPopup();
     }
-
+    // Hospital
     else if (processMap[location]->getType() == 3) {
         nextTurn();
     }

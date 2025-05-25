@@ -73,3 +73,5 @@ int Land::getState() {
 int Land::getValue() {
     return value;
 }
+
+map<string, int> Land::landNameToPos;
