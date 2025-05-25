@@ -906,7 +906,6 @@ bool eventHandler::checkIsGameEnded() {
 
 bool eventHandler::checkIsBankrupt(){
     if (processPlayer[turn]->getMoney() <= 0) {
-        setDisplayMessage("Bankrupt!");
         emit openBankruptcy();
         return true;
     }

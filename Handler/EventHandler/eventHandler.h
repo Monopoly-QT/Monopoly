@@ -137,6 +137,8 @@ signals:
 
     void displayMessage_bankruptcypopUpChanged();
 
+    void displayMessageChanged();
+
 private:
     int turn;
     bool firstClick = true;
