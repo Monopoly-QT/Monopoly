@@ -197,8 +197,6 @@ void eventHandler::restart(bool first) {
         processPlayer.push_back(regis);
 
         playerNameToID[regis->getPlayerLastName()] = regis->getID();
-
-
     }
 
     mapInitialize(landCoordinate, m_mapList, processMap, processPlayer);
@@ -413,9 +411,6 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 regex r(R"(\{minigame_name\})");
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
-                if (processPlayer[turn]->getMoney() <= 0) {
-                    openBankruptcy();
-                }
 
                 // Enter DragonGate
                 dragonGateGameObject.init(processPlayer[turn]);
@@ -846,6 +841,10 @@ void eventHandler::nextTurn() {
         return;
     }
 
+    if (processPlayer[turn]->getMoney() <= 0) {
+        setDisplayMessage_bankruptcypopUp("Bankrupt!");
+        emit openBankruptcy();
+    }
     setDiceEnabled(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
@@ -971,45 +970,23 @@ void eventHandler::sellLand() {
 
 void eventHandler::popUpdisplaySetting(string _message, int _type) {
     if (_type == 0) {
-        setDisplayMessage(QString::fromStdString(_message));
+        setDisplayMessage_messagePopup(QString::fromStdString(_message));
         emit openMessage();
     } else if (_type == 1) {
         string message = "You arrive " + processMap[processPlayer[turn]->getPos()]->getName() + ".";
-        setDisplayMessage(QString::fromStdString(message));
+        setDisplayMessage_buyPopup(QString::fromStdString(message));
         emit openBuyPopup();
     } else if (_type == 2) {
         string message = processMap[processPlayer[turn]->getPos()]->getName() + " is your own place.";
         bool isUpgradeable = true, isSellable = true;
-        setDisplayMessage(QString::fromStdString(message));
+        setDisplayMessage_upgradePopup(QString::fromStdString(message));
         if (processMap[processPlayer[turn]->getPos()]->getLevel() < 4)
             isUpgradeable = false;
         if (processMap[processPlayer[turn]->getPos()]->getLevel() > 0)
             isSellable = false;
         emit openUpgradePopup(isUpgradeable, isSellable);
     } else if (_type == 3) {
-        setDisplayMessage(QString::fromStdString(_message));
+        setDisplayMessage_endPopup(QString::fromStdString(_message));
         emit openEndPopup();
     }
-}
-
-QString eventHandler::displayMessage() const {
-    return m_displayMessage;
-}
-
-void eventHandler::setDisplayMessage(const QString &newDisplayMessage) {
-    if (m_displayMessage == newDisplayMessage)
-        return;
-    m_displayMessage = newDisplayMessage;
-    emit displayMessageChanged();
-}
-
-bool eventHandler::diceEnabled() const {
-    return m_diceEnabled;
-}
-
-void eventHandler::setDiceEnabled(bool newDiceEnabled) {
-    if (m_diceEnabled == newDiceEnabled)
-        return;
-    m_diceEnabled = newDiceEnabled;
-    emit diceEnabledChanged();
 }

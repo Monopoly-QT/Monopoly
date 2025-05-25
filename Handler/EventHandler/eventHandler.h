@@ -29,8 +29,12 @@ class eventHandler:public QObject{
     Q_PROPERTY(MovePoint* movePoint READ movePoint WRITE setMovePoint NOTIFY movePointChanged FINAL);
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
-    Q_PROPERTY(QString displayMessage READ displayMessage WRITE setDisplayMessage NOTIFY displayMessageChanged FINAL);
     Q_PROPERTY(bool diceEnabled READ diceEnabled WRITE setDiceEnabled NOTIFY diceEnabledChanged FINAL);
+    Q_PROPERTY(QString displayMessage_buyPopup READ displayMessage_buyPopup WRITE setDisplayMessage_buyPopup NOTIFY displayMessage_buyPopupChanged FINAL);
+    Q_PROPERTY(QString displayMessage_messagePopup READ displayMessage_messagePopup WRITE setDisplayMessage_messagePopup NOTIFY displayMessage_messagePopupChanged FINAL);
+    Q_PROPERTY(QString displayMessage_upgradePopup READ displayMessage_upgradePopup WRITE setDisplayMessage_upgradePopup NOTIFY displayMessage_upgradePopupChanged FINAL);
+    Q_PROPERTY(QString displayMessage_endPopup READ displayMessage_endPopup WRITE setDisplayMessage_endPopup NOTIFY displayMessage_endPopupChanged FINAL);
+    Q_PROPERTY(QString displayMessage_bankruptcypopUp READ displayMessage_bankruptcypopUp WRITE setDisplayMessage_bankruptcypopUp NOTIFY displayMessage_bankruptcypopUpChanged FINAL);
 
 public:
     eventHandler(QQmlApplicationEngine *engine);
@@ -81,13 +85,25 @@ public:
     UseCardSetting *useCard() const;
     void setUseCard(UseCardSetting *newUseCard);
 
-    QString displayMessage() const;
-    void setDisplayMessage(const QString &newDisplayMessage);
-
     bool diceEnabled() const;
     void setDiceEnabled(bool newDiceEnabled);
 
     void gameEnd();
+
+    QString displayMessage_buyPopup() const;
+    void setDisplayMessage_buyPopup(const QString &newDisplayMessage_buyPopup);
+
+    QString displayMessage_messagePopup() const;
+    void setDisplayMessage_messagePopup(const QString &newDisplayMessage_messagePopup);
+
+    QString displayMessage_upgradePopup() const;
+    void setDisplayMessage_upgradePopup(const QString &newDisplayMessage_upgradePopup);
+
+    QString displayMessage_endPopup() const;
+    void setDisplayMessage_endPopup(const QString &newDisplayMessage_endPopup);
+
+    QString displayMessage_bankruptcypopUp() const;
+    void setDisplayMessage_bankruptcypopUp(const QString &newDisplayMessage_bankruptcypopUp);
 
 signals:
     void mapListChanged();
@@ -98,7 +114,6 @@ signals:
     void useCardChanged();
     void startRefresh();
     void openShopPopup();
-    void displayMessageChanged();
     void openUpgradePopup(bool upgradeable,bool sellable);
     void openBuyPopup();
     void openMessage();
@@ -111,6 +126,16 @@ signals:
     void openDragonGate();
     void openHorseRacing();
     void openEndPopup();
+
+    void displayMessage_buyPopupChanged();
+
+    void displayMessage_messagePopupChanged();
+
+    void displayMessage_upgradePopupChanged();
+
+    void displayMessage_endPopupChanged();
+
+    void displayMessage_bankruptcypopUpChanged();
 
 private:
     int turn;
@@ -131,7 +156,6 @@ private:
 
     StateDisplay *m_displayState;
     UseCardSetting *m_useCard;
-    QString m_displayMessage;
 
     QQmlApplicationEngine *engine;
 
@@ -140,6 +164,11 @@ private:
 
     bool m_diceEnabled = true;
     int m_endMoney = 0;
+    QString m_displayMessage_buyPopup;
+    QString m_displayMessage_messagePopup;
+    QString m_displayMessage_upgradePopup;
+    QString m_displayMessage_endPopup;
+    QString m_displayMessage_bankruptcypopUp;
 };
 
 #endif // EVENTHANDLER_H
