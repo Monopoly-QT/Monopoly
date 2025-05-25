@@ -21,7 +21,6 @@ HorseRacing::HorseRacing() {
 }
 
 void HorseRacing::init(Player *player) {
-    srand(time(nullptr));
     this->player = player;
     m_horsesPrecess.clear();
     _winner = -1;
@@ -34,7 +33,7 @@ void HorseRacing::gameLogic(int gamblingMoney, int betHorse) {
 
     m_horsesPrecess.clear();
     m_horsesPrecess.resize(4, 0); // Initialize array with 4 zeros
-
+    srand(time(nullptr));
     int winner = -1;
     while (true) {
         int min = 100;

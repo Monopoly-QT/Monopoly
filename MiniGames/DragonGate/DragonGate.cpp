@@ -7,7 +7,6 @@
 #include <QDebug>
 
 DragonGate::DragonGate(){
-    srand(time(nullptr));
 }
 
 bool DragonGate::startGame(int gamblingMoney) {
@@ -17,6 +16,8 @@ bool DragonGate::startGame(int gamblingMoney) {
     }
 
     setGamblingMoney(gamblingMoney);
+
+    srand(time(nullptr));
     int rand1 = rand() % 13 + 1;
     int rand2 = rand() % 13 + 1;
     setFirstNumber(std::min(rand1, rand2));
@@ -35,6 +36,7 @@ int DragonGate::makeGuess(bool selection) {
         return -1;
     }
 
+    srand(time(nullptr));
     setThirdNumber(rand() % 13 + 1);
     int result = -1;
 
