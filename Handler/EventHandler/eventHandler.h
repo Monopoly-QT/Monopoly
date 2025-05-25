@@ -83,6 +83,8 @@ public:
     bool diceEnabled() const;
     void setDiceEnabled(bool newDiceEnabled);
 
+    void gameEnd();
+
 signals:
     void mapListChanged();
     void movePointChanged();
@@ -133,6 +135,7 @@ private:
     DragonGate dragonGateGameObject;
 
     bool m_diceEnabled = true;
+    int m_endMoney = 0;
 };
 
 #endif // EVENTHANDLER_H

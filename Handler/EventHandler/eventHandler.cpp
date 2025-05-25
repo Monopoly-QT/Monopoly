@@ -67,6 +67,8 @@ eventHandler::eventHandler(QQmlApplicationEngine *engine){
     player >> playerData;
     player.close();
 
+    m_endMoney = playerData["End"]["money"].get<int>();
+
     for(int i = 0 ; i < 4 ; i++){
         vector<int> ownCardFromConfig;
         string strOwnCardFromConfig = playerData[to_string(i)]["ownCard"].get<string>();
@@ -612,14 +614,18 @@ void eventHandler::afterMove(){
 
 void eventHandler::nextTurn(){
     turn = (turn + 1) % 4;
-    int tmp = turn;
-    while (!processPlayer[turn]->getIsLive()) {
-        turn = (turn + 1) % 4;
-        if (tmp == turn) {
-            // TODO : 這裡要處理所有人都破產的情況
-            break;
+
+    int liveCount = 0;
+    for (int i = 0; i < 4; i++) {
+        if (processPlayer[i]->getIsLive()) {
+            liveCount++;
         }
     }
+
+    if (liveCount <= 1) {
+        gameEnd();
+    }
+
     if (processPlayer[turn]->getMoney() <= 0) {
         setDisplayMessage("Bankrupt!");
         emit openBankruptcy();
@@ -628,6 +634,11 @@ void eventHandler::nextTurn(){
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
+
+void eventHandler::gameEnd() {
+
+}
+
 
 void eventHandler::suicidal() {
     processPlayer[turn]->setIsLive(false);
