@@ -663,6 +663,7 @@ void eventHandler::afterMove(){
 
         cout << "Event " << eventNum << '\n';
         cout << eventData[to_string(eventNum)]["text"].get<string>() << '\n';
+        popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
 
         string function = eventData[to_string(eventNum)]["function"].get<string>();
         cout << function;
@@ -670,22 +671,16 @@ void eventHandler::afterMove(){
         stringstream ssfun(function);
         while (ssfun >> function) {
             if (function == "sub") {
-                popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
-
                 int delta;
                 ssfun >> delta;
                 processPlayer[turn]->subMoney(delta);
             }
             else if (function == "add") {
-                popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
-
                 int delta;
                 ssfun >> delta;
                 processPlayer[turn]->addMoney(delta);
             }
             else if (function == "level") {
-                popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
-
                 int newLevel;
                 ssfun >> newLevel;
                 string area;
@@ -700,8 +695,6 @@ void eventHandler::afterMove(){
                 }
             }
             else if (function == "hospital") {
-                popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
-
                 int day;
                 ssfun >> day;
                 processPlayer[turn]->setStayInHospitalTurn(day);
@@ -714,8 +707,7 @@ void eventHandler::afterMove(){
                 processPlayer[turn]->setPos(Land::landNameToPos[area]);
                 mapUpdate(landCoordinate,m_mapList,processMap,processPlayer);
             }
-            else if (function == "run") {
-                popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>()+"\n", 0);
+            else if (function == "run") {                
                 this_thread::sleep_for(chrono::milliseconds(1000));
 
 
