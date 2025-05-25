@@ -295,7 +295,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 dragonGateGameObject.init(processPlayer[turn]);
                 engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
                 engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
-                engine->loadFromModule("Monopoly", "DragonGate");
+                emit openDragonGate();
             }
             else if(inputCommand == "HorseRacing"){
                 regex r(R"(\{minigame_name\})");
@@ -305,7 +305,7 @@ void eventHandler::commendEntryPoint(QString _instruct){
                 horseRacingGameObject.init(processPlayer[turn]);
                 engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
                 engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
-                engine->loadFromModule("Monopoly", "HorseRacing");
+                emit openHorseRacing();
             }
             else{
                 cout << "Error: No minigame called "+inputCommand;
@@ -713,6 +713,10 @@ void eventHandler::popUpdisplaySetting(string _message,int _type){
         if(processMap[processPlayer[turn]->getPos()]->getLevel() > 0)
             isSellable = false;
         emit openUpgradePopup(isUpgradeable,isSellable);
+    }
+    else if(_type == 3){
+        setDisplayMessage(QString::fromStdString(_message));
+        emit openEndPopup();
     }
 }
 

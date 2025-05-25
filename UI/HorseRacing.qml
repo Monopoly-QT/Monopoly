@@ -4,10 +4,8 @@ import QtQuick.Controls.Basic
 import QtQuick.Effects
 import "../../"
 
-Window {
+Page {
     id: horseRacingRoot
-    minimumHeight: 700
-    minimumWidth: 900
     visible: true
 
     property color primaryColor: "#FF5252"        // 鮮豔的紅色作為主色調
@@ -629,7 +627,7 @@ Window {
 
                 onClicked: {
                     event.updateState()
-                    horseRacingRoot.close()
+                    stack.pop()
                 }
             }
             Button {

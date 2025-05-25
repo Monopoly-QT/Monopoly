@@ -61,6 +61,7 @@ qt_add_qml_module(appmonopoly
         UI/UpgradeOrSell_popUp.qml
         UI/Message_popUp.qml
         UI/Bankruptcy_popUp.qml
+        UI/EndPopUp.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc

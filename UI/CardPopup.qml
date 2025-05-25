@@ -1285,6 +1285,19 @@ Popup {
         }
     }
 
+    onVisibleChanged: {
+        if(!visible){
+            rocketCard.isOpen = false
+            rocketCard.selectIndex = -1
+            diceCard.isOpen = false
+            spinDistance_Rec.moveDistance = 1
+            removeCard.isOpen = false
+            roadBlockCard.isOpen = false
+            removeCoordinate.currentIndex = 0
+            blockCoordinate.currentIndex = 0
+        }
+    }
+
     SequentialAnimation {
         id: card_popUp_CloseAniamtion
         NumberAnimation {

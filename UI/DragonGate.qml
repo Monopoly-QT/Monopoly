@@ -4,13 +4,10 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
 import QtQuick.Effects
 
-Window {
+Page {
     id: dragonGateRoot
-    minimumHeight: 700
-    minimumWidth: 900
     visible: true
     title: qsTr("Dragon Gate")
-    color: "transparent"
 
     property bool gameStarted: false
     property bool gameEnded: false
@@ -609,7 +606,9 @@ Window {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: backButton.clicked()
+                        onClicked: {
+                            backButton.clicked()
+                        }
                         onEntered: backButton.scale = 1.05
                         onExited: backButton.scale = 1.0
                     }
@@ -623,7 +622,7 @@ Window {
 
                     onClicked: {
                         event.updateState()
-                        dragonGateRoot.close()
+                        stack.pop()
                     }
                 }
 
