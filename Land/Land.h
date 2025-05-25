@@ -1,9 +1,10 @@
 #ifndef LAND_H
 #define LAND_H
 
-#include<string>
+#include <string>
 #include <QObject>
-#include<QColor>
+#include <QColor>
+#include <map>
 
 using namespace std;
 

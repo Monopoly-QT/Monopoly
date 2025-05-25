@@ -1,10 +1,10 @@
 {
     "0": {
-        "text": "Travel to Hong Kong. \nSpend 5,000 dollars.",
+        "text": "Travel to Hong Kong. \nSpend 5000 dollars.",
         "function": "sub 5000"
     },
     "1": {
-        "text": "Join the KMT Army in Nanking. \nEarn 7,000 dollars.",
+        "text": "Join the KMT Army in Nanking. \nEarn 7000 dollars.",
         "function": "add 7000"
     },
     "2": {
@@ -12,7 +12,7 @@
         "function": "sub 500"
     },
     "3": {
-        "text": "Eat barbeque in Mongolia. \nSpend 1,000 dollars.",
+        "text": "Eat barbeque in Mongolia. \nSpend 1000 dollars.",
         "function": "sub 1000"
     },
     "4": {
@@ -28,387 +28,387 @@
         "function": "hospital 5"
     },
     "7": {
-        "text": "Travel to Antung. \nSpend 3,100 dollars.",
+        "text": "Travel to Antung. \nSpend 3100 dollars.",
         "function": "sub 3100"
     },
     "8": {
-        "text": "Travel to Anhwei. \nSpend 6,200 dollars.",
+        "text": "Travel to Anhwei. \nSpend 6200 dollars.",
         "function": "sub 6200"
     },
     "9": {
-        "text": "Travel to Chahar. \nSpend 7,800 dollars.",
+        "text": "Travel to Chahar. \nSpend 7800 dollars.",
         "function": "sub 7800"
     },
     "10": {
-        "text": "Travel to Chekiang. \nSpend 2,100 dollars.",
+        "text": "Travel to Chekiang. \nSpend 2100 dollars.",
         "function": "sub 2100"
     },
     "11": {
-        "text": "Travel to Fukien. \nSpend 3,500 dollars.",
+        "text": "Travel to Fukien. \nSpend 3500 dollars.",
         "function": "sub 3500"
     },
     "12": {
-        "text": "Travel to Heilungkiang. \nSpend 8,400 dollars.",
+        "text": "Travel to Heilungkiang. \nSpend 8400 dollars.",
         "function": "sub 8400"
     },
     "13": {
-        "text": "Travel to Hokiang. \nSpend 2,900 dollars.",
+        "text": "Travel to Hokiang. \nSpend 2900 dollars.",
         "function": "sub 2900"
     },
     "14": {
-        "text": "Travel to Honan. \nSpend 5,500 dollars.",
+        "text": "Travel to Honan. \nSpend 5500 dollars.",
         "function": "sub 5500"
     },
     "15": {
-        "text": "Travel to Hopeh. \nSpend 1,100 dollars.",
+        "text": "Travel to Hopeh. \nSpend 1100 dollars.",
         "function": "sub 1100"
     },
     "16": {
-        "text": "Travel to Hunan. \nSpend 1,900 dollars.",
+        "text": "Travel to Hunan. \nSpend 1900 dollars.",
         "function": "sub 1900"
     },
     "17": {
-        "text": "Travel to Hupeh. \nSpend 1,700 dollars.",
+        "text": "Travel to Hupeh. \nSpend 1700 dollars.",
         "function": "sub 1700"
     },
     "18": {
-        "text": "Travel to Hsingan. \nSpend 5,200 dollars.",
+        "text": "Travel to Hsingan. \nSpend 5200 dollars.",
         "function": "sub 5200"
     },
     "19": {
-        "text": "Travel to Jehol. \nSpend 9,500 dollars.",
+        "text": "Travel to Jehol. \nSpend 9500 dollars.",
         "function": "sub 9500"
     },
     "20": {
-        "text": "Travel to Kansu. \nSpend 5,000 dollars.",
+        "text": "Travel to Kansu. \nSpend 5000 dollars.",
         "function": "sub 5000"
     },
     "21": {
-        "text": "Travel to Kiangsi. \nSpend 7,900 dollars.",
+        "text": "Travel to Kiangsi. \nSpend 7900 dollars.",
         "function": "sub 7900"
     },
     "22": {
-        "text": "Travel to Kiangsu. \nSpend 1,600 dollars.",
+        "text": "Travel to Kiangsu. \nSpend 1600 dollars.",
         "function": "sub 1600"
     },
     "23": {
-        "text": "Travel to Kirin. \nSpend 5,100 dollars.",
+        "text": "Travel to Kirin. \nSpend 5100 dollars.",
         "function": "sub 5100"
     },
     "24": {
-        "text": "Travel to Kwangsi. \nSpend 8,800 dollars.",
+        "text": "Travel to Kwangsi. \nSpend 8800 dollars.",
         "function": "sub 8800"
     },
     "25": {
-        "text": "Travel to Kwangtung. \nSpend 3,300 dollars.",
+        "text": "Travel to Kwangtung. \nSpend 3300 dollars.",
         "function": "sub 3300"
     },
     "26": {
-        "text": "Travel to Kweichow. \nSpend 3,800 dollars.",
+        "text": "Travel to Kweichow. \nSpend 3800 dollars.",
         "function": "sub 3800"
     },
     "27": {
-        "text": "Travel to Liaoning. \nSpend 9,800 dollars.",
+        "text": "Travel to Liaoning. \nSpend 9800 dollars.",
         "function": "sub 9800"
     },
     "28": {
-        "text": "Travel to Liaopeh. \nSpend 1,800 dollars.",
+        "text": "Travel to Liaopeh. \nSpend 1800 dollars.",
         "function": "sub 1800"
     },
     "29": {
-        "text": "Travel to Ningsia. \nSpend 7,600 dollars.",
+        "text": "Travel to Ningsia. \nSpend 7600 dollars.",
         "function": "sub 7600"
     },
     "30": {
-        "text": "Travel to Nunkiang. \nSpend 5,000 dollars.",
+        "text": "Travel to Nunkiang. \nSpend 5000 dollars.",
         "function": "sub 5000"
     },
     "31": {
-        "text": "Travel to Shansi. \nSpend 2,100 dollars.",
+        "text": "Travel to Shansi. \nSpend 2100 dollars.",
         "function": "sub 2100"
     },
     "32": {
-        "text": "Travel to Shantung. \nSpend 3,700 dollars.",
+        "text": "Travel to Shantung. \nSpend 3700 dollars.",
         "function": "sub 3700"
     },
     "33": {
-        "text": "Travel to Shensi. \nSpend 4,000 dollars.",
+        "text": "Travel to Shensi. \nSpend 4000 dollars.",
         "function": "sub 4000"
     },
     "34": {
-        "text": "Travel to Sikang. \nSpend 2,100 dollars.",
+        "text": "Travel to Sikang. \nSpend 2100 dollars.",
         "function": "sub 2100"
     },
     "35": {
-        "text": "Travel to Sinkiang. \nSpend 7,900 dollars.",
+        "text": "Travel to Sinkiang. \nSpend 7900 dollars.",
         "function": "sub 7900"
     },
     "36": {
-        "text": "Travel to Suiyuan. \nSpend 1,700 dollars.",
+        "text": "Travel to Suiyuan. \nSpend 1700 dollars.",
         "function": "sub 1700"
     },
     "37": {
-        "text": "Travel to Sungkiang. \nSpend 8,900 dollars.",
+        "text": "Travel to Sungkiang. \nSpend 8900 dollars.",
         "function": "sub 8900"
     },
     "38": {
-        "text": "Travel to Szechwan. \nSpend 4,600 dollars.",
+        "text": "Travel to Szechwan. \nSpend 4600 dollars.",
         "function": "sub 4600"
     },
     "39": {
-        "text": "Travel to Tsinghai. \nSpend 4,500 dollars.",
+        "text": "Travel to Tsinghai. \nSpend 4500 dollars.",
         "function": "sub 4500"
     },
     "40": {
-        "text": "Travel to Yunnan. \nSpend 5,900 dollars.",
+        "text": "Travel to Yunnan. \nSpend 5900 dollars.",
         "function": "sub 5900"
     },
     "41": {
-        "text": "Travel to Hainan. \nSpend 6,900 dollars.",
+        "text": "Travel to Hainan. \nSpend 6900 dollars.",
         "function": "sub 6900"
     },
     "42": {
-        "text": "Travel to Mongolia. \nSpend 3,900 dollars.",
+        "text": "Travel to Mongolia. \nSpend 3900 dollars.",
         "function": "sub 3900"
     },
     "43": {
-        "text": "Travel to Tibet. \nSpend 2,600 dollars.",
+        "text": "Travel to Tibet. \nSpend 2600 dollars.",
         "function": "sub 2600"
     },
     "44": {
-        "text": "Travel to Canton. \nSpend 9,000 dollars.",
+        "text": "Travel to Canton. \nSpend 9000 dollars.",
         "function": "sub 9000"
     },
     "45": {
-        "text": "Travel to Chungking. \nSpend 5,200 dollars.",
+        "text": "Travel to Chungking. \nSpend 5200 dollars.",
         "function": "sub 5200"
     },
     "46": {
-        "text": "Travel to Dairen. \nSpend 6,300 dollars.",
+        "text": "Travel to Dairen. \nSpend 6300 dollars.",
         "function": "sub 6300"
     },
     "47": {
-        "text": "Travel to Hankow. \nSpend 2,700 dollars.",
+        "text": "Travel to Hankow. \nSpend 2700 dollars.",
         "function": "sub 2700"
     },
     "48": {
-        "text": "Travel to Harbin. \nSpend 6,500 dollars.",
+        "text": "Travel to Harbin. \nSpend 6500 dollars.",
         "function": "sub 6500"
     },
     "49": {
-        "text": "Travel to Nanking. \nSpend 6,800 dollars.",
+        "text": "Travel to Nanking. \nSpend 6800 dollars.",
         "function": "sub 6800"
     },
     "50": {
-        "text": "Travel to Peking. \nSpend 9,700 dollars.",
+        "text": "Travel to Peking. \nSpend 9700 dollars.",
         "function": "sub 9700"
     },
     "51": {
-        "text": "Travel to Shanghai. \nSpend 7,500 dollars.",
+        "text": "Travel to Shanghai. \nSpend 7500 dollars.",
         "function": "sub 7500"
     },
     "52": {
-        "text": "Travel to Sian. \nSpend 9,600 dollars.",
+        "text": "Travel to Sian. \nSpend 9600 dollars.",
         "function": "sub 9600"
     },
     "53": {
-        "text": "Travel to Tientsin. \nSpend 4,500 dollars.",
+        "text": "Travel to Tientsin. \nSpend 4500 dollars.",
         "function": "sub 4500"
     },
     "54": {
-        "text": "Travel to Tsingtao. \nSpend 6,400 dollars.",
+        "text": "Travel to Tsingtao. \nSpend 6400 dollars.",
         "function": "sub 6400"
     },
     "55": {
-        "text": "Work in Antung. \nEarn 8,500 dollars.",
+        "text": "Work in Antung. \nEarn 8500 dollars.",
         "function": "add 8500"
     },
     "56": {
-        "text": "Work in Anhwei. \nEarn 1,400 dollars.",
+        "text": "Work in Anhwei. \nEarn 1400 dollars.",
         "function": "add 1400"
     },
     "57": {
-        "text": "Work in Chahar. \nEarn 4,300 dollars.",
+        "text": "Work in Chahar. \nEarn 4300 dollars.",
         "function": "add 4300"
     },
     "58": {
-        "text": "Work in Chekiang. \nEarn 5,800 dollars.",
+        "text": "Work in Chekiang. \nEarn 5800 dollars.",
         "function": "add 5800"
     },
     "59": {
-        "text": "Work in Fukien. \nEarn 4,000 dollars.",
+        "text": "Work in Fukien. \nEarn 4000 dollars.",
         "function": "add 4000"
     },
     "60": {
-        "text": "Work in Heilungkiang. \nEarn 2,000 dollars.",
+        "text": "Work in Heilungkiang. \nEarn 2000 dollars.",
         "function": "add 2000"
     },
     "61": {
-        "text": "Work in Hokiang. \nEarn 6,900 dollars.",
+        "text": "Work in Hokiang. \nEarn 6900 dollars.",
         "function": "add 6900"
     },
     "62": {
-        "text": "Work in Honan. \nEarn 1,100 dollars.",
+        "text": "Work in Honan. \nEarn 1100 dollars.",
         "function": "add 1100"
     },
     "63": {
-        "text": "Work in Hopeh. \nEarn 5,100 dollars.",
+        "text": "Work in Hopeh. \nEarn 5100 dollars.",
         "function": "add 5100"
     },
     "64": {
-        "text": "Work in Hunan. \nEarn 7,500 dollars.",
+        "text": "Work in Hunan. \nEarn 7500 dollars.",
         "function": "add 7500"
     },
     "65": {
-        "text": "Work in Hupeh. \nEarn 5,300 dollars.",
+        "text": "Work in Hupeh. \nEarn 5300 dollars.",
         "function": "add 5300"
     },
     "66": {
-        "text": "Work in Hsingan. \nEarn 7,700 dollars.",
+        "text": "Work in Hsingan. \nEarn 7700 dollars.",
         "function": "add 7700"
     },
     "67": {
-        "text": "Work in Jehol. \nEarn 7,200 dollars.",
+        "text": "Work in Jehol. \nEarn 7200 dollars.",
         "function": "add 7200"
     },
     "68": {
-        "text": "Work in Kansu. \nEarn 8,400 dollars.",
+        "text": "Work in Kansu. \nEarn 8400 dollars.",
         "function": "add 8400"
     },
     "69": {
-        "text": "Work in Kiangsi. \nEarn 6,200 dollars.",
+        "text": "Work in Kiangsi. \nEarn 6200 dollars.",
         "function": "add 6200"
     },
     "70": {
-        "text": "Work in Kiangsu. \nEarn 1,400 dollars.",
+        "text": "Work in Kiangsu. \nEarn 1400 dollars.",
         "function": "add 1400"
     },
     "71": {
-        "text": "Work in Kirin. \nEarn 3,800 dollars.",
+        "text": "Work in Kirin. \nEarn 3800 dollars.",
         "function": "add 3800"
     },
     "72": {
-        "text": "Work in Kwangsi. \nEarn 2,600 dollars.",
+        "text": "Work in Kwangsi. \nEarn 2600 dollars.",
         "function": "add 2600"
     },
     "73": {
-        "text": "Work in Kwangtung. \nEarn 4,500 dollars.",
+        "text": "Work in Kwangtung. \nEarn 4500 dollars.",
         "function": "add 4500"
     },
     "74": {
-        "text": "Work in Kweichow. \nEarn 3,300 dollars.",
+        "text": "Work in Kweichow. \nEarn 3300 dollars.",
         "function": "add 3300"
     },
     "75": {
-        "text": "Work in Liaoning. \nEarn 3,400 dollars.",
+        "text": "Work in Liaoning. \nEarn 3400 dollars.",
         "function": "add 3400"
     },
     "76": {
-        "text": "Work in Liaopeh. \nEarn 1,700 dollars.",
+        "text": "Work in Liaopeh. \nEarn 1700 dollars.",
         "function": "add 1700"
     },
     "77": {
-        "text": "Work in Ningsia. \nEarn 4,400 dollars.",
+        "text": "Work in Ningsia. \nEarn 4400 dollars.",
         "function": "add 4400"
     },
     "78": {
-        "text": "Work in Nunkiang. \nEarn 2,100 dollars.",
+        "text": "Work in Nunkiang. \nEarn 2100 dollars.",
         "function": "add 2100"
     },
     "79": {
-        "text": "Work in Shansi. \nEarn 1,800 dollars.",
+        "text": "Work in Shansi. \nEarn 1800 dollars.",
         "function": "add 1800"
     },
     "80": {
-        "text": "Work in Shantung. \nEarn 1,100 dollars.",
+        "text": "Work in Shantung. \nEarn 1100 dollars.",
         "function": "add 1100"
     },
     "81": {
-        "text": "Work in Shensi. \nEarn 3,900 dollars.",
+        "text": "Work in Shensi. \nEarn 3900 dollars.",
         "function": "add 3900"
     },
     "82": {
-        "text": "Work in Sikang. \nEarn 2,700 dollars.",
+        "text": "Work in Sikang. \nEarn 2700 dollars.",
         "function": "add 2700"
     },
     "83": {
-        "text": "Work in Sinkiang. \nEarn 3,100 dollars.",
+        "text": "Work in Sinkiang. \nEarn 3100 dollars.",
         "function": "add 3100"
     },
     "84": {
-        "text": "Work in Suiyuan. \nEarn 1,200 dollars.",
+        "text": "Work in Suiyuan. \nEarn 1200 dollars.",
         "function": "add 1200"
     },
     "85": {
-        "text": "Work in Sungkiang. \nEarn 5,500 dollars.",
+        "text": "Work in Sungkiang. \nEarn 5500 dollars.",
         "function": "add 5500"
     },
     "86": {
-        "text": "Work in Szechwan. \nEarn 1,700 dollars.",
+        "text": "Work in Szechwan. \nEarn 1700 dollars.",
         "function": "add 1700"
     },
     "87": {
-        "text": "Work in Tsinghai. \nEarn 8,900 dollars.",
+        "text": "Work in Tsinghai. \nEarn 8900 dollars.",
         "function": "add 8900"
     },
     "88": {
-        "text": "Work in Yunnan. \nEarn 4,700 dollars.",
+        "text": "Work in Yunnan. \nEarn 4700 dollars.",
         "function": "add 4700"
     },
     "89": {
-        "text": "Work in Hainan. \nEarn 8,400 dollars.",
+        "text": "Work in Hainan. \nEarn 8400 dollars.",
         "function": "add 8400"
     },
     "90": {
-        "text": "Work in Mongolia. \nEarn 7,900 dollars.",
+        "text": "Work in Mongolia. \nEarn 7900 dollars.",
         "function": "add 7900"
     },
     "91": {
-        "text": "Work in Tibet. \nEarn 1,400 dollars.",
+        "text": "Work in Tibet. \nEarn 1400 dollars.",
         "function": "add 1400"
     },
     "92": {
-        "text": "Work in Canton. \nEarn 8,200 dollars.",
+        "text": "Work in Canton. \nEarn 8200 dollars.",
         "function": "add 8200"
     },
     "93": {
-        "text": "Work in Chungking. \nEarn 7,500 dollars.",
+        "text": "Work in Chungking. \nEarn 7500 dollars.",
         "function": "add 7500"
     },
     "94": {
-        "text": "Work in Dairen. \nEarn 5,700 dollars.",
+        "text": "Work in Dairen. \nEarn 5700 dollars.",
         "function": "add 5700"
     },
     "95": {
-        "text": "Work in Hankow. \nEarn 8,000 dollars.",
+        "text": "Work in Hankow. \nEarn 8000 dollars.",
         "function": "add 8000"
     },
     "96": {
-        "text": "Work in Harbin. \nEarn 2,000 dollars.",
+        "text": "Work in Harbin. \nEarn 2000 dollars.",
         "function": "add 2000"
     },
     "97": {
-        "text": "Work in Nanking. \nEarn 3,800 dollars.",
+        "text": "Work in Nanking. \nEarn 3800 dollars.",
         "function": "add 3800"
     },
     "98": {
-        "text": "Work in Peking. \nEarn 9,000 dollars.",
+        "text": "Work in Peking. \nEarn 9000 dollars.",
         "function": "add 9000"
     },
     "99": {
-        "text": "Work in Shanghai. \nEarn 8,900 dollars.",
+        "text": "Work in Shanghai. \nEarn 8900 dollars.",
         "function": "add 8900"
     },
     "100": {
-        "text": "Work in Sian. \nEarn 8,700 dollars.",
+        "text": "Work in Sian. \nEarn 8700 dollars.",
         "function": "add 8700"
     },
     "101": {
-        "text": "Work in Tientsin. \nEarn 1,500 dollars.",
+        "text": "Work in Tientsin. \nEarn 1500 dollars.",
         "function": "add 1500"
     },
     "102": {
-        "text": "Work in Tsingtao. \nEarn 5,500 dollars.",
+        "text": "Work in Tsingtao. \nEarn 5500 dollars.",
         "function": "add 5500"
     },
     "103": {

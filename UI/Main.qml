@@ -534,10 +534,10 @@ Window {
                 text: event.displayMessage
             }
 
-            EndPopUp{
-                id:endgame
-                text: event.displayMessage
-            }
+            // EndPopUp{
+            //     id:endgame
+            //     text: event.displayMessage
+            // }
 
             FastBlur {
                 id: theBlur;
