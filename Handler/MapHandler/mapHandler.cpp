@@ -106,6 +106,12 @@ void mapUpdate(vector<int> landCoordinate ,QList<QObject*> &m_mapList ,vector<La
         regis->byPlayoerPosSetVisibility(playerPos,i);
         regis->byLevelSetBuildingVisibility(land[i]->getLevel());
         regis->byTypeOrOwnerSetColor(land[i]->getType(),land[i]->getOwner());
+        if(land[i]->getState() == 1){
+            regis->setIsRoadBlock(true);
+        }
+        else{
+            regis->setIsRoadBlock(false);
+        }
     }
 }
 

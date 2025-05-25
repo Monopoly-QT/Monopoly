@@ -23,6 +23,7 @@ class Map:public QObject{
     Q_PROPERTY(QColor displayColor READ displayColor WRITE setDisplayColor NOTIFY displayColorChanged FINAL);
     Q_PROPERTY(QList<int> playerStay READ playerStay WRITE setPlayerStay NOTIFY playerStayChanged FINAL);
     Q_PROPERTY(QList<int> isDisplayBuilding READ isDisplayBuilding WRITE setIsDisplayBuilding NOTIFY isDisplayBuildingChanged FINAL);
+    Q_PROPERTY(bool isRoadBlock READ isRoadBlock WRITE setIsRoadBlock NOTIFY isRoadBlockChanged FINAL);
 
 
 public:
@@ -67,6 +68,9 @@ public:
     QList<int> isDisplayBuilding() const;
     void setIsDisplayBuilding(const QList<int> &newIsDisplayBuilding);
 
+    bool isRoadBlock() const;
+    void setIsRoadBlock(bool newIsRoadBlock);
+
 signals:
     void isDisplayChanged();
 
@@ -84,6 +88,8 @@ signals:
 
     void isDisplayBuildingChanged();
 
+    void isRoadBlockChanged();
+
 private:
     bool m_isDisplay;
     bool m_showTranslation = false;
@@ -93,6 +99,7 @@ private:
     QColor m_displayColor;
     QList<int> m_playerStay;
     QList<int> m_isDisplayBuilding;
+    bool m_isRoadBlock;
 };
 
 

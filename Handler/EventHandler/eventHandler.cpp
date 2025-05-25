@@ -484,6 +484,7 @@ void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr) {
     processPlayer[turn]->disOwnCards(1);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 }
 
 void eventHandler::eventCardUseEntryPoint() {
@@ -571,7 +572,15 @@ void eventHandler::animationThread(int _times,int _playerPos,int _index){
 void eventHandler::afterMove(){
     int location = processPlayer[turn]->getPos();
     int landOwner = processMap[location]->getOwner()-1;
-    cout<<turn<<endl;
+
+    // 解除路障
+    if (processMap[location]->getState() == 1){
+        processMap[location]->setState(0);
+        mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    }
+    else{
+        mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+    }
 
     // 確認種類是一般的已被擁有地塊且自己非擁有者
     if(processMap[location]->getType() == 0 && landOwner != turn && processMap[location]->getOwner() != -1)
@@ -599,13 +608,9 @@ void eventHandler::afterMove(){
     else if (processMap[location]->getType() == 3) {
         nextTurn();
     }
-    // 解除路障
-    if (processMap[location]->getState() == 1)
-        processMap[location]->setState(0);
 }
 
 void eventHandler::nextTurn(){
-    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     turn = (turn + 1) % 4;
     int tmp = turn;
     while (!processPlayer[turn]->getIsLive()) {

@@ -12,7 +12,6 @@ Window {
     width: 1280
     height: 720
     visible: true
-    // visibility: Window.FullScreen
 
     Rectangle {
         id: playWindow
@@ -161,6 +160,17 @@ Window {
                                         property real centerX: x + width / 2
                                         property real centerY: y + height / 2
                                         property var pt
+
+                                        Image {
+                                            id: roadBlock
+                                            source: "qrc:/images/roadBlock.png"
+                                            height: parent.height
+                                            width: height
+                                            anchors.centerIn: parent
+                                            z:1
+                                            opacity: 0.25
+                                            visible: model.isRoadBlock
+                                        }
 
                                         RowLayout {
                                             anchors.fill: parent

@@ -21,5 +21,6 @@
         <file>images/shop/index3.png</file>
         <file>images/shop/index4.png</file>
         <file>images/shop/background.png</file>
+        <file>images/roadBlock.png</file>
     </qresource>
 </RCC>

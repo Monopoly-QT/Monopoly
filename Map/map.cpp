@@ -21,6 +21,7 @@ Map::Map(bool _isDisplay,string _order,string _name,string _translation,vector<i
     byPlayoerPosSetVisibility(_playerStay ,stoi(_order));
     byLevelSetBuildingVisibility(_land->getLevel());
     byTypeOrOwnerSetColor(_land->getType() , _land->getOwner());
+    setIsRoadBlock(false);
 }
 
 Map::Map(){
@@ -210,4 +211,17 @@ void Map::setIsDisplayBuilding(const QList<int> &newIsDisplayBuilding)
         return;
     m_isDisplayBuilding = newIsDisplayBuilding;
     emit isDisplayBuildingChanged();
+}
+
+bool Map::isRoadBlock() const
+{
+    return m_isRoadBlock;
+}
+
+void Map::setIsRoadBlock(bool newIsRoadBlock)
+{
+    if (m_isRoadBlock == newIsRoadBlock)
+        return;
+    m_isRoadBlock = newIsRoadBlock;
+    emit isRoadBlockChanged();
 }
