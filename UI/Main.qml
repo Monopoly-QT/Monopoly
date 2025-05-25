@@ -427,21 +427,6 @@ Window {
                             }
                         }
 
-                        // Button{
-                        //     Layout.preferredHeight: 30
-                        //     Layout.preferredWidth: 100
-                        //     onClicked: {
-                        //         stack.push("HorseRacing.qml")
-                        //     }
-                        // }
-                        // Button{
-                        //     Layout.preferredHeight: 30
-                        //     Layout.preferredWidth: 100
-                        //     onClicked: {
-                        //         stack.push("DragonGate.qml")
-                        //     }
-                        // }
-
                         Rectangle {
                             Layout.fillHeight: true
                         }
@@ -565,11 +550,6 @@ Window {
         }
     }
 
-    Component.onCompleted: {
-        event.checkIsGameEnded();
-    }
-
-
     // CardPopup {
     //     id: card_popUp
     // }
@@ -595,11 +575,6 @@ Window {
 
     // Bankruptcy_popUp{
     //     id:bankruptcy
-    //     text: event.displayMessage
-    // }
-    //
-    // EndPopUp{
-    //     id:endgame
     //     text: event.displayMessage
     // }
 
