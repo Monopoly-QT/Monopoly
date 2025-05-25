@@ -121,7 +121,7 @@ Popup{
         NumberAnimation {
             target: message_popUp
             property: "width"
-            to : 300
+            to : 450
             duration: 200
             easing.type: Easing.InOutQuad
         }
