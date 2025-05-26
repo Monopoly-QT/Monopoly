@@ -468,10 +468,12 @@ void eventHandler::commendEntryPoint(QString _instruct) {
             cout << prompt << '\n';
             popUpdisplaySetting(prompt, 0);
         } else if (inputCommand == "/info") {
+            string colors[4] = {"Red", "Blue", "Green", "Yellow"};
             string prompt = "Players' Infomations: \n\n";
             cout << commandData["info"]["prompt"].get<string>();
             for (int i = 0; i < 4; i++) {
-                prompt += "Player's ID: " + to_string(processPlayer[i]->getID()) + "\n";
+                prompt += "ID: " + to_string(processPlayer[i]->getID()) + "\n";
+                prompt += "Color: " + colors[i] + "\n";
                 prompt += "Name: " + processPlayer[i]->getPlayerName() + "\n";
                 prompt += "Last Name: " + processPlayer[i]->getPlayerLastName() + "\n";
                 prompt += "Money: " + to_string(processPlayer[i]->getMoney()) + "\n";
