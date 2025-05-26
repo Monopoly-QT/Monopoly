@@ -615,7 +615,7 @@ void eventHandler::roadBlockCardUseEnrtyPoint(QString _blockQStr) {
 }
 
 void eventHandler::eventCardUseEntryPoint() {
-    RandomEventCard::use(*processPlayer[turn]);
+    randomEvent();
     processPlayer[turn]->disOwnCards(4);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
@@ -723,99 +723,7 @@ void eventHandler::afterMove() {
     }
     // 事件地塊
     else if (processMap[location]->getType() == 1) {
-        nlohmann::json countryData;
-        ifstream country;
-        country.open("json/country.json");
-
-        if (country.fail()) {
-            cout << "Falied to open country.json\n";
-        }
-
-        country >> countryData;
-        country.close();
-
-        nlohmann::json eventData;
-        ifstream event;
-        event.open("json/event.json");
-
-        if (event.fail()) {
-            cout << "Falied to open event.json\n";
-        }
-
-        event >> eventData;
-        event.close();
-
-        random_device rd;
-        srand(rd());
-
-        int randNum = rand() % 250;
-        int eventNum = (randNum < 199 ? randNum : 199);
-
-        cout << "Event " << eventNum << '\n';
-        cout << eventData[to_string(eventNum)]["text"].get<string>() << '\n';
-        popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>() + "\n", 0);
-
-        string function = eventData[to_string(eventNum)]["function"].get<string>();
-        cout << function;
-
-        stringstream ssfun(function);
-        while (ssfun >> function) {
-            if (function == "sub") {
-                int delta;
-                ssfun >> delta;
-                processPlayer[turn]->subMoney(delta);
-            } else if (function == "add") {
-                int delta;
-                ssfun >> delta;
-                processPlayer[turn]->addMoney(delta);
-            } else if (function == "level") {
-                int newLevel;
-                ssfun >> newLevel;
-                string area;
-
-                while (ssfun >> area) {
-                    if (area != "end") {
-                        processMap[Land::landNameToPos[area]]->setLevel(newLevel);
-                    } else {
-                        return;
-                    }
-                }
-            } else if (function == "hospital") {
-                int day;
-                ssfun >> day;
-                processPlayer[turn]->setStayInHospitalTurn(day);
-                processPlayer[turn]->setPos(min(abs(32 - processPlayer[turn]->getPos()),
-                                                abs(63 - processPlayer[turn]->getPos())));
-            } else if (function == "fly") {
-                string area;
-                ssfun >> area;
-
-                processPlayer[turn]->setPos(Land::landNameToPos[area]);
-                mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-            } else if (function == "run") {
-                this_thread::sleep_for(chrono::milliseconds(1000));
-
-
-                random_device rd;
-                srand(rd());
-                int minigameNum = rand() % 2;
-
-                if (minigameNum) {
-                    // Enter DragonGate
-                    dragonGateGameObject.init(processPlayer[turn]);
-                    engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
-                    engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
-                    emit openDragonGate();
-                } else {
-                    // Enter HorseRacing
-                    horseRacingGameObject.init(processPlayer[turn]);
-                    engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
-                    engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
-                    emit openHorseRacing();
-                }
-            }
-        }
-
+        randomEvent();
         nextTurn();
     }
     // 商店
@@ -825,6 +733,101 @@ void eventHandler::afterMove() {
     // Hospital
     else if (processMap[location]->getType() == 3) {
         nextTurn();
+    }
+}
+
+void eventHandler::randomEvent() {
+    nlohmann::json countryData;
+    ifstream country;
+    country.open("json/country.json");
+
+    if (country.fail()) {
+        cout << "Falied to open country.json\n";
+    }
+
+    country >> countryData;
+    country.close();
+
+    nlohmann::json eventData;
+    ifstream event;
+    event.open("json/event.json");
+
+    if (event.fail()) {
+        cout << "Falied to open event.json\n";
+    }
+
+    event >> eventData;
+    event.close();
+
+    random_device rd;
+    srand(rd());
+
+    int randNum = rand() % 250;
+    int eventNum = (randNum < 199 ? randNum : 199);
+
+    cout << "Event " << eventNum << '\n';
+    cout << eventData[to_string(eventNum)]["text"].get<string>() << '\n';
+    popUpdisplaySetting(eventData[to_string(eventNum)]["text"].get<string>() + "\n", 0);
+
+    string function = eventData[to_string(eventNum)]["function"].get<string>();
+    cout << function;
+
+    stringstream ssfun(function);
+    while (ssfun >> function) {
+        if (function == "sub") {
+            int delta;
+            ssfun >> delta;
+            processPlayer[turn]->subMoney(delta);
+        } else if (function == "add") {
+            int delta;
+            ssfun >> delta;
+            processPlayer[turn]->addMoney(delta);
+        } else if (function == "level") {
+            int newLevel;
+            ssfun >> newLevel;
+            string area;
+
+            while (ssfun >> area) {
+                if (area != "end") {
+                    processMap[Land::landNameToPos[area]]->setLevel(newLevel);
+                } else {
+                    return;
+                }
+            }
+        } else if (function == "hospital") {
+            int day;
+            ssfun >> day;
+            processPlayer[turn]->setStayInHospitalTurn(day);
+            processPlayer[turn]->setPos(min(abs(32 - processPlayer[turn]->getPos()),
+                                            abs(63 - processPlayer[turn]->getPos())));
+        } else if (function == "fly") {
+            string area;
+            ssfun >> area;
+
+            processPlayer[turn]->setPos(Land::landNameToPos[area]);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        } else if (function == "run") {
+            this_thread::sleep_for(chrono::milliseconds(1000));
+
+
+            random_device rd;
+            srand(rd());
+            int minigameNum = rand() % 2;
+
+            if (minigameNum) {
+                // Enter DragonGate
+                dragonGateGameObject.init(processPlayer[turn]);
+                engine->rootContext()->setContextProperty("gameClass", &dragonGateGameObject);
+                engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
+                emit openDragonGate();
+            } else {
+                // Enter HorseRacing
+                horseRacingGameObject.init(processPlayer[turn]);
+                engine->rootContext()->setContextProperty("gameClass", &horseRacingGameObject);
+                engine->rootContext()->setContextProperty("playerClass", processPlayer[turn]);
+                emit openHorseRacing();
+            }
+        }
     }
 }
 
@@ -862,7 +865,7 @@ void eventHandler::gameEnd() {
             display += processPlayer[i]->getPlayerName() + " WINS!\n";
         }
     }
-    display+= "\nDo you wanna start a new game?";
+    display += "\nDo you wanna start a new game?";
     popUpdisplaySetting(display, 3);
     setDiceEnabled(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -903,8 +906,7 @@ bool eventHandler::checkIsGameEnded() {
 }
 
 
-
-bool eventHandler::checkIsBankrupt(){
+bool eventHandler::checkIsBankrupt() {
     if (processPlayer[turn]->getMoney() <= 0) {
         emit openBankruptcy();
         return true;

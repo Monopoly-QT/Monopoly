@@ -55,6 +55,9 @@ public:
     void popUpdisplaySetting(string _message,int _type); //set upgraade,buy,message popUp  Type: 0:message 1:buy 2:upgrade
 
     Q_INVOKABLE void afterMove();
+
+    void randomEvent();
+
     Q_INVOKABLE void addMapPosXandPosY(double _posX, double _posY);
     Q_INVOKABLE void clearMapPosXandPosY();
     Q_INVOKABLE void moveEntryPoint(int _moveDistance);
