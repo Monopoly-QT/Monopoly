@@ -188,6 +188,7 @@ Popup {
                                         } else {
                                             console.log("購買失敗")
                                         }
+                                        buyButton.enabled = false
                                     }
                                     onEntered: {
                                         buyButton.scale = 1.05

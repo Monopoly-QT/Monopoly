@@ -204,9 +204,10 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
+    processPlayer[0]->setMoney(100000);
     processPlayer[2]->setPos(18);
-    processMap[2]->setOwner(1);
-    processMap[2]->setLevel(1);
+    processMap[5]->setOwner(0);
+    processMap[5]->setLevel(4);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
     // for(int i=0;i<5;i++){
@@ -698,8 +699,9 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
 }
 
 void eventHandler::afterMove() {
+    qDebug()<<turn<<"\n";
     int location = processPlayer[turn]->getPos();
-    int landOwner = processMap[location]->getOwner() - 1;
+    int landOwner = processMap[location]->getOwner();
 
     // 解除路障
     if (processMap[location]->getState() == 1) {
@@ -733,8 +735,8 @@ void eventHandler::afterMove() {
     else if (processMap[location]->getType() == 2) {
         emit openShopPopup();
     }
-    // Hospital
-    else if (processMap[location]->getType() == 3) {
+    // Hospital & 其他
+    else {
         nextTurn();
     }
 }
@@ -900,6 +902,7 @@ bool eventHandler::checkIsGameEnded() {
             liveCount++;
         }
         if (processPlayer[i]->getMoney() >= m_endMoney) {
+            qDebug()<<i<<" "<<processPlayer[i]->getMoney()<<"\n";
             gameEnd();
             return true;
         }
@@ -925,7 +928,7 @@ bool eventHandler::checkIsBankrupt() {
 
 void eventHandler::toll() {
     int nowPos = processPlayer[turn]->getPos();
-    int landOwner = processMap[nowPos]->getOwner() - 1;
+    int landOwner = processMap[nowPos]->getOwner();
     int landValue = processMap[nowPos]->getValue();
     int nowLevel = processMap[nowPos]->getLevel();
     int fee = (nowLevel) * (landValue / 10);
@@ -941,13 +944,15 @@ void eventHandler::buyLand() {
     int nowPos = processPlayer[turn]->getPos();
     if (processPlayer[turn]->getMoney() >= processMap[nowPos]->getValue()) {
         processPlayer[turn]->addHouse(nowPos);
-        processMap[nowPos]->setOwner(turn + 1);
+        processMap[nowPos]->setOwner(turn);
         processMap[nowPos]->setLevel(1);
         processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
         m_displayState->initialStateDisplay(turn, processPlayer[turn]);
         m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        qDebug()<<"landOwner is "<<processMap[processPlayer[1]->getPos()]->getOwner()<<"\n\n";
     }
+    else popUpdisplaySetting("oops, you don't have enough money", 0);
     nextTurn();
 }
 
@@ -961,6 +966,9 @@ void eventHandler::levelup() {
         m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     }
+    else if(processMap[nowPos]->getLevel() == 4) popUpdisplaySetting("oops, the level is already maxed out", 0);
+    else if(processPlayer[turn]->getMoney() < (processMap[nowPos]->getValue() / 2))popUpdisplaySetting("oops, you don't have enough money", 0);
+
     nextTurn();
 }
 
