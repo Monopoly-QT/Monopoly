@@ -491,6 +491,27 @@ Window {
                     onOpenHorseRacing: {
                         stack.push("HorseRacing.qml")
                     }
+
+                    onCloseAllPopups: {
+                        if (card_popUp.visible) {
+                            card_popUp.closeAnimation();
+                        }
+                        if (shop_popUp.visible) {
+                            shop_popUp.closeAnimation();
+                        }
+                        if (message.visible) {
+                            message.closeAnimation();
+                        }
+                        if (buyLand.visible) {
+                            buyLand.closeAnimation();
+                        }
+                        if (upgradeOrSell.visible) {
+                            upgradeOrSell.closeAnimation();
+                        }
+                        if (bankruptcy.visible) {
+                            bankruptcy.closeAnimation();
+                        }
+                    }
                 }
             }
 

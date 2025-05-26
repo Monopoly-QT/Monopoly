@@ -78,6 +78,7 @@ public:
     Q_INVOKABLE void updateState();
     Q_INVOKABLE bool checkIsGameEnded();
     Q_INVOKABLE void restart(bool first);
+    Q_INVOKABLE int getTurn();
 
     bool checkIsBankrupt();
 
@@ -141,6 +142,8 @@ signals:
     void displayMessage_bankruptcypopUpChanged();
 
     void displayMessageChanged();
+
+    void closeAllPopups();
 
 private:
     int turn;

@@ -230,6 +230,10 @@ void eventHandler::restart(bool first) {
     emit diceEnabledChanged();
 }
 
+int eventHandler::getTurn() {
+    return turn;
+}
+
 void eventHandler::moveEntryPoint(int _moveDistance) {
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     if (processPlayer[turn]->getState() == 0)movePointAnimator(_moveDistance);
@@ -724,7 +728,6 @@ void eventHandler::afterMove() {
     // 事件地塊
     else if (processMap[location]->getType() == 1) {
         randomEvent();
-        nextTurn();
     }
     // 商店
     else if (processMap[location]->getType() == 2) {
@@ -778,10 +781,12 @@ void eventHandler::randomEvent() {
             int delta;
             ssfun >> delta;
             processPlayer[turn]->subMoney(delta);
+            nextTurn();
         } else if (function == "add") {
             int delta;
             ssfun >> delta;
             processPlayer[turn]->addMoney(delta);
+            nextTurn();
         } else if (function == "level") {
             int newLevel;
             ssfun >> newLevel;
@@ -791,24 +796,25 @@ void eventHandler::randomEvent() {
                 if (area != "end") {
                     processMap[Land::landNameToPos[area]]->setLevel(newLevel);
                 } else {
-                    return;
+                    break;
                 }
             }
+            nextTurn();
         } else if (function == "hospital") {
             int day;
             ssfun >> day;
             processPlayer[turn]->setStayInHospitalTurn(day);
             processPlayer[turn]->setPos(min(abs(32 - processPlayer[turn]->getPos()),
                                             abs(63 - processPlayer[turn]->getPos())));
+            nextTurn();
         } else if (function == "fly") {
             string area;
             ssfun >> area;
-
             processPlayer[turn]->setPos(Land::landNameToPos[area]);
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+            nextTurn();
         } else if (function == "run") {
             this_thread::sleep_for(chrono::milliseconds(1000));
-
 
             random_device rd;
             srand(rd());
@@ -856,14 +862,15 @@ void eventHandler::nextTurn() {
 void eventHandler::gameEnd() {
     string display = "";
     for (int i = 0; i < 4; i++) {
-        display += processPlayer[i]->getPlayerName() + ": " +
-                (processPlayer[i]->getIsLive() ? "Alive" : "Dead") + "($ " + to_string(processPlayer[i]->getMoney()) +
-                ")\n";
-    }
-    for (int i = 0; i < 4; i++) {
         if (processPlayer[i]->getMoney() >= m_endMoney) {
             display += processPlayer[i]->getPlayerName() + " WINS!\n";
         }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        display += processPlayer[i]->getPlayerName() + ": " +
+                (processPlayer[i]->getIsLive() ? "Alive" : "Dead") + "($ " + to_string(processPlayer[i]->getMoney()) +
+                ")\n";
     }
     display += "\nDo you wanna start a new game?";
     popUpdisplaySetting(display, 3);
@@ -880,10 +887,10 @@ void eventHandler::suicidal() {
 }
 
 void eventHandler::updateState() {
-    checkIsGameEnded();
-    checkIsBankrupt();
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    checkIsBankrupt();
+    checkIsGameEnded();
 }
 
 bool eventHandler::checkIsGameEnded() {

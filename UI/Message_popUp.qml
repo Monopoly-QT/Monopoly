@@ -38,16 +38,16 @@ Popup{
                 width: parent.width
                 height: parent.height
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-                Item {
-                    width: Math.max(standardText.implicitWidth, parent.width)
-                    height: Math.max(standardText.implicitHeight, parent.height)
-
+                // Item {
+                //     width: Math.max(standardText.implicitWidth, parent.width)
+                //     height: Math.max(standardText.implicitHeight, parent.height)
+                //
+                // }
                     Standard_Text {
                         id: standardText
                         label: message_popUp.label
                         anchors.centerIn: parent
                     }
-                }
                 // Standard_Text{
                 //     label: message_popUp.label
                 //     anchors.centerIn: parent

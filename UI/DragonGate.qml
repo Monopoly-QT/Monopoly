@@ -14,6 +14,7 @@ Page {
     property int betAmount: 100
     property int guessType: 0 // 1: 不同 2: 相同
     property int result: 0 // 1: 輸 2: 贏 3: 撞柱
+    property int playerTurn: 0;
 
     // 更新主題色配色
     property color primaryColor: "#FF5252"        // 鮮豔的紅色作為主色調
@@ -32,6 +33,13 @@ Page {
         }
     }
 
+    Connections {
+        target: event
+        onCloseAllPopups: {
+            stack.pop();
+        }
+    }
+
     Item {
         width: parent.width
         height: parent.height
@@ -41,8 +49,12 @@ Page {
             id: background
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: Qt.darker(surfaceColor, 1.2) }
-                GradientStop { position: 1.0; color: surfaceColor }
+                GradientStop {
+                    position: 0.0; color: Qt.darker(surfaceColor, 1.2)
+                }
+                GradientStop {
+                    position: 1.0; color: surfaceColor
+                }
             }
         }
 
@@ -50,6 +62,7 @@ Page {
         Canvas {
             anchors.fill: parent
             onPaint: {
+                dragonGateRoot.playerTurn = event.getTurn();
                 var ctx = getContext("2d");
                 ctx.lineWidth = 1;
                 ctx.strokeStyle = Qt.rgba(1, 1, 1, 0.03);
@@ -77,9 +90,15 @@ Page {
             height: 4
             gradient: Gradient {
                 orientation: Gradient.Horizontal
-                GradientStop { position: 0.0; color: primaryColor }
-                GradientStop { position: 0.5; color: secondaryColor }
-                GradientStop { position: 1.0; color: accentColor }
+                GradientStop {
+                    position: 0.0; color: primaryColor
+                }
+                GradientStop {
+                    position: 0.5; color: secondaryColor
+                }
+                GradientStop {
+                    position: 1.0; color: accentColor
+                }
             }
             anchors.top: parent.top
         }
@@ -126,8 +145,12 @@ Page {
                     radius: 20
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { position: 0.0; color: Qt.alpha(primaryColor, 0.1) }
-                        GradientStop { position: 1.0; color: Qt.alpha(secondaryColor, 0.15) }
+                        GradientStop {
+                            position: 0.0; color: Qt.alpha(primaryColor, 0.1)
+                        }
+                        GradientStop {
+                            position: 1.0; color: Qt.alpha(secondaryColor, 0.15)
+                        }
                     }
                     border.width: 1
                     border.color: Qt.alpha(secondaryColor, 0.3)
@@ -482,8 +505,12 @@ Page {
                     radius: 8
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { position: 0.0; color: "#2A2A2A" }
-                        GradientStop { position: 1.0; color: "#3D3D3D" }
+                        GradientStop {
+                            position: 0.0; color: "#2A2A2A"
+                        }
+                        GradientStop {
+                            position: 1.0; color: "#3D3D3D"
+                        }
                     }
                     border.width: 1
                     border.color: "#555555"
@@ -499,22 +526,26 @@ Page {
                     }
                 }
 
-                up.indicator: Rectangle{
+                up.indicator: Rectangle {
                     x: betSpinBox.mirrored ? 0 : parent.width - width
                     height: parent.height
                     implicitWidth: 40
                     implicitHeight: 40
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { position: 0.0; color: Qt.alpha(primaryColor, 0.1) }
-                        GradientStop { position: 1.0; color: Qt.alpha(secondaryColor, 0.15) }
+                        GradientStop {
+                            position: 0.0; color: Qt.alpha(primaryColor, 0.1)
+                        }
+                        GradientStop {
+                            position: 1.0; color: Qt.alpha(secondaryColor, 0.15)
+                        }
                     }
                     border.width: 1
                     border.color: Qt.alpha(secondaryColor, 0.3)
 
                     Text {
                         text: "+"
-                        font.pixelSize: betSpinBox.font.pixelSize*1.5
+                        font.pixelSize: betSpinBox.font.pixelSize * 1.5
                         color: "#ffffff"
                         font.bold: true
                         anchors.fill: parent
@@ -524,22 +555,26 @@ Page {
                     }
                 }
 
-                down.indicator: Rectangle{
+                down.indicator: Rectangle {
                     x: 0
                     height: parent.height
                     implicitWidth: 40
                     implicitHeight: 40
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { position: 0.0; color: Qt.alpha(primaryColor, 0.1) }
-                        GradientStop { position: 1.0; color: Qt.alpha(secondaryColor, 0.15) }
+                        GradientStop {
+                            position: 0.0; color: Qt.alpha(primaryColor, 0.1)
+                        }
+                        GradientStop {
+                            position: 1.0; color: Qt.alpha(secondaryColor, 0.15)
+                        }
                     }
                     border.width: 1
                     border.color: Qt.alpha(secondaryColor, 0.3)
 
                     Text {
                         text: "-"
-                        font.pixelSize: betSpinBox.font.pixelSize*1.5
+                        font.pixelSize: betSpinBox.font.pixelSize * 1.5
                         color: "#ffffff"
                         font.bold: true
                         anchors.fill: parent
@@ -585,8 +620,12 @@ Page {
                         radius: 23
                         gradient: Gradient {
                             orientation: Gradient.Horizontal
-                            GradientStop { position: 0.0; color: backButton.pressed ? Qt.darker("#3D3D3D", 1.1) : "#3D3D3D" }
-                            GradientStop { position: 1.0; color: backButton.pressed ? Qt.darker("#2A2A2A", 1.1) : "#2A2A2A" }
+                            GradientStop {
+                                position: 0.0; color: backButton.pressed ? Qt.darker("#3D3D3D", 1.1) : "#3D3D3D"
+                            }
+                            GradientStop {
+                                position: 1.0; color: backButton.pressed ? Qt.darker("#2A2A2A", 1.1) : "#2A2A2A"
+                            }
                         }
                         border.width: 1
                         border.color: "#555555"
@@ -621,7 +660,9 @@ Page {
                     }
 
                     onClicked: {
-                        event.updateState()
+                        if (dragonGateRoot.playerTurn === event.getTurn()) {
+                            event.nextTurn();
+                        }
                         stack.pop()
                     }
                 }
@@ -836,7 +877,7 @@ Page {
                     }
 
                     onClicked: {
-                        result =  gameClass.makeGuess(1) + 1;
+                        result = gameClass.makeGuess(1) + 1;
                         gameEnded = true;
                     }
                 }
@@ -851,8 +892,12 @@ Page {
                 radius: 18
                 gradient: Gradient {
                     orientation: Gradient.Horizontal
-                    GradientStop { position: 0.0; color: Qt.alpha(primaryColor, 0.1) }
-                    GradientStop { position: 1.0; color: Qt.alpha(secondaryColor, 0.1) }
+                    GradientStop {
+                        position: 0.0; color: Qt.alpha(primaryColor, 0.1)
+                    }
+                    GradientStop {
+                        position: 1.0; color: Qt.alpha(secondaryColor, 0.1)
+                    }
                 }
                 border.width: 1
                 border.color: Qt.alpha(secondaryColor, 0.2)

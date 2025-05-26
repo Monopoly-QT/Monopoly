@@ -77,16 +77,16 @@ void Map::byLevelSetBuildingVisibility(int level){
 
 void Map::byTypeOrOwnerSetColor(int type ,int owner){
     if(type == 0){
-        if(owner == 0){
+        if(owner == -1){
             m_displayColor = "#454545";  // 深灰
         }
-        else if(owner == 1){
+        else if(owner == 0){
             m_displayColor = "#990000";  // 深紅
         }
-        else if(owner == 2){
+        else if(owner == 1){
             m_displayColor = "#005999";  // 深藍
         }
-        else if(owner == 3){
+        else if(owner == 2){
             m_displayColor = "#007f00";  // 深綠
         }
         else{

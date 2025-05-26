@@ -15,11 +15,19 @@ Page {
     property int betAmount: 100
     property bool gameStarted: false
     property int betHorse: 0
+    property int playerTurn: 0
 
     Connections {
         target: gameClass
         onUpdateState: {
             event.updateState();
+        }
+    }
+
+    Connections {
+        target: event
+        onCloseAllPopups: {
+            stack.pop();
         }
     }
 
@@ -42,6 +50,7 @@ Page {
         width: parent.width
         height: parent.height
         onPaint: {
+            horseRacingRoot.playerTurn = event.getTurn();
             var ctx = getContext("2d");
             ctx.lineWidth = 1;
             ctx.strokeStyle = Qt.rgba(1, 1, 1, 0.03);
@@ -627,7 +636,9 @@ Page {
                 }
 
                 onClicked: {
-                    event.updateState()
+                    if (horseRacingRoot.playerTurn === event.getTurn()) {
+                        event.nextTurn();
+                    }
                     stack.pop()
                 }
             }

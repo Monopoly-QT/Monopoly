@@ -14,6 +14,7 @@ Popup {
     property string text: "empty"
 
     function openAnimation() {
+        event.closeAllPopups();
         root_OpenAniamtion.start()
     }
 
