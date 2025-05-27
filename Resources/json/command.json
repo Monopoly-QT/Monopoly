@@ -2,7 +2,7 @@
     "move": {
         "name": "/move",
         "description": "Move to a specific position on the board.",
-        "usage": "/move [location] or /move to [0-31]",
+        "usage": "/move [location] or /move to [0-63]",
         "examples": [
             "/move 5",
             "/move to 10"
@@ -53,18 +53,6 @@
         ],
         "prompt": "Entering the minigame {minigame_name}."
     },
-    "gamestate": {
-        "name": "/gamestate",
-        "description": "Change the game state.",
-        "usage": "/gamestate [state]",
-        "examples": [
-            "/gamestate INIT",
-            "/gamestate START",
-            "/gamestate MOVED",
-            "/gamestate FINISH"
-        ],
-        "prompt": "Game state changed to {state}."
-    },
     "info": {
         "name": "/info",
         "description": "Display information about all players.",
@@ -103,6 +91,6 @@
     },
     "invalid_command": {
         "name": "",
-        "prompt": "Invalid command. \nType \"/list\" or \"/help\" to see brief infomation of available commands.\nType \"/list -a\" or \"/help -a\" to see details of available commands."
+        "prompt": "Invalid command. \n\nType \"/list\" or \"/help\" to see available commands,\nor type \"/list -a\" or \"/help -a\" to see details of them."
     }
 }

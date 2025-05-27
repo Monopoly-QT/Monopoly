@@ -122,10 +122,6 @@ signals:
     void openBuyPopup();
     void openMessage();
     void openBankruptcy();
-    void gameStateInit();
-    void gameStateStart();
-    void gameStateMoved();
-    void gameStateFinish();
     void diceEnabledChanged();
     void openDragonGate();
     void openHorseRacing();

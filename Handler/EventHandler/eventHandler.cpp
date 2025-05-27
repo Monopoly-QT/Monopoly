@@ -224,10 +224,6 @@ void eventHandler::restart(bool first) {
     emit displayStateChanged();
     emit useCardChanged();
     emit displayMessageChanged();
-    emit gameStateInit();
-    emit gameStateStart();
-    emit gameStateMoved();
-    emit gameStateFinish();
     emit diceEnabledChanged();
 }
 
@@ -427,7 +423,7 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
                 if (processPlayer[turn]->getMoney() <= 0) {
-                    openBankruptcy();
+                    emit openBankruptcy();
                 }
 
                 // Enter HorseRacing
@@ -441,33 +437,6 @@ void eventHandler::commendEntryPoint(QString _instruct) {
 
                 return;
             }
-        } else if (inputCommand == "/gamestate") {
-            prompt = commandData["gamestate"]["prompt"].get<string>();
-            ss >> inputCommand;
-            if (inputCommand == "INIT") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateInit();
-            } else if (inputCommand == "START") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateStart();
-            } else if (inputCommand == "MOVED") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateMoved();
-            } else if (inputCommand == "FINISH") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateFinish();
-            } else {
-                popUpdisplaySetting("Error: No game state called " + inputCommand, 0);
-            }
-
-            regex r(R"(\{state\})");
-            prompt = regex_replace(prompt, r, inputCommand);
-            cout << prompt << '\n';
-            popUpdisplaySetting(prompt, 0);
         } else if (inputCommand == "/info") {
             string colors[4] = {"Red", "Blue", "Green", "Yellow"};
             string prompt = "Players' Infomations: \n\n";
