@@ -575,6 +575,10 @@ Window {
                 source: playWindow
                 radius: 32
                 cached: false
+                MouseArea{
+                    anchors.fill:parent
+                    hoverEnabled: true
+                }
             }
 
             Rectangle{
