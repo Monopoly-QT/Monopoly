@@ -224,10 +224,6 @@ void eventHandler::restart(bool first) {
     emit displayStateChanged();
     emit useCardChanged();
     emit displayMessageChanged();
-    emit gameStateInit();
-    emit gameStateStart();
-    emit gameStateMoved();
-    emit gameStateFinish();
     emit diceEnabledChanged();
 }
 
@@ -454,52 +450,31 @@ void eventHandler::commendEntryPoint(QString _instruct) {
 
                 return;
             }
-        } else if (inputCommand == "/gamestate") {
-            prompt = commandData["gamestate"]["prompt"].get<string>();
-            ss >> inputCommand;
-            if (inputCommand == "INIT") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateInit();
-            } else if (inputCommand == "START") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateStart();
-            } else if (inputCommand == "MOVED") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateMoved();
-            } else if (inputCommand == "FINISH") {
-                popUpdisplaySetting("Change to gamestate " + inputCommand, 0);
-
-                emit gameStateFinish();
-            } else {
-                popUpdisplaySetting("Error: No game state called " + inputCommand, 0);
-            }
-
-            regex r(R"(\{state\})");
-            prompt = regex_replace(prompt, r, inputCommand);
-            cout << prompt << '\n';
-            popUpdisplaySetting(prompt, 0);
         } else if (inputCommand == "/info") {
             string colors[4] = {"Red", "Blue", "Green", "Yellow"};
-            string prompt = "Players' Infomations: \n\n";
+            string prompt = "Players' Information: \n\n";
             cout << commandData["info"]["prompt"].get<string>();
             for (int i = 0; i < 4; i++) {
                 prompt += "ID: " + to_string(processPlayer[i]->getID()) + "\n";
                 prompt += "Color: " + colors[i] + "\n";
                 prompt += "Name: " + processPlayer[i]->getPlayerName() + "\n";
                 prompt += "Last Name: " + processPlayer[i]->getPlayerLastName() + "\n";
+                prompt += "Life: " + string(processPlayer[i]->getIsLive() ? "Alive\n" : "Dead\n");
                 prompt += "Money: " + to_string(processPlayer[i]->getMoney()) + "\n";
-                prompt += "Bankrupt: " + string(processPlayer[i]->getIsLive() ? "No\n" : "Yes\n");
                 prompt += "Position: " + to_string(processPlayer[i]->getPos()) + " " + processMap[processPlayer[i]->
                     getPos()]->getName() + "\n";
                 prompt += "Land(s): \n";
                 vector<int> temp = processPlayer[i]->getOwnImmovables();
-                for (int i = 0; i < temp.size(); i++) {
-                    prompt += "\tPosition: " + to_string(temp[i]) + "\nName: " + processMap[temp[i]]->getName() +
-                            "\nLevel: " + to_string(processMap[temp[i]]->getLevel()) + "\n\n";
+                if(temp.size() == 0){
+                    prompt += "\tNone\n";
                 }
+                else{
+                    for (int i = 0; i < temp.size(); i++) {
+                        prompt += "\tPosition: " + to_string(temp[i]) + "\n\t " + processMap[temp[i]]->getName() +
+                                "\n\tLevel: " + to_string(processMap[temp[i]]->getLevel()) + "\n";
+                    }
+                }
+
                 prompt += "Card(s): \n";
 
                 nlohmann::json cardData;
@@ -514,12 +489,18 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 card.close();
 
                 temp = processPlayer[i]->getOwnCards();
-                for (int i = 0; i < temp.size(); i++) {
-                    prompt += "\t" + cardData["IDToName"][to_string(i)]["name"].get<string>() + string(
-                        i == temp.size() - 1 ? "\n" : ",\n");
+
+                if(temp.size() == 0){
+                    prompt += "\tNone\n";
+                }
+                else{
+                    for (int i = 0; i < temp.size(); i++) {
+                        prompt += "\t" + cardData["IDToName"][to_string(i)]["name"].get<string>() + string(
+                            i == temp.size() - 1 ? "\n" : ",\n");
+                    }
                 }
 
-                prompt += "State: " + string(processPlayer[i]->getState() ? "In" : "Not in") + " the hospital\n";
+                prompt += "Status: " + string(processPlayer[i]->getState() ? "In" : "Not in") + " the hospital\n";
                 prompt += "Hospitalization time: " + to_string(processPlayer[i]->GetstayInHospitalTurn()) +
                         " day(s) remaining\n";
                 prompt += "\n";
