@@ -208,6 +208,7 @@ void eventHandler::restart(bool first) {
     processPlayer[2]->setPos(18);
     processMap[5]->setOwner(0);
     processMap[5]->setLevel(4);
+    processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
     // for(int i=0;i<5;i++){
@@ -911,6 +912,18 @@ void eventHandler::gameEnd() {
 
 void eventHandler::suicidal() {
     processPlayer[turn]->setIsLive(false);
+    vector<int> ownPos;
+    for(auto i:processPlayer[turn]->getOwnImmovables()){
+        ownPos.push_back(i);
+    }
+    for(auto i:ownPos){
+        processMap[i]->setOwner(-1);
+        processMap[i]->setLevel(0);
+        processPlayer[turn]->removeOwnImmovables(i);
+    }
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
     nextTurn();
 }
 
@@ -970,6 +983,7 @@ void eventHandler::buyLand() {
     int nowPos = processPlayer[turn]->getPos();
     if (processPlayer[turn]->getMoney() >= processMap[nowPos]->getValue()) {
         processPlayer[turn]->addHouse(nowPos);
+        processPlayer[turn]->addOwnImmovables(nowPos);
         processMap[nowPos]->setOwner(turn);
         processMap[nowPos]->setLevel(1);
         processPlayer[turn]->subMoney(processMap[nowPos]->getValue());
