@@ -981,4 +981,5 @@ void eventHandler::btnEnableSetting(bool _isEnable)
     emit diceEnabledChanged();
     emit cardEnabledChanged();
     emit cheatEnableChanged();
+    //:D
 }
