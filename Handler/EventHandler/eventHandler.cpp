@@ -14,7 +14,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <random>
-
+#include <queue>
+#include <algorithm>
 #include "../Hospital/Hospital.h"
 #include "Land/Land.h"
 
@@ -388,14 +389,17 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 prompt += "Position: " + to_string(processPlayer[i]->getPos()) + " " + processMap[processPlayer[i]->
                     getPos()]->getName() + "\n";
                 prompt += "Land(s): \n";
-                vector<int> temp = processPlayer[i]->getOwnImmovables();
-                if(temp.size() == 0){
+                vector<int> tempV = processPlayer[i]->getOwnImmovables();
+
+                if(tempV.empty()){
                     prompt += "\tNone\n";
                 }
                 else{
-                    for (int i = 0; i < temp.size(); i++) {
-                        prompt += "\tPosition: " + to_string(temp[i]) + "\n\t " + processMap[temp[i]]->getName() +
-                                "\n\tLevel: " + to_string(processMap[temp[i]]->getLevel()) + "\n";
+                    sort(tempV.begin(),tempV.end());
+
+                    for (int i = 0; i < tempV.size(); i++) {
+                        prompt += "\tPosition: " + to_string(tempV[i]) + "\n\t " + processMap[tempV[i]]->getName() +
+                                "\n\tLevel: " + to_string(processMap[tempV[i]]->getLevel()) + "\n";
                     }
                 }
 
@@ -412,15 +416,17 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 card >> cardData;
                 card.close();
 
-                temp = processPlayer[i]->getOwnCards();
+                tempV = processPlayer[i]->getOwnCards();
 
-                if(temp.size() == 0){
+                if(tempV.empty()){
                     prompt += "\tNone\n";
                 }
                 else{
-                    for (int i = 0; i < temp.size(); i++) {
-                        prompt += "\t" + cardData["IDToName"][to_string(i)]["name"].get<string>() + string(
-                            i == temp.size() - 1 ? "\n" : ",\n");
+                    sort(tempV.begin(),tempV.end());
+
+                    for (int i = 0; i < tempV.size(); i++) {
+                        prompt += "\t" + cardData["IDToName"][to_string(tempV[i])]["name"].get<string>() + string(
+                            i == tempV.size() - 1 ? "\n" : ",\n");
                     }
                 }
 
