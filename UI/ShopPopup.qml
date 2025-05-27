@@ -15,7 +15,6 @@ Popup {
     property bool isVisable: false
     padding: 0
 
-
     background: Rectangle {
         id: shopPopup_background
         width: shop_popUp.width
@@ -23,7 +22,12 @@ Popup {
         radius: 30
     }
 
+    property var buttonEnable: [false, false, false, false, false]
+    signal buttonStateChanged()
+
     function openAnimation() {
+        shop_popUp.buttonEnable = [true, true, true, true, true];
+        buttonStateChanged();
         shop_popUp_OpenAniamtion.start()
     }
 
@@ -53,18 +57,19 @@ Popup {
 
             GridLayout {
                 id: productGrid
-                columns: 5
-                rowSpacing: 20
+                columns: 3
+                rowSpacing: 10
                 columnSpacing: 20
-                Layout.fillWidth: true
+                anchors.horizontalCenter: parent.horizontalCenter
                 Layout.fillHeight: true
 
                 // 商品卡片範例，其他卡片請類似改寫
                 Repeater {
+                    id: repeatItem
                     model: 5
                     delegate: Item {
                         width: 200
-                        height: 330
+                        height: 250
 
                         // 模擬陰影
                         Rectangle {
@@ -92,7 +97,7 @@ Popup {
 
                             Rectangle {
                                 width: 180
-                                height: 200
+                                height: parent.height / 2
                                 radius: 8
                                 color: "transparent"
                                 clip: true
@@ -170,16 +175,25 @@ Popup {
                                     return 0;
                                 }
                                 Layout.fillWidth: true
-                                enabled: event.displayState.ownMoney >= price
+                                enabled: shop_popUp.buttonEnable[index] && event.displayState.ownMoney >= buyButton.price;
+
+                                Component.onCompleted: {
+                                    shop_popUp.buttonStateChanged.connect(updateEnable);
+                                }
+
+                                function updateEnable() {
+                                    buyButton.enabled = shop_popUp.buttonEnable[index] && event.displayState.ownMoney >= buyButton.price;
+                                }
+
                                 Text {
-                                    text:"price - "+ buyButton.price
+                                    text: "price - " + buyButton.price
                                     anchors.centerIn: parent
                                     color: "white"
                                     font.pixelSize: 14
                                     font.bold: true
                                 }
 
-                                MouseArea{
+                                MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: parent.enabled
                                     onClicked: {
@@ -188,7 +202,8 @@ Popup {
                                         } else {
                                             console.log("購買失敗")
                                         }
-                                        buyButton.enabled = false
+                                        shop_popUp.buttonEnable[index] = false;
+                                        buyButton.updateEnable();
                                     }
                                     onEntered: {
                                         buyButton.scale = 1.05
@@ -358,7 +373,7 @@ Popup {
         NumberAnimation {
             target: shop_popUp
             property: "width"
-            to: 900
+            to: 800
             duration: 200
             easing.type: Easing.InOutQuad
         }
