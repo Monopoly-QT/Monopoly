@@ -48,7 +48,7 @@ Popup {
             color: "transparent"
             clip: true
             Standard_Text {
-                label: "Do you want to but it?\n spend "+event.displayState.landValue1
+                label: "Do you want to buy it?\n spend "+event.displayState.landValue1
             }
         }
 

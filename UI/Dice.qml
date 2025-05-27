@@ -34,7 +34,7 @@ Rectangle {
             diceContainer.isPressed = true
             if (diceTimer.running === false) {
                 diceTimer.start()
-                event.diceEnabled = false;
+                event.btnEnableSetting(false)
             }
         }
         onReleased: {

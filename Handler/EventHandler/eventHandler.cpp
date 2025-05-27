@@ -44,78 +44,6 @@ eventHandler::eventHandler(QQmlApplicationEngine *engine) {
 
     // 東西都移到restart()裡面了
     restart(true);
-    // turn = 0;
-    //
-    // nlohmann::json countryData;
-    // ifstream country;
-    // country.open("json/country.json");
-    //
-    // if (country.fail()) {
-    //     cout << "Falied to open country.json\n";
-    // }
-    //
-    // country >> countryData;
-    // country.close();
-    //
-    // for (int i = 0; i < 64; i++) {
-    //     Land *regis = new Land(countryData[to_string(i)]["type"].get<int>(), i,
-    //                            countryData[to_string(i)]["name"].get<string>(),
-    //                            countryData[to_string(i)]["value"].get<int>(),
-    //                            countryData[to_string(i)]["translation"].get<string>());
-    //     regis->setLevel(0);
-    //     Land::landNameToPos[regis->getName()] = i;
-    //     processMap.push_back(regis);
-    // }
-    //
-    // nlohmann::json playerData;
-    // ifstream player;
-    // player.open("json/config.json");
-    //
-    // if (player.fail()) {
-    //     cout << "Falied to open config.json\n";
-    // }
-    //
-    // player >> playerData;
-    // player.close();
-    //
-    // m_endMoney = playerData["End"]["money"].get<int>();
-    //
-    // for (int i = 0; i < 4; i++) {
-    //     vector<int> ownCardFromConfig;
-    //     string strOwnCardFromConfig = playerData[to_string(i)]["ownCard"].get<string>();
-    //     stringstream ss(strOwnCardFromConfig);
-    //     while (ss >> strOwnCardFromConfig) {
-    //         ownCardFromConfig.push_back(stoi(strOwnCardFromConfig));
-    //     }
-    //     Player *regis = new Player(playerData[to_string(i)]["money"].get<int>(),
-    //                                playerData[to_string(i)]["playerID"].get<int>(),
-    //                                playerData[to_string(i)]["playerName"].get<string>(),
-    //                                playerData[to_string(i)]["playerLastName"].get<string>(), ownCardFromConfig,
-    //                                playerData[to_string(i)]["pos"].get<int>(),
-    //                                playerData[to_string(i)]["state"].get<int>(),
-    //                                playerData[to_string(i)]["stayInHospitalTurn"].get<int>(),
-    //                                playerData[to_string(i)]["nextRollDicePoint"].get<int>());
-    //     processPlayer.push_back(regis);
-    //
-    //     playerNameToID[regis->getPlayerLastName()] = regis->getID();
-    // }
-    //
-    // mapInitialize(landCoordinate, m_mapList, processMap, processPlayer);
-    // m_movePoint = &operateMovePoint;
-    // m_displayState = new StateDisplay();
-    // m_useCard = new UseCardSetting();
-    //
-    // processPlayer[2]->setPos(18);
-    // processMap[2]->setOwner(1);
-    // processMap[2]->setLevel(1);
-    // mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-    //
-    // // for(int i=0;i<5;i++){
-    // //     processPlayer[0]->addOwnCards(i);
-    // // }
-    //
-    // m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-    // m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
 
 eventHandler::~eventHandler() {
@@ -132,7 +60,6 @@ eventHandler::~eventHandler() {
 void eventHandler::restart(bool first) {
     if (!first) {
         firstClick = true;
-        m_diceEnabled = true;
         for (auto i: processMap) {
             delete i;
         }
@@ -204,19 +131,16 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    // processPlayer[0]->setMoney(100000);
     processPlayer[2]->setPos(18);
     processMap[5]->setOwner(0);
     processMap[5]->setLevel(4);
     processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
-    // for(int i=0;i<5;i++){
-    //     processPlayer[0]->addOwnCards(i);
-    // }
 
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+    btnEnableSetting(true);
 
     emit mapListChanged();
     emit movePointChanged();
@@ -225,7 +149,6 @@ void eventHandler::restart(bool first) {
     emit displayStateChanged();
     emit useCardChanged();
     emit displayMessageChanged();
-    emit diceEnabledChanged();
 }
 
 int eventHandler::getTurn() {
@@ -885,7 +808,7 @@ void eventHandler::nextTurn() {
         emit openHospitalPopups();
     }
 
-    setDiceEnabled(true);
+    btnEnableSetting(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
 }
@@ -905,7 +828,7 @@ void eventHandler::gameEnd() {
     }
     display += "\nDo you wanna start a new game?";
     popUpdisplaySetting(display, 3);
-    setDiceEnabled(true);
+    btnEnableSetting(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
     return;
@@ -1048,4 +971,14 @@ void eventHandler::popUpdisplaySetting(string _message, int _type) {
         setDisplayMessage_endPopup(QString::fromStdString(_message));
         emit openEndPopup();
     }
+}
+
+void eventHandler::btnEnableSetting(bool _isEnable)
+{
+    m_diceEnabled = _isEnable;
+    m_cardEnabled = _isEnable;
+    m_cheatEnable = _isEnable;
+    emit diceEnabledChanged();
+    emit cardEnabledChanged();
+    emit cheatEnableChanged();
 }

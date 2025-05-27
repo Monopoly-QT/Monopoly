@@ -402,7 +402,7 @@ Popup {
                                 Timer {
                                     id: rocketCardDely_timer
                                     interval: 3500
-                                    running: fasle
+                                    running: false
                                     repeat: false
                                     onTriggered: {
                                         rocketCard.isOpen = false
@@ -740,7 +740,9 @@ Popup {
                                                 parent.scale = 1.05
                                                 event.diceCardUseEntryPoint(spinDistance_Rec.moveDistance)
                                                 diceCard.isOpen = false
-                                                spinDistance_Rec.moveDistance = 0
+                                                spinDistance_Rec.moveDistance = 1
+                                                card_popUp_CloseAniamtion.start()
+                                                event.btnEnableSetting(false)
                                             }
                                             onReleased: {
                                                 parent.scale = 1.1
@@ -1201,6 +1203,7 @@ Popup {
                         }
                         onPressed: {
                             parent.scale = 1.025
+                            card_popUp_CloseAniamtion.start()
                             event.eventCardUseEntryPoint()
                         }
                         onReleased: {

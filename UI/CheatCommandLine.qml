@@ -64,7 +64,7 @@ Rectangle{
                 MouseArea{
                     anchors.fill: parent
                     hoverEnabled: true
-                    enabled: true
+                    enabled: event.cheatEnable
                     onEntered: {
                         parent.scale = 1.15
                         parent.isHovered = true

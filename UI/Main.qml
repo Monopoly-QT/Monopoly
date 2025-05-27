@@ -527,6 +527,7 @@ Window {
 
             CardPopup {
                 id: card_popUp
+
             }
 
             ShopPopup {

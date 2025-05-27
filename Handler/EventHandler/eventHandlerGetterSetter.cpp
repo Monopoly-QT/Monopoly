@@ -127,3 +127,29 @@ void eventHandler::setDisplayMessage_bankruptcypopUp(const QString &newDisplayMe
     m_displayMessage_bankruptcypopUp = newDisplayMessage_bankruptcypopUp;
     emit displayMessage_bankruptcypopUpChanged();
 }
+
+bool eventHandler::cardEnabled() const
+{
+    return m_cardEnabled;
+}
+
+void eventHandler::setCardEnabled(bool newCardEnabled)
+{
+    if (m_cardEnabled == newCardEnabled)
+        return;
+    m_cardEnabled = newCardEnabled;
+    emit cardEnabledChanged();
+}
+
+bool eventHandler::cheatEnable() const
+{
+    return m_cheatEnable;
+}
+
+void eventHandler::setCheatEnable(bool newCheatEnable)
+{
+    if (m_cheatEnable == newCheatEnable)
+        return;
+    m_cheatEnable = newCheatEnable;
+    emit cheatEnableChanged();
+}

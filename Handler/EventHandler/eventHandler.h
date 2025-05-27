@@ -30,6 +30,8 @@ class eventHandler:public QObject{
     Q_PROPERTY(StateDisplay* displayState READ displayState WRITE setDisplayState NOTIFY displayStateChanged FINAL);
     Q_PROPERTY(UseCardSetting* useCard READ useCard WRITE setUseCard NOTIFY useCardChanged FINAL);
     Q_PROPERTY(bool diceEnabled READ diceEnabled WRITE setDiceEnabled NOTIFY diceEnabledChanged FINAL);
+    Q_PROPERTY(bool cardEnabled READ cardEnabled WRITE setCardEnabled NOTIFY cardEnabledChanged FINAL);
+    Q_PROPERTY(bool cheatEnable READ cheatEnable WRITE setCheatEnable NOTIFY cheatEnableChanged FINAL);
     Q_PROPERTY(QString displayMessage_buyPopup READ displayMessage_buyPopup WRITE setDisplayMessage_buyPopup NOTIFY displayMessage_buyPopupChanged FINAL);
     Q_PROPERTY(QString displayMessage_messagePopup READ displayMessage_messagePopup WRITE setDisplayMessage_messagePopup NOTIFY displayMessage_messagePopupChanged FINAL);
     Q_PROPERTY(QString displayMessage_upgradePopup READ displayMessage_upgradePopup WRITE setDisplayMessage_upgradePopup NOTIFY displayMessage_upgradePopupChanged FINAL);
@@ -82,6 +84,7 @@ public:
     Q_INVOKABLE int getTurn();
     Q_INVOKABLE int getHosiptalRemainingDays();
     Q_INVOKABLE void leaveEarly();
+    Q_INVOKABLE void btnEnableSetting(bool _isEnable);
 
     bool checkIsBankrupt();
 
@@ -111,6 +114,12 @@ public:
 
     QString displayMessage_bankruptcypopUp() const;
     void setDisplayMessage_bankruptcypopUp(const QString &newDisplayMessage_bankruptcypopUp);
+
+    bool cardEnabled() const;
+    void setCardEnabled(bool newCardEnabled);
+
+    bool cheatEnable() const;
+    void setCheatEnable(bool newCheatEnable);
 
 signals:
     void mapListChanged();
@@ -146,6 +155,10 @@ signals:
 
     void openHospitalPopups();
 
+    void cardEnabledChanged();
+
+    void cheatEnableChanged();
+
 private:
     int turn;
     bool firstClick = true;
@@ -178,6 +191,8 @@ private:
     QString m_displayMessage_upgradePopup;
     QString m_displayMessage_endPopup;
     QString m_displayMessage_bankruptcypopUp;
+    bool m_cardEnabled;
+    bool m_cheatEnable;
 };
 
 #endif // EVENTHANDLER_H
