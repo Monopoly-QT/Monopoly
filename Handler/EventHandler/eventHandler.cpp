@@ -830,15 +830,17 @@ void eventHandler::randomEvent() {
             processPlayer[turn]->setStayInHospitalTurn(day);
             processPlayer[turn]->setPos(min(abs(32 - processPlayer[turn]->getPos()),
                                             abs(63 - processPlayer[turn]->getPos())));
-            nextTurn();
+            afterMove();
+            // nextTurn();
         } else if (function == "fly") {
             string area;
             ssfun >> area;
             processPlayer[turn]->setPos(Land::landNameToPos[area]);
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-            nextTurn();
+            afterMove();
+            // nextTurn();
         } else if (function == "run") {
-            this_thread::sleep_for(chrono::milliseconds(1000));
+            // this_thread::sleep_for(chrono::milliseconds(1000));
 
             random_device rd;
             srand(rd());
