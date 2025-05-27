@@ -69,6 +69,7 @@ public:
     Q_INVOKABLE void diceCardUseEntryPoint(int _moveDistance);
     Q_INVOKABLE void removeCardUseEntryPoint(QString _removeQStr);
     Q_INVOKABLE void sellLandFromStrUseEntryPoint(QString _removeQStr);
+    Q_INVOKABLE void sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr);
 
     Q_INVOKABLE void roadBlockCardUseEnrtyPoint(QString _blockQStr);
     Q_INVOKABLE void eventCardUseEntryPoint();
@@ -79,6 +80,8 @@ public:
     Q_INVOKABLE bool checkIsGameEnded();
     Q_INVOKABLE void restart(bool first);
     Q_INVOKABLE int getTurn();
+    Q_INVOKABLE int getHosiptalRemainingDays();
+    Q_INVOKABLE void leaveEarly();
 
     bool checkIsBankrupt();
 
@@ -144,6 +147,8 @@ signals:
     void displayMessageChanged();
 
     void closeAllPopups();
+
+    void openHospitalPopups();
 
 private:
     int turn;

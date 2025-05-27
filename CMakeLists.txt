@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(monopoly VERSION 0.1 LANGUAGES CXX)
 
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -9,7 +10,7 @@ set(CMAKE_AUTORCC ON)
  if (CMAKE_HOST_SYSTEM MATCHES "Darwin")
      set(CMAKE_PREFIX_PATH "~/Qt6.9.0/6.9.0/macos/lib/cmake")
  elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
-     set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
+    set(CMAKE_PREFIX_PATH "C:/Qt/Qt6.9.0/6.9.0/mingw_64/lib/cmake")
  endif ()
 
 #set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")
@@ -62,6 +63,7 @@ qt_add_qml_module(appmonopoly
         UI/Message_popUp.qml
         UI/Bankruptcy_popUp.qml
         UI/EndPopUp.qml
+        UI/Hospital_popup.qml
         SOURCES Dice/Dice.h
         SOURCES Dice/Dice.cpp
         RESOURCES Resources/resourse.qrc

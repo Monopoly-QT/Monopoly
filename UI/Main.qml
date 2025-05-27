@@ -492,6 +492,13 @@ Window {
                         stack.push("HorseRacing.qml")
                     }
 
+                    onOpenHospitalPopups: {
+                        if(hospital.visible)
+                            hospital.closeAnimation()
+                        else
+                            hospital.openAnimation()
+                    }
+
                     onCloseAllPopups: {
                         if (card_popUp.visible) {
                             card_popUp.closeAnimation();
@@ -510,6 +517,9 @@ Window {
                         }
                         if (bankruptcy.visible) {
                             bankruptcy.closeAnimation();
+                        }
+                        if (hospital.visible) {
+                            hospital.closeAnimation();
                         }
                     }
                 }
@@ -552,9 +562,14 @@ Window {
                 text: event.displayMessage_endPopup
             }
 
+            Hospital_popup{
+                id:hospital
+                text: event.displayMessage_endPopup
+            }
+
             FastBlur {
                 id: theBlur;
-                visible: card_popUp.visible || shop_popUp.visible || message.visible || buyLand.visible || upgradeOrSell.visible || bankruptcy.visible || endgame.visible
+                visible: card_popUp.visible || shop_popUp.visible || message.visible || buyLand.visible || upgradeOrSell.visible || bankruptcy.visible || endgame.visible || hospital.visible
                 anchors.fill: parent
                 source: playWindow
                 radius: 32
@@ -562,7 +577,7 @@ Window {
             }
 
             Rectangle{
-                visible: card_popUp.visible || shop_popUp.visible || message.visible || buyLand.visible || upgradeOrSell.visible || bankruptcy.visible || endgame.visible
+                visible: card_popUp.visible || shop_popUp.visible || message.visible || buyLand.visible || upgradeOrSell.visible || bankruptcy.visible || endgame.visible || hospital.visible
                 anchors.fill: parent
                 color: "black"
                 opacity: 0.2

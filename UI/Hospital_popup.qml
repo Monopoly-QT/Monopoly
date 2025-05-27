@@ -14,6 +14,7 @@ Popup {
     property string text: "empty"
 
     function openAnimation() {
+        text = "Remaining Days:"+event.getHosiptalRemainingDays()+"\nYou can be discharged early for $"+event.getHosiptalRemainingDays() * 1000+".\nOr skip and roll dice to discharged early (>8).";
         root_OpenAniamtion.start()
     }
 
@@ -38,7 +39,7 @@ Popup {
             color: "transparent"
             clip: true
             Standard_Text {
-                label: root.text
+                label: "Hospital"
             }
         }
 
@@ -48,16 +49,7 @@ Popup {
             color: "transparent"
             clip: true
             Standard_Text {
-                label: "Sorry, you're bankrupt.\nYou need to sell land to make money."
-            }
-        }
-
-        ComboBox {
-            id: removeCoordinate
-            Layout.fillWidth: true
-            model: event.useCard.displayOwnLand
-            onCurrentIndexChanged: {
-                console.log("Selected:", currentText)
+                label: root.text
             }
         }
 
@@ -75,31 +67,28 @@ Popup {
             }
             Rectangle {
                 Layout.preferredHeight: parent.height / 2
-                Layout.preferredWidth: parent.width / 4
+                Layout.preferredWidth: parent.width / 3
                 color: "transparent"
                 CostumBtn_Rec {
                     hoverColor: "#83ff05"
-                    text: "Sell"
+                    text: "Discharged Early"
                     textColor: (hovered) ? "blcak" : "white"
-                    enabled: event.useCard.displayOwnLand.length > 0
                     onPressed: {
-                        console.log("Sell")
-                        event.sellLandFromStrUseWhenDieEntryPoint(removeCoordinate.currentText)
+                        console.log("Discharged early")
+                        event.leaveEarly();
                         root_CloseAniamtion.start()
                     }
                 }
             }
             Rectangle {
                 Layout.preferredHeight: parent.height / 2
-                Layout.preferredWidth: parent.width / 4
+                Layout.preferredWidth: parent.width / 3
                 color: "transparent"
                 CostumBtn_Rec {
-                    hoverColor: "#83ff05"
-                    text: "Suicidal"
+                    hoverColor: "#ff6805"
+                    text: "Skip and roll dice"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
-                        console.log("Suicidal")
-                        event.suicidal()
                         root_CloseAniamtion.start()
                     }
                 }
@@ -156,14 +145,14 @@ Popup {
         NumberAnimation {
             target: root
             property: "width"
-            to: 300
+            to: 400
             duration: 200
             easing.type: Easing.InOutQuad
         }
         NumberAnimation {
             target: root
             property: "height"
-            to: 200
+            to: 300
             duration: 200
             easing.type: Easing.InOutQuad
         }

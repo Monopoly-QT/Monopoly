@@ -204,7 +204,7 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    processPlayer[0]->setMoney(100000);
+    // processPlayer[0]->setMoney(100000);
     processPlayer[2]->setPos(18);
     processMap[5]->setOwner(0);
     processMap[5]->setLevel(4);
@@ -235,12 +235,25 @@ int eventHandler::getTurn() {
     return turn;
 }
 
+int eventHandler::getHosiptalRemainingDays(){
+    return Hospital::getDayInHospital(processPlayer[turn]);
+}
+
+void eventHandler::leaveEarly(){
+    processPlayer[turn]->subMoney(Hospital::getDayInHospital(processPlayer[turn]) * 1000);
+    Hospital::leaveHospital(processPlayer[turn]);
+    m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+    m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+}
+
 void eventHandler::moveEntryPoint(int _moveDistance) {
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     if (processPlayer[turn]->getState() == 0)movePointAnimator(_moveDistance);
     else {
-        Hospital::update();
-        if (_moveDistance >= 8) Hospital::leaveHospital(processPlayer[turn]);
+        Hospital::update(processPlayer[turn]);
+        if (_moveDistance >= 8){
+            Hospital::leaveHospital(processPlayer[turn]);
+        }
         nextTurn();
     }
 }
@@ -427,7 +440,7 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 prompt = regex_replace(prompt, r, inputCommand);
                 popUpdisplaySetting(prompt, 0);
                 if (processPlayer[turn]->getMoney() <= 0) {
-                    openBankruptcy();
+                    emit openBankruptcy();
                 }
 
                 // Enter HorseRacing
@@ -600,9 +613,34 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
     if (turn >= 0) {
         if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn + 1) {
             int value = processMap[location]->getValue();
+            processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
+            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
+            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+        }
+    }
+}
+
+void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
+    string regisStr = _removeQStr.toStdString();
+    cout<<"SELL"<<regisStr<<endl;
+    int location = 0;
+    for (int i = 0; i < 64; i++) {
+        if (processMap[i]->getName() == regisStr) {
+            location = i;
+            break;
+        }
+    }
+
+    if (turn >= 0) {
+        if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn) {
+            int value = processMap[location]->getValue();
+            cout<<"VALUE"<<value<<endl;
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
+            processMap[location]->setOwner(-1);
+            processMap[location]->setLevel(0);
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
             m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
@@ -858,6 +896,11 @@ void eventHandler::nextTurn() {
         setDisplayMessage_bankruptcypopUp("Bankrupt!");
         emit openBankruptcy();
     }
+
+    if(Hospital::isInHospital(processPlayer[turn])){
+        emit openHospitalPopups();
+    }
+
     setDiceEnabled(true);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
@@ -977,9 +1020,10 @@ void eventHandler::levelup() {
 void eventHandler::sellLand() {
     int nowPos = processPlayer[turn]->getPos();
     int value = processMap[nowPos]->getValue();
+    processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
     processMap[nowPos]->setOwner(-1);
     processMap[nowPos]->setLevel(0);
-    processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
+    processPlayer[turn]->removeOwnImmovables(nowPos);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
     m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);

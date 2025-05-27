@@ -30,7 +30,7 @@ public:
     static int getDayInHospital(Player* player);
 
     // 把天數-1
-    static void update();
+    static void update(Player* player);
 };
 
 #endif //HOSPITAL_H

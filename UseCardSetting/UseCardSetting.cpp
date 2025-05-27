@@ -41,6 +41,10 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
         if(_land[i]->getState() != 1){
             m_displayAllLand.append(QString::fromStdString(to_string(i)+". "+_land[i]->getName()));
         }
+
+        if(_land[i]->getOwner() == _turn && _land[i]->getType() == 0 && _land[i]->getLevel() != 0){
+            m_displayOwnLand.append(QString::fromStdString(_land[i]->getName()));
+        }
     }
 
     for(auto i :ownCard){
@@ -136,5 +140,18 @@ void UseCardSetting::setDisplayAllLand(const QList<QString> &newDisplayAllLand)
     if (m_displayAllLand == newDisplayAllLand)
         return;
     m_displayAllLand = newDisplayAllLand;
+    emit displayAllLandChanged();
+}
+
+QList<QString> UseCardSetting::displayOwnLand() const
+{
+    return m_displayOwnLand;
+}
+
+void UseCardSetting::setDisplayOwnLand(const QList<QString> &newDisplayOwnLand)
+{
+    if (m_displayOwnLand == newDisplayOwnLand)
+        return;
+    m_displayOwnLand = newDisplayOwnLand;
     emit displayAllLandChanged();
 }

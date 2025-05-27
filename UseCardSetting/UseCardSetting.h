@@ -14,6 +14,7 @@ class UseCardSetting: public QObject{
     Q_PROPERTY(QList<int> cardUseAvailable READ cardUseAvailable WRITE setCardUseAvailable NOTIFY cardUseAvailableChanged FINAL);
     Q_PROPERTY(QList<int> ownCardCount READ ownCardCount WRITE setOwnCardCount NOTIFY ownCardCountChanged FINAL);
     Q_PROPERTY(QList<QString> displayAllLand READ displayAllLand WRITE setDisplayAllLand NOTIFY displayAllLandChanged FINAL);
+    Q_PROPERTY(QList<QString> displayOwnLand READ displayOwnLand WRITE setDisplayOwnLand NOTIFY displayOwnLandChanged FINAL);
 private:
     QList<int> m_displayTargetPlayer;
     QList<QString> m_displayTargetLand;
@@ -23,6 +24,8 @@ private:
     QList<int> m_ownCardCount;
 
     QList<QString> m_displayAllLand;
+
+    QList<QString> m_displayOwnLand;
 
 public:
     UseCardSetting();
@@ -43,12 +46,16 @@ public:
     QList<QString> displayAllLand() const;
     void setDisplayAllLand(const QList<QString> &newDisplayAllLand);
 
+    QList<QString> displayOwnLand() const;
+    void setDisplayOwnLand(const QList<QString> &newDisplayOwnLand);
+
 signals:
     void displayTargetPlayerChanged();
     void displayTargetLandChanged();
     void cardUseAvailableChanged();
     void ownCardCountChanged();
     void displayAllLandChanged();
+    void displayOwnLandChanged();
 };
 
 #endif // USECARDSETTING_H
