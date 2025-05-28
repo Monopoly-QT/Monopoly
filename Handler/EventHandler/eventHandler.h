@@ -161,6 +161,7 @@ signals:
 
 private:
     int turn;
+    bool origin = false;
     bool firstClick = true;
 
     map<string, int> playerNameToID;

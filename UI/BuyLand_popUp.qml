@@ -70,10 +70,9 @@ Popup {
                 color: "transparent"
                 CostumBtn_Rec {
                     hoverColor: "#83ff05"
-                    text: "buy"
+                    text: "Buy"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
-                        console.log("buy")
                         event.buyLand()
                         root_CloseAniamtion.start()
                     }
@@ -85,7 +84,7 @@ Popup {
                 color: "transparent"
                 CostumBtn_Rec {
                     hoverColor: "#ff6805"
-                    text: "close"
+                    text: "Close"
                     textColor: (hovered) ? "blcak" : "white"
                     onPressed: {
                         root_CloseAniamtion.start()

@@ -27,13 +27,20 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
     }
 
     for(int i = 0 ; i < 4 ; i++){
-        if(_turn != i && _player[i]->getMoney() > 0){
+        if(_turn != i && _player[i]->getState() != 1){
             m_displayTargetPlayer[i] = 1;
         }
         else{
             m_displayTargetPlayer[i] = 0;
         }
     }
+
+    cout<<"displayTargetPlayer"<<endl;
+    for(int i=0;i<4;i++){
+        cout<<m_displayTargetPlayer[i]<<" ";
+    }
+    cout<<endl;
+
     for(int i = 0 ; i < 64 ; i++){
         if(_land[i]->getOwner() != _turn && _land[i]->getType() == 0 && _land[i]->getLevel() != 0){
             m_displayTargetLand.append(QString::fromStdString(_land[i]->getName()));

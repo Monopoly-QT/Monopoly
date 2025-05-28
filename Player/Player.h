@@ -59,7 +59,7 @@ public:
     void setIsLive(bool _isLive);
 
     void setMoney(int _money);
-    void setPos(int _pos);
+    Q_INVOKABLE void setPos(int _pos);
     void setPlayerName(string _playerName);
     void setState(int _state);
     void setStayInHospitalTurn(int _turn);
