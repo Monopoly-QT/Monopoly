@@ -13,8 +13,8 @@ Popup {
     Image {
         id: kuaiKuai
         source: "qrc:/images/KuaiKuai.png"
-        width: 100     // 根據需要調整尺寸
-        height: 100
+        width: 200     // 根據需要調整尺寸
+        height: 200
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: 20  // 與邊界留點距離
