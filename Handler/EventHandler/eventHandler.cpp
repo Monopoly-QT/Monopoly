@@ -398,7 +398,7 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                     sort(tempV.begin(),tempV.end());
 
                     for (int i = 0; i < tempV.size(); i++) {
-                        prompt += "\tPosition: " + to_string(tempV[i]) + "\n\t " + processMap[tempV[i]]->getName() +
+                        prompt += "\tPosition: " + to_string(tempV[i]) + " " + processMap[tempV[i]]->getName() +
                                 "\n\tLevel: " + to_string(processMap[tempV[i]]->getLevel()) + "\n";
                     }
                 }
