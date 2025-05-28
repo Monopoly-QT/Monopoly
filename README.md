@@ -9,27 +9,18 @@
 ├── Handler
 │   ├── EventHandler
 │   │   ├── eventHandler.cpp
-│   │   └── eventHandler.h
+│   │   ├── eventHandler.h
+│   │   └── eventHandlerGetterSetter.cpp
 │   └── MapHandler
 │       ├── mapHandler.cpp
 │       └── mapHandler.h
 ├── Hospital
 │   ├── Hospital.cpp
 │   └── Hospital.h
-├── images
-├── include
-│   └── nlohmann
-│       └── json.hpp
 ├── ItemCard
 │   ├── Base
 │   │   ├── ItemCard.cpp
 │   │   └── ItemCard.h
-│   ├── DestroyImmovableCard
-│   │   └── DestroyImmovableCard.h
-│   ├── DiceControl
-│   │   └── DiceControlCard.h
-│   ├── RandomEventCard
-│   │   └── RandomEventCard.h
 │   ├── RoadblockCard
 │   │   └── RoadblockCard.h
 │   └── RocketCard
@@ -37,51 +28,90 @@
 ├── Land
 │   ├── Land.cpp
 │   └── Land.h
-├── main.cpp
 ├── Map
 │   ├── map.cpp
 │   └── map.h
 ├── MiniGames
-│   ├── HorseRacing
-│   │   ├── HorseRacing.cpp
-│   │   └── HorseRacing.h
-│   └── InBetween
-│       ├── InBetween.cpp
-│       └── DragonGate.h
+│   ├── DragonGate
+│   │   ├── DragonGate.cpp
+│   │   └── DragonGate.h
+│   └── HorseRacing
+│       ├── HorseRacing.cpp
+│       └── HorseRacing.h
 ├── MovePoint
 │   ├── MovePoint.cpp
 │   └── MovePoint.h
 ├── Player
 │   ├── Player.cpp
 │   └── Player.h
-├── README.md
 ├── Resources
 │   ├── images
-│   │   ├── building.png
-│   │   ├── card.png
-│   │   ├── cheat_1.png
-│   │   ├── cheat.png
-│   │   ├── grass_real.jpg
+│   │   ├── Chang.png
+│   │   ├── Chiang.png
 │   │   ├── Horses
 │   │   │   ├── horse1.png
 │   │   │   ├── horse2.png
 │   │   │   ├── horse3.png
 │   │   │   └── horse4.png
+│   │   ├── Tuan.png
+│   │   ├── Wu.png
+│   │   ├── building.png
+│   │   ├── card.png
+│   │   ├── cheat.png
+│   │   ├── cheat_1.png
+│   │   ├── grass_real.jpg
 │   │   ├── house.png
-│   │   └── money.png
+│   │   ├── money.png
+│   │   ├── roadBlock.png
+│   │   └── shop
+│   │       ├── background.png
+│   │       ├── index0.png
+│   │       ├── index1.png
+│   │       ├── index2.png
+│   │       ├── index3.png
+│   │       └── index4.png
 │   ├── json
+│   │   ├── card.json
 │   │   ├── command.json
 │   │   ├── config.json
 │   │   ├── country.json
-│   │   ├── dialogue.json
 │   │   └── event.json
 │   └── resourse.qrc
+├── Shop
+│   ├── shop.cpp
+│   └── shop.h
+├── StateDisplay
+│   ├── StateDisplay.cpp
+│   └── StateDisplay.h
 ├── UI
-│   ├── HorseRacing.qml
+│   ├── Bankruptcy_popUp.qml
+│   ├── BuyLand_popUp.qml
+│   ├── CardOpenBtn.qml
+│   ├── CardPopup.qml
+│   ├── CheatCommandLine.qml
+│   ├── CheatCommandOpenBtn.qml
+│   ├── Dice.qml
 │   ├── DragonGate.qml
+│   ├── EndPopUp.qml
+│   ├── HorseRacing.qml
+│   ├── Hospital_popup.qml
 │   ├── Main.qml
-│   └── Turntable.qml
-└── UseCardSetting
-├── UseCardSetting.cpp
-└── UseCardSetting.h
+│   ├── Message_popUp.qml
+│   ├── RefreshPopup.qml
+│   ├── ShopPopup.qml
+│   ├── StateContainer.qml
+│   ├── Turntable.qml
+│   ├── UpgradeOrSell_popUp.qml
+│   └── baseWidget
+│       ├── CostumBtn_Rec.qml
+│       └── Standard_Text.qml
+├── UseCardSetting
+│   ├── UseCardSetting.cpp
+│   └── UseCardSetting.h
+├── include
+│   └── nlohmann
+│       └── json.hpp
+├── README.md
+└── main.cpp
+
 ```
