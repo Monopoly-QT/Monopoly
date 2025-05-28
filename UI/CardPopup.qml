@@ -605,7 +605,7 @@ Popup {
                                                 width: parent.width * 4 / 5
                                                 height: parent.height
                                                 color: "transparent"
-                                                property int moveDistance: 1
+                                                property int moveDistance: 2
                                                 Text {
                                                     text: parent.moveDistance
                                                     font.family: "roboto"
@@ -664,7 +664,7 @@ Popup {
                                                     }
                                                     MouseArea {
                                                         anchors.fill: parent
-                                                        enabled: spinDistance_Rec.moveDistance > 1 ? true : false
+                                                        enabled: spinDistance_Rec.moveDistance > 2 ? true : false
                                                         hoverEnabled: true
                                                         onEntered: {
                                                             parent.scale = 1.5
@@ -749,7 +749,7 @@ Popup {
                                                 parent.scale = 1.05
                                                 event.diceCardUseEntryPoint(spinDistance_Rec.moveDistance)
                                                 diceCard.isOpen = false
-                                                spinDistance_Rec.moveDistance = 1
+                                                spinDistance_Rec.moveDistance = 2
                                                 card_popUp_CloseAniamtion.start()
                                                 event.btnEnableSetting(false)
                                             }
@@ -1302,7 +1302,7 @@ Popup {
             rocketCard.isOpen = false
             rocketCard.selectIndex = -1
             diceCard.isOpen = false
-            spinDistance_Rec.moveDistance = 1
+            spinDistance_Rec.moveDistance = 2
             removeCard.isOpen = false
             roadBlockCard.isOpen = false
             removeCoordinate.currentIndex = 0

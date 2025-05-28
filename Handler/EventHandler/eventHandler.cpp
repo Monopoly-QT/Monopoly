@@ -624,7 +624,7 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
         if (processPlayer[turn]->getPos() == 63) {
             origin = true;
             QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int,0));
-            _playerPos = processPlayer[turn]->getPos();
+            _playerPos = 0;
             _index = landCoordinate[_playerPos];
         } else {
             _playerPos++;
