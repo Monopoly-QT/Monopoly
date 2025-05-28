@@ -15,6 +15,8 @@ Rectangle {
     property real hoverScale: 1.05
     property real pressScale: 1.025
     property real baseScale: 1.0
+    property bool enabled: true
+
     signal pressed()
 
     radius: 5
@@ -22,7 +24,7 @@ Rectangle {
     border.color: borderColor
     scale: baseScale
 
-    anchors.fill:parent
+    anchors.fill: parent
 
     clip: true
 
@@ -54,6 +56,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
+        enabled: parent.enabled
         onEntered: {
             root.hovered = true
             root.scale = hoverScale
