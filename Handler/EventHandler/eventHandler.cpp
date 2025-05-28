@@ -132,10 +132,10 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    // processPlayer[2]->setPos(18);
-    // processMap[5]->setOwner(0);
-    // processMap[5]->setLevel(4);
-    // processPlayer[0]->addOwnImmovables(5);
+    processPlayer[2]->setPos(18);
+    processMap[5]->setOwner(0);
+    processMap[5]->setLevel(4);
+    processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
 
@@ -616,7 +616,7 @@ void eventHandler::movePointAnimator(int _step) {
 void eventHandler::animationThread(int _times, int _playerPos, int _index) {
     QMetaObject::invokeMethod(&operateMovePoint, "setIsvisable", Qt::QueuedConnection,Q_ARG(bool, true));
 
-    bool origin = false;
+    origin = false;
 
     // _times = 2;
     for (int i = 0; i < _times; i++) {
@@ -634,12 +634,6 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
         }
         operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first, mapPosXandPosY[_index].second);
 
-        // 原點處理
-        if (origin && _playerPos == 0) {
-            processPlayer[turn]->addMoney(8000);
-        } else if (origin) {
-            processPlayer[turn]->addMoney(4000);
-        }
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
         this_thread::sleep_for(chrono::milliseconds(400));
     }
@@ -654,6 +648,16 @@ void eventHandler::afterMove() {
     int location = processPlayer[turn]->getPos();
     int landOwner = processMap[location]->getOwner();
 
+    if(origin){
+        if(location == 0){
+            processPlayer[turn]->addMoney(4000);
+            popUpdisplaySetting("+4000", 0);
+        }else{
+            processPlayer[turn]->addMoney(2000);
+            popUpdisplaySetting("+2000", 0);
+        }
+        origin = false;
+    }
     // 解除路障
     if (processMap[location]->getState() == 1) {
         processMap[location]->setState(0);
