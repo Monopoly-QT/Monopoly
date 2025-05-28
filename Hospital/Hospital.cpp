@@ -15,7 +15,7 @@ void Hospital::enterHospital(Player* player, int day) {
     player->setState(1);
     player->setPos(32);
     player->subMoney(MEDICAL_EXPENSES * day);
-    dayInHospital[player] = (day-1);
+    dayInHospital[player] = day;
 }
 
 void Hospital::leaveHospital(Player* player) {
@@ -32,5 +32,8 @@ void Hospital::update(Player* player) {
     if (dayInHospital[player] > 0) {
         dayInHospital[player]--;
     }
-    else player->setState(0);
+
+    if (dayInHospital[player] <= 0) {
+        player->setState(0);
+    }
 }

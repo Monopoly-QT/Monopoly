@@ -1,6 +1,6 @@
 ﻿{
     "0": {
-        "money": 33333,
+        "money": 30000,
         "playerID": 0,
         "playerName": "Chang Tso-Lin",
         "playerLastName": "Chang",
@@ -11,7 +11,7 @@
         "nextRollDicePoint": 0
     },
     "1": {
-        "money": 33333,
+        "money": 30000,
         "playerID": 1,
         "playerName": "Wu Pei-Fu",
         "playerLastName": "Wu",
@@ -22,7 +22,7 @@
         "nextRollDicePoint": 0
     },
     "2": {
-        "money": 33333,
+        "money": 30000,
         "playerID": 2,
         "playerName": "Tuan Chi-Jui",
         "playerLastName": "Tuan",
@@ -33,7 +33,7 @@
         "nextRollDicePoint": 0
     },
     "3": {
-        "money": 33333,
+        "money": 30000,
         "playerID": 3,
         "playerName": "Chiang Kai-Shek",
         "playerLastName": "Chiang",
