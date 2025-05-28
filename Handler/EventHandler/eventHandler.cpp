@@ -920,7 +920,7 @@ void eventHandler::toll() {
     int fee = (nowLevel) * (landValue / 10);
     processPlayer[turn]->subMoney(fee);
     processPlayer[landOwner]->addMoney(fee);
-    popUpdisplaySetting("You passed through the area of " + processPlayer[turn]->getPlayerName()+"\nand paid " +to_string(fee)+" dollars to "+processPlayer[landOwner]->getPlayerName(), 0);
+    popUpdisplaySetting("You passed through the area of " + processPlayer[landOwner]->getPlayerName()+"\nand paid " +to_string(fee)+" dollars to "+processPlayer[landOwner]->getPlayerName(), 0);
     nextTurn();
 }
 
