@@ -127,11 +127,6 @@ void eventHandler::restart(bool first) {
     m_movePoint = &operateMovePoint;
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
-
-    // processPlayer[2]->setPos(18);
-    // processMap[5]->setOwner(0);
-    // processMap[5]->setLevel(4);
-    // processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
 
@@ -531,6 +526,7 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
+            processPlayer[turn]->removeOwnImmovables(location);
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
             m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
@@ -557,9 +553,9 @@ void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
             cerr << processPlayer[turn]->getMoney() << endl;
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
-            m_displayState->initialStateDisplay(turn, processPlayer[turn]);
-            m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
+            processPlayer[turn]->removeOwnImmovables(location);
             mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
+            nextTurn();
         }
     }
 }
@@ -640,6 +636,7 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
 
         QMetaObject::invokeMethod(this, "movePointStartMove", Qt::QueuedConnection);
         this_thread::sleep_for(chrono::milliseconds(400));
+        //;D
     }
 
     this_thread::sleep_for(chrono::milliseconds(250));

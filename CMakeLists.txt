@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 
  if (CMAKE_HOST_SYSTEM MATCHES "Darwin")
      set(CMAKE_PREFIX_PATH "~/Qt6.9.0/6.9.0/macos/lib/cmake")
- elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
-    set(CMAKE_PREFIX_PATH "C:/Qt/Qt6.9.0/6.9.0/mingw_64/lib/cmake")
+ # elseif (CMAKE_HOST_SYSTEM MATCHES "Windows")
+ #    set(CMAKE_PREFIX_PATH "C:/Qt/Qt6.9.0/6.9.0/mingw_64/lib/cmake")
  endif ()
 
 #set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64/lib/cmake")

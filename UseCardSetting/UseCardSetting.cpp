@@ -17,9 +17,9 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
     m_displayAllLand.clear();
     vector<int> ownCard = _player[_turn]->getOwnCards();
     cout<<"ownCard"<<endl;
-    for (auto i : ownCard) {
-        cout<<i<<" ";
-    }
+    // for (auto i : ownCard) {
+    //     cout<<i<<" ";
+    // }
     map<int,int> cardCount;
 
     for(int i=0 ; i < 5 ; i++){
@@ -27,7 +27,7 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
     }
 
     for(int i = 0 ; i < 4 ; i++){
-        if(_turn != i && _player[i]->getState() != 1){
+        if(_turn != i && _player[i]->getState() != 1 && _player[i]->getIsLive() == true){
             m_displayTargetPlayer[i] = 1;
         }
         else{
@@ -35,11 +35,11 @@ void UseCardSetting::initialUseCardPopUp(int _turn,vector<Land*> _land,vector<Pl
         }
     }
 
-    cout<<"displayTargetPlayer"<<endl;
-    for(int i=0;i<4;i++){
-        cout<<m_displayTargetPlayer[i]<<" ";
-    }
-    cout<<endl;
+    // cout<<"displayTargetPlayer"<<endl;
+    // for(int i=0;i<4;i++){
+    //     cout<<m_displayTargetPlayer[i]<<" ";
+    // }
+    // cout<<endl;
 
     for(int i = 0 ; i < 64 ; i++){
         if(_land[i]->getOwner() != _turn && _land[i]->getType() == 0 && _land[i]->getLevel() != 0){
