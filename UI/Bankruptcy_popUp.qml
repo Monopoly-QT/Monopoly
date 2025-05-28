@@ -62,7 +62,6 @@ Popup {
                 console.log("Selected:", currentText)
             }
             function onUpdateComboBox() {
-                console.log("CONNECT")
                 removeCoordinate.model = event.getOwnLand();
             }
             Component.onCompleted: {
@@ -90,7 +89,7 @@ Popup {
                     hoverColor: "#83ff05"
                     text: "Sell"
                     textColor: (hovered) ? "blcak" : "white"
-                    enabled: event.useCard.displayOwnLand.length > 0
+                    enabled: removeCoordinate.model.length > 0
                     onPressed: {
                         console.log("Sell")
                         event.sellLandFromStrUseWhenDieEntryPoint(removeCoordinate.currentText)
