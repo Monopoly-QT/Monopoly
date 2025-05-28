@@ -12,9 +12,11 @@ Popup {
     focus: true
     anchors.centerIn: parent
     property string text: "empty"
+    signal updateComboBox();
 
     function openAnimation() {
         root_OpenAniamtion.start()
+        root.updateComboBox();
     }
 
     function closeAnimation() {
@@ -58,6 +60,13 @@ Popup {
             model: event.useCard.displayOwnLand
             onCurrentIndexChanged: {
                 console.log("Selected:", currentText)
+            }
+            function onUpdateComboBox() {
+                console.log("CONNECT")
+                removeCoordinate.model = event.getOwnLand();
+            }
+            Component.onCompleted: {
+                root.updateComboBox.connect(onUpdateComboBox);
             }
         }
 

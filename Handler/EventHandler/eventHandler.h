@@ -85,6 +85,7 @@ public:
     Q_INVOKABLE int getHosiptalRemainingDays();
     Q_INVOKABLE void leaveEarly();
     Q_INVOKABLE void btnEnableSetting(bool _isEnable);
+    Q_INVOKABLE QList<QString> getOwnLand();
 
     bool checkIsBankrupt();
 

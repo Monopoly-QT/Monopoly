@@ -132,10 +132,10 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    processPlayer[2]->setPos(18);
-    processMap[5]->setOwner(0);
-    processMap[5]->setLevel(4);
-    processPlayer[0]->addOwnImmovables(5);
+    // processPlayer[2]->setPos(18);
+    // processMap[5]->setOwner(0);
+    // processMap[5]->setLevel(4);
+    // processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
 
@@ -151,6 +151,16 @@ void eventHandler::restart(bool first) {
     emit useCardChanged();
     emit displayMessageChanged();
 }
+
+QList<QString> eventHandler::getOwnLand() {
+    QList<QString> ownLand;
+    cerr<<"SIZE"<<processPlayer[turn]->getOwnImmovables().size()<<endl;
+    for (int i = 0; i < processPlayer[turn]->getOwnImmovables().size(); i++) {
+        ownLand.append(QString::fromStdString(processMap[processPlayer[turn]->getOwnImmovables()[i]]->getName()));
+    }
+    return ownLand;
+}
+
 
 int eventHandler::getTurn() {
     return turn;
@@ -523,7 +533,7 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
 
     if (turn >= 0) {
         if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn + 1) {
-            int value = processMap[location]->getValue();
+            int value = processMap[location]->getValue() * 0.8;
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
@@ -536,7 +546,7 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
 
 void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
     string regisStr = _removeQStr.toStdString();
-    cout<<"SELL"<<regisStr<<endl;
+    cerr<<"SELL"<<regisStr<<endl;
     int location = 0;
     for (int i = 0; i < 64; i++) {
         if (processMap[i]->getName() == regisStr) {
@@ -547,9 +557,10 @@ void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
 
     if (turn >= 0) {
         if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn) {
-            int value = processMap[location]->getValue();
-            cout<<"VALUE"<<value<<endl;
+            int value = processMap[location]->getValue() * 0.8;
+            cerr<<"VALUE"<<value<<"TURN "<<turn<<endl;
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
+            cerr<<processPlayer[turn]->getMoney()<<endl;
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -916,7 +927,6 @@ void eventHandler::buyLand() {
 
     int nowPos = processPlayer[turn]->getPos();
     if (processPlayer[turn]->getMoney() >= processMap[nowPos]->getValue()) {
-        processPlayer[turn]->addHouse(nowPos);
         processPlayer[turn]->addOwnImmovables(nowPos);
         processMap[nowPos]->setOwner(turn);
         processMap[nowPos]->setLevel(1);

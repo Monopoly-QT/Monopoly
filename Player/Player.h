@@ -52,7 +52,6 @@ public:
     void addOwnImmovables(int _pos);
     void addOwnCards(int _addCard);
     void disOwnCards(int _disCards);
-    void addHouse(int _pos);
 
     void subPos(int _deltaPos);
     bool getIsLive() const;
