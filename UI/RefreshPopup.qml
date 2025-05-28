@@ -10,6 +10,19 @@ Popup {
     height: parent.height
     background: Rectangle { color: "black" }
 
+    Image {
+        id: kuaiKuai
+        source: "qrc:/images/KuaiKuai.png"
+        width: 100     // 根據需要調整尺寸
+        height: 100
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 20  // 與邊界留點距離
+        fillMode: Image.PreserveAspectFit
+        z: 10           // 確保圖層高於背景
+        opacity: 0.8    // 可選：讓它稍微透明
+    }
+
     property bool isRunning: false
 
     function startRefresh() {
