@@ -812,6 +812,13 @@ void eventHandler::openBankruptThread() {
 
 void eventHandler::nextTurn() {
     turn = (turn + 1) % 4;
+    int tmp = turn;
+    while (!processPlayer[turn]->getIsLive()) {
+        turn = (turn + 1) % 4;
+        if (tmp == turn) {
+            break; // 所有玩家都死了
+        }
+    }
     if (checkIsGameEnded()) {
         return;
     }
