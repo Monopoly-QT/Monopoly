@@ -45,7 +45,15 @@ Rectangle{
                     font.bold: true
                     font.pixelSize: parent.width / 15
                     font.family: "roboto"
-                    color: "white"
+                    color: {
+                        switch (event.displayState.name) {
+                            case "Chang Tso-Lin": return "#ff1700";
+                            case "Wu Pei-Fu": return "#009aff";
+                            case "Tuan Chi-Jui": return "#0fff00";
+                            case "Chiang Kai-Shek": return "#ffcb00";
+                            default: return "white";
+                        }
+                    }
                 }
             }
         }
