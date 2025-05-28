@@ -618,18 +618,17 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
 
     origin = false;
 
-    // _times = 2;
     for (int i = 0; i < _times; i++) {
         if (processMap[_playerPos]->getState() == 1 || processPlayer[turn]->getState() == 1) break;
 
         if (processPlayer[turn]->getPos() == 63) {
             origin = true;
-            processPlayer[turn]->setPos(0);
+            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int,0));
             _playerPos = processPlayer[turn]->getPos();
             _index = landCoordinate[_playerPos];
         } else {
             _playerPos++;
-            processPlayer[turn]->setPos(_playerPos);
+            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int,_playerPos));
             _index = landCoordinate[_playerPos];
         }
         operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first, mapPosXandPosY[_index].second);

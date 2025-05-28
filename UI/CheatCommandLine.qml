@@ -53,7 +53,7 @@ Rectangle{
 
                 Text {
                     z:2
-                    text: "execute"
+                    text: "Execute"
                     font.bold: true
                     font.family: "roboto"
                     font.pixelSize: executeCheatCMD_Rec.height / 2
@@ -116,7 +116,7 @@ Rectangle{
 
                 Text {
                     z:2
-                    text: "clear"
+                    text: "Clear"
                     font.bold: true
                     font.family: "roboto"
                     font.pixelSize: clearCheatCMD_Rec.height / 2

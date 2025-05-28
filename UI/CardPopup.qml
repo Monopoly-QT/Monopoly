@@ -51,6 +51,7 @@ Popup {
                     border.color: playWindow.borderColor
                     property bool isOpen: false
                     property int selectIndex: -1
+                    property bool isUseAble: true
                     clip: true
 
                     ColumnLayout {
@@ -97,6 +98,7 @@ Popup {
                                     anchors.fill: parent
                                     onPressed: {
                                         rocketCard.isOpen = !rocketCard.isOpen
+                                        rocketCard.useable()
                                     }
                                 }
                             }
@@ -120,6 +122,7 @@ Popup {
                                     Layout.preferredWidth: parent.width
                                     Layout.preferredHeight: 20
                                     spacing: 5
+
                                     //player1
                                     Rectangle {
                                         Layout.preferredHeight: parent.height
@@ -384,6 +387,10 @@ Popup {
                                         }
                                     }
                                     //player4 end
+                                    Rectangle{
+                                        Layout.preferredWidth: 0.1
+                                        color:"transparent"
+                                    }
                                 }
 
                                 Turntable {
@@ -394,17 +401,6 @@ Popup {
                                     afterRotate: function () {
                                         // 得到的值: rotatedIndex
                                         event.rocketCardUseEntryPoint(rocketCard.selectIndex, rotatedIndex);
-                                        rocketCard.isOpen = false
-                                        rocketCard.selectIndex = -1
-                                    }
-                                }
-
-                                Timer {
-                                    id: rocketCardDely_timer
-                                    interval: 3500
-                                    running: false
-                                    repeat: false
-                                    onTriggered: {
                                         rocketCard.isOpen = false
                                         rocketCard.selectIndex = -1
                                     }
@@ -452,7 +448,7 @@ Popup {
                                         MouseArea {
                                             anchors.fill: parent
                                             hoverEnabled: true
-                                            enabled: rocketCard.selectIndex !== -1
+                                            enabled: rocketCard.selectIndex !== -1 && rocketCard.isUseAble
                                             onEntered: {
                                                 parent.scale = 1.1
                                                 parent.isHovered = true
@@ -466,7 +462,6 @@ Popup {
                                                 if (turntable.animationEnable) {
                                                     turntable.rot += Math.random() * 360 + 5400;
                                                 }
-                                                // rocketCardDely_timer.start()
                                             }
                                             onReleased: {
                                                 parent.scale = 1.1
@@ -502,6 +497,20 @@ Popup {
                             easing.type: Easing.InOutQuad
                         }
                     }
+                    function useable(){
+                        var i=0
+                        for(var j=0;j<4;j++){
+                            if(event.useCard.displayTargetPlayer[j] === 1){
+                                i++
+                            }
+                        }
+                        if(i == 0){
+                            rocketCard.isUseAble = false
+                        }
+                        else{
+                            rocketCard.isUseAble = true
+                        }
+                    }
                 }
 
                 // Dice Card
@@ -528,7 +537,7 @@ Popup {
                                 Layout.fillWidth: true
                                 color: "transparent"
                                 Text {
-                                    text: "Rigged Dice" + " x " + event.useCard.ownCardCount[0]
+                                    text: "Dice Control" + " x " + event.useCard.ownCardCount[0]
                                     font.pixelSize: 15
                                     font.family: "roboto"
                                     font.bold: true
@@ -808,7 +817,7 @@ Popup {
                                 Layout.fillWidth: true
                                 color: "transparent"
                                 Text {
-                                    text: "Remove" + " x " + event.useCard.ownCardCount[3]
+                                    text: "Destroy Immovable" + " x " + event.useCard.ownCardCount[3]
                                     font.pixelSize: 15
                                     font.family: "roboto"
                                     font.bold: true
@@ -994,7 +1003,7 @@ Popup {
                                 Layout.fillWidth: true
                                 color: "transparent"
                                 Text {
-                                    text: "RoadBlock" + " x " + event.useCard.ownCardCount[1]
+                                    text: "Road Block" + " x " + event.useCard.ownCardCount[1]
                                     font.pixelSize: 15
                                     font.family: "roboto"
                                     font.bold: true
@@ -1182,7 +1191,7 @@ Popup {
 
                     Text {
                         z: 2
-                        text: "Event Card" + " x " + event.useCard.ownCardCount[4]
+                        text: "Random Event" + " x " + event.useCard.ownCardCount[4]
                         font.bold: true
                         font.family: "roboto"
                         color: parent.isHovered ? "black" : "white"

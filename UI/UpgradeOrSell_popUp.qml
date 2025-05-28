@@ -70,10 +70,9 @@ Popup{
                 color: "transparent"
                 CostumBtn_Rec{
                     hoverColor: "#83ff05"
-                    text: "upgrade"
+                    text: "Upgrade"
                     textColor: (hovered) ? "black" : "white"
                     onPressed: {
-                        console.log("upgrade")
                         event.levelup()
                         root_CloseAniamtion.start()
                     }
@@ -85,10 +84,9 @@ Popup{
                 color: "transparent"
                 CostumBtn_Rec{
                     hoverColor: "#83ff05"
-                    text: "sell"
+                    text: "Sell"
                     textColor: (hovered) ? "black" : "white"
                     onPressed: {
-                        console.log("sell")
                         event.sellLand()
                         root_CloseAniamtion.start()
                     }
@@ -100,7 +98,7 @@ Popup{
                 color: "transparent"
                 CostumBtn_Rec{
                     hoverColor: "#ff6805"
-                    text: "close"
+                    text: "Close"
                     textColor: (hovered) ? "black" : "white"
                     onPressed: {
                         root_CloseAniamtion.start()
