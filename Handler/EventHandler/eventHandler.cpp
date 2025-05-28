@@ -132,10 +132,10 @@ void eventHandler::restart(bool first) {
     m_displayState = new StateDisplay();
     m_useCard = new UseCardSetting();
 
-    processPlayer[2]->setPos(18);
-    processMap[5]->setOwner(0);
-    processMap[5]->setLevel(4);
-    processPlayer[0]->addOwnImmovables(5);
+    // processPlayer[2]->setPos(18);
+    // processMap[5]->setOwner(0);
+    // processMap[5]->setLevel(4);
+    // processPlayer[0]->addOwnImmovables(5);
     mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
 
 
