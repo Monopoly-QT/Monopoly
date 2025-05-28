@@ -913,10 +913,10 @@ void eventHandler::toll() {
     int landOwner = processMap[nowPos]->getOwner();
     int landValue = processMap[nowPos]->getValue();
     int nowLevel = processMap[nowPos]->getLevel();
-    int fee = (nowLevel) * (landValue / 10);
+    int fee = (nowLevel) * (landValue / 5) + landValue * 0.8;
     processPlayer[turn]->subMoney(fee);
     processPlayer[landOwner]->addMoney(fee);
-    popUpdisplaySetting("-" + to_string(fee), 0);
+    popUpdisplaySetting("You passed through the area of " + processPlayer[landOwner]->getPlayerName()+"\nand paid " +to_string(fee)+" dollars to "+processPlayer[landOwner]->getPlayerName(), 0);
     nextTurn();
 }
 
@@ -956,7 +956,7 @@ void eventHandler::levelup() {
 
 void eventHandler::sellLand() {
     int nowPos = processPlayer[turn]->getPos();
-    int value = processMap[nowPos]->getValue();
+    int value = processMap[nowPos]->getValue() * 0.8;
     processPlayer[turn]->addMoney((value / 2) + (processMap[nowPos]->getLevel() * value / 2));
     processMap[nowPos]->setOwner(-1);
     processMap[nowPos]->setLevel(0);
