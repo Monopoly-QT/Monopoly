@@ -154,7 +154,7 @@ void eventHandler::restart(bool first) {
 
 QList<QString> eventHandler::getOwnLand() {
     QList<QString> ownLand;
-    cerr<<"SIZE"<<processPlayer[turn]->getOwnImmovables().size()<<endl;
+    cerr << "SIZE" << processPlayer[turn]->getOwnImmovables().size() << endl;
     for (int i = 0; i < processPlayer[turn]->getOwnImmovables().size(); i++) {
         ownLand.append(QString::fromStdString(processMap[processPlayer[turn]->getOwnImmovables()[i]]->getName()));
     }
@@ -166,11 +166,11 @@ int eventHandler::getTurn() {
     return turn;
 }
 
-int eventHandler::getHosiptalRemainingDays(){
+int eventHandler::getHosiptalRemainingDays() {
     return Hospital::getDayInHospital(processPlayer[turn]);
 }
 
-void eventHandler::leaveEarly(){
+void eventHandler::leaveEarly() {
     processPlayer[turn]->subMoney(Hospital::getDayInHospital(processPlayer[turn]) * 1000);
     Hospital::leaveHospital(processPlayer[turn]);
     m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -182,7 +182,7 @@ void eventHandler::moveEntryPoint(int _moveDistance) {
     if (processPlayer[turn]->getState() == 0)movePointAnimator(_moveDistance);
     else {
         Hospital::update(processPlayer[turn]);
-        if (_moveDistance >= 8){
+        if (_moveDistance >= 8) {
             Hospital::leaveHospital(processPlayer[turn]);
         }
         nextTurn();
@@ -401,11 +401,10 @@ void eventHandler::commendEntryPoint(QString _instruct) {
                 prompt += "Land(s): \n";
                 vector<int> tempV = processPlayer[i]->getOwnImmovables();
 
-                if(tempV.empty()){
+                if (tempV.empty()) {
                     prompt += "\tNone\n";
-                }
-                else{
-                    sort(tempV.begin(),tempV.end());
+                } else {
+                    sort(tempV.begin(), tempV.end());
 
                     for (int i = 0; i < tempV.size(); i++) {
                         prompt += "\tPosition: " + to_string(tempV[i]) + " " + processMap[tempV[i]]->getName() +
@@ -428,11 +427,10 @@ void eventHandler::commendEntryPoint(QString _instruct) {
 
                 tempV = processPlayer[i]->getOwnCards();
 
-                if(tempV.empty()){
+                if (tempV.empty()) {
                     prompt += "\tNone\n";
-                }
-                else{
-                    sort(tempV.begin(),tempV.end());
+                } else {
+                    sort(tempV.begin(), tempV.end());
 
                     for (int i = 0; i < tempV.size(); i++) {
                         prompt += "\t" + cardData["IDToName"][to_string(tempV[i])]["name"].get<string>() + string(
@@ -546,7 +544,7 @@ void eventHandler::sellLandFromStrUseEntryPoint(QString _removeQStr) {
 
 void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
     string regisStr = _removeQStr.toStdString();
-    cerr<<"SELL"<<regisStr<<endl;
+    cerr << "SELL" << regisStr << endl;
     int location = 0;
     for (int i = 0; i < 64; i++) {
         if (processMap[i]->getName() == regisStr) {
@@ -558,9 +556,9 @@ void eventHandler::sellLandFromStrUseWhenDieEntryPoint(QString _removeQStr) {
     if (turn >= 0) {
         if (processMap[location]->getType() == 0 && processMap[location]->getOwner() == turn) {
             int value = processMap[location]->getValue() * 0.8;
-            cerr<<"VALUE"<<value<<"TURN "<<turn<<endl;
+            cerr << "VALUE" << value << "TURN " << turn << endl;
             processPlayer[turn]->addMoney((value / 2) + (processMap[location]->getLevel() * value / 2));
-            cerr<<processPlayer[turn]->getMoney()<<endl;
+            cerr << processPlayer[turn]->getMoney() << endl;
             processMap[location]->setOwner(-1);
             processMap[location]->setLevel(0);
             m_displayState->initialStateDisplay(turn, processPlayer[turn]);
@@ -634,12 +632,12 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
 
         if (processPlayer[turn]->getPos() == 63) {
             origin = true;
-            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int,0));
+            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int, 0));
             _playerPos = 0;
             _index = landCoordinate[_playerPos];
         } else {
             _playerPos++;
-            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int,_playerPos));
+            QMetaObject::invokeMethod(processPlayer[turn], "setPos", Qt::QueuedConnection,Q_ARG(int, _playerPos));
             _index = landCoordinate[_playerPos];
         }
         operateMovePoint.movingMovePoint(mapPosXandPosY[_index].first, mapPosXandPosY[_index].second);
@@ -654,15 +652,15 @@ void eventHandler::animationThread(int _times, int _playerPos, int _index) {
 }
 
 void eventHandler::afterMove() {
-    qDebug()<<turn<<"\n";
+    qDebug() << turn << "\n";
     int location = processPlayer[turn]->getPos();
     int landOwner = processMap[location]->getOwner();
 
-    if(origin){
-        if(location == 0){
+    if (origin) {
+        if (location == 0) {
             processPlayer[turn]->addMoney(4000);
             popUpdisplaySetting("+4000", 0);
-        }else{
+        } else {
             processPlayer[turn]->addMoney(2000);
             popUpdisplaySetting("+2000", 0);
         }
@@ -806,25 +804,28 @@ void eventHandler::randomEvent() {
     }
 }
 
+void eventHandler::openBankruptThread() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(700));
+    if (processPlayer[turn]->getMoney() <= 0) {
+        QMetaObject::invokeMethod(this, [this]() {
+            setDisplayMessage_bankruptcypopUp("Bankrupt!");
+            emit openBankruptcy();
+        }, Qt::QueuedConnection);
+    }
+}
+
 void eventHandler::nextTurn() {
     turn = (turn + 1) % 4;
-    int tmp = turn;
-    while (!processPlayer[turn]->getIsLive()) {
-        turn = (turn + 1) % 4;
-        if (tmp == turn) {
-            break; // 所有玩家都死了
-        }
-    }
     if (checkIsGameEnded()) {
         return;
     }
 
-    if (processPlayer[turn]->getMoney() <= 0) {
-        setDisplayMessage_bankruptcypopUp("Bankrupt!");
-        emit openBankruptcy();
-    }
+    std::thread openBankrupt([this]() {
+        openBankruptThread();
+    });
+    openBankrupt.detach();
 
-    if(Hospital::isInHospital(processPlayer[turn])){
+    if (Hospital::isInHospital(processPlayer[turn])) {
         emit openHospitalPopups();
     }
 
@@ -858,10 +859,11 @@ void eventHandler::gameEnd() {
 void eventHandler::suicidal() {
     processPlayer[turn]->setIsLive(false);
     vector<int> ownPos;
-    for(auto i:processPlayer[turn]->getOwnImmovables()){
+    for (auto i: processPlayer[turn]->getOwnImmovables()) {
         ownPos.push_back(i);
     }
-    for(auto i:ownPos){
+
+    for (auto i: ownPos) {
         processMap[i]->setOwner(-1);
         processMap[i]->setLevel(0);
         processPlayer[turn]->removeOwnImmovables(i);
@@ -886,7 +888,7 @@ bool eventHandler::checkIsGameEnded() {
             liveCount++;
         }
         if (processPlayer[i]->getMoney() >= m_endMoney) {
-            qDebug()<<i<<" "<<processPlayer[i]->getMoney()<<"\n";
+            qDebug() << i << " " << processPlayer[i]->getMoney() << "\n";
             gameEnd();
             return true;
         }
@@ -934,9 +936,8 @@ void eventHandler::buyLand() {
         m_displayState->initialStateDisplay(turn, processPlayer[turn]);
         m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-        qDebug()<<"landOwner is "<<processMap[processPlayer[1]->getPos()]->getOwner()<<"\n\n";
-    }
-    else popUpdisplaySetting("oops, you don't have enough money", 0);
+        qDebug() << "landOwner is " << processMap[processPlayer[1]->getPos()]->getOwner() << "\n\n";
+    } else popUpdisplaySetting("oops, you don't have enough money", 0);
     nextTurn();
 }
 
@@ -949,9 +950,10 @@ void eventHandler::levelup() {
         m_displayState->initialStateDisplay(turn, processPlayer[turn]);
         m_useCard->initialUseCardPopUp(turn, processMap, processPlayer);
         mapUpdate(landCoordinate, m_mapList, processMap, processPlayer);
-    }
-    else if(processMap[nowPos]->getLevel() == 4) popUpdisplaySetting("oops, the level is already maxed out", 0);
-    else if(processPlayer[turn]->getMoney() < (processMap[nowPos]->getValue() / 2))popUpdisplaySetting("oops, you don't have enough money", 0);
+    } else if (processMap[nowPos]->getLevel() == 4) popUpdisplaySetting("oops, the level is already maxed out", 0);
+    else if (processPlayer[turn]->getMoney() < (processMap[nowPos]->getValue() / 2))
+        popUpdisplaySetting(
+            "oops, you don't have enough money", 0);
 
     nextTurn();
 }
@@ -992,8 +994,7 @@ void eventHandler::popUpdisplaySetting(string _message, int _type) {
     }
 }
 
-void eventHandler::btnEnableSetting(bool _isEnable)
-{
+void eventHandler::btnEnableSetting(bool _isEnable) {
     m_diceEnabled = _isEnable;
     m_cardEnabled = _isEnable;
     m_cheatEnable = _isEnable;

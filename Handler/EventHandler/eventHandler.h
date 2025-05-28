@@ -60,6 +60,8 @@ public:
 
     void randomEvent();
 
+    Q_INVOKABLE void openBankruptThread();
+
     Q_INVOKABLE void addMapPosXandPosY(double _posX, double _posY);
     Q_INVOKABLE void clearMapPosXandPosY();
     Q_INVOKABLE void moveEntryPoint(int _moveDistance);
