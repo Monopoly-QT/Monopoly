@@ -3,7 +3,7 @@
 
 組員：B11315038 張智華、B11330046 王瑋琮、B11315022 黃楷駿、B11315040 許鑫勝
 
-[Document](https://hackmd.io/vbxi2d15TPaeFxqDpaYXjw)
+[Document]([https://hackmd.io/vbxi2d15TPaeFxqDpaYXjw](https://hackmd.io/@dafuwong/By56NL4Mel))
 
 [Demo](https://youtu.be/YnqnBqD97M4)
 
